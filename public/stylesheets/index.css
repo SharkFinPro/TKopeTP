@@ -1,0 +1,37 @@
+.categories {
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+
+    row-gap: 0.25vh;
+}
+
+.categories p {
+    width: 75%;
+
+    /* General Styling */
+    background-color: #231f20;
+
+    /* Text Styling */
+    text-align: center;
+    color: #e4e5e8;
+    font-family: MuseoSlab, MuseoSans, serif;
+}
+
+.categories p:hover {
+    color: #e31836;
+}
+
+.categories p a {
+    padding: 5vw;
+
+    display: block;
+
+    /* Text Styling */
+    text-decoration: none;
+    font-size: 3.75vh;
+    color: inherit;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="user-scalable=no">
+    <title>T'Kope TP - Drinks</title>
+    <link rel="stylesheet" href="stylesheets/wrapper.css">
+    <link rel="stylesheet" href="stylesheets/products.css">
+    <script src="scripts/requests.js"></script>
+    <script src="scripts/cart.js"></script>
+    <script src="scripts/session.js"></script>
+  </head>
+
+  <body>
+    <div class="header">
+      <h1>Drinks</h1>
+    </div>
+
+    <div class="content">
+      <div class="products" id="products"></div>
+    </div>
+
+    <div class="footer">
+      <p><a onclick="cart.purchase()">Checkout</a></p>
+    </div>
+
+    <script>
+        const productType = "drinks";
+    </script>
+    <script src="scripts/products.js"></script>
+  </body>
+</html>

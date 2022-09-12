@@ -1,0 +1,113 @@
+@font-face {
+    font-family: MuseoSlab;
+    src: url("../fonts/Museo_Slab_500_2.otf");
+}
+
+@font-face {
+    font-family: MuseoSlab;
+    src: url("../fonts/Museo_Slab_500italic.otf");
+    font-style: italic;
+}
+
+@font-face {
+    font-family: MuseoSans;
+    src: url("../fonts/MuseoSans_500.otf");
+}
+
+@font-face {
+    font-family: MuseoSans;
+    src: url("../fonts/MuseoSans_500_Italic.otf");
+    font-style: italic;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+
+    display:flex;
+    flex-wrap: wrap;
+
+    /* General Styling */
+    background-color: black;
+}
+
+.header {
+    width: 100%;
+    height: 20%;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+
+    /* Border Styling */
+    border-style: double;
+    border-width: 15px;
+    box-sizing: border-box;
+    border-color: #36454F;
+
+    /* General Styling */
+    background-color: #e41836;
+
+    /* Text Styling */
+    color: #e5e6e8;
+    text-align: center;
+    font-size: 5vw;
+    font-family: MuseoSlab, MuseoSans, serif;
+}
+
+.footer {
+    width: 100%;
+    height: 10%;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+
+    /* General Styling */
+    background-color: #005594;
+
+    /* Text Styling */
+    color: #e5e6e8;
+    text-align: center;
+    font-size: 5vw;
+    font-family: MuseoSans, serif;
+}
+
+.content {
+    width: 100%;
+    height: 70%;
+
+    display: flex;
+
+    /* General Styling */
+    background-color: #36454F;
+}
+
+.footer p {
+    width: 40%;
+
+    background-color: #650812;
+
+    border-radius: 5px;
+    border: 5px solid #030006;
+}
+
+.footer p:hover {
+    background-color: #E31837;
+}
+
+.footer p a {
+    padding: 3.5vw;
+
+    display: block;
+
+    text-decoration: none;
+    font-family: MuseoSans, serif;
+    font-size: 2.5vh;
+    color: #FFFFFF;
+}
