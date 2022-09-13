@@ -1,6 +1,6 @@
 const products = JSON.parse(postRequest("products", productType));
 
-const generateProduct = (product) => {
+const generateProduct = (product, key) => {
     cart.createListing(product);
 
     let productData = products[product];
@@ -9,27 +9,30 @@ const generateProduct = (product) => {
         productData.image = "images/NOT_FOUND.png";
     }
 
-    return '<div class="product">' +
-        '<div class="image">' +
-            `<img alt="product image" src="${productData.image}">` +
-        '</div>' +
-        '<div class="name">' +
-            `<p>${productData.displayName} - $${productData.price}</p>` +
-        '</div>' +
-        '<div class="purchase">' +
-            `<button class="purchaseThird option left" onclick="subFromCart('${product}')">-</button>` +
-            '<div class="purchaseThird display">' +
-                `<p id="${product}">${cart.getCount(product)}</p>` +
-            '</div>' +
-            `<button class="purchaseThird option right" onclick="addToCart('${product}')">+</button>` +
-        '</div>' +
-        '</div>';
+    return (
+        <div className="product" key={key}>
+            <div className="image">
+                <img alt="product image" src={productData.image}></img>
+            </div>
+            <div className="name">
+                <p>{productData.displayName} - ${productData.price}</p>
+            </div>
+            <div className="purchase">
+                <button className="purchaseThird option left" onClick={()=>{subFromCart(product)}}>-</button>
+                <div className="purchaseThird display">
+                    <p id={product}>{cart.getCount(product)}</p>
+                </div>
+                <button className="purchaseThird option right" onClick={()=>{addToCart(product)}}>+</button>
+            </div>
+        </div>);
 };
-
-for (let product in products)
-{
-    document.getElementById("products").innerHTML = document.getElementById("products").innerHTML + generateProduct(product);
+let productsArray = [];
+let productsKeys = Object.keys(products);
+for (let i = 0; i < productsKeys.length; i++) {
+    productsArray.push(generateProduct(productsKeys[i], i));
 }
+const productsRoot = ReactDOM.createRoot(document.getElementById("products"));
+productsRoot.render(productsArray);
 
 const subFromCart = (product) => {
     cart.remove(product);

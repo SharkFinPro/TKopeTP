@@ -8,8 +8,8 @@ const sessions = new Map();
 const products = require("./products.js");
 
 app.use(express.static("public"));
-app.use(express.json())
-app.use(express.urlencoded())
+app.use(express.json());
+app.use(express.urlencoded());
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port} with session ID ${sessionId}`);
