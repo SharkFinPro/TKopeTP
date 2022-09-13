@@ -84,6 +84,8 @@ body {
 
     display: flex;
 
+    overflow-y: auto;
+
     /* General Styling */
     background-color: #36454F;
 }

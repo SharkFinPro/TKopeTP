@@ -6,42 +6,65 @@ class Cart {
         }
     }
 
-    createListing(product) {
+    createListing(product, productData) {
         if (!Object.keys(this.cart).includes(product))
         {
-            this.cart[product] = 0;
+            this.cart[product] = productData;
+            this.cart[product].count = 0;
         }
 
         this.updateStorage();
     }
 
     add(product) {
-        this.cart[product]++;
+        this.cart[product].count++;
 
         this.updateStorage();
     }
 
     remove(product) {
-        if (this.cart[product] <= 0) {
+        if (this.cart[product].count <= 0) {
             return;
         }
 
-        this.cart[product]--;
+        this.cart[product].count--;
 
         this.updateStorage();
     }
 
     getCount(product) {
-        return this.cart[product];
+        return this.cart[product].count;
     }
 
     purchase() {
         postRequest("/purchase", {
-            cart: this.cart,
+            cart: this.getActual(),
             sessionId: mySessionID
         });
 
         this.reset();
+    }
+
+    getActual() {
+        let cart = {};
+        for (let product in this.cart) {
+            if (this.cart[product].count) {
+                cart[product] = this.cart[product];
+            }
+        }
+
+        return cart;
+    }
+
+    getTotalPrice() {
+        let cart = this.getActual();
+        let total = 0;
+
+        for (let product in cart) {
+            total += cart[product].price * cart[product].count;
+        }
+
+        return total;
     }
 
     reset() {

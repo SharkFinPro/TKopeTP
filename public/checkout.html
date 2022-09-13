@@ -5,9 +5,9 @@
     <meta name="viewport" content="user-scalable=no">
     <title>T'Kope TP - Checkout</title>
     <link rel="stylesheet" href="stylesheets/wrapper.css">
-    <link rel="stylesheet" href="stylesheets/index.css">
-    <script src="external/react.production.min.js"></script>
-    <script src="external/react-dom.production.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/checkout.css">
+    <script src="external/react.development.js"></script>
+    <script src="external/react-dom.development.js"></script>
     <script src="external/babel.min.js"></script>
     <script src="scripts/requests.js"></script>
     <script src="scripts/cart.js"></script>
@@ -20,12 +20,13 @@
   </div>
 
   <div class="content">
+    <div class="cartDisplay" id="cartDisplay"></div>
   </div>
 
   <div class="footer">
     <p><a href="/" onclick="cart.purchase()">Finish</a></p>
   </div>
 
-  <script src="scripts/index.js"></script>
+  <script src="scripts/checkout.js" type="text/babel"></script>
   </body>
 </html>

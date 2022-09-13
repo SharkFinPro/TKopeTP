@@ -1,16 +1,15 @@
 const products = JSON.parse(postRequest("products", productType));
 
-const generateProduct = (product, key) => {
-    cart.createListing(product);
-
+const generateProduct = (product) => {
     let productData = products[product];
-
     if (!productData.image) {
         productData.image = "images/NOT_FOUND.png";
     }
 
+    cart.createListing(product, productData);
+
     return (
-        <div className="product" key={key}>
+        <div className="product" key={product}>
             <div className="image">
                 <img alt="product image" src={productData.image}></img>
             </div>
@@ -26,10 +25,10 @@ const generateProduct = (product, key) => {
             </div>
         </div>);
 };
+
 let productsArray = [];
-let productsKeys = Object.keys(products);
-for (let i = 0; i < productsKeys.length; i++) {
-    productsArray.push(generateProduct(productsKeys[i], i));
+for (let product in products) {
+    productsArray.push(generateProduct(product));
 }
 const productsRoot = ReactDOM.createRoot(document.getElementById("products"));
 productsRoot.render(productsArray);

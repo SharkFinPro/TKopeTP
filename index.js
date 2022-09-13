@@ -47,15 +47,8 @@ app.post("/products", (req, res) => {
 
 app.post("/purchase", (req, res) => {
     let body = JSON.parse(Object.keys(req.body)[0]);
-
     let user = sessions.get(parseInt(body.sessionId));
-
     let cart = body.cart;
-    for (let product in cart) {
-        if (cart[product] === 0) {
-            delete cart[product];
-        }
-    }
 
     console.log(cart);
 
