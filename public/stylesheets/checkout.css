@@ -1,5 +1,12 @@
+.content {
+    flex-wrap: wrap;
+}
+
 .cartDisplay {
     width: 100%;
+    height: fit-content;
+
+    overflow-y: auto;
 
     display: flex;
     flex-wrap: wrap;
@@ -15,8 +22,6 @@
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
-
-    /*border: 2px solid #030006;*/
 
     /* Text Styling */
     font-family: MuseoSans, serif;
@@ -49,6 +54,7 @@
     background-color: #E31837;
 
     border: 5px double #030006;
+    border-radius: 5px;
     box-sizing: border-box;
 
     text-align: center;
