@@ -37,7 +37,7 @@ app.post("/setName", (req, res) => {
     sessions.get(parseInt(body.sessionId)).name = body.name;
 
     res.send();
-})
+});
 
 app.post("/products", (req, res) => {
     let type = JSON.parse(Object.keys(req.body)[0]);
@@ -47,9 +47,15 @@ app.post("/products", (req, res) => {
 
 app.post("/purchase", (req, res) => {
     let body = JSON.parse(Object.keys(req.body)[0]);
-    console.log(body);
 
-    let cart = body["cart"];
+    let user = sessions.get(parseInt(body.sessionId));
+
+    let cart = body.cart;
+    for (let product in cart) {
+        if (cart[product] === 0) {
+            delete cart[product];
+        }
+    }
 
     console.log(cart);
 

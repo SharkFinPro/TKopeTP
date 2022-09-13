@@ -15,13 +15,138 @@ module.exports = {
             price: 1.00,
             image: "images/milky_way.jpg"
         },
+        milkyWayMidnight: {
+            displayName: "Midnight Milkyway",
+            price: 1.00,
+            image: ""
+        },
         snickers: {
             displayName: "Snickers",
             price: 1.00,
             image: "images/snickers.jpg"
-        }
+        },
+        sourPatchKids: {
+            displayName: "Sour Patch Kids",
+            price: 1.00,
+            image: ""
+        },
+        watermelonCandy: {
+            displayName: "Watermelon Sour Patch Kids",
+            price: 1.00,
+            image: ""
+        },
+        yorkPatty: {
+            displayName: "York Patty",
+            price: 1.00,
+            image: ""
+        },
+        skittles: {
+            displayName: "Skittles",
+            price: 1.00,
+            image: ""
+        },
+        kitKat: {
+            displayName: "Kit Kat",
+            price: 1.00,
+            image: ""
+        },
+        gushers: {
+            displayName: "Gushers",
+            price: 1.00,
+            image: ""
+        },
     },
     drinks: {
+        pepsi: {
+            displayName: "Pepsi",
+            price: 1.00,
+            image: ""
+        },
+        dietPepsi: {
+            displayName: "Diet Pepsi",
+            price: 1.00,
+            image: ""
+        },
+        noSugarPepsi: {
+            displayName: "Zero Sugar Pepsi",
+            price: 1.00,
+            image: ""
+        },
+        coke: {
+            displayName: "Coke",
+            price: 1.00,
+            image: ""
+        },
+        dietCoke: {
+            displayName: "Diet Coke",
+            price: 1.00,
+            image: ""
+        },
+        noSugarCoke: {
+            displayName: "Zero Sugar Coke",
+            price: 1.00,
+            image: ""
+        },
+        mtnDew: {
+            displayName: "Mountain Dew",
+            price: 1.00,
+            image: ""
+        },
+        dietMtnDew: {
+            displayName: "Diet Mountain Dew",
+            price: 1.00,
+            image: ""
+        },
+        bajaBlast: {
+            displayName: "Mountain Dew Baja Blast",
+            price: 1.00,
+            image: ""
+        },
+        codeRed: {
+            displayName: "Mountain Dew Code Red",
+            price: 1.00,
+            image: ""
+        },
+        voltage: {
+            displayName: "Mountain Dew Voltage",
+            price: 1.00,
+            image: ""
+        },
+        spark: {
+            displayName: "Mountain Dew Spark",
+            price: 1.00,
+            image: ""
+        },
+        gold: {
+            displayName: "Mountain Dew Gold",
+            price: 1.00,
+            image: ""
+        },
+        fanta: {
+            displayName: "Fanta",
+            price: 1.00,
+            image: ""
+        },
+        grapeFanta: {
+            displayName: "Grape Fanta",
+            price: 1.00,
+            image: ""
+        },
+        strawberryFanta: {
+            displayName: "Strawberry Fanta",
+            price: 1.00,
+            image: ""
+        },
+        sprite: {
+            displayName: "Sprite",
+            price: 1.00,
+            image: ""
+        },
+        rootbeer: {
+            displayName: "Root Beer",
+            price: 1.00,
+            image: ""
+        },
 
     },
     patches: {
@@ -241,3 +366,10 @@ module.exports = {
         },
     }
 };
+
+/*        name: {
+            displayName: "",
+            price: .00,
+            image: ""
+        },
+ */

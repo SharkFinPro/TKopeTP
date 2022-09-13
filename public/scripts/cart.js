@@ -36,10 +36,10 @@ class Cart {
     }
 
     purchase() {
-        postRequest("/purchase", JSON.stringify({
+        postRequest("/purchase", {
             cart: this.cart,
-            sessionID: mySessionID
-        }));
+            sessionId: mySessionID
+        });
 
         this.reset();
     }
