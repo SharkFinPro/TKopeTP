@@ -1,12 +1,13 @@
 .content {
     flex-wrap: wrap;
+    align-content: flex-start;
 }
+
+/* Cart List */
 
 .cartDisplay {
     width: 100%;
     height: fit-content;
-
-    overflow-y: auto;
 
     display: flex;
     flex-wrap: wrap;
@@ -50,7 +51,7 @@
 .total {
     width: 50%;
 
-    margin-top: 10px;
+    margin: 10px;
     background-color: #E31837;
 
     border: 5px double #030006;
@@ -61,4 +62,43 @@
     font-family: MuseoSans, serif;
     font-size: 3vh;
     color: #FFFFFF;
+}
+
+
+/* Payment */
+.payment {
+    width: 100%;
+    height: fit-content;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+
+    column-gap: 10%;
+}
+
+.payment p {
+    width: 30%;
+
+    border-radius: 10px;
+
+    background-color: #E6E7E8;
+
+    text-align: center;
+    color: #36454F;
+    font-family: MuseoSlab, MuseoSans, serif;
+}
+
+.payment p a {
+    padding: 5vw;
+    display: block;
+
+    text-decoration: none;
+    font-size: 3vh;
+    color: inherit;
+}
+
+.payment p a:active {
+    background-color: #650812;
 }

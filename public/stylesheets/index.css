@@ -17,12 +17,12 @@
 
     /* Text Styling */
     text-align: center;
-    color: #e4e5e8;
+    color: #E6E7E8;
     font-family: MuseoSlab, MuseoSans, serif;
 }
 
 .categories p:hover {
-    color: #e31836;
+    color: #E31837;
 }
 
 .categories p a {

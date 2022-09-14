@@ -57,11 +57,10 @@ class Cart {
     }
 
     getTotalPrice() {
-        let cart = this.getActual();
         let total = 0;
 
-        for (let product in cart) {
-            total += cart[product].price * cart[product].count;
+        for (let product in this.cart) {
+            total += this.cart[product].price * this.cart[product].count;
         }
 
         return total;
