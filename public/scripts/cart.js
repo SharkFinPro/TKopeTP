@@ -37,8 +37,15 @@ class Cart {
     }
 
     purchase() {
+        let cart = this.getActual();
+        let simplifiedCart = {};
+
+        for (let product in cart) {
+            simplifiedCart[product] = cart[product].count;
+        }
+
         postRequest("/purchase", {
-            cart: this.getActual(),
+            cart: simplifiedCart,
             sessionId: mySessionID
         });
 

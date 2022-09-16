@@ -1,4 +1,5 @@
 const express = require("express");
+const fs = require("fs");
 const app = express();
 const port = 80;
 
@@ -6,6 +7,12 @@ const sessionId = ~~(Math.random() * 100000);
 const sessions = new Map();
 
 const products = require("./products.js");
+let productsList = {};
+for (let productType in products) {
+    for (let product in products[productType]) {
+        productsList[product] = products[productType][product];
+    }
+}
 
 app.use(express.static("public"));
 app.use(express.json());
@@ -48,9 +55,35 @@ app.post("/products", (req, res) => {
 app.post("/purchase", (req, res) => {
     let body = JSON.parse(Object.keys(req.body)[0]);
     let user = sessions.get(parseInt(body.sessionId));
-    let cart = body.cart;
+    let cart = {};
+
+    for (let product in body.cart) {
+        cart[product] = productsList[product];
+        cart[product].count = body.cart[product];
+    }
 
     console.log(cart);
+
+    fs.access("./bin", (err) => {
+        if (err) {
+            fs.mkdir("./bin", (err) => {
+                if (err) {
+                    console.error(err);
+                }
+            });
+            fs.writeFile("./bin/dump.txt", `${JSON.stringify(cart)}\n`, (err) => {
+                if (err) {
+                    console.error(err);
+                }
+            });
+        } else {
+            fs.appendFile("./bin/dump.txt", `${JSON.stringify(cart)}\n`, (err) => {
+                if (err) {
+                    console.error(err);
+                }
+            });
+        }
+    });
 
     res.send();
 });
