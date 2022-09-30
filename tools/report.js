@@ -147,8 +147,8 @@ write("");
 write("----------------------------------- Recap -----------------------------------");
 
 write(`Total single-item Transactions: ${totalSoloTransactions}`);
-write(`Total single-item items sold: ${totalSoloItems}`);
+write(`Total items sold in single-item transactions: ${totalSoloItems}`);
 write(`Total multi-item Transactions: ${totalTogetherTransactions}`);
-write(`Total multi-item items sold: ${totalTogetherItems}`);
+write(`Total items sold in multi-item transactions: ${totalTogetherItems}`);
 write(`Total Money Made: $${totalMoney}`);
 write(`Total Items Sold: ${totalItems}`);
