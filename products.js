@@ -1,6 +1,11 @@
 module.exports = {
     candy: {
-        twix: {
+        anyCandy: {
+            displayName: "Any Candy",
+            price: 1.00,
+            image: "images/all_candy.jpg"
+        }
+        /*twix: {
             displayName: "Twix",
             price: 1.00,
             image: "images/twix.webp"
@@ -54,10 +59,35 @@ module.exports = {
             displayName: "Gushers",
             price: 1.00,
             image: ""
-        },
+        },*/
     },
     drinks: {
-        pepsi: {
+        bajaDew: {
+            displayName: "Baja Dew",
+            price: 3.00,
+            image: ""
+        },
+        pineappleDew: {
+            displayName: "Pineapple Dew",
+            price: 3.00,
+            image: ""
+        },
+        flaminHotDew: {
+            displayName: "Flamin Hot Dew",
+            price: 3.00,
+            image: ""
+        },
+        mangoDew: {
+            displayName: "Mango Dew",
+            price: 3.00,
+            image: ""
+        },
+        anyDrink: {
+            displayName: "Any Drink",
+            price: 1.00,
+            image: "images/all_soda.jpg"
+        },
+        /*pepsi: {
             displayName: "Pepsi",
             price: 1.00,
             image: ""
@@ -146,8 +176,7 @@ module.exports = {
             displayName: "Root Beer",
             price: 1.00,
             image: ""
-        },
-
+        },*/
     },
     patches: {
         blanketPatch2021: {
@@ -157,8 +186,8 @@ module.exports = {
         },
         blanketPatch2022: {
             displayName: "Blanket 2022",
-            price: 25.00,
-            image: ""
+            price: 50.00,
+            image: "images/blanket22.jpg"
         },
         noacDel: {
             displayName: "2022 NOAC 2-Piece",
@@ -173,7 +202,7 @@ module.exports = {
         noacNonFringe: {
             displayName: "2015 NOAC NON Fringe",
             price: 5.00,
-            image: ""
+            image: "images/noac15_blanket.jpg"
         },
         arrowcorps: {
             displayName: "Arrowcorps502 Mt.Rainier",
@@ -183,12 +212,12 @@ module.exports = {
         noac18LBlue: {
             displayName: "2018 NOAC 2-Piece",
             price: 10.00,
-            image: ""
+            image: "images/2018_noac_pocket.jpg"
         },
         noac18Gray: {
             displayName: "2018 NOAC Delegate 2-Piece",
             price: 10.00,
-            image: ""
+            image: "images/2018_noac_delegate.jpg"
         },
         noac20Green: {
             displayName: "2020 NOAC Fundraiser",
@@ -208,13 +237,34 @@ module.exports = {
         standard: {
             displayName: "T’Kope Red Border (Standard)",
             price: 10.00,
-            image: ""
+            image: "images/standard.jpg"
         },
         backPatch: {
             displayName: "T’Kope Large Back",
             price: 15.00,
-            image: ""
+            image: "images/backpatch.jpg"
         },
+        conclaveRed: {
+            displayName: "2022 G15 Conclave",
+            price: 10.00,
+            image: "images/legacy_project_fundraiser_staff.jpg"
+        },
+        conclavePurple: {
+            displayName: "2022 Legacy Project",
+            price: 10.00,
+            image: "images/legacy_project_fundraiser.jpg"
+        },
+        noac2018LightBlue: {
+            displayName: "2018 NOAC CSP Light Blue",
+            price: 5.00,
+            image: "images/noac_2018_light_blue.jpg"
+        },
+        noac2018DarkBlue: {
+            displayName: "2018 NOAC CSP Dark Blue",
+            price: 5.00,
+            image: "images/noac_2018_dark_blue.jpg"
+        },
+
     },
     lodge: {
         stressBall: {
@@ -225,7 +275,7 @@ module.exports = {
         tkopeBolo: {
             displayName: "T’Kope Bolo Tie",
             price: 15.00,
-            image: ""
+            image: "images/tkope_bolo.jpg"
         },
         carabiner: {
             displayName: "Carabiner",
@@ -240,7 +290,7 @@ module.exports = {
         coffeeMug: {
             displayName: "T’Kope Coffee Mug",
             price: 5.00,
-            image: ""
+            image: "images/tkope_coffee_mug.jpg"
         },
         neckerchief: {
             displayName: "T'Kope Neckerchief",
@@ -250,7 +300,7 @@ module.exports = {
         partyPack: {
             displayName: "Perry's Party Pack",
             price: 5.00,
-            image: ""
+            image: "images/party_pack.jpg"
         },
         luggageTag: {
             displayName: "Luggage Tag",
@@ -260,12 +310,12 @@ module.exports = {
         marmotPin: {
             displayName: "Silver Marmot Pin",
             price: 10.00,
-            image: ""
+            image: "images/marmot_pin.jpg"
         },
         hatPin: {
             displayName: "T'Kope Hat Pin",
             price: 7.00,
-            image: ""
+            image: "images/tkope_hat_pin.jpg"
         },
         poster: {
             displayName: "Longhouse Poster",
@@ -285,12 +335,12 @@ module.exports = {
         stickerSmall: {
             displayName: 'Clear Stickers 4"',
             price: 3.00,
-            image: ""
+            image: "images/small_sticker.jpg"
         },
         stickerLarge: {
             displayName: 'Clear Stickers Window 6"',
             price: 5.00,
-            image: ""
+            image: "images/big_sticker.jpg"
         },
         ceremonies: {
             displayName: "Ceremonies Uniform",
@@ -300,7 +350,7 @@ module.exports = {
         tkopeWaterBottle: {
             displayName: "T'Kope Water Bottle",
             price: 5.00,
-            image: ""
+            image: "images/tkope_water_bottle.jpg"
         },
         noacWaterBottle: {
             displayName: "2022 NOAC Water Bottle",
@@ -332,7 +382,7 @@ module.exports = {
         oaBolo: {
             displayName: "OA Bolo Tie",
             price: 15.00,
-            image: ""
+            image: "images/oa_bolo.jpg"
         },
         ordealSash: {
             displayName: "Ordeal Sash",
