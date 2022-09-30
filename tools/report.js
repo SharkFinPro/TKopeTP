@@ -109,7 +109,7 @@ for (let cart of carts) {
 write("------------------------------ Items Sold Solo ------------------------------");
 for (let product in soldSolo) {
     // write(`${product} sold solo ${soldSolo[product].count} times`);
-    write(`${product}`.padEnd(50, "-") + `${soldSolo[product].count}`);
+    write(`${product}`.padEnd(50, "_") + `${soldSolo[product].count}`);
 }
 write("");
 
@@ -120,7 +120,7 @@ for (let product in soldTogether) {
     let others = Object.keys(soldTogether[product]);
     for (let other of others) {
         if (other !== "count" && other !== "displayName") {
-            write(`${product} & ${other}`.padEnd(50, "-") + `${soldTogether[product][other].count}`);
+            write(`${product} & ${other}`.padEnd(50, "_") + `${soldTogether[product][other].count}`);
         }
     }
 
@@ -140,7 +140,7 @@ for (let product in productsPurchased) {
     totalItems += productsPurchased[product].count;
 
     // write(`${product} made $${productTotalMoney} with ${productsPurchased[product].count} items sold`);
-    write(`${product}`.padEnd(25, "-") + `$${productTotalMoney}`.padEnd(15, "-") + `${productsPurchased[product].count}`);
+    write(`${product}`.padEnd(25, "_") + `$${productTotalMoney}`.padEnd(15, "_") + `${productsPurchased[product].count}`);
 }
 write("");
 
