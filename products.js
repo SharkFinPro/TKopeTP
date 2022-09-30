@@ -416,10 +416,3 @@ module.exports = {
         },
     }
 };
-
-/*        name: {
-            displayName: "",
-            price: .00,
-            image: ""
-        },
- */

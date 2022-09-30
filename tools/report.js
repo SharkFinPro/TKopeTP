@@ -80,7 +80,8 @@ for (let cart of carts) {
         } else {
             if (!soldSolo[product]) {
                 soldSolo[product] = {
-                    count: 0
+                    count: 0,
+                    displayName: cart[product].displayName
                 }
             }
 
@@ -93,7 +94,8 @@ for (let cart of carts) {
         if (!productsPurchased[product]) {
             productsPurchased[product] = {
                 price: cart[product].price,
-                count: 0
+                count: 0,
+                displayName: cart[product].displayName
             };
         }
 
@@ -106,38 +108,43 @@ for (let cart of carts) {
 
 write("------------------------------ Items Sold Solo ------------------------------");
 for (let product in soldSolo) {
-    write(`${product} sold solo ${soldSolo[product].count} times`);
+    // write(`${product} sold solo ${soldSolo[product].count} times`);
+    write(`${product}`.padEnd(50, "-") + `${soldSolo[product].count}`);
 }
-write("-----------------------------------------------------------------------------");
+write("");
 
 write("---------------------------- Items Sold Together ----------------------------");
 for (let product in soldTogether) {
-    write("------------------------------");
     write(`${product} sold with other items ${soldTogether[product].count} times`);
 
     let others = Object.keys(soldTogether[product]);
     for (let other of others) {
         if (other !== "count" && other !== "displayName") {
-            write(`${product} sold with ${other} ${soldTogether[product][other].count} times`);
+            write(`${product} & ${other}`.padEnd(50, "-") + `${soldTogether[product][other].count}`);
         }
     }
 
-    write("------------------------------");
+    write("");
 }
-write("-----------------------------------------------------------------------------");
+
+write("----------------------------------- Total -----------------------------------");
 
 /* Tally Money Made */
 let totalMoney = 0;
 let totalItems = 0;
 
+write("Product".padEnd(25, " ") + "Money made".padEnd(15, " ") + "Items Sold");
 for (let product in productsPurchased) {
     let productTotalMoney = productsPurchased[product].price * productsPurchased[product].count;
     totalMoney += productTotalMoney;
     totalItems += productsPurchased[product].count;
 
-    write(`${product} made $${productTotalMoney} with ${productsPurchased[product].count} items sold`);
+    // write(`${product} made $${productTotalMoney} with ${productsPurchased[product].count} items sold`);
+    write(`${product}`.padEnd(25, "-") + `$${productTotalMoney}`.padEnd(15, "-") + `${productsPurchased[product].count}`);
 }
-write("-----------------------------------------------------------------------------");
+write("");
+
+write("----------------------------------- Recap -----------------------------------");
 
 write(`Total single-item Transactions: ${totalSoloTransactions}`);
 write(`Total single-item items sold: ${totalSoloItems}`);
