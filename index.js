@@ -1,5 +1,9 @@
+exports.is_production = process.pkg ? true : false;
+const cwd = this.is_production ? process.cwd() : __dirname;
+
 const express = require("express");
 const fs = require("fs");
+const path = require("path");
 const app = express();
 const port = 80;
 
@@ -14,9 +18,12 @@ for (let productType in products) {
     }
 }
 
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "./public")));
 app.use(express.json());
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
+
+const compression = require('compression');
+app.use(compression());
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port} with session ID ${sessionId}`);
