@@ -60,18 +60,12 @@ webServer.postRequest("/purchase", (body) => {
                         console.error(err);
                     }
                 });
-                fs.writeFile("./bin/dump.txt", `${JSON.stringify(cart)}\n`, (err) => {
-                    if (err) {
-                        console.error(err);
-                    }
-                });
-            } else {
-                fs.appendFile("./bin/dump.txt", `${JSON.stringify(cart)}\n`, (err) => {
-                    if (err) {
-                        console.error(err);
-                    }
-                });
             }
+            fs.appendFile("./bin/dump.txt", `${JSON.stringify(cart)}\n`, (err) => {
+                if (err) {
+                    console.error(err);
+                }
+            });
         });
 
         resolve();
