@@ -10,7 +10,9 @@ const webServer = new WebServer(80, "../public");
 webServer.init();
 
 webServer.getRequest("/sessionID", () => {
-    return sessionManager.getGlobalID().toString();
+    return new Promise((resolve, reject) => {
+        resolve(sessionManager.getGlobalID().toString());
+    });
 });
 
 webServer.postRequest("/createSession", (body) => {

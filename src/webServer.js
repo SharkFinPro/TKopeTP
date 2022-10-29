@@ -36,8 +36,9 @@ module.exports = class WebServer {
 
     getRequest(endpoint, callback) {
         this.server.get(endpoint, (req, res) => {
-            let response = callback();
-            res.send(response);
+            callback().then((response) => {
+                res.send(response);
+            })
         });
     }
 
