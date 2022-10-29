@@ -18,21 +18,19 @@ module.exports = class WebServer {
     init() {
         this.server.listen(this.port, () => {
             const networkInterfaces = os.networkInterfaces();
-
             let connectionIP;
 
-            for (const network of Object.keys(networkInterfaces)) {
-                for (const netData of networkInterfaces[network]) {
-                    const familyV4Value = typeof netData.family === 'string' ? 'IPv4' : 4;
-                    if (netData.family === familyV4Value && !netData.internal) {
-                        connectionIP = netData.address;
+            for (const face in networkInterfaces) {
+                for (const network of networkInterfaces[face]) {
+                    if (network.family === "IPv4" && !network.internal) {
+                        connectionIP = network.address;
                     }
                 }
             }
 
             console.log(`Server listening on port ${this.port}`);
-            console.log("Please turn your computer's hotspot on and connect to it with your phone.")
-            console.log(`Then on your phone access: ${connectionIP}`)
+            console.log("Please turn on your computer's hotspot and connect to it with your phone");
+            console.log(`Then on your phone, access '${connectionIP}' in your browser`);
         });
     }
 
