@@ -1,12 +1,12 @@
 /* Validate session */
-var serverSession = getRequest("sessionID");
-var mySessionID = localStorage.getItem("mySessionID");
+const serverSession = getRequest("sessionID");
+let mySessionID = localStorage.getItem("mySessionID");
 
 // If stored session ID is invalid, reset localstorage data
 if (localStorage.getItem("sessionID") !== serverSession) {
     localStorage.setItem("sessionID", serverSession);
 
-    localStorage.setItem("counter", JSON.stringify({ visits: 0 }));
+    localStorage.setItem("counter", JSON.stringify({visits: 0}));
     cart.reset();
 
     // Get ID to identify self to server
@@ -17,4 +17,4 @@ if (localStorage.getItem("sessionID") !== serverSession) {
 }
 
 // Get ID
-console.log("Server Session ID: " + serverSession + ", my Session ID: " + mySessionID);
+console.log(`Server Session ID: ${serverSession}, my Session ID: ${mySessionID}`);

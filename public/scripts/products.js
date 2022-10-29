@@ -1,45 +1,76 @@
-const products = JSON.parse(postRequest("products", productType));
+var products = JSON.parse(postRequest("products", productType));
 
-const generateProduct = (product) => {
-    let productData = products[product];
+var generateProduct = function generateProduct(product) {
+    var productData = products[product];
     if (!productData.image) {
         productData.image = "images/NOT_FOUND.png";
     }
 
     cart.createListing(product, productData);
 
-    return (
-        <div className="product" key={product}>
-            <div className="image">
-                <img alt="product image" src={productData.image}></img>
-            </div>
-            <div className="name">
-                <p>{productData.displayName} - ${productData.price}</p>
-            </div>
-            <div className="purchase">
-                <button className="purchaseThird option left" onClick={()=>{subFromCart(product)}}>-</button>
-                <div className="purchaseThird display">
-                    <p id={product}>{cart.getCount(product)}</p>
-                </div>
-                <button className="purchaseThird option right" onClick={()=>{addToCart(product)}}>+</button>
-            </div>
-        </div>);
+    return React.createElement(
+        "div",
+        { className: "product", key: product },
+        React.createElement(
+            "div",
+            { className: "image" },
+            React.createElement("img", { alt: "product image", src: productData.image })
+        ),
+        React.createElement(
+            "div",
+            { className: "name" },
+            React.createElement(
+                "p",
+                null,
+                productData.displayName,
+                " - $",
+                productData.price
+            )
+        ),
+        React.createElement(
+            "div",
+            { className: "purchase" },
+            React.createElement(
+                "button",
+                { className: "purchaseThird option left", onClick: function onClick() {
+                        subFromCart(product);
+                    } },
+                "-"
+            ),
+            React.createElement(
+                "div",
+                { className: "purchaseThird display" },
+                React.createElement(
+                    "p",
+                    { id: product },
+                    cart.getCount(product)
+                )
+            ),
+            React.createElement(
+                "button",
+                { className: "purchaseThird option right", onClick: function onClick() {
+                        addToCart(product);
+                    } },
+                "+"
+            )
+        )
+    );
 };
 
-let productsArray = [];
-for (let product in products) {
+var productsArray = [];
+for (var product in products) {
     productsArray.push(generateProduct(product));
 }
-const productsRoot = ReactDOM.createRoot(document.getElementById("products"));
+var productsRoot = ReactDOM.createRoot(document.getElementById("products"));
 productsRoot.render(productsArray);
 
-const subFromCart = (product) => {
+var subFromCart = function subFromCart(product) {
     cart.remove(product);
 
     document.getElementById(product).innerText = cart.getCount(product);
 };
 
-const addToCart = (product) => {
+var addToCart = function addToCart(product) {
     cart.add(product);
 
     document.getElementById(product).innerText = cart.getCount(product);

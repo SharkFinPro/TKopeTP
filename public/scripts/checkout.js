@@ -1,20 +1,35 @@
-const products = cart.getActual();
+var products = cart.getActual();
 
-const generateProduct = (product) => {
-    let productData = products[product];
+var generateProduct = function generateProduct(product) {
+    var productData = products[product];
 
-    return (
-        <div className="cartItem" key={product}>
-            <p className="name">{productData.displayName} - ${productData.price}</p>
-            <p className="count">{productData.count}</p>
-        </div>
+    return React.createElement(
+        "div",
+        { className: "cartItem", key: product },
+        React.createElement(
+            "p",
+            { className: "name" },
+            productData.displayName,
+            " - $",
+            productData.price
+        ),
+        React.createElement(
+            "p",
+            { className: "count" },
+            productData.count
+        )
     );
 };
 
-let productsArray = [];
-for (let product in products) {
+var productsArray = [];
+for (var product in products) {
     productsArray.push(generateProduct(product));
 }
-productsArray.push((<div key="total" className="total">Total: ${cart.getTotalPrice()}</div>))
-const productsRoot = ReactDOM.createRoot(document.getElementById("cartDisplay"));
+productsArray.push(React.createElement(
+    "div",
+    { key: "total", className: "total" },
+    "Total: $",
+    cart.getTotalPrice()
+));
+var productsRoot = ReactDOM.createRoot(document.getElementById("cartDisplay"));
 productsRoot.render(productsArray);
