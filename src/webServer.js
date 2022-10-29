@@ -1,6 +1,8 @@
 const path = require("path");
 const express = require("express");
-const compression = require('compression');
+const compression = require("compression");
+
+const os = require("os");
 
 module.exports = class WebServer {
     constructor(port, publicDirectory) {
@@ -15,7 +17,22 @@ module.exports = class WebServer {
 
     init() {
         this.server.listen(this.port, () => {
+            const networkInterfaces = os.networkInterfaces();
+
+            let connectionIP;
+
+            for (const network of Object.keys(networkInterfaces)) {
+                for (const netData of networkInterfaces[network]) {
+                    const familyV4Value = typeof netData.family === 'string' ? 'IPv4' : 4;
+                    if (netData.family === familyV4Value && !netData.internal) {
+                        connectionIP = netData.address;
+                    }
+                }
+            }
+
             console.log(`Server listening on port ${this.port}`);
+            console.log("Please turn your computer's hotspot on and connect to it with your phone.")
+            console.log(`Then on your phone access: ${connectionIP}`)
         });
     }
 
