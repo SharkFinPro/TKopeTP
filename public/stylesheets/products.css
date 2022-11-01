@@ -8,12 +8,13 @@
 
     /* Scrolling */
     row-gap: 40px;
+    column-gap: 4%;
     padding-top: 40px;
     padding-bottom: 40px;
 }
 
 .product {
-    width: 80%;
+    width: 44%;
     height: 40%;
 
     display: flex;
@@ -58,7 +59,7 @@
     background: #005596;
 
     /* Text Styling */
-    font-size: 2vh;
+    font-size: 1.25vh;
     color: #FFFFFF;
     font-family: MuseoSans, serif;
 }
@@ -81,7 +82,7 @@
 }
 
 .purchaseThird {
-    width: 33.33%;
+    width: calc(100% / 3);
     height: 100%;
 
     display: flex;
@@ -103,7 +104,7 @@
     box-sizing: border-box;
 
     /* General Styling */
-    background-color: #650812;
+    background-color: #FFFFFF;
 
     transition: 0.1s all;
 }
@@ -118,7 +119,7 @@
 
 .option:active {
     /* General Styling */
-    background-color: #E31837;
+    background-color: #E6E7E8;
 }
 
 .display {
@@ -129,5 +130,5 @@
     box-sizing: border-box;
 
     /* General Styling */
-    background-color: #E31837;
+    background-color: #E6E7E8;
 }

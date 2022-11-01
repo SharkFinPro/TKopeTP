@@ -71,6 +71,9 @@ body {
     /* General Styling */
     background-color: #005594;
 
+    box-sizing: border-box;
+    border-top: 5px solid black;
+
     /* Text Styling */
     color: #e5e6e8;
     text-align: center;
@@ -93,14 +96,14 @@ body {
 .footer p {
     width: 40%;
 
-    background-color: #650812;
+    background-color: #E6E7E8;
 
     border-radius: 5px;
     border: 5px solid #030006;
 }
 
 .footer p:hover {
-    background-color: #E31837;
+    background-color: #FFFFFF;
 }
 
 .footer p a {
@@ -111,5 +114,5 @@ body {
     text-decoration: none;
     font-family: MuseoSans, serif;
     font-size: 2.5vh;
-    color: #FFFFFF;
+    color: #030006;
 }

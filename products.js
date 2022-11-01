@@ -359,11 +359,6 @@ module.exports = {
         }
     },
     national: {
-        handbook: {
-            displayName: "OA Handbook",
-            price: 5.00,
-            image: "images/oa_handbook.jpg"
-        },
         arrowPin: {
             displayName: "OA Pewter Pin",
             price: 5.00,
@@ -414,5 +409,10 @@ module.exports = {
             price: 25.00,
             image: "images/vigil_sash.jpg"
         },
+        handbook: {
+            displayName: "OA Handbook",
+            price: 5.00,
+            image: "images/oa_handbook.jpg"
+        }
     }
 };
