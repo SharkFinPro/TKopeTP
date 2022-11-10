@@ -1,14 +1,18 @@
-const acceptableProductTypes = ["Candy", "Drinks", "Patches", "Lodge", "National"];
+const acceptableProductTypes = {
+    drinksandsnacks: "Snacks & Drinks",
+    patches: "Patches",
+    lodge: "Lodge",
+    national: "National"
+};
 
-const urlParams = new URLSearchParams(window.location.search);
-let productType = urlParams.get('variant');
+let productType = new URLSearchParams(window.location.search).get('variant');
 
-if (!acceptableProductTypes.includes(productType)) {
+if (!Object.keys(acceptableProductTypes).includes(productType)) {
     window.location.replace("/");
 }
 
-document.getElementById("header").innerText = productType;
-document.getElementById("title").innerText = `T'Kope TP - ${productType}`;
+document.getElementById("header").innerText = acceptableProductTypes[productType];
+document.title = `T'Kope TP - ${acceptableProductTypes[productType]}`;
 
 productType = productType.toLowerCase();
 
