@@ -1,3 +1,17 @@
+/* Cart Setup */
+var subFromCart = function subFromCart(product) {
+    cart.remove(product);
+
+    document.getElementById(product).innerText = cart.getCount(product);
+};
+
+var addToCart = function addToCart(product) {
+    cart.add(product);
+
+    document.getElementById(product).innerText = cart.getCount(product);
+};
+
+/* Product Setup */
 var acceptableProductTypes = {
     drinksandsnacks: "Snacks & Drinks",
     patches: "Patches",
@@ -51,7 +65,7 @@ var generateProduct = function generateProduct(product) {
             React.createElement(
                 "button",
                 { className: "purchaseThird option left", onClick: function onClick() {
-                        subFromCart(product);
+                        return subFromCart(product);
                     } },
                 "-"
             ),
@@ -67,7 +81,7 @@ var generateProduct = function generateProduct(product) {
             React.createElement(
                 "button",
                 { className: "purchaseThird option right", onClick: function onClick() {
-                        addToCart(product);
+                        return addToCart(product);
                     } },
                 "+"
             )
@@ -81,15 +95,3 @@ for (var product in products) {
 }
 var productsRoot = ReactDOM.createRoot(document.getElementById("products"));
 productsRoot.render(productsArray);
-
-var subFromCart = function subFromCart(product) {
-    cart.remove(product);
-
-    document.getElementById(product).innerText = cart.getCount(product);
-};
-
-var addToCart = function addToCart(product) {
-    cart.add(product);
-
-    document.getElementById(product).innerText = cart.getCount(product);
-};

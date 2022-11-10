@@ -18,3 +18,15 @@ for (let product in products) {
 productsArray.push((<div key="total" className="total">Total: ${cart.getTotalPrice()}</div>))
 const productsRoot = ReactDOM.createRoot(document.getElementById("cartDisplay"));
 productsRoot.render(productsArray);
+
+const paymentSelected = (element, paymentType) => {
+    let selected = document.getElementById("selected");
+    if (selected) {
+        selected.setAttribute("id", "");
+    }
+    element.setAttribute("id", "selected");
+
+    let button = document.getElementById("finish");
+    button.setAttribute("href", "/");
+    button.setAttribute("onclick", `cart.purchase("${paymentType}")`);
+};

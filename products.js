@@ -19,7 +19,7 @@ module.exports = {
         },
         blanketPatch2022: {
             displayName: "Blanket 2022",
-            price: 50.00,
+            price: 25.00,
             image: "images/blanket22.jpg"
         },
         noacDel: {
@@ -37,30 +37,15 @@ module.exports = {
             price: 5.00,
             image: "images/noac15_blanket.jpg"
         },
-        arrowcorps: {
-            displayName: "Arrowcorps502 Mt.Rainier",
-            price: 5.00,
-            image: ""
-        },
         noac18LBlue: {
             displayName: "2018 NOAC 2-Piece",
             price: 10.00,
             image: "images/2018_noac_pocket.jpg"
         },
-        noac18Gray: {
-            displayName: "2018 NOAC Delegate 2-Piece",
-            price: 10.00,
-            image: "images/2018_noac_delegate.jpg"
-        },
         noac20Green: {
             displayName: "2020 NOAC Fundraiser",
             price: 10.00,
             image: "images/NOAC20_fundraiser.jpg"
-        },
-        noac22Orange: {
-            displayName: "2022 NOAC Fundraiser",
-            price: 10.00,
-            image: "images/NOAC22_fundraiser.jpg"
         },
         lightBlueRetro: {
             displayName: "T’Kope Light Blue Retro",
@@ -71,11 +56,6 @@ module.exports = {
             displayName: "T’Kope Red Border (Standard)",
             price: 10.00,
             image: "images/standard.jpg"
-        },
-        backPatch: {
-            displayName: "T’Kope Large Back",
-            price: 15.00,
-            image: "images/backpatch.jpg"
         },
         conclaveRed: {
             displayName: "2022 G15 Conclave",
@@ -97,7 +77,11 @@ module.exports = {
             price: 5.00,
             image: "images/noac_2018_dark_blue.jpg"
         },
-
+        backPatch: {
+            displayName: "T’Kope Large Back",
+            price: 15.00,
+            image: "images/backpatch.jpg"
+        },
     },
     lodge: {
         stressBall: {

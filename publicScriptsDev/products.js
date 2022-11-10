@@ -1,3 +1,18 @@
+/* Cart Setup */
+const subFromCart = (product) => {
+    cart.remove(product);
+
+    document.getElementById(product).innerText = cart.getCount(product);
+};
+
+const addToCart = (product) => {
+    cart.add(product);
+
+    document.getElementById(product).innerText = cart.getCount(product);
+};
+
+
+/* Product Setup */
 const acceptableProductTypes = {
     drinksandsnacks: "Snacks & Drinks",
     patches: "Patches",
@@ -35,11 +50,11 @@ const generateProduct = (product) => {
                 <p>{productData.displayName} - ${productData.price}</p>
             </div>
             <div className="purchase">
-                <button className="purchaseThird option left" onClick={()=>{subFromCart(product)}}>-</button>
+                <button className="purchaseThird option left" onClick={() => subFromCart(product)}>-</button>
                 <div className="purchaseThird display">
                     <p id={product}>{cart.getCount(product)}</p>
                 </div>
-                <button className="purchaseThird option right" onClick={()=>{addToCart(product)}}>+</button>
+                <button className="purchaseThird option right" onClick={() => addToCart(product)}>+</button>
             </div>
         </div>);
 };
@@ -50,15 +65,3 @@ for (let product in products) {
 }
 const productsRoot = ReactDOM.createRoot(document.getElementById("products"));
 productsRoot.render(productsArray);
-
-const subFromCart = (product) => {
-    cart.remove(product);
-
-    document.getElementById(product).innerText = cart.getCount(product);
-};
-
-const addToCart = (product) => {
-    cart.add(product);
-
-    document.getElementById(product).innerText = cart.getCount(product);
-};

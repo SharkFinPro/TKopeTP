@@ -21,13 +21,13 @@
     <div class="content">
       <div class="cartDisplay" id="cartDisplay"></div>
       <div class="payment">
-        <p><a onclick="">Cash</a></p>
-        <p><a onclick="">Card</a></p>
+        <p><a class="paymentType" onclick="paymentSelected(this, 'cash')">Cash</a></p>
+        <p><a class="paymentType" onclick="paymentSelected(this, 'card')">Card</a></p>
       </div>
     </div>
 
     <div class="footer">
-      <p><a href="/" onclick="cart.purchase()">Finish</a></p>
+      <p><a id="finish">Finish</a></p>
     </div>
 
     <script src="scripts/checkout.js"></script>

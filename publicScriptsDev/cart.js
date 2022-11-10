@@ -36,7 +36,7 @@ class Cart {
         return this.cart[product].count;
     }
 
-    purchase() {
+    purchase(paymentMethod) {
         let cart = this.getActual();
         let simplifiedCart = {};
 
@@ -46,6 +46,7 @@ class Cart {
 
         postRequest("/purchase", {
             cart: simplifiedCart,
+            paymentMethod: paymentMethod,
             sessionId: mySessionID
         });
 

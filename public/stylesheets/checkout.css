@@ -4,7 +4,6 @@
 }
 
 /* Cart List */
-
 .cartDisplay {
     width: 100%;
     height: fit-content;
@@ -99,6 +98,9 @@
     color: inherit;
 }
 
-.payment p a:active {
+#selected {
     background-color: #650812;
+    color: #FFFFFF;
+
+    border-radius: 7.5px;
 }

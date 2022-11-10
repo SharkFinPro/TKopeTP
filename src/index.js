@@ -47,6 +47,7 @@ webServer.postRequest("/purchase", (body) => {
     return new Promise((resolve, reject) => {
         let user = sessionManager.getSession(parseInt(body.sessionId));
         let cart = {};
+        let paymentMethod = body.paymentMethod;
 
         for (let product in body.cart) {
             cart[product] = productManager.getProduct(product);
@@ -63,7 +64,7 @@ webServer.postRequest("/purchase", (body) => {
                     }
                 });
             }
-            fs.appendFile("./bin/dump.txt", `${JSON.stringify(cart)}\n`, (err) => {
+            fs.appendFile("./bin/dump.txt", `${JSON.stringify({cart, paymentMethod})}\n`, (err) => {
                 if (err) {
                     console.error(err);
                 }

@@ -47,7 +47,7 @@ var Cart = function () {
         }
     }, {
         key: "purchase",
-        value: function purchase() {
+        value: function purchase(paymentMethod) {
             var cart = this.getActual();
             var simplifiedCart = {};
 
@@ -57,6 +57,7 @@ var Cart = function () {
 
             postRequest("/purchase", {
                 cart: simplifiedCart,
+                paymentMethod: paymentMethod,
                 sessionId: mySessionID
             });
 
