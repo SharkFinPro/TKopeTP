@@ -1,3 +1,17 @@
+const acceptableProductTypes = ["Candy", "Drinks", "Patches", "Lodge", "National"];
+
+const urlParams = new URLSearchParams(window.location.search);
+let productType = urlParams.get('variant');
+
+if (!acceptableProductTypes.includes(productType)) {
+    window.location.replace("/");
+}
+
+document.getElementById("header").innerText = productType;
+document.getElementById("title").innerText = `T'Kope TP - ${productType}`;
+
+productType = productType.toLowerCase();
+
 const products = JSON.parse(postRequest("products", productType));
 
 const generateProduct = (product) => {

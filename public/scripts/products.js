@@ -1,3 +1,17 @@
+var acceptableProductTypes = ["Candy", "Drinks", "Patches", "Lodge", "National"];
+
+var urlParams = new URLSearchParams(window.location.search);
+var productType = urlParams.get('variant');
+
+if (!acceptableProductTypes.includes(productType)) {
+    window.location.replace("/");
+}
+
+document.getElementById("header").innerText = productType;
+document.getElementById("title").innerText = "T'Kope TP - " + productType;
+
+productType = productType.toLowerCase();
+
 var products = JSON.parse(postRequest("products", productType));
 
 var generateProduct = function generateProduct(product) {
