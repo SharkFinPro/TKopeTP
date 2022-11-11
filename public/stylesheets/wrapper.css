@@ -94,6 +94,8 @@ body {
 
     display: flex;
 
+    position: relative;
+
     overflow-y: auto;
 
     /* General Styling */

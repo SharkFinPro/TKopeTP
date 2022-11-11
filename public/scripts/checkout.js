@@ -25,14 +25,10 @@ var productsArray = [];
 for (var product in products) {
     productsArray.push(generateProduct(product));
 }
-productsArray.push(React.createElement(
-    "div",
-    { key: "total", className: "total" },
-    "Total: $",
-    cart.getTotalPrice()
-));
 var productsRoot = ReactDOM.createRoot(document.getElementById("cartDisplay"));
 productsRoot.render(productsArray);
+
+document.getElementById("total").innerText = "Total: " + cart.getTotalPrice();
 
 var paymentSelected = function paymentSelected(element, paymentType) {
     var selected = document.getElementById("selected");

@@ -20,9 +20,12 @@
 
     <div class="content">
       <div class="cartDisplay" id="cartDisplay"></div>
-      <div class="payment">
-        <p><a class="paymentType" onclick="paymentSelected(this, 'cash')">Cash</a></p>
-        <p><a class="paymentType" onclick="paymentSelected(this, 'card')">Card</a></p>
+      <div class="paymentInfo">
+        <div class="total" id="total"></div>
+        <div class="paymentTypeSelection">
+          <p><a class="paymentType" onclick="paymentSelected(this, 'cash')">Cash</a></p>
+          <p><a class="paymentType" onclick="paymentSelected(this, 'card')">Card</a></p>
+        </div>
       </div>
     </div>
 

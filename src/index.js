@@ -49,12 +49,17 @@ webServer.postRequest("/purchase", (body) => {
         let cart = {};
         let paymentMethod = body.paymentMethod;
 
+        let moneyMade = 0;
+
         for (let product in body.cart) {
             cart[product] = productManager.getProduct(product);
             cart[product].count = body.cart[product];
+
+            moneyMade += cart[product].count * cart[product].price;
         }
 
-        console.log(cart);
+        const transactionLog = JSON.stringify({cart, paymentMethod});
+        console.log(`Transaction completed using ${paymentMethod}!`);
 
         fs.access("./bin", (err) => {
             if (err) {
@@ -64,7 +69,7 @@ webServer.postRequest("/purchase", (body) => {
                     }
                 });
             }
-            fs.appendFile("./bin/dump.txt", `${JSON.stringify({cart, paymentMethod})}\n`, (err) => {
+            fs.appendFile("./bin/dump.txt", `${transactionLog}\n`, (err) => {
                 if (err) {
                     console.error(err);
                 }

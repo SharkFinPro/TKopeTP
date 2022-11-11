@@ -6,7 +6,9 @@
 /* Cart List */
 .cartDisplay {
     width: 100%;
-    height: fit-content;
+    height: 75%;
+
+    overflow-y: auto;
 
     display: flex;
     flex-wrap: wrap;
@@ -47,27 +49,41 @@
     width: 15%;
 }
 
+/* Payment Info */
+.paymentInfo {
+    position: absolute;
+
+    bottom: 0;
+    height: 25%;
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    border-top: 5px solid black;
+}
+
 .total {
     width: 50%;
 
     margin: 10px;
-    background-color: #E31837;
+    background-color: #E6E7E8;
 
-    border: 5px double #030006;
+    border: 3px solid #030006;
     border-radius: 5px;
     box-sizing: border-box;
 
     text-align: center;
     font-family: MuseoSans, serif;
     font-size: 3vh;
-    color: #FFFFFF;
+    color: #030006;
 }
 
-
-/* Payment */
-.payment {
+.paymentTypeSelection {
     width: 100%;
-    height: fit-content;
 
     display: flex;
     flex-wrap: wrap;
@@ -77,7 +93,7 @@
     column-gap: 10%;
 }
 
-.payment p {
+.paymentTypeSelection p {
     width: 30%;
 
     border-radius: 10px;
@@ -89,8 +105,8 @@
     font-family: MuseoSlab, MuseoSans, serif;
 }
 
-.payment p a {
-    padding: 5vw;
+.paymentTypeSelection p a {
+    padding: 4vw;
     display: block;
 
     text-decoration: none;
@@ -99,7 +115,7 @@
 }
 
 #selected {
-    background-color: #650812;
+    background-color: #E31837;
     color: #FFFFFF;
 
     border-radius: 7.5px;
