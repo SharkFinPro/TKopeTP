@@ -6,11 +6,11 @@
     align-content: center;
     justify-content: center;
 
-    row-gap: 0.25vh;
+    row-gap: 0.5vw;
 }
 
 .categories p {
-    width: 75%;
+    width: 80%;
 
     /* General Styling */
     background-color: #231f20;
@@ -32,6 +32,6 @@
 
     /* Text Styling */
     text-decoration: none;
-    font-size: 3.75vh;
+    font-size: 8vw;
     color: inherit;
 }

@@ -18,7 +18,7 @@
 
 .cartItem {
     width: 95%;
-    height: 3vh;
+    height: 7.5vw;
 
     display: flex;
     flex-wrap: wrap;
@@ -28,7 +28,7 @@
     /* Text Styling */
     font-family: MuseoSans, serif;
     text-align: center;
-    font-size: 2.5vh;
+    font-size: 5vw;
     color: #FFFFFF;
 }
 
@@ -78,7 +78,7 @@
 
     text-align: center;
     font-family: MuseoSans, serif;
-    font-size: 3vh;
+    font-size: 6vw;
     color: #030006;
 }
 
@@ -110,7 +110,7 @@
     display: block;
 
     text-decoration: none;
-    font-size: 3vh;
+    font-size: 6vw;
     color: inherit;
 }
 

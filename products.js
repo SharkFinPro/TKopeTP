@@ -53,7 +53,7 @@ module.exports = {
             image: "images/retro_flap.jpg"
         },
         standard: {
-            displayName: "T’Kope Red Border (Standard)",
+            displayName: "T’Kope Red Border",
             price: 10.00,
             image: "images/standard.jpg"
         },
