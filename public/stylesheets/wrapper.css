@@ -36,9 +36,6 @@ body {
 
     display:flex;
     flex-wrap: wrap;
-
-    /* General Styling */
-    background-color: black;
 }
 
 .header {
@@ -79,7 +76,7 @@ body {
     background-color: #005594;
 
     box-sizing: border-box;
-    border-top: 5px solid black;
+    border-top: 5px solid #030006;
 
     /* Text Styling */
     color: #e5e6e8;
