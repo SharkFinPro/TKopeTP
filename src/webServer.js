@@ -1,7 +1,6 @@
 const path = require("path");
 const express = require("express");
 const compression = require("compression");
-
 const os = require("os");
 
 module.exports = class WebServer {
@@ -20,8 +19,8 @@ module.exports = class WebServer {
             const networkInterfaces = os.networkInterfaces();
             let connectionIP;
 
-            for (const face in networkInterfaces) {
-                for (const network of networkInterfaces[face]) {
+            for (const networkInterface in networkInterfaces) {
+                for (const network of networkInterfaces[networkInterface]) {
                     if (network.family === "IPv4" && !network.internal) {
                         connectionIP = network.address;
                     }
@@ -29,6 +28,7 @@ module.exports = class WebServer {
             }
 
             console.log(`Server listening on port ${this.port}`);
+            console.log("Admin access is available on this computer only at 'localhost/admin' in your browser");
             console.log("Please turn on your computer's hotspot and connect to it with your phone");
             console.log(`Then on your phone, access '${connectionIP}' in your browser`);
         });
@@ -36,7 +36,7 @@ module.exports = class WebServer {
 
     getRequest(endpoint, callback) {
         this.server.get(endpoint, (req, res) => {
-            callback().then((response) => {
+            callback(req).then((response) => {
                 res.send(response);
             })
         });

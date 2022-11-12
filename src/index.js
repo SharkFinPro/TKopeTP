@@ -79,3 +79,15 @@ webServer.postRequest("/purchase", (body) => {
         resolve();
     });
 });
+
+
+/* Admin Panel */
+webServer.getRequest("/admin", (req) => {
+    return new Promise((resolve, reject) => {
+        if (req.hostname !== "localhost") {
+            resolve("You do not have access.");
+        }
+
+        resolve("Admin Panel");
+    });
+});
