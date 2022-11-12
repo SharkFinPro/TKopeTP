@@ -124,3 +124,12 @@ body {
     font-size: 5vw;
     color: #030006;
 }
+
+@media screen and (orientation: landscape) {
+    .header, .content, .footer {
+        display: none;
+    }
+    body {
+        background-color: #36454F;
+    }
+}
