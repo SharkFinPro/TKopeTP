@@ -6,7 +6,6 @@ var mySessionID = localStorage.getItem("mySessionID");
 if (localStorage.getItem("sessionID") !== serverSession) {
     localStorage.setItem("sessionID", serverSession);
 
-    localStorage.setItem("counter", JSON.stringify({ visits: 0 }));
     cart.reset();
 
     // Get ID to identify self to server
