@@ -12,8 +12,5 @@ if (localStorage.getItem("sessionID") !== serverSession) {
     mySessionID = postRequest("/createSession");
     localStorage.setItem("mySessionID", mySessionID);
 
-    postRequest("/setName", { sessionId: mySessionID, name: "Alex" });
+    postRequest("/setName", { sessionId: mySessionID, name: "" });
 }
-
-// Get ID
-console.log("Server Session ID: " + serverSession + ", my Session ID: " + mySessionID);

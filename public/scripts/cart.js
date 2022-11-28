@@ -58,7 +58,8 @@ var Cart = function () {
             postRequest("/purchase", {
                 cart: simplifiedCart,
                 paymentMethod: paymentMethod,
-                sessionId: mySessionID
+                sessionId: mySessionID,
+                time: new Date().toJSON()
             });
 
             this.reset();

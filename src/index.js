@@ -48,6 +48,7 @@ webServer.postRequest("/purchase", (body) => {
         let user = sessionManager.getSession(parseInt(body.sessionId));
         let cart = {};
         let paymentMethod = body.paymentMethod;
+        let time = body.time;
 
         let moneyMade = 0;
 
@@ -58,7 +59,7 @@ webServer.postRequest("/purchase", (body) => {
             moneyMade += cart[product].count * cart[product].price;
         }
 
-        const transactionLog = JSON.stringify({cart, paymentMethod});
+        const transactionLog = JSON.stringify({cart, paymentMethod, time});
         console.log(`Transaction completed using ${paymentMethod}!`);
 
         fs.access("./bin", (err) => {
