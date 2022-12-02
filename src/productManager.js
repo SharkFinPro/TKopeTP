@@ -1,8 +1,7 @@
 const sqlite3 = require('sqlite3');
 
 module.exports = class ProductManager {
-    constructor(productsList) {
-
+    constructor() {
         this.typedProducts = {};
         this.products = {};
 
