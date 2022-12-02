@@ -1,44 +1,55 @@
-const sqlite3 = require('sqlite3');
-
 module.exports = class ProductManager {
-    constructor() {
-        this.typedProducts = {};
-        this.products = {};
-
-        this.types = {};
-
-        this.productDB = new sqlite3.Database("./src/db/TradingPost.sqlite");
-        this.productDB.all("select productType, displayName, price, imageFile as image FROM Products;", (error, products) => {
-            for (let product of products) {
-                this.products[product.displayName] = product;
-
-                if (!Object.keys(this.typedProducts).includes(product.productType.toString())) {
-                    this.typedProducts[product.productType] = {};
-                }
-                this.typedProducts[product.productType][product.displayName] = product;
-            }
-        });
-
-        this.productDB.all("select id, displayName FROM ProductTypes", (error, productTypes) => {
-            for (let productType of productTypes) {
-                this.types[productType.id] = productType.displayName;
-            }
-        });
+    constructor(databaseManager) {
+        this.databaseManager = databaseManager;
     }
 
     getProductsByType(type) {
-        return JSON.stringify(this.typedProducts[type]);
+        return new Promise((resolve, reject) => {
+            let productList = {};
+
+            this.databaseManager.all(`SELECT productType, displayName, price, imageFile as image, id FROM Products WHERE productType=${type}`, (error, products) => {
+                if (error) {
+                    console.error(error);
+                    reject(error);
+                }
+
+                for (let product of products) {
+                    productList[product.id] = product;
+                }
+
+                resolve(productList);
+            });
+        });
     }
 
-    getProduct(product) {
-        return this.products[product];
+    getProduct(productID) {
+        return new Promise((resolve, reject) => {
+            this.databaseManager.each(`SELECT productType, displayName, price, imageFile as image, id FROM Products WHERE id=${productID}`, (error, product) => {
+                if (error) {
+                    console.error(error);
+                    reject(error);
+                }
+
+                resolve(product);
+            });
+        });
     }
 
     getProductTypes() {
-        return this.types;
-    }
+        return new Promise((resolve, reject) => {
+            let types = {};
+            this.databaseManager.all("SELECT * FROM ProductTypes", (error, productTypes) => {
+                if (error) {
+                    console.error(error);
+                    reject(error);
+                }
 
-    getProductTypeName(type) {
-        return this.types[type];
+                for (let productType of productTypes) {
+                    types[productType.id] = productType.displayName;
+                }
+
+                resolve(types);
+            });
+        });
     }
 }

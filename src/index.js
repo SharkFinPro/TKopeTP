@@ -1,10 +1,13 @@
+const DatabaseManager = require("./databaseManager.js");
+const databaseManager = new DatabaseManager();
+
 const fs = require("fs");
 const SessionManager = require("./sessionManager.js");
 const ProductManager = require("./productManager.js");
 const WebServer = require("./webServer.js");
 
 const sessionManager = new SessionManager();
-const productManager = new ProductManager();
+const productManager = new ProductManager(databaseManager);
 
 const webServer = new WebServer(80, "../public");
 webServer.init();
@@ -36,23 +39,23 @@ webServer.postRequest("/api/setName", (body) => {
 });
 
 webServer.postRequest("/api/products", (body) => {
-    return new Promise((resolve, reject) => {
-        let productList = productManager.getProductsByType(body);
+    return new Promise(async (resolve, reject) => {
+        let productList = await productManager.getProductsByType(body);
 
         resolve(productList);
     });
 });
 
 webServer.getRequest("/api/productTypes", (body) => {
-    return new Promise((resolve, reject) => {
-        let typeList = productManager.getProductTypes(body);
+    return new Promise(async (resolve, reject) => {
+        let typeList = await productManager.getProductTypes(body);
 
         resolve(typeList);
     });
 });
 
 webServer.postRequest("/api/purchase", (body) => {
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         let user = sessionManager.getSession(parseInt(body.sessionId));
         let cart = {};
         let paymentMethod = body.paymentMethod;
@@ -61,7 +64,7 @@ webServer.postRequest("/api/purchase", (body) => {
         let moneyMade = 0;
 
         for (let product in body.cart) {
-            cart[product] = productManager.getProduct(product);
+            cart[product] = await productManager.getProduct(product);
             cart[product].count = body.cart[product];
 
             moneyMade += cart[product].count * cart[product].price;
@@ -88,7 +91,6 @@ webServer.postRequest("/api/purchase", (body) => {
         resolve();
     });
 });
-
 
 /* Admin Panel */
 webServer.getRequest("/admin", (req) => {
