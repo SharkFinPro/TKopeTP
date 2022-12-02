@@ -4,14 +4,17 @@ const compression = require("compression");
 const os = require("os");
 
 module.exports = class WebServer {
-    constructor(port, publicDirectory) {
+    constructor(port, publicDirectory, adminDirectory) {
         this.port = port;
 
         this.server = express();
         this.server.use(express.static(path.join(__dirname, publicDirectory)));
+        this.server.use("/admin", express.static(path.join(__dirname, adminDirectory)));
         this.server.use(express.json());
         this.server.use(express.urlencoded({ extended: true }));
         this.server.use(compression());
+
+        this.init();
     }
 
     init() {
@@ -28,7 +31,6 @@ module.exports = class WebServer {
             }
 
             console.log(`Server listening on port ${this.port}`);
-            console.log("Admin access is available on this computer only at 'localhost/admin' in your browser");
             console.log("Please turn on your computer's hotspot and connect to it with your phone");
             console.log(`Then on your phone, access '${connectionIP}' in your browser`);
         });

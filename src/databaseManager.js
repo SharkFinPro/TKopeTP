@@ -15,7 +15,6 @@ module.exports = class DatabaseManager {
                 return console.error(error);
             }
 
-            console.log("Connected to the Database!");
             this.connected = true;
         });
     }
@@ -38,7 +37,6 @@ module.exports = class DatabaseManager {
                 return console.error(error);
             }
 
-            console.log("Database connection has been closed.");
             this.connected = false;
         })
     }

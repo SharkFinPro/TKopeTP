@@ -9,8 +9,7 @@ const WebServer = require("./webServer.js");
 const sessionManager = new SessionManager();
 const productManager = new ProductManager(databaseManager);
 
-const webServer = new WebServer(80, "../public");
-webServer.init();
+const webServer = new WebServer(80, "../public", "../adminPanel");
 
 webServer.getRequest("/api/sessionID", () => {
     return new Promise((resolve, reject) => {
@@ -71,7 +70,6 @@ webServer.postRequest("/api/purchase", (body) => {
         }
 
         const transactionLog = JSON.stringify({cart, paymentMethod, time});
-        console.log(`Transaction completed using ${paymentMethod}!`);
 
         fs.access("./bin", (err) => {
             if (err) {
@@ -89,16 +87,5 @@ webServer.postRequest("/api/purchase", (body) => {
         });
 
         resolve();
-    });
-});
-
-/* Admin Panel */
-webServer.getRequest("/admin", (req) => {
-    return new Promise((resolve, reject) => {
-        if (req.hostname !== "localhost") {
-            resolve("You do not have access.");
-        }
-
-        resolve("Admin Panel");
     });
 });
