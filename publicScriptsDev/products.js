@@ -13,12 +13,7 @@ const addToCart = (product) => {
 
 
 /* Product Setup */
-const acceptableProductTypes = {
-    1: "Snacks & Drinks",
-    2: "Patches",
-    3: "Lodge",
-    4: "National"
-};
+const acceptableProductTypes = JSON.parse(getRequest("productTypes"));
 
 let productType = new URLSearchParams(window.location.search).get('variant');
 

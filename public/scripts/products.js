@@ -12,12 +12,7 @@ var addToCart = function addToCart(product) {
 };
 
 /* Product Setup */
-var acceptableProductTypes = {
-    1: "Snacks & Drinks",
-    2: "Patches",
-    3: "Lodge",
-    4: "National"
-};
+var acceptableProductTypes = JSON.parse(getRequest("productTypes"));
 
 var productType = new URLSearchParams(window.location.search).get('variant');
 

@@ -43,6 +43,14 @@ webServer.postRequest("/products", (body) => {
     });
 });
 
+webServer.getRequest("/productTypes", (body) => {
+    return new Promise((resolve, reject) => {
+        let typeList = productManager.getProductTypes(body);
+
+        resolve(typeList);
+    });
+});
+
 webServer.postRequest("/purchase", (body) => {
     return new Promise((resolve, reject) => {
         let user = sessionManager.getSession(parseInt(body.sessionId));

@@ -5,6 +5,8 @@ module.exports = class ProductManager {
         this.typedProducts = {};
         this.products = {};
 
+        this.types = {};
+
         this.productDB = new sqlite3.Database("./src/db/TradingPost.sqlite");
         this.productDB.all("select productType, displayName, price, imageFile as image FROM Products;", (error, products) => {
             for (let product of products) {
@@ -16,6 +18,14 @@ module.exports = class ProductManager {
                 this.typedProducts[product.productType][product.displayName] = product;
             }
         });
+
+        this.productDB.all("select id, displayName FROM ProductTypes", (error, productTypes) => {
+            for (let productType of productTypes) {
+                this.types[productType.id] = productType.displayName;
+            }
+
+            console.log(this.types);
+        });
     }
 
     getProductsByType(type) {
@@ -24,5 +34,13 @@ module.exports = class ProductManager {
 
     getProduct(product) {
         return this.products[product];
+    }
+
+    getProductTypes() {
+        return this.types;
+    }
+
+    getProductTypeName(type) {
+        return this.types[type];
     }
 }
