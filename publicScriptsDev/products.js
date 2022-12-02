@@ -14,10 +14,10 @@ const addToCart = (product) => {
 
 /* Product Setup */
 const acceptableProductTypes = {
-    drinksandsnacks: "Snacks & Drinks",
-    patches: "Patches",
-    lodge: "Lodge",
-    national: "National"
+    1: "Snacks & Drinks",
+    2: "Patches",
+    3: "Lodge",
+    4: "National"
 };
 
 let productType = new URLSearchParams(window.location.search).get('variant');
@@ -37,6 +37,8 @@ const generateProduct = (product) => {
     let productData = products[product];
     if (!productData.image) {
         productData.image = "images/NOT_FOUND.png";
+    } else {
+        productData.image = "images/" + productData.image;
     }
 
     cart.createListing(product, productData);

@@ -4,7 +4,7 @@ const ProductManager = require("./productManager.js");
 const WebServer = require("./webServer.js");
 
 const sessionManager = new SessionManager();
-const productManager = new ProductManager(require("../products.js"));
+const productManager = new ProductManager();
 
 const webServer = new WebServer(80, "../public");
 webServer.init();

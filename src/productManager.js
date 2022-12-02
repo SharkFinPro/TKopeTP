@@ -1,13 +1,22 @@
+const sqlite3 = require('sqlite3');
+
 module.exports = class ProductManager {
     constructor(productsList) {
-        this.typedProducts = productsList;
 
+        this.typedProducts = {};
         this.products = {};
-        for (let productType in this.typedProducts) {
-            for (let product in this.typedProducts[productType]) {
-                this.products[product] = this.typedProducts[productType][product];
+
+        this.productDB = new sqlite3.Database("./src/db/TradingPost.sqlite");
+        this.productDB.all("select productType, displayName, price, imageFile as image FROM Products;", (error, products) => {
+            for (let product of products) {
+                this.products[product.displayName] = product;
+
+                if (!Object.keys(this.typedProducts).includes(product.productType.toString())) {
+                    this.typedProducts[product.productType] = {};
+                }
+                this.typedProducts[product.productType][product.displayName] = product;
             }
-        }
+        });
     }
 
     getProductsByType(type) {
