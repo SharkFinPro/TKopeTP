@@ -44,7 +44,7 @@ class Cart {
             simplifiedCart[product] = cart[product].count;
         }
 
-        postRequest("/purchase", {
+        postRequest("/api/purchase", {
             cart: simplifiedCart,
             paymentMethod: paymentMethod,
             sessionId: mySessionID,

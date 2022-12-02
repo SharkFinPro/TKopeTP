@@ -23,8 +23,6 @@ module.exports = class ProductManager {
             for (let productType of productTypes) {
                 this.types[productType.id] = productType.displayName;
             }
-
-            console.log(this.types);
         });
     }
 

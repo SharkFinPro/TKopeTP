@@ -9,13 +9,13 @@ const productManager = new ProductManager();
 const webServer = new WebServer(80, "../public");
 webServer.init();
 
-webServer.getRequest("/sessionID", () => {
+webServer.getRequest("/api/sessionID", () => {
     return new Promise((resolve, reject) => {
         resolve(sessionManager.getGlobalID().toString());
     });
 });
 
-webServer.postRequest("/createSession", (body) => {
+webServer.postRequest("/api/createSession", (body) => {
     return new Promise((resolve, reject) => {
         sessionManager.createSession({ name: "" }).then((id) => {
             resolve(id.toString());
@@ -23,7 +23,7 @@ webServer.postRequest("/createSession", (body) => {
     });
 });
 
-webServer.postRequest("/setName", (body) => {
+webServer.postRequest("/api/setName", (body) => {
     return new Promise((resolve, reject) => {
         let id = parseInt(body.sessionId);
 
@@ -35,7 +35,7 @@ webServer.postRequest("/setName", (body) => {
     });
 });
 
-webServer.postRequest("/products", (body) => {
+webServer.postRequest("/api/products", (body) => {
     return new Promise((resolve, reject) => {
         let productList = productManager.getProductsByType(body);
 
@@ -43,7 +43,7 @@ webServer.postRequest("/products", (body) => {
     });
 });
 
-webServer.getRequest("/productTypes", (body) => {
+webServer.getRequest("/api/productTypes", (body) => {
     return new Promise((resolve, reject) => {
         let typeList = productManager.getProductTypes(body);
 
@@ -51,7 +51,7 @@ webServer.getRequest("/productTypes", (body) => {
     });
 });
 
-webServer.postRequest("/purchase", (body) => {
+webServer.postRequest("/api/purchase", (body) => {
     return new Promise((resolve, reject) => {
         let user = sessionManager.getSession(parseInt(body.sessionId));
         let cart = {};

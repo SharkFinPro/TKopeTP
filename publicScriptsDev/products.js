@@ -13,7 +13,7 @@ const addToCart = (product) => {
 
 
 /* Product Setup */
-const acceptableProductTypes = JSON.parse(getRequest("productTypes"));
+const acceptableProductTypes = JSON.parse(getRequest("/api/productTypes"));
 
 let productType = new URLSearchParams(window.location.search).get('variant');
 
@@ -26,7 +26,7 @@ document.title = `T'Kope TP - ${acceptableProductTypes[productType]}`;
 
 productType = productType.toLowerCase();
 
-const products = JSON.parse(postRequest("products", productType));
+const products = JSON.parse(postRequest("/api/products", productType));
 
 const generateProduct = (product) => {
     let productData = products[product];

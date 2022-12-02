@@ -1,4 +1,4 @@
-const productTypes = JSON.parse(getRequest("productTypes"));
+const productTypes = JSON.parse(getRequest("/api/productTypes"));
 
 let categories = [];
 for (let type in productTypes) {
