@@ -8,7 +8,7 @@ import compression from "compression";
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export default class WebServer {
+class WebServer {
     constructor(port, publicDirectory, adminDirectory) {
         this.port = port;
 
@@ -59,3 +59,5 @@ export default class WebServer {
         });
     }
 }
+
+export default new WebServer(80, "../public/app", "../public/adminPanel");

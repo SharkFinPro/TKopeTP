@@ -1,13 +1,7 @@
 import * as fs from "node:fs";
-import DatabaseManager from "./databaseManager.js";
-import SessionManager from "./sessionManager.js";
-import ProductManager from "./productManager.js";
-import WebServer from "./webServer.js";
-
-const databaseManager = new DatabaseManager();
-const sessionManager = new SessionManager();
-const productManager = new ProductManager(databaseManager);
-const webServer = new WebServer(80, "../public/app", "../public/adminPanel");
+import sessionManager from "./sessionManager.js";
+import productManager from "./productManager.js";
+import webServer from "./webServer.js";
 
 webServer.getRequest("/api/sessionID", () => {
     return new Promise((resolve, reject) => {

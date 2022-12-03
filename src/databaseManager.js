@@ -6,7 +6,7 @@ import sqlite3 from "sqlite3";
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export default class DatabaseManager {
+class DatabaseManager {
     constructor() {
         this.connect();
     }
@@ -47,3 +47,5 @@ export default class DatabaseManager {
         })
     }
 }
+
+export default new DatabaseManager();
