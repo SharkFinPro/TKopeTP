@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node .",
-    "build": "npx babel publicScriptsDev --out-dir public/scripts --presets react-app/prod"
+    "build": "npx babel public/appScriptsDev --out-dir public/app/scripts --presets react-app/prod"
   },
   "keywords": [],
   "author": "",

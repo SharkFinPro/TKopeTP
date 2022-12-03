@@ -8,8 +8,8 @@ module.exports = class WebServer {
         this.port = port;
 
         this.server = express();
-        this.server.use(express.static(path.join(__dirname, publicDirectory)));
-        this.server.use("/admin", express.static(path.join(__dirname, adminDirectory)));
+        this.server.use(express.static(path.join(__dirname, publicDirectory), {extensions: ['html']}));
+        this.server.use("/admin", express.static(path.join(__dirname, adminDirectory), {extensions: ['html']}));
         this.server.use(express.json());
         this.server.use(express.urlencoded({ extended: true }));
         this.server.use(compression());

@@ -9,7 +9,7 @@ const WebServer = require("./webServer.js");
 const sessionManager = new SessionManager();
 const productManager = new ProductManager(databaseManager);
 
-const webServer = new WebServer(80, "../public", "../adminPanel");
+const webServer = new WebServer(80, "../public/app", "../public/adminPanel");
 
 webServer.getRequest("/api/sessionID", () => {
     return new Promise((resolve, reject) => {
