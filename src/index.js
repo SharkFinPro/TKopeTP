@@ -1,14 +1,12 @@
-const DatabaseManager = require("./databaseManager.js");
+import * as fs from "node:fs";
+import DatabaseManager from "./databaseManager.js";
+import SessionManager from "./sessionManager.js";
+import ProductManager from "./productManager.js";
+import WebServer from "./webServer.js";
+
 const databaseManager = new DatabaseManager();
-
-const fs = require("fs");
-const SessionManager = require("./sessionManager.js");
-const ProductManager = require("./productManager.js");
-const WebServer = require("./webServer.js");
-
 const sessionManager = new SessionManager();
 const productManager = new ProductManager(databaseManager);
-
 const webServer = new WebServer(80, "../public/app", "../public/adminPanel");
 
 webServer.getRequest("/api/sessionID", () => {

@@ -1,4 +1,4 @@
-module.exports = class ProductManager {
+export default class ProductManager {
     constructor(databaseManager) {
         this.databaseManager = databaseManager;
     }

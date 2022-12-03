@@ -1,6 +1,12 @@
-const sqlite3 = require('sqlite3');
+import * as path from "path";
+import * as url from "url";
 
-module.exports = class DatabaseManager {
+import sqlite3 from "sqlite3";
+
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default class DatabaseManager {
     constructor() {
         this.connect();
     }

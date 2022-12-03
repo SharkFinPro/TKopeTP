@@ -1,9 +1,14 @@
-const path = require("path");
-const express = require("express");
-const compression = require("compression");
-const os = require("os");
+import * as path from "path";
+import * as url from "url";
+import * as os from "os";
 
-module.exports = class WebServer {
+import express from "express";
+import compression from "compression";
+
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export default class WebServer {
     constructor(port, publicDirectory, adminDirectory) {
         this.port = port;
 

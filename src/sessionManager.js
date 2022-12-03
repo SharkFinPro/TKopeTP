@@ -1,6 +1,6 @@
 const randomIDValues = 100000;
 
-module.exports = class SessionManager {
+export default class SessionManager {
     constructor() {
         this.globalID = ~~(Math.random() * randomIDValues);
 
