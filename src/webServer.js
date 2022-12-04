@@ -1,20 +1,19 @@
-import * as path from "path";
-import * as url from "url";
-import * as os from "os";
-
+import { dirname as pathDirname, join as pathJoin } from "path";
+import { fileURLToPath as urlFileURLToPath } from "url";
+import { networkInterfaces as osNetworkInterfaces } from "os";
 import express from "express";
 import compression from "compression";
 
-const __filename = url.fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __filename = urlFileURLToPath(import.meta.url);
+const __dirname = pathDirname(__filename);
 
 class WebServer {
     constructor(port, publicDirectory, adminDirectory) {
         this.port = port;
 
         this.server = express();
-        this.server.use(express.static(path.join(__dirname, publicDirectory), {extensions: ['html']}));
-        this.server.use("/admin", express.static(path.join(__dirname, adminDirectory), {extensions: ['html']}));
+        this.server.use(express.static(pathJoin(__dirname, publicDirectory), {extensions: ['html']}));
+        this.server.use("/admin", express.static(pathJoin(__dirname, adminDirectory), {extensions: ['html']}));
         this.server.use(express.json());
         this.server.use(express.urlencoded({ extended: true }));
         this.server.use(compression());
@@ -24,7 +23,7 @@ class WebServer {
 
     init() {
         this.server.listen(this.port, () => {
-            const networkInterfaces = os.networkInterfaces();
+            const networkInterfaces = osNetworkInterfaces();
             let connectionIP;
 
             for (const networkInterface in networkInterfaces) {

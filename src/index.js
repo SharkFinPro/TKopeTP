@@ -47,21 +47,18 @@ webServer.getRequest("/api/productTypes", (body) => {
 
 webServer.postRequest("/api/purchase", (body) => {
     return new Promise(async (resolve, reject) => {
-        let user = sessionManager.getSession(parseInt(body.sessionId));
         let cart = {};
-        let paymentMethod = body.paymentMethod;
-        let time = body.time;
-
-        let moneyMade = 0;
 
         for (let product in body.cart) {
             cart[product] = await productManager.getProduct(product);
             cart[product].count = body.cart[product];
-
-            moneyMade += cart[product].count * cart[product].price;
         }
 
-        const transactionLog = JSON.stringify({cart, paymentMethod, time});
+        const transactionLog = JSON.stringify({
+            cart,
+            paymentMethod: body.paymentMethod,
+            time: body.time
+        });
 
         fs.access("./bin", (err) => {
             if (err) {

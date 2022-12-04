@@ -1,10 +1,9 @@
-import * as path from "path";
-import * as url from "url";
-
+import { dirname as pathDirname } from "path";
+import { fileURLToPath as urlFileURLToPath } from "url";
 import sqlite3 from "sqlite3";
 
-const __filename = url.fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __filename = urlFileURLToPath(import.meta.url);
+const __dirname = pathDirname(__filename);
 
 class DatabaseManager {
     constructor() {
