@@ -5,14 +5,15 @@
   "main": "src/index.mjs",
   "scripts": {
     "start": "node .",
-    "build": "npx babel assets/appScriptsDev --out-dir assets/app/scripts --presets react-app/prod"
+    "build": "npm run build-app && npm run build-server && npm run build-pkg",
+    "build-app": "npx babel assets/appScriptsDev --out-dir assets/app/scripts --presets react-app/prod",
+    "build-server": "npx webpack",
+    "build-pkg": "npx pkg . -C Brotli"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-react-app": "^3.1.2",
     "compression": "^1.7.4",
     "express": "^4.18.1",
     "sqlite3": "^5.1.2"
@@ -27,6 +28,9 @@
   },
   "bin": "src/bin/server.js",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2",
+    "pkg": "^5.8.0",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
     "webpack-node-externals": "^3.0.0"
