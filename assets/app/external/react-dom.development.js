@@ -4337,8 +4337,8 @@
       unstable_setDisableYieldValue = _ReactInternals$Sched.unstable_setDisableYieldValue;
 
   /**
-   * `ReactInstanceMap` maintains a mapping from a public facing stateful
-   * instance (key) and the internal representation (value). This allows public
+   * `ReactInstanceMap` maintains a mapping from a assets facing stateful
+   * instance (key) and the internal representation (value). This allows assets
    * methods to accept the user facing instance as an argument and map them back
    * to internal methods.
    *
@@ -17400,7 +17400,7 @@
     var root = getWorkInProgressRoot(); // TODO: In Fizz, id generation is specific to each server config. Maybe we
     // should do this in Fiber, too? Deferring this decision for now because
     // there's no other place to store the prefix except for an internal field on
-    // the public createRoot object, which the fiber tree does not currently have
+    // the assets createRoot object, which the fiber tree does not currently have
     // a reference to.
 
     var identifierPrefix = root.identifierPrefix;

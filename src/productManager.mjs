@@ -1,4 +1,4 @@
-import databaseManager from "./databaseManager.js";
+import databaseManager from "./databaseManager.mjs";
 
 class ProductManager {
     getProductsByType(type) {

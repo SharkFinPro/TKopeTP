@@ -3,4 +3,4 @@ node_modules/*
 bin/*
 src/bin/*
 tkopetp.exe
-public/app/scripts/*
+assets/app/scripts/*

@@ -1,19 +1,15 @@
-import { dirname as pathDirname, join as pathJoin } from "path";
-import { fileURLToPath as urlFileURLToPath } from "url";
+import { join } from "path";
 import { networkInterfaces as osNetworkInterfaces } from "os";
 import express from "express";
 import compression from "compression";
-
-const __filename = urlFileURLToPath(import.meta.url);
-const __dirname = pathDirname(__filename);
 
 class WebServer {
     constructor(port, publicDirectory, adminDirectory) {
         this.port = port;
 
         this.server = express();
-        this.server.use(express.static(pathJoin(__dirname, publicDirectory), {extensions: ['html']}));
-        this.server.use("/admin", express.static(pathJoin(__dirname, adminDirectory), {extensions: ['html']}));
+        this.server.use(express.static(join(process.cwd(), publicDirectory), {extensions: ['html']}));
+        this.server.use("/admin", express.static(join(process.cwd(), adminDirectory), {extensions: ['html']}));
         this.server.use(express.json());
         this.server.use(express.urlencoded({ extended: true }));
         this.server.use(compression());
@@ -59,4 +55,4 @@ class WebServer {
     }
 }
 
-export default new WebServer(80, "../public/app", "../public/adminPanel");
+export default new WebServer(80, "assets/app", "assets/adminPanel");

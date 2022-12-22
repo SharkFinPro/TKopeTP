@@ -1,7 +1,7 @@
 import * as fs from "node:fs";
-import sessionManager from "./sessionManager.js";
-import productManager from "./productManager.js";
-import webServer from "./webServer.js";
+import sessionManager from "./sessionManager.mjs";
+import productManager from "./productManager.mjs";
+import webServer from "./webServer.mjs";
 
 webServer.getRequest("/api/sessionID", () => {
     return new Promise((resolve, reject) => {

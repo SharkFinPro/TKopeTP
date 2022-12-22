@@ -2,10 +2,10 @@
   "name": "tkopetp",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "src/index.mjs",
   "scripts": {
     "start": "node .",
-    "build": "npx babel public/appScriptsDev --out-dir public/app/scripts --presets react-app/prod"
+    "build": "npx babel assets/appScriptsDev --out-dir assets/app/scripts --presets react-app/prod"
   },
   "keywords": [],
   "author": "",
@@ -17,14 +17,18 @@
     "express": "^4.18.1",
     "sqlite3": "^5.1.2"
   },
-  "type": "module",
   "pkg": {
     "assets": [
-      "public/**/*"
+      "node_modules/**/*"
     ],
     "targets": [
       "node18-win-x64"
     ]
   },
-  "bin": "src/index.js"
+  "bin": "src/bin/server.js",
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-node-externals": "^3.0.0"
+  }
 }

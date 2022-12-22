@@ -1,9 +1,5 @@
-import { dirname as pathDirname } from "path";
-import { fileURLToPath as urlFileURLToPath } from "url";
 import sqlite3 from "sqlite3";
-
-const __filename = urlFileURLToPath(import.meta.url);
-const __dirname = pathDirname(__filename);
+import { join } from "path";
 
 class DatabaseManager {
     constructor() {
@@ -15,7 +11,7 @@ class DatabaseManager {
             return console.log("Database connection is already established!");
         }
 
-        this.db = new sqlite3.Database(__dirname + "/db/TradingPost.sqlite", sqlite3.OPEN_READWRITE, (error) => {
+        this.db = new sqlite3.Database(join(process.cwd(), "assets/TradingPost.sqlite"), sqlite3.OPEN_READWRITE, (error) => {
             if (error) {
                 return console.error(error);
             }
