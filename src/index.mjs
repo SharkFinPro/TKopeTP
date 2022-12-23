@@ -1,4 +1,4 @@
-import * as fs from "node:fs";
+import { access, mkdir, appendFile } from "node:fs";
 import sessionManager from "./sessionManager.mjs";
 import productManager from "./productManager.mjs";
 import webServer from "./webServer.mjs";
@@ -60,15 +60,15 @@ webServer.postRequest("/api/purchase", (body) => {
             time: body.time
         });
 
-        fs.access("./bin", (err) => {
+        access("./bin", (err) => {
             if (err) {
-                fs.mkdir("./bin", (err) => {
+                mkdir("./bin", (err) => {
                     if (err) {
                         console.error(err);
                     }
                 });
             }
-            fs.appendFile("./bin/dump.txt", `${transactionLog}\n`, (err) => {
+            appendFile("./bin/dump.txt", `${transactionLog}\n`, (err) => {
                 if (err) {
                     console.error(err);
                 }
