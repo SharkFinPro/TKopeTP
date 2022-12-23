@@ -8,8 +8,15 @@ class WebServer {
         this.port = port;
 
         this.server = express();
-        this.server.use(express.static(join(process.cwd(), publicDirectory), {extensions: ['html']}));
-        this.server.use("/admin", express.static(join(process.cwd(), adminDirectory), {extensions: ['html']}));
+
+        let sourceDir = "../../../TKopeTP/src";
+        if (process.env.NODE_ENV === "production") {
+            sourceDir = "../" + sourceDir;
+        }
+        sourceDir = join(process.argv[1], sourceDir);
+        this.server.use(express.static(join(sourceDir, publicDirectory), {extensions: ['html']}));
+        this.server.use("/admin", express.static(join(sourceDir, adminDirectory), {extensions: ['html']}));
+
         this.server.use(express.json());
         this.server.use(express.urlencoded({ extended: true }));
         this.server.use(compression());

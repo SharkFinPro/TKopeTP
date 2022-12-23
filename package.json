@@ -6,9 +6,11 @@
   "scripts": {
     "start": "node .",
     "build": "npm run build-app && npm run build-server && npm run build-pkg",
-    "build-app": "npx babel assets/appScriptsDev --out-dir assets/app/scripts --presets react-app/prod",
+    "build-noCompression": "npm run build-app && npm run build-server && npm run build-pkg-noCompression",
+    "build-app": "npx babel src/assets/appScriptsDev --out-dir src/assets/app/scripts --presets react-app/prod",
     "build-server": "npx webpack",
-    "build-pkg": "npx pkg . -C Brotli"
+    "build-pkg": "npx pkg . -C Brotli",
+    "build-pkg-noCompression": "npx pkg ."
   },
   "keywords": [],
   "author": "",
@@ -20,7 +22,9 @@
   },
   "pkg": {
     "assets": [
-      "node_modules/**/*"
+      "node_modules/**/*",
+      "src/assets/app/**/*",
+      "src/assets/adminPanel/**/*"
     ],
     "targets": [
       "node18-win-x64"

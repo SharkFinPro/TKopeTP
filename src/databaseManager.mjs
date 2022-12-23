@@ -11,7 +11,12 @@ class DatabaseManager {
             return console.log("Database connection is already established!");
         }
 
-        this.db = new sqlite3.Database(join(process.cwd(), "assets/TradingPost.sqlite"), sqlite3.OPEN_READWRITE, (error) => {
+        let sourceDir = process.cwd();
+        if (process.env.NODE_ENV !== "production") {
+            sourceDir = "../../../TKopeTP/src/db";
+            sourceDir = join(process.argv[1], sourceDir);
+        }
+        this.db = new sqlite3.Database(join(sourceDir, "TradingPost.sqlite"), sqlite3.OPEN_READWRITE, (error) => {
             if (error) {
                 return console.error(error);
             }
