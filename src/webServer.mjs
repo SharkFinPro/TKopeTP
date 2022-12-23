@@ -4,18 +4,19 @@ import express from "express";
 import compression from "compression";
 
 class WebServer {
-    constructor(port, publicDirectory, adminDirectory) {
+    constructor(port) {
         this.port = port;
 
         this.server = express();
 
-        let sourceDir = "../../../TKopeTP/src";
+        let sourceDir = "../../../TKopeTP/src/assets";
         if (process.env.NODE_ENV === "production") {
             sourceDir = "../" + sourceDir;
         }
         sourceDir = join(process.argv[1], sourceDir);
-        this.server.use(express.static(join(sourceDir, publicDirectory), {extensions: ['html']}));
-        this.server.use("/admin", express.static(join(sourceDir, adminDirectory), {extensions: ['html']}));
+        this.server.use(express.static(join(sourceDir, "app"), {extensions: ['html']}));
+        this.server.use("/admin", express.static(join(sourceDir, "adminPanel"), {extensions: ['html']}));
+        this.server.use("/images", express.static(join(process.cwd(), "images"), {extensions: ['html']}));
 
         this.server.use(express.json());
         this.server.use(express.urlencoded({ extended: true }));
@@ -62,4 +63,4 @@ class WebServer {
     }
 }
 
-export default new WebServer(80, "assets/app", "assets/adminPanel");
+export default new WebServer(80);
