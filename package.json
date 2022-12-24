@@ -9,8 +9,8 @@
     "build-noCompression": "npm run build-app && npm run build-server && npm run build-pkg-noCompression",
     "build-app": "npx babel src/assets/appScriptsDev --out-dir src/assets/app/scripts --presets react-app/prod",
     "build-server": "npx webpack",
-    "build-pkg": "npx pkg . -C Brotli",
-    "build-pkg-noCompression": "npx pkg ."
+    "build-pkg": "npx pkg . -C Brotli --output \"bin/Trading Post\"",
+    "build-pkg-noCompression": "npx pkg . --output \"bin/Trading Post\""
   },
   "keywords": [],
   "author": "",
@@ -22,7 +22,9 @@
   },
   "pkg": {
     "assets": [
-      "node_modules/**/*",
+      "node_modules/compression/**/*",
+      "node_modules/express/**/*",
+      "node_modules/sqlite3/**/*",
       "src/assets/app/**/*",
       "src/assets/adminPanel/**/*"
     ],
