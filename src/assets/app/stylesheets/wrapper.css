@@ -34,7 +34,7 @@ html, body {
 body {
     margin: 0;
 
-    display:flex;
+    display: flex;
     flex-wrap: wrap;
 }
 

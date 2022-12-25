@@ -7,8 +7,7 @@ class Cart {
     }
 
     createListing(product, productData) {
-        if (!Object.keys(this.cart).includes(product))
-        {
+        if (!Object.keys(this.cart).includes(product)) {
             this.cart[product] = productData;
             this.cart[product].count = 0;
         }
@@ -23,13 +22,11 @@ class Cart {
     }
 
     remove(product) {
-        if (this.cart[product].count <= 0) {
-            return;
+        if (this.cart[product].count > 0) {
+            this.cart[product].count--;
+
+            this.updateStorage();
         }
-
-        this.cart[product].count--;
-
-        this.updateStorage();
     }
 
     getCount(product) {

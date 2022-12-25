@@ -30,10 +30,10 @@ webServer.postRequest("/api/setName", (body) => {
 });
 
 webServer.postRequest("/api/products", (body) => {
-    return new Promise(async (resolve, reject) => {
-        let productList = await productManager.getProductsByType(body);
-
-        resolve(productList);
+    return new Promise((resolve, reject) => {
+        productManager.getProductsByType(body).then((products) => {
+            resolve(products);
+        });
     });
 });
 
