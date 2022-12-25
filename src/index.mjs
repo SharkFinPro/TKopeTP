@@ -38,10 +38,10 @@ webServer.postRequest("/api/products", (body) => {
 });
 
 webServer.getRequest("/api/productTypes", (body) => {
-    return new Promise(async (resolve, reject) => {
-        let typeList = await productManager.getProductTypes(body);
-
-        resolve(typeList);
+    return new Promise((resolve, reject) => {
+        productManager.getProductTypes(body).then((types) => {
+            resolve(types);
+        });
     });
 });
 

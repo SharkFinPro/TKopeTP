@@ -1,13 +1,15 @@
-const fs = require("fs");
+import { writeFile, appendFileSync, readFileSync } from "fs";
+import { join } from "path";
+const binFolder = "../bin/";
 
-fs.writeFile("../bin/report.txt", "", (err) => {
+writeFile(join(binFolder, "report.txt"), "", (err) => {
     if (err) {
         console.error(err);
     }
 });
 
 const write = (data) => {
-    fs.appendFileSync("../bin/report.txt", data + "\n", (err) => {
+    appendFileSync(join(binFolder, "report.txt"), data + "\n", (err) => {
         if (err) {
             console.error(err);
         }
@@ -18,7 +20,7 @@ const write = (data) => {
 let carts = [];
 
 try {
-    let fileData = fs.readFileSync("../bin/conclaveDump.txt", "utf8").split("\n");
+    let fileData = readFileSync(join(binFolder, "dump.txt"), "utf8").split("\n");
 
     for (let cart of fileData) {
         if (cart) {
@@ -40,8 +42,8 @@ let soldTogether = {};
 let totalTogetherTransactions = 0;
 let totalTogetherItems = 0;
 
-for (let cart of carts) {
-    let productsInCart = Object.keys(cart);
+for (let cartData of carts) {
+    let productsInCart = Object.keys(cartData.cart);
 
     for (let product of productsInCart) {
         // Stats
@@ -50,7 +52,7 @@ for (let cart of carts) {
             if (!soldTogether[product]) {
                 soldTogether[product] = {
                     count: 0,
-                    displayName: cart[product].displayName
+                    displayName: cartData.cart[product].displayName
                 }
             }
 
@@ -64,7 +66,7 @@ for (let cart of carts) {
                 if (!soldTogether[product][p]) {
                     soldTogether[product][p] = {
                         count: 0,
-                        displayName: cart[p].displayName
+                        displayName: cartData.cart[p].displayName
                     }
                 }
 
@@ -75,32 +77,32 @@ for (let cart of carts) {
             // Increase soldTogether count
             soldTogether[product].count++;
             totalTogetherTransactions++;
-            totalTogetherItems += cart[product].count;
+            totalTogetherItems += cartData.cart[product].count;
 
         } else {
             if (!soldSolo[product]) {
                 soldSolo[product] = {
                     count: 0,
-                    displayName: cart[product].displayName
+                    displayName: cartData.cart[product].displayName
                 }
             }
 
             soldSolo[product].count++;
             totalSoloTransactions++;
-            totalSoloItems += cart[product].count;
+            totalSoloItems += cartData.cart[product].count;
         }
 
         // Load product if it's the first instance
         if (!productsPurchased[product]) {
             productsPurchased[product] = {
-                price: cart[product].price,
+                price: cartData.cart[product].price,
                 count: 0,
-                displayName: cart[product].displayName
+                displayName: cartData.cart[product].displayName
             };
         }
 
         // Increase product count
-        productsPurchased[product].count += cart[product].count;
+        productsPurchased[product].count += cartData.cart[product].count;
     }
 }
 
@@ -109,18 +111,18 @@ for (let cart of carts) {
 write("------------------------------ Items Sold Solo ------------------------------");
 for (let product in soldSolo) {
     // write(`${product} sold solo ${soldSolo[product].count} times`);
-    write(`${product}`.padEnd(50, "_") + `${soldSolo[product].count}`);
+    write(`${soldSolo[product].displayName}`.padEnd(50, "_") + `${soldSolo[product].count} transaction(s)`);
 }
 write("");
 
 write("---------------------------- Items Sold Together ----------------------------");
 for (let product in soldTogether) {
-    write(`${product} sold with other items ${soldTogether[product].count} times`);
+    write(`${soldTogether[product].displayName} sold with other items in ${soldTogether[product].count} transaction(s)`);
 
     let others = Object.keys(soldTogether[product]);
     for (let other of others) {
         if (other !== "count" && other !== "displayName") {
-            write(`${product} & ${other}`.padEnd(50, "_") + `${soldTogether[product][other].count}`);
+            write(`${soldTogether[product].displayName} & ${soldTogether[other].displayName}`.padEnd(50, "_") + `${soldTogether[product][other].count}`);
         }
     }
 
@@ -140,7 +142,7 @@ for (let product in productsPurchased) {
     totalItems += productsPurchased[product].count;
 
     // write(`${product} made $${productTotalMoney} with ${productsPurchased[product].count} items sold`);
-    write(`${product}`.padEnd(25, "_") + `$${productTotalMoney}`.padEnd(15, "_") + `${productsPurchased[product].count}`);
+    write(`${productsPurchased[product].displayName}`.padEnd(25, "_") + `$${productTotalMoney}`.padEnd(15, "_") + `${productsPurchased[product].count}`);
 }
 write("");
 
