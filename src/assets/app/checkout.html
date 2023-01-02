@@ -11,28 +11,11 @@
     <script src="scripts/requests.js"></script>
     <script src="scripts/cart.js"></script>
     <script src="scripts/session.js"></script>
+    <script src="scripts/checkout.js"></script>
   </head>
 
   <body>
-    <div id="header" class="header">
-      <h1>Checkout</h1>
-    </div>
-
-    <div class="content">
-      <div class="cartDisplay" id="cartDisplay"></div>
-      <div class="paymentInfo">
-        <div class="total" id="total"></div>
-        <div class="paymentTypeSelection">
-          <p><a class="paymentType" onclick="paymentSelected(this, 'cash')">Cash</a></p>
-          <p><a class="paymentType" onclick="paymentSelected(this, 'card')">Card</a></p>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer">
-      <p><a id="finish">Finish</a></p>
-    </div>
-
-    <script src="scripts/checkout.js"></script>
+    <div id="root"></div>
+    <script src="scripts/loadElements.js"></script>
   </body>
 </html>

@@ -20,8 +20,9 @@
     font-style: italic;
 }
 
-html, body {
+html, body, #root, .entry {
     height: 100%;
+    margin: 0;
 
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -31,9 +32,7 @@ html, body {
     user-select: none;
 }
 
-body {
-    margin: 0;
-
+.entry {
     display: flex;
     flex-wrap: wrap;
 }

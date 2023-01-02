@@ -33,7 +33,7 @@ class Cart {
         return this.cart[product].count;
     }
 
-    purchase(paymentMethod) {
+    purchase() {
         let cart = this.getActual();
         let simplifiedCart = {};
 
@@ -43,7 +43,7 @@ class Cart {
 
         postRequest("/api/purchase", {
             cart: simplifiedCart,
-            paymentMethod: paymentMethod,
+            paymentMethod: this.getPaymentMethod(),
             sessionId: mySessionID,
             time: new Date().toJSON()
         });
@@ -75,6 +75,7 @@ class Cart {
     reset() {
         this.cart = {};
         this.updateStorage();
+        this.setPaymentMethod("");
     }
 
     getStorage() {
@@ -83,6 +84,14 @@ class Cart {
 
     updateStorage() {
         localStorage.setItem("cart", JSON.stringify(this.cart));
+    }
+
+    setPaymentMethod(type) {
+        localStorage.setItem("paymentMethod", type);
+    }
+
+    getPaymentMethod() {
+        return localStorage.getItem("paymentMethod");
     }
 }
 
