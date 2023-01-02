@@ -1,5 +1,5 @@
 import { join } from "path";
-import { networkInterfaces as osNetworkInterfaces } from "os";
+import { networkInterfaces } from "os";
 import express from "express";
 import compression from "compression";
 
@@ -27,11 +27,11 @@ class WebServer {
 
     init() {
         this.server.listen(this.port, () => {
-            const networkInterfaces = osNetworkInterfaces();
+            const interfaces = networkInterfaces();
             let connectionIP;
 
-            for (const networkInterface in networkInterfaces) {
-                for (const network of networkInterfaces[networkInterface]) {
+            for (const networkInterface in interfaces) {
+                for (const network of interfaces[networkInterface]) {
                     if (network.family === "IPv4" && !network.internal) {
                         connectionIP = network.address;
                     }

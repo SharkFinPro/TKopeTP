@@ -1,4 +1,4 @@
-import { access, mkdir, appendFile } from "node:fs";
+import { access, mkdir, appendFile } from "fs";
 import sessionManager from "./sessionManager.mjs";
 import productManager from "./productManager.mjs";
 import webServer from "./webServer.mjs";
