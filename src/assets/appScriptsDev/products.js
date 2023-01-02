@@ -7,7 +7,7 @@ if (!Object.keys(acceptableProductTypes).includes(productType)) {
 }
 
 productType = productType.toLowerCase();
-
+document.title = `${acceptableProductTypes[productType]} | T'Kope TP`;
 
 class Content extends React.Component {
     constructor(props) {
