@@ -9,6 +9,60 @@ if (!Object.keys(acceptableProductTypes).includes(productType)) {
 productType = productType.toLowerCase();
 document.title = `${acceptableProductTypes[productType]} | T'Kope TP`;
 
+class Product extends React.Component {
+    constructor(props) {
+        super(props);
+
+        if (!this.props.productData.image) {
+            this.props.productData.image = "images/NOT_FOUND.png";
+        } else if (!this.props.productData.image.startsWith("images/")) {
+            this.props.productData.image = "images/" + this.props.productData.image;
+        }
+
+        cart.createListing(this.props.product, this.props.productData);
+
+        this.state = {
+            count: cart.getCount(this.props.product)
+        };
+    }
+
+    subFromCart(product) {
+        cart.remove(product);
+
+        this.setState({
+            count: cart.getCount(this.props.product)
+        });
+    }
+
+    addToCart(product) {
+        cart.add(product);
+
+        this.setState({
+            count: cart.getCount(this.props.product)
+        });
+    }
+
+    render() {
+        return (
+            <div className="product">
+                <div className="image">
+                    <img alt="product image" src={this.props.productData.image}></img>
+                </div>
+                <div className="name">
+                    <p>{this.props.productData.displayName} - ${this.props.productData.price}</p>
+                </div>
+                <div className="purchase">
+                    <button className="purchaseThird option left" onClick={() => this.subFromCart(this.props.product)}>-</button>
+                    <div className="purchaseThird display">
+                        <p id={this.props.product}>{this.state.count}</p>
+                    </div>
+                    <button className="purchaseThird option right" onClick={() => this.addToCart(this.props.product)}>+</button>
+                </div>
+            </div>
+        );
+    }
+}
+
 class Content extends React.Component {
     constructor(props) {
         super(props);
@@ -22,52 +76,12 @@ class Content extends React.Component {
         this.loadProducts();
     }
 
-    subFromCart(product) {
-        cart.remove(product);
-
-        this.loadProducts();
-    }
-
-    addToCart(product) {
-        cart.add(product);
-
-        this.loadProducts();
-    }
-
-    generateProduct(product, productData) {
-        if (!productData.image) {
-            productData.image = "images/NOT_FOUND.png";
-        } else if (!productData.image.startsWith("images/")) {
-            productData.image = "images/" + productData.image;
-        }
-
-        cart.createListing(product, productData);
-
-        return (
-            <div className="product" key={product}>
-                <div className="image">
-                    <img alt="product image" src={productData.image}></img>
-                </div>
-                <div className="name">
-                    <p>{productData.displayName} - ${productData.price}</p>
-                </div>
-                <div className="purchase">
-                    <button className="purchaseThird option left" onClick={() => this.subFromCart(product)}>-</button>
-                    <div className="purchaseThird display">
-                        <p id={product}>{cart.getCount(product)}</p>
-                    </div>
-                    <button className="purchaseThird option right" onClick={() => this.addToCart(product)}>+</button>
-                </div>
-            </div>
-        );
-    }
-
     loadProducts() {
         let productsList = JSON.parse(postRequest("/api/products", productType));
 
         let products = [];
         for (let product in productsList) {
-            products.push(this.generateProduct(product, productsList[product]));
+            products.push(<Product product={product} productData={productsList[product]} />)
         }
 
         this.setState({ products });
