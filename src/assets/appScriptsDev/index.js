@@ -1,3 +1,9 @@
+const Category = (props) => {
+    return (
+        <p><a href={"products?variant=" + props.variant}>{props.displayName}</a></p>
+    );
+};
+
 class Content extends React.Component {
     constructor(props) {
         super(props);
@@ -11,18 +17,12 @@ class Content extends React.Component {
         this.loadCategories();
     }
 
-    generateCategory(product, productData) {
-        return (
-            <p key={product}><a href={"products?variant=" + product}>{productData}</a></p>
-        )
-    }
-
     loadCategories() {
-        const productTypes = JSON.parse(getRequest("/api/productTypes"));
+        const productCategories = JSON.parse(getRequest("/api/productTypes"));
 
         let categories = [];
-        for (let type in productTypes) {
-            categories.push(this.generateCategory(type, productTypes[type]));
+        for (let category in productCategories) {
+            categories.push(<Category variant={category} displayName={productCategories[category]} />);
         }
 
         this.setState({ categories });
