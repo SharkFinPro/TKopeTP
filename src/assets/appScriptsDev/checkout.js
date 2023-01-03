@@ -6,6 +6,21 @@ const Header = () => {
     );
 }
 
+class Product extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div className="cartItem">
+                <p className="name">{this.props.productData.displayName} - ${this.props.productData.price}</p>
+                <p className="count">{this.props.productData.count}</p>
+            </div>
+        );
+    }
+}
+
 class Content extends React.Component {
     constructor(props) {
         super(props);
@@ -20,21 +35,12 @@ class Content extends React.Component {
         this.loadProducts();
     }
 
-    generateProduct(product, productData) {
-        return (
-            <div className="cartItem" key={product}>
-                <p className="name">{productData.displayName} - ${productData.price}</p>
-                <p className="count">{productData.count}</p>
-            </div>
-        );
-    }
-
     loadProducts() {
         const productsList = cart.getActual();
 
         let products = [];
         for (let product in productsList) {
-            products.push(this.generateProduct(product, productsList[product]));
+            products.push(<Product product={product} productData={productsList[product]} />)
         }
 
         this.setState({
