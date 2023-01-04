@@ -6,19 +6,13 @@ const Header = () => {
     );
 }
 
-class Product extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <div className="cartItem">
-                <p className="name">{this.props.productData.displayName} - ${this.props.productData.price}</p>
-                <p className="count">{this.props.productData.count}</p>
-            </div>
-        );
-    }
+const Product = (props) => {
+    return (
+        <div className="cartItem">
+            <p className="name">{props.productData.displayName} - ${props.productData.price}</p>
+            <p className="count">{props.productData.count}</p>
+        </div>
+    );
 }
 
 class Content extends React.Component {
