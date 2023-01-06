@@ -1,6 +1,6 @@
 import { writeFile, appendFileSync, readFileSync } from "fs";
 import { join } from "path";
-import xl from "excel4node";
+import * as XLSX from "xlsx";
 const binFolder = "../bin/";
 
 writeFile(join(binFolder, "report.txt"), "", (err) => {
@@ -132,17 +132,12 @@ for (let product in soldTogether) {
 
 write("----------------------------------- Total -----------------------------------");
 
-/* Tally Money Made and log to excel file */
+/* Tally Money Made and log to Excel file */
 let totalMoney = 0;
 let totalItems = 0;
 
-const wb = new xl.Workbook();
-const ws = wb.addWorksheet("Sheet 1");
-ws.cell(1, 1).string("Item");
-ws.cell(1, 2).string("Count");
-ws.cell(1, 3).string("Price");
-ws.cell(1, 4).string("Total $");
-let row = 2;
+const workbook = XLSX.utils.book_new();
+const sheetData = [];
 
 write("Product".padEnd(25, " ") + "Money made".padEnd(15, " ") + "Items Sold");
 for (let product in productsPurchased) {
@@ -153,16 +148,26 @@ for (let product in productsPurchased) {
     // write(`${product} made $${productTotalMoney} with ${productsPurchased[product].count} items sold`);
     write(`${productsPurchased[product].displayName}`.padEnd(25, "_") + `$${productTotalMoney}`.padEnd(15, "_") + `${productsPurchased[product].count}`);
 
-    ws.cell(row, 1).string(productsPurchased[product].displayName);
-    ws.cell(row, 2).number(productsPurchased[product].count);
-    ws.cell(row, 3).number(productsPurchased[product].price).style({ numberFormat: "$#" });
-    ws.cell(row, 4).formula(`B${row} * C${row}`).style({ numberFormat: "$#" });
-    row++;
+    sheetData.push({
+        "Product": productsPurchased[product].displayName,
+        "Count": { v: productsPurchased[product].count, t: "n" },
+        "Price": { v: productsPurchased[product].price, t: "n", z: "$#" },
+        "Total": { f: `=B${sheetData.length + 2}*C${sheetData.length + 2}`, t: "n", z: "$#" }
+    });
 }
-ws.cell(row, 3).string("TOTAL:");
-ws.cell(row, 4).formula(`SUM(D2:D${row - 1})`).style({ numberFormat: "$#" });
-wb.write("../bin/Report.xlsx");
 write("");
+
+sheetData.push({
+    "Product": "Total",
+    "Count": { f: `=SUM(B2:B${sheetData.length + 1})`, t: "n" },
+    "Total": { f: `=SUM(D2:D${sheetData.length + 1})`, t: "n", z: "$#" }
+});
+
+const productsWorksheet = XLSX.utils.json_to_sheet(sheetData);
+productsWorksheet["!cols"] = [{ width: 25 }];
+
+XLSX.utils.book_append_sheet(workbook, productsWorksheet, "Products");
+XLSX.writeFile(workbook, "../bin/report.xlsx", { compression: true });
 
 write("----------------------------------- Recap -----------------------------------");
 
