@@ -5,9 +5,10 @@
   "main": "src/index.mjs",
   "scripts": {
     "start": "node .",
-    "build": "npm run build-app && npm run build-server && npm run build-pkg",
-    "build-noCompression": "npm run build-app && npm run build-server && npm run build-pkg-noCompression",
+    "build": "npm run build-app && npm run build-adminPanel && npm run build-server && npm run build-pkg",
+    "build-noCompression": "npm run build-app && npm run build-adminPanel && npm run build-server && npm run build-pkg-noCompression",
     "build-app": "npx babel src/assets/appScriptsDev --out-dir src/assets/app/scripts --presets react-app/prod",
+    "build-adminPanel": "npx babel src/assets/adminPanelScriptsDev --out-dir src/assets/adminPanel/scripts --presets react-app/prod",
     "build-server": "npx webpack",
     "build-pkg": "npx pkg . -C Brotli --output \"bin/Trading Post\"",
     "build-pkg-noCompression": "npx pkg . --output \"bin/Trading Post\""

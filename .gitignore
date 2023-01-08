@@ -4,3 +4,4 @@ bin/*
 src/bin/*
 tkopetp.exe
 src/assets/app/scripts/*
+src/assets/adminPanel/scripts/*
