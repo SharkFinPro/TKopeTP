@@ -46,9 +46,10 @@ class WebServer {
 
     getRequest(endpoint, callback) {
         this.server.get(endpoint, (req, res) => {
-            callback(req).then((response) => {
-                res.send(response);
-            })
+            // callback(req).then((response) => {
+            //     res.send(response);
+            // })
+            callback(req, res);
         });
     }
 
@@ -56,9 +57,10 @@ class WebServer {
         this.server.post(endpoint, async (req, res) => {
             let body = JSON.parse(Object.keys(req.body)[0]);
 
-            callback(body).then((response) => {
-                res.send(response);
-            });
+            // callback(body).then((response) => {
+            //     res.send(response);
+            // });
+            callback(body, res);
         });
     }
 }
