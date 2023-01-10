@@ -30,7 +30,7 @@ webServer.postRequest("/api/products", (body, res) => {
     });
 });
 
-webServer.getRequest("/api/productTypes", (body, res) => {
+webServer.getRequest("/api/productCategories", (body, res) => {
     productManager.getProductTypes(body).then((types) => {
         res.send(types);
     });

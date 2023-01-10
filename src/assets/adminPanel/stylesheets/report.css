@@ -1,18 +1,26 @@
 .content-toolbar {
     display: flex;
     flex-wrap: wrap;
-    align-content: flex-start;
-    justify-content: center;
 
     width: 250px;
     height: 100%;
+
+    color: #E6E7E8;
+    background: #36454F;
+}
+
+.content-toolbar-options {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
 
     gap: 15px;
     padding-top: 15px;
     box-sizing: border-box;
 
-    color: #E6E7E8;
-    background: #36454F;
+    width: 100%;
+    height: calc(100% - 150px);
 }
 
 .content-toolbar-option {
@@ -52,6 +60,52 @@
 .content-toolbar-download:hover {
     background: #650812;
     transition: .3s;
+}
+
+.content-toolbar-tools {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 150px;
+}
+
+.content-toolbar-tools-swap {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+
+    gap: 2%;
+    width: 100%;
+    height: 70px;
+}
+
+.tools-swap-option {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+
+    width: 47%;
+    height: 50px;
+
+    border: 5px solid black;
+    box-sizing: border-box;
+
+    background: #030006;
+    transition: .3s;
+}
+
+.tools-swap-option:hover {
+    background: #E31837;
+    transition: .3s;
+}
+
+.tools-swap-option-selected {
+    background: #E31837;
 }
 
 .content-display {

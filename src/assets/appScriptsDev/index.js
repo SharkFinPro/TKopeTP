@@ -18,7 +18,7 @@ class Content extends React.Component {
     }
 
     loadCategories() {
-        const productCategories = JSON.parse(getRequest("/api/productTypes"));
+        const productCategories = JSON.parse(getRequest("/api/productCategories"));
 
         let categories = [];
         for (let category in productCategories) {

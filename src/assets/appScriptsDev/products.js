@@ -1,13 +1,13 @@
 /* Product Data */
-const acceptableProductTypes = JSON.parse(getRequest("/api/productTypes"));
-let productType = new URLSearchParams(window.location.search).get("variant");
+const acceptableProductCategories = JSON.parse(getRequest("/api/productCategories"));
+let productCategory = new URLSearchParams(window.location.search).get("variant");
 
-if (!Object.keys(acceptableProductTypes).includes(productType)) {
+if (!Object.keys(acceptableProductCategories).includes(productCategory)) {
     window.location.replace("/");
 }
 
-productType = productType.toLowerCase();
-document.title = `${acceptableProductTypes[productType]} | T'Kope TP`;
+productCategory = productCategory.toLowerCase();
+document.title = `${acceptableProductTypes[productCategory]} | T'Kope TP`;
 
 class Product extends React.Component {
     constructor(props) {
@@ -77,7 +77,7 @@ class Content extends React.Component {
     }
 
     loadProducts() {
-        let productsList = JSON.parse(postRequest("/api/products", productType));
+        let productsList = JSON.parse(postRequest("/api/products", productCategory));
 
         let products = [];
         for (let product in productsList) {
