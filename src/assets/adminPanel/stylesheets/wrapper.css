@@ -39,7 +39,6 @@ html, body, #root, .entry {
     height: 70px;
 
     color: #E6E7E8;
-
     background: #005596;
 }
 
@@ -80,14 +79,12 @@ html, body, #root, .entry {
 
     text-decoration: none;
     color: inherit;
-
     transition: .3s;
 }
 
 .nav-option:hover {
     background: #E6E7E8;
     color: #005596;
-
     transition: .3s;
 }
 

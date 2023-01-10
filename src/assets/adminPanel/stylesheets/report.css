@@ -4,14 +4,14 @@
     align-content: flex-start;
     justify-content: center;
 
-    gap: 15px;
-    padding-top: 15px;
-
     width: 250px;
     height: 100%;
 
-    color: #E6E7E8;
+    gap: 15px;
+    padding-top: 15px;
+    box-sizing: border-box;
 
+    color: #E6E7E8;
     background: #36454F;
 }
 
@@ -28,35 +28,27 @@
     box-sizing: border-box;
 
     background: #030006;
-
     transition: .3s;
-
     font-size: 17.5px;
     font-family: MuseoSans, serif;
 }
 
 .content-toolbar-option:hover {
     background: #E31837;
-
     color: #FFFFFF;
-
     transition: .3s;
 }
 
 .content-toolbar-download {
     background: #E6E7E8;
-
     color: #030006;
-
     transition: .3s;
 }
 
 .content-toolbar-download:hover {
     background: #650812;
-
     transition: .3s;
 }
-
 
 .content-display {
     display: flex;
@@ -68,6 +60,5 @@
     height: 100%;
 
     color: #E6E7E8;
-
     background: #E6E7E8;
 }
