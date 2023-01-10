@@ -39,6 +39,10 @@
     transition: .3s;
 }
 
+.content-toolbar-selected {
+    background: #E31837;
+}
+
 .content-toolbar-download {
     background: #E6E7E8;
     color: #030006;
