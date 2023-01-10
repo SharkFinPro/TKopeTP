@@ -1,5 +1,3 @@
-Chart.defaults.color = "#36454F";
-
 class Toolbar extends React.Component {
     constructor(props) {
         super(props);
@@ -28,6 +26,8 @@ class Toolbar extends React.Component {
         if (this.chart) {
             this.chart.destroy();
         }
+
+        Chart.defaults.color = "#36454F";
 
         this.chart = new Chart("myChart", {
             type: "bar",
@@ -82,6 +82,7 @@ class Toolbar extends React.Component {
                 },
             }
         });
+
     }
 
     downloadExcel() {
@@ -197,9 +198,6 @@ class Toolbar extends React.Component {
                        onClick={this.loadOverview}>Overview</a>
                     <a className={`content-toolbar-option ${this.state.selectedOption === "overviewCategory" ? "content-toolbar-selected" : ""}`}
                        onClick={this.loadOverviewCategory}>Overview (Category)</a>
-                    <a className={`content-toolbar-option`}>Graph 3</a>
-                    <a className={`content-toolbar-option`}>Graph 4</a>
-                    <a className={`content-toolbar-option`}>Graph 5</a>
                 </div>
                 <div class="content-toolbar-tools">
                     <div class="content-toolbar-tools-swap">
@@ -219,7 +217,7 @@ class Display extends React.Component {
     render() {
         return (
             <div class="content-display">
-                <canvas id={"myChart"} style={{maxWidth: "50%", maxHeight: "75%"}}></canvas>
+                <canvas id={"myChart"} style={{maxWidth: "75%", maxHeight: "80%"}}></canvas>
             </div>
         );
     }

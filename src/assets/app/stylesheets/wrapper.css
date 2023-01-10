@@ -53,10 +53,10 @@ html, body, #root, .entry {
     border-color: #36454F;
 
     /* General Styling */
-    background-color: #e41836;
+    background-color: #E31837;
 
     /* Text Styling */
-    color: #e5e6e8;
+    color: #E6E7E8;
     text-align: center;
     font-size: 5vw;
     font-family: MuseoSlab, MuseoSans, serif;
@@ -78,7 +78,7 @@ html, body, #root, .entry {
     border-top: 5px solid #030006;
 
     /* Text Styling */
-    color: #e5e6e8;
+    color: #E6E7E8;
     text-align: center;
     font-size: 5vw;
     font-family: MuseoSans, serif;

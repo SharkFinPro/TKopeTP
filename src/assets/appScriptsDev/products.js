@@ -7,7 +7,7 @@ if (!Object.keys(acceptableProductCategories).includes(productCategory)) {
 }
 
 productCategory = productCategory.toLowerCase();
-document.title = `${acceptableProductTypes[productCategory]} | T'Kope TP`;
+document.title = `${acceptableProductCategories[productCategory]} | T'Kope TP`;
 
 class Product extends React.Component {
     constructor(props) {
