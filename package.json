@@ -31,7 +31,9 @@
       "node_modules/express/**/*",
       "node_modules/sqlite3/**/*",
       "src/assets/app/**/*",
-      "src/assets/adminPanel/**/*"
+      "src/assets/adminPanel/**/*",
+      "src/assets/external/**/*",
+      "src/assets/fonts/**/*"
     ],
     "targets": [
       "node18-win-x64"

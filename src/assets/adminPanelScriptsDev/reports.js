@@ -17,7 +17,11 @@ class Toolbar extends React.Component {
     }
 
     createBarChart(title, labels, content, yLabel) {
-        Chart.defaults.color = '#36454F';
+        if (this.chart) {
+            this.chart.destroy();
+        }
+
+        Chart.defaults.color = "#36454F";
 
         this.chart = new Chart("myChart", {
             type: "bar",
@@ -80,10 +84,6 @@ class Toolbar extends React.Component {
     }
 
     loadOverview() {
-        if (this.chart) {
-            this.chart.destroy();
-        }
-
         const rawOverview = JSON.parse(getRequest("/api/admin/reporting/overview"));
 
         let labels = [];
@@ -102,10 +102,6 @@ class Toolbar extends React.Component {
     }
 
     loadOverviewPrice() {
-        if (this.chart) {
-            this.chart.destroy();
-        }
-
         const rawOverview = JSON.parse(getRequest("/api/admin/reporting/overview"));
 
         let labels = [];
@@ -142,72 +138,7 @@ class Toolbar extends React.Component {
 class Display extends React.Component {
     constructor(props) {
         super(props);
-
-        // this.state = {
-        //     barColors: [
-        //         "#650812",
-        //         "#3f5e9a",
-        //         "#ef1b23",
-        //         "#7d8546",
-        //         "#0d91cd"
-        //     ],
-        //     xValues: ["T'Kope Kwiskwis", "Nanuk", "Sikhs Mox Lamonti", "Toontuk", "Nisqually"],
-        //     yValues: [406, 143, 249, 16, 356]
-        // }
     }
-
-    // componentDidMount() {
-        // this.generateChart();
-        // console.log("Mounted!")
-    // }
-    //
-    // generateChart() {
-    //     Chart.defaults.color = '#36454F';
-    //
-    //     this.chart = new Chart("myChart", {
-    //         type: "bar",
-    //         data: {
-    //             labels: this.state.xValues,
-    //             datasets: [{
-    //                 backgroundColor: this.state.barColors,
-    //                 data: this.state.yValues
-    //             }],
-    //             yAxisID: "y-axis-gravity"
-    //         },
-    //         options: {
-    //             scales: {
-    //                 x: {
-    //                     ticks: {
-    //                         font: {
-    //                             family: "'MuseoSans', 'serif'"
-    //                         },
-    //                     }
-    //                 },
-    //                 y: {
-    //                     beginAtZero: true,
-    //                     ticks: {
-    //                         font: {
-    //                             family: "'MuseoSans', 'serif'"
-    //                         },
-    //                     }
-    //                 }
-    //             },
-    //             plugins: {
-    //                 title: {
-    //                     display: true,
-    //                     text: "Section G15 Membership",
-    //                     font: {
-    //                         size: 30,
-    //                         family: "'MuseoSlab', 'MuseoSans', 'serif'"
-    //                     }
-    //                 },
-    //                 legend: {
-    //                     display: false
-    //                 }
-    //             },
-    //         }
-    //     });
-    // }
 
     render() {
         return (
