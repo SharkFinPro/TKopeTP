@@ -1,3 +1,5 @@
+Chart.defaults.color = "#36454F";
+
 class Toolbar extends React.Component {
     constructor(props) {
         super(props);
@@ -27,8 +29,6 @@ class Toolbar extends React.Component {
             this.chart.destroy();
         }
 
-        Chart.defaults.color = "#36454F";
-
         this.chart = new Chart("myChart", {
             type: "bar",
             data: {
@@ -39,8 +39,7 @@ class Toolbar extends React.Component {
                     borderWidth: 3,
                     borderRadius: 10,
                     data: content
-                }],
-                yAxisID: "y-axis-gravity"
+                }]
             },
             options: {
                 scales: {
@@ -108,7 +107,7 @@ class Toolbar extends React.Component {
                 content.push(rawOverview[product].count * rawOverview[product].price);
             }
 
-            this.createBarChart("Products Overview by $", labels, content, "Total $")
+            this.createBarChart("Products Overview", labels, content, "Total $")
         }
 
 
@@ -154,7 +153,7 @@ class Toolbar extends React.Component {
                 content[category.id - 1] += rawOverview[product].count * rawOverview[product].price;
             }
 
-            this.createBarChart("Products Overview by $", labels, content, "Total $");
+            this.createBarChart("Products Overview by Category", labels, content, "Total $");
         }
 
         this.setState({
@@ -198,6 +197,9 @@ class Toolbar extends React.Component {
                        onClick={this.loadOverview}>Overview</a>
                     <a className={`content-toolbar-option ${this.state.selectedOption === "overviewCategory" ? "content-toolbar-selected" : ""}`}
                        onClick={this.loadOverviewCategory}>Overview (Category)</a>
+                    <a className={`content-toolbar-option`}>Graph 3</a>
+                    <a className={`content-toolbar-option`}>Graph 4</a>
+                    <a className={`content-toolbar-option`}>Graph 5</a>
                 </div>
                 <div class="content-toolbar-tools">
                     <div class="content-toolbar-tools-swap">
