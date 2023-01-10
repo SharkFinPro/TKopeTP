@@ -1,4 +1,14 @@
-class Content extends React.Component {
+class Toolbar extends React.Component {
+    render() {
+        return (
+            <div class="content-toolbar">
+
+            </div>
+        );
+    }
+}
+
+class Display extends React.Component {
     constructor(props) {
         super(props);
 
@@ -20,7 +30,7 @@ class Content extends React.Component {
     }
 
     generateChart() {
-        Chart.defaults.color = '#E6E7E8';
+        Chart.defaults.color = '#36454F';
 
         this.chart = new Chart("myChart", {
             type: "bar",
@@ -61,10 +71,7 @@ class Content extends React.Component {
                     },
                     legend: {
                         display: false
-                    },
-                    // labels: {
-                    //     fontFamily: "'MuseoSlab', 'MuseoSans', 'serif'"
-                    // }
+                    }
                 },
             }
         });
@@ -72,9 +79,19 @@ class Content extends React.Component {
 
     render() {
         return (
-            <div class="content">
+            <div class="content-display">
                 <canvas id={"myChart"} style={{maxWidth: "50%", maxHeight: "75%"}}></canvas>
             </div>
         );
     }
 }
+
+
+const Content = () => {
+    return (
+        <div class="content">
+            <Toolbar />
+            <Display />
+        </div>
+    );
+};
