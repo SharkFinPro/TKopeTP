@@ -73,3 +73,9 @@ webServer.getRequest("/api/admin/reporting/report.xlsx", (body, res) => {
 
     res.send(report.getExcel());
 });
+
+webServer.getRequest("/api/admin/reporting/overview", (body, res) => {
+    const report = new Report("./bin/dump.txt");
+
+    res.send(report.getOverview());
+});

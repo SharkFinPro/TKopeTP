@@ -1,12 +1,11 @@
-.content {
-    font-family: MuseoSlab, MuseoSans, serif;
-}
-
 .content-toolbar {
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
     justify-content: center;
+
+    gap: 15px;
+    padding-top: 15px;
 
     width: 250px;
     height: 100%;
@@ -15,6 +14,49 @@
 
     background: #36454F;
 }
+
+.content-toolbar-option {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+
+    width: calc(100% - 30px);
+    height: 60px;
+
+    border: 5px solid black;
+    box-sizing: border-box;
+
+    background: #030006;
+
+    transition: .3s;
+
+    font-size: 17.5px;
+    font-family: MuseoSans, serif;
+}
+
+.content-toolbar-option:hover {
+    background: #E31837;
+
+    color: #FFFFFF;
+
+    transition: .3s;
+}
+
+.content-toolbar-download {
+    background: #E6E7E8;
+
+    color: #030006;
+
+    transition: .3s;
+}
+
+.content-toolbar-download:hover {
+    background: #650812;
+
+    transition: .3s;
+}
+
 
 .content-display {
     display: flex;

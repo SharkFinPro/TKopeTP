@@ -64,8 +64,6 @@ export default class Report {
         const productsWorksheet = XLSX.utils.json_to_sheet(sheetData);
         productsWorksheet["!cols"] = [{ width: 25 }];
 
-        console.log("Generated Sheet!");
-
         this.productsWorksheet = productsWorksheet;
     }
 
@@ -78,5 +76,9 @@ export default class Report {
         XLSX.utils.book_append_sheet(workbook, this.productsWorksheet, "Products");
 
         return XLSX.write(workbook, { type:"buffer", bookType:"xlsx" });
+    }
+
+    getOverview() {
+        return JSON.stringify(this.products);
     }
 }
