@@ -15,19 +15,12 @@ class WebServer {
         }
         sourceDir = join(process.argv[1], sourceDir);
         this.server.use(express.static(join(sourceDir, "app"), {extensions: ['html']}));
-        this.server.use("/admin", express.static(join(sourceDir, "adminPanel"), {extensions: ['html']}));
         this.server.use("/images", express.static(join(process.cwd(), "images"), {extensions: ['html']}));
-
         this.server.use("/external", express.static(join(sourceDir, "external"), {extensions: ['html']}));
-        this.server.use("/admin/external", express.static(join(sourceDir, "external"), {extensions: ['html']}));
-        this.server.use("/fonts", express.static(join(sourceDir, "fonts"), {extensions: ['html']}));
-        this.server.use("/admin/fonts", express.static(join(sourceDir, "fonts"), {extensions: ['html']}));
 
         this.server.use(express.json());
         this.server.use(express.urlencoded({ extended: true }));
         this.server.use(compression());
-
-        this.init();
     }
 
     init() {

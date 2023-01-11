@@ -4,6 +4,8 @@ import productManager from "./productManager.mjs";
 import webServer from "./webServer.mjs";
 import Report from "./reporting/report.mjs";
 
+
+
 webServer.getRequest("/api/sessionID", (req, res) => {
     res.send(sessionManager.getGlobalID().toString());
 });
@@ -30,8 +32,8 @@ webServer.postRequest("/api/products", (body, res) => {
     });
 });
 
-webServer.getRequest("/api/productCategories", (body, res) => {
-    productManager.getProductTypes(body).then((types) => {
+webServer.getRequest("/api/productCategories", (req, res) => {
+    productManager.getProductTypes(req).then((types) => {
         res.send(types);
     });
 });
@@ -68,14 +70,33 @@ webServer.postRequest("/api/purchase", async (body, res) => {
     res.send();
 });
 
-webServer.getRequest("/api/admin/reporting/report.xlsx", (body, res) => {
+webServer.getRequest("/api/admin/reporting/report.xlsx", (req, res) => {
     const report = new Report("./bin/dump.txt");
 
     res.send(report.getExcel());
 });
 
-webServer.getRequest("/api/admin/reporting/overview", (body, res) => {
+webServer.getRequest("/api/admin/reporting/overview", (req, res) => {
     const report = new Report("./bin/dump.txt");
 
     res.send(report.getOverview());
 });
+
+import next from "next";
+const dev = process.env.NODE_ENV !== 'production';
+
+const app = next({ dev });
+const appHandle = app.getRequestHandler();
+
+app.prepare()
+    .then(() => {
+        webServer.getRequest('*', (req, res) => {
+            return appHandle(req, res)
+        });
+
+        webServer.init();
+    })
+    .catch((ex) => {
+        console.error(ex.stack)
+        process.exit(1)
+    })

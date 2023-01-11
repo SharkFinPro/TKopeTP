@@ -123,3 +123,8 @@
     color: #030006;
     background: #E6E7E8;
 }
+
+canvas {
+    max-width: 75%;
+    max-height: 80%;
+}

@@ -1,4 +1,10 @@
-class Toolbar extends React.Component {
+"use client";
+import { Component } from "react";
+import { Chart } from "chart.js/auto";
+
+import "../stylesheets/report.css";
+
+class Toolbar extends Component {
     constructor(props) {
         super(props);
 
@@ -89,8 +95,15 @@ class Toolbar extends React.Component {
         window.open("/api/admin/reporting/report.xlsx", "_blank")
     }
 
-    loadOverview() {
-        const rawOverview = JSON.parse(getRequest("/api/admin/reporting/overview"));
+    async loadOverview() {
+        await fetch("/api/admin/reporting/overview").then((rawOverview) => {
+            console.log(rawOverview.json());
+        }).catch((err) => {
+            console.log(err);
+        })
+
+        // rawOverview = JSON.parse(rawOverview);
+        let rawOverview = {};
 
         let labels = [];
         let content = [];
@@ -111,16 +124,21 @@ class Toolbar extends React.Component {
             this.createBarChart("Products Overview", labels, content, "Total $")
         }
 
-
-
         this.setState({
             selectedOption: "overview"
         });
     }
 
-    loadOverviewCategory() {
-        const rawOverview = JSON.parse(getRequest("/api/admin/reporting/overview"));
-        const categories = JSON.parse(getRequest("/api/productCategories"));
+    async loadOverviewCategory() {
+        // const rawOverview = JSON.parse(getRequest("/api/admin/reporting/overview"));
+        let rawOverview = await fetch("/api/admin/reporting/overview");
+        rawOverview = JSON.parse(rawOverview);
+
+        // const categories = JSON.parse(getRequest("/api/productCategories"));
+        let categories = await fetch("/api/productCategories");
+        categories = JSON.parse(categories);
+
+        // const categories = {1:"Drinks & Snacks",2:"Patches",3:"Lodge",4:"National"};
 
         let labels = [];
         let content = [];
@@ -192,45 +210,35 @@ class Toolbar extends React.Component {
 
     render() {
         return (
-            <div class="content-toolbar">
-                <div class="content-toolbar-options">
+            <div className="content-toolbar">
+                <div className="content-toolbar-options">
                     <a className={`content-toolbar-option ${this.state.selectedOption === "overview" ? "content-toolbar-selected" : ""}`}
                        onClick={this.loadOverview}>Overview</a>
                     <a className={`content-toolbar-option ${this.state.selectedOption === "overviewCategory" ? "content-toolbar-selected" : ""}`}
                        onClick={this.loadOverviewCategory}>Overview (Category)</a>
                 </div>
-                <div class="content-toolbar-tools">
-                    <div class="content-toolbar-tools-swap">
-                        <a class={`tools-swap-option ${this.state.graphType === "units" ? "tools-swap-option-selected" : ""}`}
+                <div className="content-toolbar-tools">
+                    <div className="content-toolbar-tools-swap">
+                        <a className={`tools-swap-option ${this.state.graphType === "units" ? "tools-swap-option-selected" : ""}`}
                            onClick={this.selectUnits}>Units</a>
-                        <a class={`tools-swap-option ${this.state.graphType === "money" ? "tools-swap-option-selected" : ""}`}
+                        <a className={`tools-swap-option ${this.state.graphType === "money" ? "tools-swap-option-selected" : ""}`}
                            onClick={this.selectMoney}>Money</a>
                     </div>
-                    <a className="content-toolbar-option content-toolbar-download" onClick={this.downloadExcel}>Download Report</a>
+                    <a className="content-toolbar-option content-toolbar-download" onClick={this.downloadExcel}>Download
+                        Report</a>
                 </div>
             </div>
         );
     }
 }
 
-class Display extends React.Component {
-    render() {
-        return (
-            <div class="content-display">
-                <canvas id={"myChart"} style={{maxWidth: "75%", maxHeight: "80%"}}></canvas>
+export default () => {
+    return <>
+        <div className="content">
+            <Toolbar />
+            <div className="content-display">
+                <canvas id="myChart"></canvas>
             </div>
-        );
-    }
-}
-
-
-class Content extends React.Component {
-    render() {
-        return (
-            <div class="content">
-                <Toolbar />
-                <Display />
-            </div>
-        );
-    }
-}
+        </div>
+    </>
+};

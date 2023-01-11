@@ -5,10 +5,9 @@
   "main": "src/index.mjs",
   "scripts": {
     "start": "node .",
-    "build": "npm run build-app && npm run build-adminPanel && npm run build-server && npm run build-pkg",
-    "build-noCompression": "npm run build-app && npm run build-adminPanel && npm run build-server && npm run build-pkg-noCompression",
+    "build": "npm run build-app && npm run build-server && npm run build-pkg",
+    "build-noCompression": "npm run build-app && npm run build-server && npm run build-pkg-noCompression",
     "build-app": "npx babel src/assets/appScriptsDev --out-dir src/assets/app/scripts --presets react-app/prod",
-    "build-adminPanel": "npx babel src/assets/adminPanelScriptsDev --out-dir src/assets/adminPanel/scripts --presets react-app/prod",
     "build-server": "npx webpack",
     "build-pkg": "npx pkg . -C Brotli --output \"bin/Trading Post\"",
     "build-pkg-noCompression": "npx pkg . --output \"bin/Trading Post\""
@@ -20,8 +19,11 @@
     "node": ">=8.0.0"
   },
   "dependencies": {
+    "chart.js": "^4.1.2",
     "compression": "^1.7.4",
     "express": "^4.18.1",
+    "next": "^13.1.1",
+    "react": "^18.2.0",
     "sqlite3": "^5.1.2",
     "xlsx": "^0.18.5"
   },
@@ -44,6 +46,7 @@
     "babel-cli": "^6.26.0",
     "babel-preset-react-app": "^3.1.2",
     "pkg": "^5.8.0",
+    "react-dom": "^18.2.0",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
     "webpack-node-externals": "^3.0.0"
