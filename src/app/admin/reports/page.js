@@ -4,6 +4,13 @@ import { Chart } from "chart.js/auto";
 
 import "../stylesheets/report.css";
 
+const getRequest = (url) => {
+    let req = new XMLHttpRequest();
+    req.open("GET", url, false);
+    req.send(null);
+    return req.responseText;
+};
+
 class Toolbar extends Component {
     constructor(props) {
         super(props);
@@ -96,14 +103,9 @@ class Toolbar extends Component {
     }
 
     async loadOverview() {
-        await fetch("/api/admin/reporting/overview").then((rawOverview) => {
-            console.log(rawOverview.json());
-        }).catch((err) => {
-            console.log(err);
-        })
+        const rawOverview = JSON.parse(getRequest("/api/admin/reporting/overview"));
 
-        // rawOverview = JSON.parse(rawOverview);
-        let rawOverview = {};
+        console.log(rawOverview);
 
         let labels = [];
         let content = [];
