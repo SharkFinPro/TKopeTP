@@ -6,10 +6,21 @@
     align-content: center;
     justify-content: center;
 
-    row-gap: 0.5vw;
+    gap: 2vh;
 }
 
-.categories p {
+.categories a {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+
+    height: 10vh;
+
+    /* Text Styling */
+    text-decoration: none;
+    font-size: 8vw;
+
     width: 80%;
 
     /* General Styling */
@@ -21,17 +32,6 @@
     font-family: MuseoSlab, MuseoSans, serif;
 }
 
-.categories p:hover {
+.categories a:hover {
     color: #FFFFFF;
-}
-
-.categories p a {
-    padding: 5vw;
-
-    display: block;
-
-    /* Text Styling */
-    text-decoration: none;
-    font-size: 8vw;
-    color: inherit;
 }

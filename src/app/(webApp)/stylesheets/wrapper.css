@@ -98,20 +98,7 @@ html, body, #root, .entry {
     background-color: #36454F;
 }
 
-.footer p {
-    width: 40%;
-
-    background-color: #E6E7E8;
-
-    border-radius: 5px;
-    border: 5px solid #030006;
-}
-
-.footer p:hover {
-    background-color: #FFFFFF;
-}
-
-.footer p a {
+.footer a {
     padding: 3.5vw;
 
     display: block;
@@ -122,6 +109,17 @@ html, body, #root, .entry {
     font-family: MuseoSans, serif;
     font-size: 5vw;
     color: #030006;
+
+    width: 40%;
+
+    background-color: #E6E7E8;
+
+    border-radius: 5px;
+    border: 5px solid #030006;
+}
+
+.footer a:hover {
+    background-color: #FFFFFF;
 }
 
 @media screen and (orientation: landscape) {

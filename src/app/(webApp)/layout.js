@@ -11,7 +11,7 @@ export default ({ children }) => {
                 </div>
                 {children}
                 <div className="footer">
-                    <Link href="/checkout">Checkout</Link>
+                    <Link href="./checkout">Checkout</Link>
                 </div>
             </body>
         </html>
