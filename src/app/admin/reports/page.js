@@ -105,8 +105,6 @@ class Toolbar extends Component {
     async loadOverview() {
         const rawOverview = JSON.parse(getRequest("/api/admin/reporting/overview"));
 
-        console.log(rawOverview);
-
         let labels = [];
         let content = [];
 
@@ -132,19 +130,12 @@ class Toolbar extends Component {
     }
 
     async loadOverviewCategory() {
-        // const rawOverview = JSON.parse(getRequest("/api/admin/reporting/overview"));
-        let rawOverview = await fetch("/api/admin/reporting/overview");
-        rawOverview = JSON.parse(rawOverview);
-
-        // const categories = JSON.parse(getRequest("/api/productCategories"));
-        let categories = await fetch("/api/productCategories");
-        categories = JSON.parse(categories);
-
-        // const categories = {1:"Drinks & Snacks",2:"Patches",3:"Lodge",4:"National"};
+        const rawOverview = JSON.parse(getRequest("/api/admin/reporting/overview"));
+        const categories = JSON.parse(getRequest("/api/productCategories"));
 
         let labels = [];
         let content = [];
-        console.log(this.state.graphType)
+
         if (this.state.graphType === "units") {
             for (let product in rawOverview) {
                 let category = {
