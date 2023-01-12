@@ -9,13 +9,13 @@ class WebServer {
 
         this.server = express();
 
-        let sourceDir = "../../../TKopeTP/src/assets";
-        if (process.env.NODE_ENV === "production") {
-            sourceDir = "../" + sourceDir;
-        }
-        sourceDir = join(process.argv[1], sourceDir);
+        // let sourceDir = "../../../TKopeTP/src/assets";
+        // if (process.env.NODE_ENV === "production") {
+        //     sourceDir = "../" + sourceDir;
+        // }
+        // sourceDir = join(process.argv[1], sourceDir);
         // this.server.use(express.static(join(sourceDir, "app"), {extensions: ['html']}));
-        this.server.use("/images", express.static(join(process.cwd(), "images"), {extensions: ['html']}));
+        // this.server.use("/images", express.static(join(process.cwd(), "images"), {extensions: ['html']}));
         // this.server.use("/external", express.static(join(sourceDir, "external"), {extensions: ['html']}));
 
         this.server.use(express.json());

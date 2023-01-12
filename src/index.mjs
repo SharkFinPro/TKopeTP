@@ -4,8 +4,6 @@ import productManager from "./productManager.mjs";
 import webServer from "./webServer.mjs";
 import Report from "./reporting/report.mjs";
 
-
-
 webServer.getRequest("/api/sessionID", (req, res) => {
     res.send(sessionManager.getGlobalID().toString());
 });
@@ -36,7 +34,7 @@ webServer.getRequest("/api/products/*", (req, res) => {
 });
 
 webServer.getRequest("/api/productCategories", (req, res) => {
-    productManager.getProductTypes(req).then((types) => {
+    productManager.getProductTypes().then((types) => {
         res.send(types);
     });
 });
