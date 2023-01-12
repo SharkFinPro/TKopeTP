@@ -26,8 +26,11 @@ webServer.postRequest("/api/setName", (body, res) => {
     res.send();
 });
 
-webServer.postRequest("/api/products", (body, res) => {
-    productManager.getProductsByType(body).then((products) => {
+webServer.getRequest("/api/products/*", (req, res) => {
+    const splitURL = req.url.split("/");
+    const category = splitURL[splitURL.length - 1];
+
+    productManager.getProductsByType(category).then((products) => {
         res.send(products);
     });
 });

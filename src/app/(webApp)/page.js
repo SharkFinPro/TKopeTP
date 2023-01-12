@@ -1,4 +1,5 @@
 import "./stylesheets/index.css";
+import Link from "next/link";
 
 const getCategories = async () => {
     let categories = await fetch("http://localhost/api/productCategories");
@@ -14,7 +15,7 @@ export default async () => {
             <div className="categories">
                 {
                     Object.keys(categories).map((category) => (
-                        <a href={`products?variant=${category}`}>{categories[category]}</a>
+                        <Link href={`products/${category}`}>{categories[category]}</Link>
                     ))
                 }
             </div>
