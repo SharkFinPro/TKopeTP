@@ -1,8 +1,9 @@
 import Link from "next/link";
 import productManager from "../../productManager.mjs";
+import Footer from "./footer";
+
 import "./stylesheets/wrapper.css";
 import "./stylesheets/index.css";
-import Footer from "./footer";
 
 export default async () => {
     let categories = await productManager.getProductTypes();

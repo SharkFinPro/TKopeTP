@@ -1,6 +1,5 @@
 import { Component } from "react";
 import Image from "next/image";
-
 import cart from "../../tools/cart.js";
 
 export default class Product extends Component {

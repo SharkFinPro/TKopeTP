@@ -1,16 +1,11 @@
 "use client";
 import { Component } from "react";
-import Product from "./product";
-import Footer from "../../footer";
+import Product from "./product.js";
+import Footer from "../../footer.js";
+import getData from "../../tools/getData.js";
 
 import "../../stylesheets/wrapper.css";
 import "../../stylesheets/products.css";
-
-const getProducts = async (type) => {
-    let products = await fetch(`/api/products/${type}`);
-
-    return products.json();
-};
 
 export default class extends Component {
     constructor(props) {
@@ -22,7 +17,7 @@ export default class extends Component {
     }
 
     componentDidMount() {
-        getProducts(this.props.params.products).then((products) => {
+        getData("/api/products/" + this.props.params.products).then((products) => {
             this.setState({
                 products: products
             })

@@ -38,7 +38,6 @@ class Cart {
 
     createListing(productData) {
         if (!Object.keys(this.cart).includes(productData.id.toString())) {
-            console.log("update")
             this.cart[productData.id] = productData;
             this.cart[productData.id].count = 0;
         }

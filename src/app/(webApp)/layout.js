@@ -1,12 +1,7 @@
 "use client";
 import { Component } from "react";
 import cart from "./tools/cart.js";
-
-const getData = async (path) => {
-    let products = await fetch(path);
-
-    return products.json();
-};
+import getData from "./tools/getData.js";
 
 export default class extends Component {
     async componentDidMount() {

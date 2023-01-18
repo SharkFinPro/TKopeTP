@@ -1,9 +1,8 @@
 "use client";
 import { Component } from 'react';
 import Footer from "./footer";
-
-import cart from "../tools/cart.js";
 import Product from "./product.js";
+import cart from "../tools/cart.js";
 
 import "../stylesheets/wrapper.css";
 import "../stylesheets/checkout.css";

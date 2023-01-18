@@ -84,14 +84,14 @@ webServer.getRequest("/api/admin/reporting/overview", (req, res) => {
 });
 
 import next from "next";
-const dev = process.env.NODE_ENV !== 'production';
+const dev = process.env.NODE_ENV !== "production";
 
 const app = next({ dev });
 const appHandle = app.getRequestHandler();
 
 app.prepare()
     .then(() => {
-        webServer.getRequest('*', (req, res) => {
+        webServer.getRequest("*", (req, res) => {
             return appHandle(req, res)
         });
 
