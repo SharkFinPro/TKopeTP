@@ -9,13 +9,21 @@ export default class Product extends Component {
         super(props);
 
         this.state = {
-            count: 0
+            count: 0,
+            image: ""
         };
     }
 
     componentDidMount() {
         cart.createListing(this.props.productData);
         this.updateCount();
+
+        let image = this.props.productData.image;
+        if (!this.props.productData.image) {
+            image = "NOT_FOUND.png";
+        }
+
+        this.setState({ image });
     }
 
     updateCount() {
@@ -38,13 +46,13 @@ export default class Product extends Component {
         return (
             <div className={productsStyles.product}>
                 <div className={productsStyles.image}>
-                    <img alt="product image" src={"/images/" + this.props.productData.image}></img>
-                    {/*<Image*/}
-                    {/*    src={"/images/" + this.props.productData.image}*/}
-                    {/*    width={500}*/}
-                    {/*    height={288}*/}
-                    {/*    alt="Product Image"*/}
-                    {/*/>*/}
+                    {/*<img alt="product image" src={"/images/" + this.state.image}></img>*/}
+                    <Image
+                        src={"/images/" + this.state.image}
+                        width={500}
+                        height={288}
+                        alt="Product Image"
+                    />
                 </div>
                 <div className={productsStyles.name}>
                     <p>{this.props.productData.displayName} - ${this.props.productData.price}</p>
