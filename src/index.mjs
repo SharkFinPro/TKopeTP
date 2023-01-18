@@ -8,7 +8,7 @@ webServer.getRequest("/api/sessionID", (req, res) => {
     res.send(sessionManager.getGlobalID().toString());
 });
 
-webServer.postRequest("/api/createSession", (body, res) => {
+webServer.getRequest("/api/createSession", (req, res) => {
     sessionManager.createSession({ name: "" }).then((id) => {
         res.send(id.toString());
     });

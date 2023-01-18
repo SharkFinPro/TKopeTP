@@ -89,9 +89,7 @@ html, body, #root, .entry {
     height: 70%;
 
     display: flex;
-
     position: relative;
-
     overflow-y: auto;
 
     /* General Styling */

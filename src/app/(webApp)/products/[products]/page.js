@@ -1,6 +1,9 @@
 "use client";
-import { useState } from "react";
+import { Component } from "react";
 import Product from "./product";
+import Footer from "../../footer";
+
+import "../../stylesheets/wrapper.css";
 import "../../stylesheets/products.css";
 
 const getProducts = async (type) => {
@@ -9,20 +12,33 @@ const getProducts = async (type) => {
     return products.json();
 };
 
-export default ({ params, searchParams }) => {
-    const [products, setProducts] = useState({});
+export default class extends Component {
+    constructor(props) {
+        super(props);
 
-    getProducts(params.products).then((products) => {
-        setProducts(products);
-    });
+        this.state = {
+            products: {}
+        }
+    }
 
-    return (
-        <div className="content">
-            <div className="products">
-                {Object.keys(products).map((product) => (
-                    <Product productData={products[product]} />
-                ))}
+    componentDidMount() {
+        getProducts(this.props.params.products).then((products) => {
+            this.setState({
+                products: products
+            })
+        });
+    }
+
+    render() {
+        return <>
+            <div className="content">
+                <div className="products">
+                    {Object.keys(this.state.products).map((product) => (
+                        <Product key={product} productData={this.state.products[product]} />
+                    ))}
+                </div>
             </div>
-        </div>
-    );
-};
+            <Footer />
+        </>;
+    }
+}

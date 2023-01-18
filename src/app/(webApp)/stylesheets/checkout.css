@@ -1,6 +1,7 @@
 .content {
     flex-wrap: wrap;
     align-content: flex-start;
+    justify-content: center;
 }
 
 /* Cart List */
