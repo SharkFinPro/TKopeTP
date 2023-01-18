@@ -20,18 +20,6 @@
     font-style: italic;
 }
 
-html, body, #root, .entry {
-    height: 100%;
-    margin: 0;
-
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
 .entry {
     display: flex;
     flex-wrap: wrap;
@@ -123,8 +111,5 @@ html, body, #root, .entry {
 @media screen and (orientation: landscape) {
     .header, .content, .footer {
         display: none;
-    }
-    body {
-        background-color: #36454F;
     }
 }

@@ -1,6 +1,8 @@
 import cart from "../tools/cart.js";
 import { useRouter } from "next/navigation";
 
+import wrapperStyles from "../stylesheets/wrapper.module.css";
+
 export default function Footer() {
     const router = useRouter();
     const checkout = () => {
@@ -14,7 +16,7 @@ export default function Footer() {
     };
 
     return (
-        <div className="footer">
+        <div className={wrapperStyles.footer}>
             <a onClick={checkout}>Finish</a>
         </div>
     );

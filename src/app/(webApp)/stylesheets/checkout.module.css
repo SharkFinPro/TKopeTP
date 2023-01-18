@@ -114,7 +114,7 @@
     color: inherit;
 }
 
-#selected {
+.selected {
     background-color: #E31837;
     color: #FFFFFF;
 

@@ -1,8 +1,10 @@
+import checkoutStyles from "../stylesheets/checkout.module.css";
+
 export default function Product({ productData }) {
     return (
-        <div className="cartItem">
-            <p className="name">{productData.displayName} - ${productData.price}</p>
-            <p className="count">{productData.count}</p>
+        <div className={checkoutStyles.cartItem}>
+            <p className={checkoutStyles.name}>{productData.displayName} - ${productData.price}</p>
+            <p className={checkoutStyles.count}>{productData.count}</p>
         </div>
     );
 };

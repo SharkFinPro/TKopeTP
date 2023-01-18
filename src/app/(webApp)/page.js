@@ -2,15 +2,15 @@ import Link from "next/link";
 import productManager from "../../productManager.mjs";
 import Footer from "./footer";
 
-import "./stylesheets/wrapper.css";
-import "./stylesheets/index.css";
+import wrapperStyles from "./stylesheets/wrapper.module.css";
+import indexStyles from "./stylesheets/index.module.css";
 
 export default async () => {
     let categories = await productManager.getProductTypes();
 
     return <>
-        <div className="content">
-            <div className="categories">
+        <div className={wrapperStyles.content}>
+            <div className={indexStyles.categories}>
                 {Object.keys(categories).map((category) => (
                     <Link key={category} href={`products/${category}`}>{categories[category]}</Link>
                 ))}

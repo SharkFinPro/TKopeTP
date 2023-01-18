@@ -3,6 +3,9 @@ import { Component } from "react";
 import cart from "./tools/cart.js";
 import getData from "./tools/getData.js";
 
+import wrapperStyles from "./stylesheets/wrapper.module.css";
+import "./stylesheets/superWrapper.css";
+
 export default class extends Component {
     async componentDidMount() {
         /* Load Cart */
@@ -28,7 +31,7 @@ export default class extends Component {
             <html lang="en">
                 <head />
                 <body>
-                    <div className="header">
+                    <div className={wrapperStyles.header}>
                         <h1>T'Kope Kwiskwis<br/>Trading Post</h1>
                     </div>
                     {this.props.children}

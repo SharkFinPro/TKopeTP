@@ -4,8 +4,8 @@ import Product from "./product.js";
 import Footer from "../../footer.js";
 import getData from "../../tools/getData.js";
 
-import "../../stylesheets/wrapper.css";
-import "../../stylesheets/products.css";
+import wrapperStyles from "../../stylesheets/wrapper.module.css";
+import productsStyles from "../../stylesheets/products.module.css";
 
 export default class extends Component {
     constructor(props) {
@@ -26,8 +26,8 @@ export default class extends Component {
 
     render() {
         return <>
-            <div className="content">
-                <div className="products">
+            <div className={wrapperStyles.content}>
+                <div className={productsStyles.products}>
                     {Object.keys(this.state.products).map((product) => (
                         <Product key={product} productData={this.state.products[product]} />
                     ))}
