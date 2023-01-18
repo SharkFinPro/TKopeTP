@@ -45,8 +45,8 @@ export default class extends Component {
                 <div className={checkoutStyles.paymentInfo}>
                     <div className={checkoutStyles.total} id="total">Total: {this.state.total}</div>
                     <div className={checkoutStyles.paymentTypeSelection}>
-                        <p><a class={this.state.paymentMethod === "cash" ? checkoutStyles.selected : ""} onClick={() => {this.setPaymentMethod( "cash")}}>Cash</a></p>
-                        <p><a class={this.state.paymentMethod === "card" ? checkoutStyles.selected : ""} onClick={() => {this.setPaymentMethod( "card")}}>Card</a></p>
+                        <p><a className={this.state.paymentMethod === "cash" ? checkoutStyles.selected : ""} onClick={() => {this.setPaymentMethod( "cash")}}>Cash</a></p>
+                        <p><a className={this.state.paymentMethod === "card" ? checkoutStyles.selected : ""} onClick={() => {this.setPaymentMethod( "card")}}>Card</a></p>
                     </div>
                 </div>
             </div>

@@ -8,9 +8,6 @@ import "./stylesheets/superWrapper.css";
 
 export default class extends Component {
     async componentDidMount() {
-        /* Load Cart */
-        cart.load();
-
         /* Validate Session */
         const serverSession = await getData("/api/sessionID");
 

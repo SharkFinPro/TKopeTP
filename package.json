@@ -31,10 +31,11 @@
       "node_modules/compression/**/*",
       "node_modules/express/**/*",
       "node_modules/sqlite3/**/*",
-      "src/assets/app/**/*",
-      "src/assets/adminPanel/**/*",
-      "src/assets/external/**/*",
-      "src/assets/fonts/**/*"
+      "node_modules/chart.js/**/*",
+      "node_modules/next/**/*",
+      "node_modules/react/**/*",
+      "node_modules/xlsx/**/*",
+      ".next/**/*"
     ],
     "targets": [
       "node18-win-x64"

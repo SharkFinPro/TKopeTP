@@ -7,7 +7,11 @@ const postRequest = (url, data) => {
 };
 
 class Cart {
-    load() {
+    constructor() {
+        if (typeof window === "undefined") {
+            return;
+        }
+
         this.cart = this.getStorage();
         if (!this.cart) {
             this.reset();
