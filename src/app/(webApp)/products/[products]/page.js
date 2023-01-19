@@ -1,8 +1,8 @@
 "use client";
 import { Component } from "react";
 import Product from "./product.js";
-import getData from "../../tools/getData.js";
-import validateSession from "../../tools/validateSession";
+import validateSession from "../../tools/validateSession.js";
+import { getRequest } from "../../../tools/requests.js";
 
 import wrapperStyles from "../../stylesheets/wrapper.module.css";
 import productsStyles from "../../stylesheets/products.module.css";
@@ -18,7 +18,7 @@ export default class extends Component {
 
     componentDidMount() {
         validateSession().then(() => {
-            getData("/api/products/" + this.props.params.products).then((products) => {
+            getRequest("/api/products/" + this.props.params.products).then((products) => {
                 this.setState({
                     products: products
                 })

@@ -3,13 +3,7 @@ import { Component } from "react";
 import { Chart } from "chart.js/auto";
 
 import "../stylesheets/report.css";
-
-const getRequest = (url) => {
-    let req = new XMLHttpRequest();
-    req.open("GET", url, false);
-    req.send(null);
-    return req.responseText;
-};
+import { getRequest } from "../../tools/requests";
 
 class Toolbar extends Component {
     constructor(props) {
@@ -103,7 +97,7 @@ class Toolbar extends Component {
     }
 
     async loadOverview() {
-        const rawOverview = JSON.parse(getRequest("/api/admin/reporting/overview"));
+        const rawOverview = await getRequest("/api/admin/reporting/overview");
 
         let labels = [];
         let content = [];
@@ -130,8 +124,8 @@ class Toolbar extends Component {
     }
 
     async loadOverviewCategory() {
-        const rawOverview = JSON.parse(getRequest("/api/admin/reporting/overview"));
-        const categories = JSON.parse(getRequest("/api/productCategories"));
+        const rawOverview = await getRequest("/api/admin/reporting/overview");
+        const categories = await getRequest("/api/productCategories");
 
         let labels = [];
         let content = [];

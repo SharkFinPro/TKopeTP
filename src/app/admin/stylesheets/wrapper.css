@@ -1,23 +1,31 @@
 @font-face {
     font-family: MuseoSlab;
     src: url("../../fonts/Museo_Slab_500_2.otf");
+    font-weight: 500;
+    font-display: swap;
 }
 
 @font-face {
     font-family: MuseoSlab;
     src: url("../../fonts/Museo_Slab_500italic.otf");
     font-style: italic;
+    font-weight: 500;
+    font-display: swap;
 }
 
 @font-face {
     font-family: MuseoSans;
     src: url("../../fonts/MuseoSans_500.otf");
+    font-weight: 500;
+    font-display: swap;
 }
 
 @font-face {
     font-family: MuseoSans;
     src: url("../../fonts/MuseoSans_500_Italic.otf");
     font-style: italic;
+    font-weight: 500;
+    font-display: swap;
 }
 
 html, body {

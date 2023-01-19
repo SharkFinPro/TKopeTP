@@ -1,12 +1,4 @@
-const postRequest = async (url, body) => {
-    await fetch(url, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body
-    });
-};
+import { postRequest } from "../../tools/requests.js";
 
 class Cart {
     constructor() {
