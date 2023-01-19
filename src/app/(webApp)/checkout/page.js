@@ -37,13 +37,17 @@ export default class extends Component {
     render() {
         return <>
             <div className={wrapperStyles.content}>
-                <div className={checkoutStyles.cartDisplay} id="cartDisplay">
+                <div className={checkoutStyles.cartDisplay}>
+                    <div className={`${checkoutStyles.cartItemHeader} ${checkoutStyles.cartItem}`}>
+                        <p className={checkoutStyles.name}>Item - Price</p>
+                        <p className={checkoutStyles.count}>Count</p>
+                    </div>
                     {Object.keys(this.state.products).map((product) => (
                         <Product key={product} productData={this.state.products[product]} />
                     ))}
                 </div>
                 <div className={checkoutStyles.paymentInfo}>
-                    <div className={checkoutStyles.total} id="total">Total: {this.state.total}</div>
+                    <div className={checkoutStyles.total}>Total: ${this.state.total}</div>
                     <div className={checkoutStyles.paymentTypeSelection}>
                         <p><a className={this.state.paymentMethod === "cash" ? checkoutStyles.selected : ""} onClick={() => {this.setPaymentMethod( "cash")}}>Cash</a></p>
                         <p><a className={this.state.paymentMethod === "card" ? checkoutStyles.selected : ""} onClick={() => {this.setPaymentMethod( "card")}}>Card</a></p>
