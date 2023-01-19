@@ -7,13 +7,11 @@ import wrapperStyles from "../stylesheets/wrapper.module.css";
 export default function Footer() {
     const router = useRouter();
     const checkout = () => {
-        if (!cart.getPaymentMethod()) {
-            return;
+        if (cart.getPaymentMethod()) {
+            cart.purchase().then(() => {
+                router.push("/");
+            });
         }
-
-        cart.purchase();
-
-        router.push("/");
     };
 
     return (

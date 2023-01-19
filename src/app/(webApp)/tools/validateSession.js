@@ -1,8 +1,7 @@
-import getData from "./getData";
-import cart from "./cart";
+import getData from "./getData.js";
+import cart from "./cart.js";
 
 export default async () => {
-    /* Validate Session */
     const serverSession = await getData("/api/sessionID");
 
     if (parseInt(localStorage.getItem("sessionID")) !== serverSession) {

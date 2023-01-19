@@ -1,4 +1,4 @@
 export default async (path) => {
-    const products = await fetch(path);
-    return products.json();
+    const data = await fetch(path);
+    return data.json();
 };

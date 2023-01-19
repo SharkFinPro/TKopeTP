@@ -1,4 +1,3 @@
-import { join } from "path";
 import { networkInterfaces } from "os";
 import express from "express";
 import compression from "compression";
@@ -8,16 +7,6 @@ class WebServer {
         this.port = port;
 
         this.server = express();
-
-        // let sourceDir = "../../../TKopeTP/src/assets";
-        // if (process.env.NODE_ENV === "production") {
-        //     sourceDir = "../" + sourceDir;
-        // }
-        // sourceDir = join(process.argv[1], sourceDir);
-        // this.server.use(express.static(join(sourceDir, "app"), {extensions: ['html']}));
-        // this.server.use("/images", express.static(join(process.cwd(), "images"), {extensions: ['html']}));
-        // this.server.use("/external", express.static(join(sourceDir, "external"), {extensions: ['html']}));
-
         this.server.use(express.json());
         this.server.use(express.urlencoded({ extended: true }));
         this.server.use(compression());
@@ -50,9 +39,7 @@ class WebServer {
 
     postRequest(endpoint, callback) {
         this.server.post(endpoint, async (req, res) => {
-            let body = JSON.parse(Object.keys(req.body)[0]);
-
-            callback(body, res);
+            callback(req.body, res);
         });
     }
 }

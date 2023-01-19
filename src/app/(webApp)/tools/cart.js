@@ -1,9 +1,11 @@
-const postRequest = (url, data) => {
-    let req = new XMLHttpRequest();
-    req.open("POST", url, false);
-    req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    req.send(JSON.stringify(data || ""));
-    return req.responseText;
+const postRequest = async (url, body) => {
+    await fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body
+    });
 };
 
 class Cart {
@@ -86,7 +88,7 @@ class Cart {
         return cart;
     }
 
-    purchase() {
+    async purchase() {
         let cart = this.getActual();
         let simplifiedCart = {};
 
@@ -94,12 +96,12 @@ class Cart {
             simplifiedCart[product] = cart[product].count;
         }
 
-        postRequest("/api/purchase", {
+        await postRequest("/api/purchase", JSON.stringify({
             cart: simplifiedCart,
             paymentMethod: this.getPaymentMethod(),
             sessionId: localStorage.getItem("mySessionID"),
             time: new Date().toJSON()
-        });
+        }));
 
         this.reset();
     }
