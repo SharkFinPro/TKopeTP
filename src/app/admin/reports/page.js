@@ -172,21 +172,13 @@ class Toolbar extends Component {
     selectUnits() {
         this.setState({
             graphType: "units"
-        });
-
-        setTimeout(() => {
-            this.updateGraph();
-        }, 50);
+        }, this.updateGraph);
     }
 
     selectMoney() {
         this.setState({
             graphType: "money"
-        });
-
-        setTimeout(() => {
-            this.updateGraph();
-        }, 50);
+        }, this.updateGraph);
     }
 
     updateGraph() {

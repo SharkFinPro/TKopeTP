@@ -49,13 +49,14 @@
 }
 
 .toolbarOption:hover {
-    background: #E31837;
-    color: #FFFFFF;
+    background: #E6E7E8;
+    color: #030006;
     transition: .3s;
 }
 
 .toolbarSelected {
-    background: #E31837;
+    background: #E6E7E8;
+    color: #030006;
 }
 
 .toolbarDownload {
@@ -65,7 +66,8 @@
 }
 
 .toolbarDownload:hover {
-    background: #650812;
+    background: #030006;
+    color: #FFFFFF;
     transition: .3s;
 }
 
@@ -111,12 +113,14 @@
 }
 
 .toolsSwapOption:hover {
-    background: #E31837;
+    background: #E6E7E8;
+    color: #030006;
     transition: .3s;
 }
 
 .toolsSwapOptionSelected {
-    background: #E31837;
+    background: #E6E7E8;
+    color: #030006;
 }
 
 .display {
