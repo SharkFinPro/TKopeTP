@@ -1,4 +1,5 @@
 import { access, mkdir, appendFile } from "fs";
+import next from "next";
 import sessionManager from "./sessionManager.mjs";
 import productManager from "./productManager.mjs";
 import webServer from "./webServer.mjs";
@@ -83,21 +84,15 @@ webServer.getRequest("/api/admin/reporting/overview", (req, res) => {
     res.send(report.getOverview());
 });
 
-import next from "next";
-const dev = process.env.NODE_ENV !== "production";
+const nextApp = next({ dev: process.env.NODE_ENV !== "production" });
 
-const app = next({ dev });
-const appHandle = app.getRequestHandler();
-
-app.prepare()
+nextApp.prepare()
     .then(() => {
-        webServer.getRequest("*", (req, res) => {
-            return appHandle(req, res)
-        });
+        webServer.getRequest("*", nextApp.getRequestHandler());
 
         webServer.init();
     })
     .catch((ex) => {
-        console.error(ex.stack)
-        process.exit(1)
+        console.error(ex.stack);
+        process.exit(1);
     })
