@@ -10,7 +10,7 @@ export default class Product extends Component {
 
         this.state = {
             count: 0,
-            image: ""
+            imageData: "",
         };
     }
 
@@ -18,12 +18,9 @@ export default class Product extends Component {
         cart.createListing(this.props.productData);
         this.updateCount();
 
-        let image = this.props.productData.image;
-        if (!this.props.productData.image) {
-            image = "NOT_FOUND.png";
-        }
-
-        this.setState({ image });
+        import("../../../../../public/images/" + (this.props.productData.image || "NOT_FOUND.png")).then((imageData) => {
+            this.setState({ imageData });
+        });
     }
 
     updateCount() {
@@ -47,9 +44,7 @@ export default class Product extends Component {
             <div className={productsStyles.product}>
                 <div className={productsStyles.image}>
                     <Image
-                        src={"/images/" + this.state.image}
-                        width={500}
-                        height={288}
+                        src={this.state.imageData}
                         alt="Product Image"
                     />
                 </div>
