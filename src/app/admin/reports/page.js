@@ -201,20 +201,20 @@ class Toolbar extends Component {
         return (
             <div className={reportStyles.toolbar}>
                 <div className={reportStyles.toolbarOptions}>
-                    <a className={`${reportStyles.toolbarOption} ${this.state.selectedOption === "overview" ? reportStyles.toolbarSelected : ""}`}
-                       onClick={this.loadOverview}>Overview</a>
-                    <a className={`${reportStyles.toolbarOption} ${this.state.selectedOption === "overviewCategory" ? reportStyles.toolbarSelected : ""}`}
-                       onClick={this.loadOverviewCategory}>Overview (Category)</a>
+                    <button type="button" className={`${reportStyles.toolbarOption} ${this.state.selectedOption === "overview" ? reportStyles.toolbarSelected : ""}`}
+                       onClick={this.loadOverview}>Overview</button>
+                    <button type="button" className={`${reportStyles.toolbarOption} ${this.state.selectedOption === "overviewCategory" ? reportStyles.toolbarSelected : ""}`}
+                       onClick={this.loadOverviewCategory}>Overview (Category)</button>
                 </div>
                 <div className={reportStyles.toolbarTools}>
                     <div className={reportStyles.toolbarToolsSwap}>
-                        <a className={`${reportStyles.toolsSwapOption} ${this.state.graphType === "units" ? reportStyles.toolsSwapOptionSelected : ""}`}
-                           onClick={this.selectUnits}>Units</a>
-                        <a className={`${reportStyles.toolsSwapOption} ${this.state.graphType === "money" ? reportStyles.toolsSwapOptionSelected : ""}`}
-                           onClick={this.selectMoney}>Money</a>
+                        <button type="button" className={`${reportStyles.toolsSwapOption} ${this.state.graphType === "units" ? reportStyles.toolsSwapOptionSelected : ""}`}
+                           onClick={this.selectUnits}>Units</button>
+                        <button type="button" className={`${reportStyles.toolsSwapOption} ${this.state.graphType === "money" ? reportStyles.toolsSwapOptionSelected : ""}`}
+                           onClick={this.selectMoney}>Money</button>
                     </div>
-                    <a className={`${reportStyles.toolbarOption} ${reportStyles.toolbarDownload}`} onClick={this.downloadExcel}>Download
-                        Report</a>
+                    <button type="button" className={`${reportStyles.toolbarOption} ${reportStyles.toolbarDownload}`} onClick={this.downloadExcel}>Download
+                        Report</button>
                 </div>
             </div>
         );

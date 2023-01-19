@@ -8,7 +8,7 @@
     color: #E6E7E8;
     background: #36454F;
 
-    font-size: 17.5px;
+    font-size: 18px;
     font-family: MuseoSans, serif;
 }
 
@@ -42,6 +42,10 @@
 
     background: #030006;
     transition: .3s;
+
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
 }
 
 .toolbarOption:hover {
@@ -100,6 +104,10 @@
 
     background: #030006;
     transition: .3s;
+
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
 }
 
 .toolsSwapOption:hover {
