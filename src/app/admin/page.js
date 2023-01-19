@@ -1,8 +1,9 @@
-import "./stylesheets/index.css";
+import "./stylesheets/index.module.css";
+import wrapperStyles from "./stylesheets/wrapper.module.css";
 
 export default () => {
     return <>
-        <div className="content">
+        <div className={wrapperStyles.content}>
             <h1>Admin Panel</h1>
         </div>
     </>

@@ -1,0 +1,45 @@
+.title {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+
+    width: 450px;
+    height: 100%;
+
+    font-size: 15px;
+    font-family: MuseoSlab, MuseoSans, serif;
+}
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-end;
+
+    width: calc(100% - 450px);
+    height: 100%;
+
+    font-size: 20px;
+    font-family: MuseoSans, serif;
+}
+
+.option {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+
+    width: 125px;
+    height: 100%;
+
+    text-decoration: none;
+    color: inherit;
+    transition: .3s;
+}
+
+.option:hover {
+    background: #E6E7E8;
+    color: #005596;
+    transition: .3s;
+}

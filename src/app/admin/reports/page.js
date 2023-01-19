@@ -1,9 +1,11 @@
 "use client";
 import { Component } from "react";
 import { Chart } from "chart.js/auto";
-
-import "../stylesheets/report.css";
 import { getRequest } from "../../tools/requests";
+
+import "../stylesheets/report.module.css";
+import wrapperStyles from "../stylesheets/wrapper.module.css";
+import reportStyles from "../stylesheets/report.module.css";
 
 class Toolbar extends Component {
     constructor(props) {
@@ -197,21 +199,21 @@ class Toolbar extends Component {
 
     render() {
         return (
-            <div className="content-toolbar">
-                <div className="content-toolbar-options">
-                    <a className={`content-toolbar-option ${this.state.selectedOption === "overview" ? "content-toolbar-selected" : ""}`}
+            <div className={reportStyles.toolbar}>
+                <div className={reportStyles.toolbarOptions}>
+                    <a className={`${reportStyles.toolbarOption} ${this.state.selectedOption === "overview" ? reportStyles.toolbarSelected : ""}`}
                        onClick={this.loadOverview}>Overview</a>
-                    <a className={`content-toolbar-option ${this.state.selectedOption === "overviewCategory" ? "content-toolbar-selected" : ""}`}
+                    <a className={`${reportStyles.toolbarOption} ${this.state.selectedOption === "overviewCategory" ? reportStyles.toolbarSelected : ""}`}
                        onClick={this.loadOverviewCategory}>Overview (Category)</a>
                 </div>
-                <div className="content-toolbar-tools">
-                    <div className="content-toolbar-tools-swap">
-                        <a className={`tools-swap-option ${this.state.graphType === "units" ? "tools-swap-option-selected" : ""}`}
+                <div className={reportStyles.toolbarTools}>
+                    <div className={reportStyles.toolbarToolsSwap}>
+                        <a className={`${reportStyles.toolsSwapOption} ${this.state.graphType === "units" ? reportStyles.toolsSwapOptionSelected : ""}`}
                            onClick={this.selectUnits}>Units</a>
-                        <a className={`tools-swap-option ${this.state.graphType === "money" ? "tools-swap-option-selected" : ""}`}
+                        <a className={`${reportStyles.toolsSwapOption} ${this.state.graphType === "money" ? reportStyles.toolsSwapOptionSelected : ""}`}
                            onClick={this.selectMoney}>Money</a>
                     </div>
-                    <a className="content-toolbar-option content-toolbar-download" onClick={this.downloadExcel}>Download
+                    <a className={`${reportStyles.toolbarOption} ${reportStyles.toolbarDownload}`} onClick={this.downloadExcel}>Download
                         Report</a>
                 </div>
             </div>
@@ -221,10 +223,10 @@ class Toolbar extends Component {
 
 export default () => {
     return <>
-        <div className="content">
+        <div className={wrapperStyles.content}>
             <Toolbar />
-            <div className="content-display">
-                <canvas id="myChart"></canvas>
+            <div className={reportStyles.display}>
+                <canvas className={reportStyles.displayCanvas} id="myChart"></canvas>
             </div>
         </div>
     </>

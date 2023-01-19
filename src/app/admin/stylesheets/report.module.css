@@ -1,4 +1,4 @@
-.content-toolbar {
+.toolbar {
     display: flex;
     flex-wrap: wrap;
 
@@ -12,7 +12,7 @@
     font-family: MuseoSans, serif;
 }
 
-.content-toolbar-options {
+.toolbarOptions {
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
@@ -28,7 +28,7 @@
     overflow-y: auto;
 }
 
-.content-toolbar-option {
+.toolbarOption {
     display: flex;
     flex-wrap: wrap;
     align-content: center;
@@ -44,28 +44,28 @@
     transition: .3s;
 }
 
-.content-toolbar-option:hover {
+.toolbarOption:hover {
     background: #E31837;
     color: #FFFFFF;
     transition: .3s;
 }
 
-.content-toolbar-selected {
+.toolbarSelected {
     background: #E31837;
 }
 
-.content-toolbar-download {
+.toolbarDownload {
     background: #E6E7E8;
     color: #030006;
     transition: .3s;
 }
 
-.content-toolbar-download:hover {
+.toolbarDownload:hover {
     background: #650812;
     transition: .3s;
 }
 
-.content-toolbar-tools {
+.toolbarTools {
     display: flex;
     flex-wrap: wrap;
     align-content: center;
@@ -75,7 +75,7 @@
     height: 150px;
 }
 
-.content-toolbar-tools-swap {
+.toolbarToolsSwap {
     display: flex;
     flex-wrap: wrap;
     align-content: center;
@@ -86,7 +86,7 @@
     height: 70px;
 }
 
-.tools-swap-option {
+.toolsSwapOption {
     display: flex;
     flex-wrap: wrap;
     align-content: center;
@@ -102,16 +102,16 @@
     transition: .3s;
 }
 
-.tools-swap-option:hover {
+.toolsSwapOption:hover {
     background: #E31837;
     transition: .3s;
 }
 
-.tools-swap-option-selected {
+.toolsSwapOptionSelected {
     background: #E31837;
 }
 
-.content-display {
+.display {
     display: flex;
     flex-wrap: wrap;
     align-content: flex-start;
@@ -124,7 +124,7 @@
     background: #E6E7E8;
 }
 
-canvas {
+.displayCanvas {
     max-width: 75%;
     max-height: 80%;
 }
