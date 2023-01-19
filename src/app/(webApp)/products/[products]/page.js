@@ -1,7 +1,6 @@
 "use client";
 import { Component } from "react";
 import Product from "./product.js";
-import Footer from "../../footer.js";
 import getData from "../../tools/getData.js";
 
 import wrapperStyles from "../../stylesheets/wrapper.module.css";
@@ -25,7 +24,7 @@ export default class extends Component {
     }
 
     render() {
-        return <>
+        return (
             <div className={wrapperStyles.content}>
                 <div className={productsStyles.products}>
                     {Object.keys(this.state.products).map((product) => (
@@ -33,7 +32,6 @@ export default class extends Component {
                     ))}
                 </div>
             </div>
-            <Footer />
-        </>;
+        );
     }
 }

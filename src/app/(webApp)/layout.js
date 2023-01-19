@@ -28,9 +28,6 @@ export default class extends Component {
             <html lang="en">
                 <head />
                 <body>
-                    <div className={wrapperStyles.header}>
-                        <h1>T'Kope Kwiskwis<br/>Trading Post</h1>
-                    </div>
                     {this.props.children}
                 </body>
             </html>

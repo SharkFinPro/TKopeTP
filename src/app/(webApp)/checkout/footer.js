@@ -1,3 +1,4 @@
+"use client";
 import cart from "../tools/cart.js";
 import { useRouter } from "next/navigation";
 
