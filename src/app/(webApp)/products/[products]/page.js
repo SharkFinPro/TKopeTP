@@ -5,6 +5,7 @@ import getData from "../../tools/getData.js";
 
 import wrapperStyles from "../../stylesheets/wrapper.module.css";
 import productsStyles from "../../stylesheets/products.module.css";
+import validateSession from "../../tools/validateSession";
 
 export default class extends Component {
     constructor(props) {
@@ -16,10 +17,12 @@ export default class extends Component {
     }
 
     componentDidMount() {
-        getData("/api/products/" + this.props.params.products).then((products) => {
-            this.setState({
-                products: products
-            })
+        validateSession().then(() => {
+            getData("/api/products/" + this.props.params.products).then((products) => {
+                this.setState({
+                    products: products
+                })
+            });
         });
     }
 

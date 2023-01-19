@@ -46,7 +46,6 @@ export default class Product extends Component {
         return (
             <div className={productsStyles.product}>
                 <div className={productsStyles.image}>
-                    {/*<img alt="product image" src={"/images/" + this.state.image}></img>*/}
                     <Image
                         src={"/images/" + this.state.image}
                         width={500}
