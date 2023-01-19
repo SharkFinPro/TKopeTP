@@ -92,12 +92,8 @@
     background-color: #36454F;
 }
 
-.footer a {
+.footerButton {
     padding: 3.5vw;
-
-    display: block;
-
-    position: relative;
 
     text-decoration: none;
     font-family: MuseoSans, serif;
@@ -112,7 +108,7 @@
     border: 5px solid #030006;
 }
 
-.footer a:hover {
+.footerButton:hover {
     background-color: #FFFFFF;
 }
 

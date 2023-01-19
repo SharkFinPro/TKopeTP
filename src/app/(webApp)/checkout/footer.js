@@ -16,7 +16,7 @@ export default function Footer() {
 
     return (
         <div className={wrapperStyles.footer}>
-            <a onClick={checkout}>Finish</a>
+            <button type="button" className={wrapperStyles.footerButton} onClick={checkout}>Finish</button>
         </div>
     );
 };
