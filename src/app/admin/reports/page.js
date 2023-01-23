@@ -131,6 +131,10 @@ class Toolbar extends Component {
 
         let labels = [];
         let content = [];
+        for (let category in categories) {
+            labels[category - 1] = categories[category];
+            content[category - 1] = 0;
+        }
 
         if (this.state.graphType === "units") {
             for (let product in rawOverview) {
@@ -139,10 +143,6 @@ class Toolbar extends Component {
                     id: rawOverview[product].productType
                 };
 
-                if (!labels.includes(category.displayName)) {
-                    labels.push(category.displayName);
-                    content[category.id - 1] = 0;
-                }
                 content[category.id - 1] += rawOverview[product].count;
             }
 
@@ -154,10 +154,6 @@ class Toolbar extends Component {
                     id: rawOverview[product].productType
                 };
 
-                if (!labels.includes(category.displayName)) {
-                    labels.push(category.displayName);
-                    content[category.id - 1] = 0;
-                }
                 content[category.id - 1] += rawOverview[product].count * rawOverview[product].price;
             }
 
