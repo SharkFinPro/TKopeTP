@@ -6,7 +6,11 @@ export default class Report {
     constructor(file) {
         this.products = {};
         this.totalProductsSold = 0;
-        this.totalMoneyMade = 0;
+        this.moneyMade = {
+            cash: 0,
+            card: 0
+        };
+        this.timestamps = [];
 
         this.productsWorksheet = null;
 
@@ -26,21 +30,32 @@ export default class Report {
 
     processCarts() {
         for (let cart of this.carts) {
-            this.processCartProducts(cart.cart);
+            this.processCart(cart);
+        }
+
+        for (let time of this.timestamps) {
+            console.log(time.toString());
         }
     }
 
-    processCartProducts(cart) {
-        for (let product in cart) {
+    processCart(cart) {
+        for (let product in cart.cart) {
             if (!Object.keys(this.products).includes(product)) {
-                this.products[product] = cart[product];
+                this.products[product] = cart.cart[product];
             } else {
-                this.products[product].count += cart[product].count;
+                this.products[product].count += cart.cart[product].count;
             }
 
-            this.totalProductsSold += cart[product].count;
-            this.totalMoneyMade += cart[product].count * this.products[product].price;
+            this.totalProductsSold += cart.cart[product].count;
+
+            if (cart.paymentMethod === "cash") {
+                this.moneyMade.cash += cart.cart[product].count * this.products[product].price;
+            } else if (cart.paymentMethod === "card") {
+                this.moneyMade.card += cart.cart[product].count * this.products[product].price;
+            }
         }
+
+        this.timestamps.push(new Date(cart.time));
     }
 
     sendToSheet() {
@@ -58,7 +73,7 @@ export default class Report {
         sheetData.push({
             "Product": "Total",
             "Count": { v: this.totalProductsSold, t: "n" },
-            "Total": { v: this.totalMoneyMade, t: "n", z: "$#" }
+            "Total": { v: this.moneyMade.cash + this.moneyMade.card, t: "n", z: "$#" }
         });
 
         const productsWorksheet = XLSX.utils.json_to_sheet(sheetData);
