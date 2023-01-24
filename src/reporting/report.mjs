@@ -32,10 +32,6 @@ export default class Report {
         for (let cart of this.carts) {
             this.processCart(cart);
         }
-
-        for (let time of this.timestamps) {
-            console.log(time.toString());
-        }
     }
 
     processCart(cart) {
