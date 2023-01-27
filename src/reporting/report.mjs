@@ -90,6 +90,6 @@ export default class Report {
     }
 
     getOverview() {
-        return JSON.stringify(this.products);
+        return this.products;
     }
 }
