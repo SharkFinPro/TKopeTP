@@ -3,6 +3,7 @@ import Image from "next/image";
 import cart from "../../tools/cart.js";
 
 import productsStyles from "../../stylesheets/products.module.css";
+import loadingImage from "../../../../../public/images/NOT_FOUND.png";
 
 export default class Product extends Component {
     constructor(props) {
@@ -44,7 +45,7 @@ export default class Product extends Component {
             <div className={productsStyles.product}>
                 <div className={productsStyles.image}>
                     <Image
-                        src={this.state.imageData}
+                        src={this.state.imageData || loadingImage}
                         alt="Product Image"
                     />
                 </div>
