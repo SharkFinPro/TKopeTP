@@ -2,9 +2,9 @@ import checkoutStyles from "../stylesheets/checkout.module.css";
 
 export default function Product({ productData }) {
     return (
-        <div className={checkoutStyles.cartItem}>
-            <p className={checkoutStyles.name}>{productData.displayName} - ${productData.price}</p>
-            <p className={checkoutStyles.count}>{productData.count}</p>
-        </div>
+        <tr>
+            <td className={checkoutStyles.name}>{productData.displayName} - ${productData.price}</td>
+            <td className={checkoutStyles.count}>{productData.count}</td>
+        </tr>
     );
 };

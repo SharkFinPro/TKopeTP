@@ -39,15 +39,15 @@ export default class extends Component {
     render() {
         return <>
             <div className={wrapperStyles.content}>
-                <div className={checkoutStyles.cartDisplay}>
-                    <div className={`${checkoutStyles.cartItemHeader} ${checkoutStyles.cartItem}`}>
-                        <p className={checkoutStyles.name}>Item - Price</p>
-                        <p className={checkoutStyles.count}>Count</p>
-                    </div>
+                <table className={checkoutStyles.cartDisplay}>
+                    <tr>
+                        <th className={checkoutStyles.name}>Item - Price</th>
+                        <th className={checkoutStyles.count}>Count</th>
+                    </tr>
                     {Object.keys(this.state.products).map((product) => (
                         <Product key={product} productData={this.state.products[product]} />
                     ))}
-                </div>
+                </table>
                 <div className={checkoutStyles.paymentInfo}>
                     <div className={checkoutStyles.total}>Total: ${this.state.total}</div>
                     <div className={checkoutStyles.paymentTypeSelection}>
