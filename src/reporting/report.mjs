@@ -19,35 +19,27 @@ export default class Report {
             transactions.pop();
 
             for (let transaction of transactions) {
-                const cart = JSON.parse(transaction);
-                this.carts.push(new Cart(cart.cart, cart.paymentMethod, cart.time));
+                const cartData = JSON.parse(transaction);
+                const cart = new Cart(cartData.cart, cartData.paymentMethod, cartData.time);
+                this.carts.push(cart);
+                this.processCart(cart);
             }
-
-            this.processCarts();
-        }
-    }
-
-    processCarts() {
-        for (let cart of this.carts) {
-            this.processCart(cart);
         }
     }
 
     processCart(cart) {
         for (let product in cart.cart) {
-            if (!Object.keys(this.products).includes(product)) {
+            if (!Object.keys(this.products).includes(product))
                 this.products[product] = cart.cart[product];
-            } else {
+            else
                 this.products[product].count += cart.cart[product].count;
-            }
 
             this.totalProductsSold += cart.cart[product].count;
 
-            if (cart.paymentMethod === "cash") {
+            if (cart.paymentMethod === "cash")
                 this.moneyMade.cash += cart.cart[product].count * this.products[product].price;
-            } else if (cart.paymentMethod === "card") {
+            else if (cart.paymentMethod === "card")
                 this.moneyMade.card += cart.cart[product].count * this.products[product].price;
-            }
         }
 
         this.timestamps.push(new Date(cart.time));
@@ -78,14 +70,13 @@ export default class Report {
     }
 
     getExcel() {
-        if (!this.productsWorksheet) {
+        if (!this.productsWorksheet)
             this.sendToSheet();
-        }
 
         const workbook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(workbook, this.productsWorksheet, "Products");
 
-        return XLSX.write(workbook, { type:"buffer", bookType:"xlsx" });
+        return XLSX.write(workbook, { type: "buffer", bookType: "xlsx" });
     }
 
     getOverview() {
