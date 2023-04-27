@@ -1,4 +1,4 @@
-import { readFileSync } from "fs";
+import { readFileSync, existsSync } from "fs";
 import * as XLSX from "xlsx";
 import Cart from "./cart.mjs";
 
@@ -11,21 +11,20 @@ export default class Report {
             card: 0
         };
         this.timestamps = [];
-
         this.productsWorksheet = null;
-
-
-        const transactions = readFileSync(file, "utf8").split("\n");
-        transactions.pop();
-
         this.carts = [];
 
-        for (let transaction of transactions) {
-            const cart = JSON.parse(transaction);
-            this.carts.push(new Cart(cart.cart, cart.paymentMethod, cart.time));
-        }
+        if (existsSync(file)) {
+            const transactions = readFileSync(file, "utf8").split("\n");
+            transactions.pop();
 
-        this.processCarts();
+            for (let transaction of transactions) {
+                const cart = JSON.parse(transaction);
+                this.carts.push(new Cart(cart.cart, cart.paymentMethod, cart.time));
+            }
+
+            this.processCarts();
+        }
     }
 
     processCarts() {
