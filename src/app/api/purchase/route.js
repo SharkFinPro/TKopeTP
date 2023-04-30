@@ -1,8 +1,8 @@
 import { access, mkdir, appendFile } from "fs";
-import productManager from "../../productManager.mjs";
+import productManager from "../../../productManager.mjs";
 
-export default async (req, res) => {
-    let body = req.body;
+export async function POST(request) {
+    const body = await request.json();
     let cart = {};
 
     for (let product in body.cart) {
@@ -21,15 +21,17 @@ export default async (req, res) => {
             mkdir("./bin", (err) => {
                 if (err) {
                     console.error(err);
+                    return new Response("Error!", { status: 500 });
                 }
             });
         }
         appendFile("./bin/dump.txt", `${transactionLog}\n`, (err) => {
             if (err) {
                 console.error(err);
+                return new Response("Error!", { status: 500 });
             }
         });
     });
 
-    res.status(200).send();
+    return new Response("Success!", { status: 200 });
 }
