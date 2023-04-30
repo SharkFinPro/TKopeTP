@@ -91,7 +91,6 @@ class Cart {
         await postRequest("/api/purchase", JSON.stringify({
             cart: simplifiedCart,
             paymentMethod: this.getPaymentMethod(),
-            sessionId: localStorage.getItem("mySessionID"),
             time: new Date().toJSON()
         }));
 

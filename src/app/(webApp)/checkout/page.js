@@ -2,10 +2,8 @@
 import { Component } from 'react';
 import Product from "./product.js";
 import cart from "../tools/cart.js";
-
 import wrapperStyles from "../stylesheets/wrapper.module.css";
 import checkoutStyles from "../stylesheets/checkout.module.css";
-import validateSession from "../tools/validateSession";
 
 export default class extends Component {
     constructor(props) {
@@ -19,12 +17,10 @@ export default class extends Component {
     }
 
     componentDidMount() {
-        validateSession().then(() => {
-            this.setState({
-                total: cart.getTotalPrice(),
-                paymentMethod: cart.getPaymentMethod(),
-                products: cart.getActual()
-            });
+        this.setState({
+            total: cart.getTotalPrice(),
+            paymentMethod: cart.getPaymentMethod(),
+            products: cart.getActual()
         });
     }
 
