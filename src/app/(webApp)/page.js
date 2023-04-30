@@ -9,9 +9,9 @@ export default async () => {
     let categories = await productManager.getProductTypes();
 
     return <>
-        <div className={wrapperStyles.header}>
+        <header className={wrapperStyles.header}>
             <h1>T'Kope Kwiskwis<br/>Trading Post</h1>
-        </div>
+        </header>
         <div className={wrapperStyles.content}>
             <div className={indexStyles.categories}>
                 {Object.keys(categories).map((category) => (

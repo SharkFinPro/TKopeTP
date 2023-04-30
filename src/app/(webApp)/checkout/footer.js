@@ -1,7 +1,6 @@
 "use client";
 import cart from "../tools/cart.js";
 import { useRouter } from "next/navigation";
-
 import wrapperStyles from "../stylesheets/wrapper.module.css";
 
 export default function Footer() {
@@ -15,8 +14,8 @@ export default function Footer() {
     };
 
     return (
-        <div className={wrapperStyles.footer}>
+        <footer className={wrapperStyles.footer}>
             <button type="button" className={wrapperStyles.footerButton} onClick={checkout}>Finish</button>
-        </div>
+        </footer>
     );
 };

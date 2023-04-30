@@ -3,7 +3,6 @@ import { Component } from "react";
 import Product from "./product.js";
 import validateSession from "../../tools/validateSession.js";
 import { getRequest } from "../../../tools/requests.js";
-
 import wrapperStyles from "../../stylesheets/wrapper.module.css";
 import productsStyles from "../../stylesheets/products.module.css";
 
@@ -13,15 +12,13 @@ export default class extends Component {
 
         this.state = {
             products: {}
-        }
+        };
     }
 
     componentDidMount() {
         validateSession().then(() => {
             getRequest("/api/products/" + this.props.params.products).then((products) => {
-                this.setState({
-                    products: products
-                })
+                this.setState({ products });
             });
         });
     }

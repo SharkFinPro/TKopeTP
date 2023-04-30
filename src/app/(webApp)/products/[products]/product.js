@@ -1,7 +1,6 @@
 import { Component } from "react";
 import Image from "next/image";
 import cart from "../../tools/cart.js";
-
 import productsStyles from "../../stylesheets/products.module.css";
 import loadingImage from "../../../../../public/images/NOT_FOUND.png";
 
@@ -11,7 +10,7 @@ export default class Product extends Component {
 
         this.state = {
             count: 0,
-            imageData: "",
+            imageData: ""
         };
     }
 
@@ -49,14 +48,10 @@ export default class Product extends Component {
                         alt="Product Image"
                     />
                 </div>
-                <div className={productsStyles.name}>
-                    <p>{this.props.productData.displayName} - ${this.props.productData.price}</p>
-                </div>
+                <p className={productsStyles.name}>{this.props.productData.displayName} - ${this.props.productData.price}</p>
                 <div className={productsStyles.purchase}>
                     <button className={`${productsStyles.purchaseThird} ${productsStyles.option} ${productsStyles.left}`} type="button" onClick={() => this.subFromCart(this.props.productData.id)}>-</button>
-                    <div className={`${productsStyles.purchaseThird} ${productsStyles.display}`}>
-                        <p id={this.props.productData.id}>{this.state.count}</p>
-                    </div>
+                    <p className={`${productsStyles.purchaseThird} ${productsStyles.display}`} id={this.props.productData.id}>{this.state.count}</p>
                     <button className={`${productsStyles.purchaseThird} ${productsStyles.option} ${productsStyles.right}`} type="button" onClick={() => this.addToCart(this.props.productData.id)}>+</button>
                 </div>
             </div>
