@@ -26,32 +26,25 @@ export default class extends Component {
 
     setPaymentMethod(method) {
         cart.setPaymentMethod(method);
-
-        this.setState({
-            paymentMethod: cart.getPaymentMethod()
-        });
+        this.setState({ paymentMethod: cart.getPaymentMethod() });
     }
 
     render() {
-        return <>
-            <div className={wrapperStyles.content}>
-                <table className={checkoutStyles.cartDisplay}>
-                    <tr>
-                        <th className={checkoutStyles.name}>Item - Price</th>
-                        <th className={checkoutStyles.count}>Count</th>
-                    </tr>
-                    {Object.keys(this.state.products).map((product) => (
-                        <Product key={product} productData={this.state.products[product]} />
-                    ))}
-                </table>
-                <div className={checkoutStyles.paymentInfo}>
-                    <div className={checkoutStyles.total}>Total: ${this.state.total}</div>
-                    <div className={checkoutStyles.paymentTypeSelection}>
-                        <button className={this.state.paymentMethod === "cash" ? checkoutStyles.selected : ""} onClick={() => {this.setPaymentMethod( "cash")}}>Cash</button>
-                        <button className={this.state.paymentMethod === "card" ? checkoutStyles.selected : ""} onClick={() => {this.setPaymentMethod( "card")}}>Card</button>
-                    </div>
+        return <div className={wrapperStyles.content}>
+            <table className={checkoutStyles.cartDisplay}>
+                <tr>
+                    <th>Item - Price</th>
+                    <th className={checkoutStyles.count}>Count</th>
+                </tr>
+                {Object.keys(this.state.products).map((product) => <Product key={product} productData={this.state.products[product]} />)}
+            </table>
+            <div className={checkoutStyles.paymentInfo}>
+                <p className={checkoutStyles.total}>Total: ${this.state.total}</p>
+                <div className={checkoutStyles.paymentTypeSelection}>
+                    <button className={this.state.paymentMethod === "cash" ? checkoutStyles.selected : ""} onClick={() => {this.setPaymentMethod( "cash")}}>Cash</button>
+                    <button className={this.state.paymentMethod === "card" ? checkoutStyles.selected : ""} onClick={() => {this.setPaymentMethod( "card")}}>Card</button>
                 </div>
             </div>
-        </>;
+        </div>
     }
 }
