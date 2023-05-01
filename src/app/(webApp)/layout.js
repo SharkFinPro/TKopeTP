@@ -1,12 +1,13 @@
 import "./stylesheets/superWrapper.css";
+import Head from "./head";
 
 export default ({ children }) => {
-    return (
+    return <>
         <html lang="en">
-            <head />
+            <Head />
             <body>
                 {children}
             </body>
         </html>
-    )
+    </>
 }

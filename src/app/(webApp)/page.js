@@ -14,9 +14,7 @@ export default async () => {
         </header>
         <div className={wrapperStyles.content}>
             <div className={indexStyles.categories}>
-                {Object.keys(categories).map((category) => (
-                    <Link key={category} href={`products/${category}`}>{categories[category]}</Link>
-                ))}
+                {Object.keys(categories).map((category) => <Link key={category} href={`products/${category}`}>{categories[category]}</Link>)}
             </div>
         </div>
         <Footer />
