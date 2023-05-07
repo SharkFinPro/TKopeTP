@@ -1,50 +1,45 @@
 "use client";
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 import Product from "./product.js";
 import cart from "../tools/cart.js";
 import wrapperStyles from "../stylesheets/wrapper.module.css";
 import checkoutStyles from "../stylesheets/checkout.module.css";
 
-export default class extends Component {
-    constructor(props) {
-        super(props);
+export default function Page() {
+    const [products, setProducts] = useState([]);
+    const [total, setTotal] = useState(0);
+    const [paymentMethod, setPaymentMethod] = useState("");
 
-        this.state = {
-            total: 0,
-            paymentMethod: "",
-            products: {}
-        };
-    }
+    useEffect(() => {
+        setProducts(cart.getActual());
+        setTotal(cart.getTotalPrice());
+        setPaymentMethod(cart.getPaymentMethod());
+    }, []);
 
-    componentDidMount() {
-        this.setState({
-            total: cart.getTotalPrice(),
-            paymentMethod: cart.getPaymentMethod(),
-            products: cart.getActual()
-        });
-    }
+    useEffect(() => {
+        if (paymentMethod) {
+            cart.setPaymentMethod(paymentMethod);
+        }
+    }, [paymentMethod]);
 
-    setPaymentMethod(method) {
-        cart.setPaymentMethod(method);
-        this.setState({ paymentMethod: cart.getPaymentMethod() });
-    }
-
-    render() {
-        return <div className={wrapperStyles.content}>
-            <table className={checkoutStyles.cartDisplay}>
+    return <div className={wrapperStyles.content}>
+        <table className={checkoutStyles.cartDisplay}>
+            <thead>
                 <tr>
                     <th>Item - Price</th>
-                    <th className={checkoutStyles.count}>Count</th>
+                    <th>Count</th>
                 </tr>
-                {Object.keys(this.state.products).map((product) => <Product key={product} productData={this.state.products[product]} />)}
-            </table>
-            <div className={checkoutStyles.paymentInfo}>
-                <p className={checkoutStyles.total}>Total: ${this.state.total}</p>
-                <div className={checkoutStyles.paymentTypeSelection}>
-                    <button className={this.state.paymentMethod === "cash" ? checkoutStyles.selected : ""} onClick={() => {this.setPaymentMethod( "cash")}}>Cash</button>
-                    <button className={this.state.paymentMethod === "card" ? checkoutStyles.selected : ""} onClick={() => {this.setPaymentMethod( "card")}}>Card</button>
-                </div>
+                </thead>
+            <tbody>
+                {Object.keys(products).map((product) => <Product key={product} productData={products[product]} />)}
+            </tbody>
+        </table>
+        <div className={checkoutStyles.paymentInfo}>
+            <p className={checkoutStyles.total}>Total: ${total}</p>
+            <div className={checkoutStyles.paymentTypeSelection}>
+                <button className={paymentMethod === "cash" ? checkoutStyles.selected : ""} onClick={() => setPaymentMethod("cash")}>Cash</button>
+                <button className={paymentMethod === "card" ? checkoutStyles.selected : ""} onClick={() => setPaymentMethod("card")}>Card</button>
             </div>
         </div>
-    }
+    </div>
 }

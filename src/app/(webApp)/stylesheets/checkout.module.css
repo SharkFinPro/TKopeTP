@@ -9,6 +9,10 @@
     margin-inline: 1%;
 }
 
+.cartDisplay thead, .cartDisplay tbody {
+    width: 100%;
+}
+
 .cartDisplay tr * {
     border: 2px solid black;
 }
