@@ -47,7 +47,10 @@ class Cart {
         if (this.cart[product].count > 0) {
             this.cart[product].count--;
             this.updateStorage();
+            return true;
         }
+
+        return false;
     }
 
     add(product) {
