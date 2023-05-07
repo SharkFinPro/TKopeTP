@@ -7,15 +7,19 @@ const nextConfig = {
 export default nextConfig;
 
 /* Log connection info to console */
-const networkInterfaceRecords = networkInterfaces();
-let connectionIP;
+const findIP = () => {
+    const networkInterfaceRecords = networkInterfaces();
 
-for (const record in networkInterfaceRecords)
-    for (const network of networkInterfaceRecords[record])
-        if (network.family === "IPv4" && !network.internal)
-            connectionIP = network.address;
+    for (const record in networkInterfaceRecords) {
+        for (const network of networkInterfaceRecords[record]) {
+            if (network.family === "IPv4" && !network.internal) {
+                console.log(`Server listening on port 80`);
+                console.log("Please turn on your computer's hotspot and connect to it with your phone");
+                console.log(`Then on your phone, access '${network.address}' in your browser`);
+                return;
+            }
+        }
+    }
+}
 
-
-console.log(`Server listening on port 80`);
-console.log("Please turn on your computer's hotspot and connect to it with your phone");
-console.log(`Then on your phone, access '${connectionIP}' in your browser`);
+findIP();
