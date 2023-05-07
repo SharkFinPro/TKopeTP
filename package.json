@@ -20,6 +20,6 @@
     "react": "^18.2.0",
     "sharp": "^0.31.3",
     "sqlite3": "^5.1.6",
-    "xlsx": "^0.18.5"
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.19.3/xlsx-0.19.3.tgz"
   }
 }
