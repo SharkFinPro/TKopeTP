@@ -2,7 +2,6 @@
 import { Component } from "react";
 import { Chart } from "chart.js/auto";
 import { getRequest } from "../../tools/requests";
-
 import "../stylesheets/report.module.css";
 import wrapperStyles from "../stylesheets/wrapper.module.css";
 import reportStyles from "../stylesheets/report.module.css";

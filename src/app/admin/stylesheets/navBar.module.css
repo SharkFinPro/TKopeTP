@@ -24,7 +24,7 @@
     font-family: MuseoSans, serif;
 }
 
-.option {
+.content a {
     display: flex;
     flex-wrap: wrap;
     align-content: center;
@@ -38,7 +38,7 @@
     transition: .3s;
 }
 
-.option:hover {
+.content a:hover {
     background: #E6E7E8;
     color: #005596;
     transition: .3s;

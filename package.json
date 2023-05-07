@@ -21,5 +21,10 @@
     "sharp": "^0.31.3",
     "sqlite3": "^5.1.6",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.19.3/xlsx-0.19.3.tgz"
+  },
+  "devDependencies": {
+    "@types/node": "20.1.0",
+    "@types/react": "18.2.6",
+    "typescript": "5.0.4"
   }
 }

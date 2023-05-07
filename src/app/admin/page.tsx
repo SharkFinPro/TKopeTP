@@ -1,10 +1,16 @@
 import "./stylesheets/index.module.css";
 import wrapperStyles from "./stylesheets/wrapper.module.css";
+import { Metadata } from "next";
 
-export default () => {
-    return <>
+export const metadata: Metadata = {
+    title: "Home",
+    description: "Admin Panel Homepage"
+};
+
+export default function Page() {
+    return (
         <div className={wrapperStyles.content}>
             <h1>Admin Panel</h1>
         </div>
-    </>
+    );
 }

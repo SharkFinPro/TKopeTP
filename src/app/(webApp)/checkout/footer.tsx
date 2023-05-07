@@ -2,16 +2,18 @@
 import cart from "../tools/cart.js";
 import { useRouter } from "next/navigation";
 import wrapperStyles from "../stylesheets/wrapper.module.css";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 
 export default function Footer() {
-    const router = useRouter();
-    const checkout = () => {
+    const router: AppRouterInstance = useRouter();
+
+    function checkout(): void {
         if (cart.getPaymentMethod()) {
-            cart.purchase().then(() => {
+            cart.purchase().then((): void => {
                 router.push("/");
             });
         }
-    };
+    }
 
     return (
         <footer className={wrapperStyles.footer}>
