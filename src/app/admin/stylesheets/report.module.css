@@ -60,9 +60,22 @@
 }
 
 .toolbarDownload {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+
+    width: calc(100% - 50px);
+    height: 60px;
+
+    border: 5px solid black;
+    box-sizing: border-box;
+    font-size: inherit;
+    font-family: inherit;
+
     background: #E6E7E8;
     color: #030006;
     transition: .3s;
+    text-decoration: none;
 }
 
 .toolbarDownload:hover {
@@ -136,7 +149,7 @@
     background: #E6E7E8;
 }
 
-.displayCanvas {
+.display canvas {
     width: 75%;
     height: 80%;
 }
