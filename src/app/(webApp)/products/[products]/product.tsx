@@ -9,7 +9,7 @@ export default function Product({ productData }) {
     const [imageData, setImageData] = useState(loadingImage);
     const [count, setCount] = useState(0);
 
-    useEffect(() => {
+    useEffect((): void => {
         cart.createListing(productData);
         setCount(cart.getCount(productData.id));
 
@@ -18,13 +18,13 @@ export default function Product({ productData }) {
         }
     }, []);
 
-    function subFromCart() {
+    function subFromCart(): void {
         if (cart.remove(productData.id)) {
             setCount(count - 1);
         }
     }
 
-    function addToCart() {
+    function addToCart(): void {
         cart.add(productData.id);
         setCount(count + 1);
     }
