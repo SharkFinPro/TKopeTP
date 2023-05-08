@@ -1,4 +1,4 @@
-import { postRequest } from "../../tools/requests.js";
+import { postRequest } from "../../tools/requests.ts";
 
 class Cart {
     constructor() {
@@ -101,4 +101,5 @@ class Cart {
     }
 }
 
-export default new Cart();
+const cart = new Cart();
+export default cart;

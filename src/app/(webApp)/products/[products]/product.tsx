@@ -5,7 +5,16 @@ import cart from "../../tools/cart.js";
 import productsStyles from "../../stylesheets/products.module.css";
 import loadingImage from "../../../../../public/images/NOT_FOUND.png";
 
-export default function Product({ productData }) {
+export interface ProductData {
+    count: Number;
+    displayName: string;
+    id: string;
+    image: string;
+    price: string;
+    productType: Number;
+}
+
+export function Product({ productData }: { productData: ProductData }) {
     const [imageData, setImageData] = useState(loadingImage);
     const [count, setCount] = useState(0);
 

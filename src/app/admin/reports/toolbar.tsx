@@ -5,17 +5,17 @@ import { Chart } from "chart.js/auto";
 import { getRequest } from "../../tools/requests";
 import reportStyles from "../stylesheets/report.module.css";
 
-function ToolbarOptionButton({ children, action, selected }) {
+function ToolbarOptionButton({ children, action, selected }: { children: string, action: any, selected: boolean}) {
     return <button className={`${reportStyles.toolbarOption} ${selected ? reportStyles.toolbarSelected : ""}`} onClick={action}>{children}</button>
 }
 
-function ToolbarTypeButton({ children, action, selected }) {
+function ToolbarTypeButton({ children, action, selected }: { children: string, action: any, selected: boolean}) {
     return <button className={`${reportStyles.toolsSwapOption} ${selected ? reportStyles.toolsSwapOptionSelected : ""}`} onClick={action}>{children}</button>
 }
 
 let chart: Chart;
-async function loadGraph(selectedOption, graphType) {
-    let labels: string[] = [], content: number[] = [], title: string, yLabel: string;
+async function loadGraph(selectedOption: string, graphType: string) {
+    let labels: string[] = [], content: number[] = [], title: string = "", yLabel: string = "";
 
     if (selectedOption === "overview") {
         const rawOverview = await getRequest("/api/admin/reporting/overview");

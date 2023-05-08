@@ -1,4 +1,4 @@
-import Product from "./product";
+import { Product } from "./product";
 import Footer from "../../footer";
 import { Metadata } from "next";
 import "../../stylesheets/superWrapper.css";
@@ -11,8 +11,8 @@ export const metadata: Metadata = {
     description: "Product Selection"
 };
 
-export default async function Page({ params })  {
-    let products = {};
+export default async function Page({ params }: {params: { products: string }})  {
+    let products: any = {};
     if (params.products !== "%5Bproducts%5D")
         products = await productManager.getProductsByType(params.products);
 
