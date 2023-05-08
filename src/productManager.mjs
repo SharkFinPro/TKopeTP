@@ -9,12 +9,7 @@ class ProductManager {
                     reject(error);
                 }
 
-                let productList = {};
-                for (let product of products) {
-                    productList[product.id] = product;
-                }
-
-                resolve(productList);
+                resolve(products);
             });
         });
     }

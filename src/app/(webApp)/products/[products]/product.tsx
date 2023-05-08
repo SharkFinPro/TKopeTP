@@ -6,7 +6,6 @@ import productsStyles from "../../stylesheets/products.module.css";
 import loadingImage from "../../../../../public/images/NOT_FOUND.png";
 
 export interface ProductData {
-    count: Number;
     displayName: string;
     id: string;
     image: string;

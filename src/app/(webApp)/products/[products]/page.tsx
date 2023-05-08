@@ -1,4 +1,4 @@
-import { Product } from "./product";
+import { Product, ProductData } from "./product";
 import Footer from "../../footer";
 import { Metadata } from "next";
 import "../../stylesheets/superWrapper.css";
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page({ params }: {params: { products: string }})  {
-    let products: any = {};
+    let products: ProductData[] = [];
     if (params.products !== "%5Bproducts%5D")
         products = await productManager.getProductsByType(params.products);
 
@@ -22,7 +22,7 @@ export default async function Page({ params }: {params: { products: string }})  
         </header>
         <div className={wrapperStyles.content}>
             <div className={productsStyles.products}>
-                {Object.keys(products).map((product: string) => <Product key={product} productData={products[product]} />)}
+                {Object.keys(products).map((product: string) => <Product key={product} productData={products.at(+product) as ProductData} />)}
             </div>
         </div>
         <Footer />
