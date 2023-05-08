@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/index.mjs",
+  "private": true,
   "scripts": {
     "dev": "next -p 80",
     "build": "next build",
-    "start": "next start -p 80"
+    "start": "next start -p 80",
+    "lint": "next lint"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +27,8 @@
   "devDependencies": {
     "@types/node": "20.1.0",
     "@types/react": "18.2.6",
+    "eslint": "^8.40.0",
+    "eslint-config-next": "^13.4.1",
     "typescript": "5.0.4"
   }
 }

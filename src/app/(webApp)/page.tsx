@@ -16,7 +16,7 @@ export default async function Page() {
 
     return <>
         <header className={wrapperStyles.header}>
-            <h1>T'Kope Kwiskwis<br/>Trading Post</h1>
+            <h1>T&apos;Kope Kwiskwis<br/>Trading Post</h1>
         </header>
         <div className={wrapperStyles.content}>
             <div className={indexStyles.categories}>

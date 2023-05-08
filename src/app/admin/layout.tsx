@@ -4,7 +4,7 @@ import "./stylesheets/superWrapper.css";
 import wrapperStyles from "./stylesheets/wrapper.module.css";
 import navBarStyles from "./stylesheets/navBar.module.css";
 
-export default ({ children }: { children: React.ReactNode}) => {
+export default function Layout({ children }: { children: React.ReactNode}) {
     return <>
         <div className={wrapperStyles.navBar}>
             <div className={navBarStyles.title}>

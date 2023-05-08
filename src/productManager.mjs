@@ -51,4 +51,5 @@ class ProductManager {
     }
 }
 
-export default new ProductManager();
+const productManager = new ProductManager();
+export default productManager;
