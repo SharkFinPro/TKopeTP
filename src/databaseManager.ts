@@ -22,7 +22,7 @@ class DatabaseManager {
 
     all(action: string, callback: (error: string, data: any) => void): void {
         if (typeof this.db === "undefined") {
-            return console.log("Error: Database connection has not been established!");
+            return this.notConnectedError();
         }
 
         this.db.all(action, callback);
@@ -30,7 +30,7 @@ class DatabaseManager {
 
     each(action: string, callback: (error: string, data: any) => void): void {
         if (typeof this.db === "undefined") {
-            return console.log("Error: Database connection has not been established!");
+            return this.notConnectedError();
         }
 
         this.db.each(action, callback);
@@ -48,6 +48,10 @@ class DatabaseManager {
         });
 
         this.db = undefined;
+    }
+
+    notConnectedError(): void {
+        console.log("Error: Database connection has not been established!");
     }
 }
 
