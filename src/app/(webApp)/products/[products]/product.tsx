@@ -16,7 +16,7 @@ export function Product({ productData }: { productData: ProductData }) {
         if (productData.image) {
             import("../../../../../public/images/" + productData.image).then((data) => setImageData(data));
         }
-    }, []);
+    }, [productData]);
 
     function subFromCart(): void {
         if (cart.remove(productData.id)) {

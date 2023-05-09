@@ -122,7 +122,7 @@ export function Toolbar() {
 
     useEffect(() => {
         loadGraph(selectedOption, graphType);
-    }, [selectedOption, graphType, []]);
+    }, [selectedOption, graphType]);
 
     return (
         <div className={reportStyles.toolbar}>
