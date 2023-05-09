@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import Product from "./product";
 import Footer from "./footer";
-import cart from "../tools/cart.js";
+import { cart, ProductData } from "../tools/cart.tsx";
 import "../stylesheets/superWrapper.css";
 import wrapperStyles from "../stylesheets/wrapper.module.css";
 import checkoutStyles from "../stylesheets/checkout.module.css";

@@ -5,9 +5,11 @@ export async function POST(request) {
     const body = await request.json();
     let cart = {};
 
-    for (let product in body.cart) {
-        cart[product] = await productManager.getProduct(product);
-        cart[product].count = body.cart[product];
+    body.cart = JSON.parse(body.cart);
+
+    for (let product of body.cart) {
+        cart[product.id] = await productManager.getProduct(product.id);
+        cart[product.id].count = product.count;
     }
 
     const transactionLog = JSON.stringify({

@@ -1,17 +1,9 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import cart from "../../tools/cart.js";
+import { cart, ProductData } from "../../tools/cart";
 import productsStyles from "../../stylesheets/products.module.css";
 import loadingImage from "../../../../../public/images/NOT_FOUND.png";
-
-export interface ProductData {
-    displayName: string;
-    id: string;
-    image: string;
-    price: string;
-    productType: Number;
-}
 
 export function Product({ productData }: { productData: ProductData }) {
     const [imageData, setImageData] = useState(loadingImage);
@@ -47,7 +39,7 @@ export function Product({ productData }: { productData: ProductData }) {
         <p className={productsStyles.name}>{productData.displayName} - ${productData.price}</p>
         <div className={productsStyles.purchase}>
             <button className={`${productsStyles.option} ${productsStyles.left}`} type="button" onClick={subFromCart}>-</button>
-            <p className={productsStyles.display} id={productData.id}>{count}</p>
+            <p className={productsStyles.display}>{count}</p>
             <button className={`${productsStyles.option} ${productsStyles.right}`} type="button" onClick={addToCart}>+</button>
         </div>
     </div>

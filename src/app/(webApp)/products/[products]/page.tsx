@@ -1,4 +1,5 @@
-import { Product, ProductData } from "./product";
+import { Product } from "./product";
+import { ProductData } from "../../tools/cart";
 import Footer from "../../footer";
 import { Metadata } from "next";
 import "../../stylesheets/superWrapper.css";

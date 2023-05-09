@@ -1,5 +1,5 @@
 "use client";
-import cart from "../tools/cart.js";
+import { cart } from "../tools/cart";
 import { useRouter } from "next/navigation";
 import wrapperStyles from "../stylesheets/wrapper.module.css";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
