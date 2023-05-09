@@ -46,8 +46,8 @@ class Cart {
         localStorage.setItem("paymentMethod", paymentMethod);
     }
 
-    getPaymentMethod() {
-        return localStorage.getItem("paymentMethod");
+    getPaymentMethod(): string {
+        return localStorage.getItem("paymentMethod") || "";
     }
 
     createListing(productData: ProductData): void {

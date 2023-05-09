@@ -1,8 +1,4 @@
-interface ProductData {
-    displayName: string;
-    price: string;
-    count: string;
-}
+import { ProductData } from "../tools/cart";
 
 export default function Product({ productData }: { productData: ProductData }) {
     return (

@@ -2,23 +2,23 @@
 import { useEffect, useState } from 'react';
 import Product from "./product";
 import Footer from "./footer";
-import { cart, ProductData } from "../tools/cart.tsx";
+import { cart, ProductData } from "../tools/cart";
 import "../stylesheets/superWrapper.css";
 import wrapperStyles from "../stylesheets/wrapper.module.css";
 import checkoutStyles from "../stylesheets/checkout.module.css";
 
 export default function Page() {
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState<ProductData[]>([]);
     const [total, setTotal] = useState(0);
     const [paymentMethod, setPaymentMethod] = useState("");
 
-    useEffect(() => {
+    useEffect((): void => {
         setProducts(cart.getActual());
         setTotal(cart.getTotalPrice());
         setPaymentMethod(cart.getPaymentMethod());
     }, []);
 
-    useEffect(() => {
+    useEffect((): void => {
         if (paymentMethod) {
             cart.setPaymentMethod(paymentMethod);
         }
@@ -37,7 +37,8 @@ export default function Page() {
                     </tr>
                     </thead>
                 <tbody>
-                    {Object.keys(products).map((product) => <Product key={product} productData={products[product]} />)}
+                    {Object.keys(products).map((product: string) => <Product key={product} productData={products.at(+product) as ProductData} />)}
+                    {Object.keys(products).map((product: string) => <Product key={product} productData={products.at(+product) as ProductData} />)}
                 </tbody>
             </table>
             <div className={checkoutStyles.paymentInfo}>
