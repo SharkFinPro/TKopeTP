@@ -1,4 +1,4 @@
-import { ProductData } from "../tools/cart";
+import { ProductData } from "../../../productTypes";
 
 export default function Product({ productData }: { productData: ProductData }) {
     return (

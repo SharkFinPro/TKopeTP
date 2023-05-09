@@ -1,10 +1,11 @@
 import Link from "next/link";
-import productManager from "../../productManager.mjs";
+import productManager from "../../productManager";
 import Footer from "./footer";
+import { Metadata } from "next";
+import { ProductType } from "../../productTypes";
 import "./stylesheets/superWrapper.css";
 import wrapperStyles from "./stylesheets/wrapper.module.css";
 import indexStyles from "./stylesheets/index.module.css";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Home",
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-    const categories = await productManager.getProductTypes();
+    const categories: ProductType[] = await productManager.getProductTypes();
 
     return <>
         <header className={wrapperStyles.header}>
@@ -20,7 +21,7 @@ export default async function Page() {
         </header>
         <div className={wrapperStyles.content}>
             <div className={indexStyles.categories}>
-                {Object.keys(categories).map((category: string) => <Link key={category} href={`products/${category}`}>{categories[category]}</Link>)}
+                {categories.map(({ id, displayName }: ProductType) => <Link key={id} href={`products/${id}`}>{displayName}</Link>)}
             </div>
         </div>
         <Footer />

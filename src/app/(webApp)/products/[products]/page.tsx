@@ -1,11 +1,11 @@
 import { Product } from "./product";
-import { ProductData } from "../../tools/cart";
 import Footer from "../../footer";
 import { Metadata } from "next";
+import productManager from "../../../../productManager";
+import { ProductData } from "../../../../productTypes";
 import "../../stylesheets/superWrapper.css";
 import wrapperStyles from "../../stylesheets/wrapper.module.css";
 import productsStyles from "../../stylesheets/products.module.css";
-import productManager from "../../../../productManager.mjs";
 
 export const metadata: Metadata = {
     title: "Products",

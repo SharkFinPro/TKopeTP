@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { cart, ProductData } from "../../tools/cart";
+import { cart } from "../../tools/cart";
+import { ProductData } from "../../../../productTypes";
 import productsStyles from "../../stylesheets/products.module.css";
 import loadingImage from "../../../../../public/images/NOT_FOUND.png";
 

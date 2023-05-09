@@ -1,5 +1,5 @@
 import { access, mkdir, appendFile } from "fs";
-import productManager from "../../../productManager.mjs";
+import productManager from "../../../productManager";
 
 export async function POST(request) {
     const body = await request.json();

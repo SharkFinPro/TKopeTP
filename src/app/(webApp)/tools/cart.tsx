@@ -1,18 +1,5 @@
 import { postRequest } from "../../tools/requests";
-
-export interface ProductData {
-    displayName: string;
-    id: number;
-    image: string;
-    price: number;
-    productType: number;
-    count?: number;
-}
-
-interface SimplifiedProductData {
-    id: number;
-    count?: number;
-}
+import { ProductData, SimplifiedProductData } from "../../../productTypes";
 
 class Cart {
     cart: ProductData[] = [];
