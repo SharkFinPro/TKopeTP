@@ -2,12 +2,14 @@ import sqlite3 from "sqlite3";
 import { join } from "path";
 
 class DatabaseManager {
+    db: sqlite3.Database | undefined = undefined;
+
     constructor() {
         this.connect();
     }
 
-    connect() {
-        if (this.connected) {
+    connect(): void {
+        if (this.db) {
             return console.log("Database connection is already established!");
         }
 
@@ -15,21 +17,27 @@ class DatabaseManager {
             if (error) {
                 return console.error(error);
             }
-
-            this.connected = true;
         });
     }
 
-    all(action, callback) {
+    all(action: string, callback: (error: string, data: any) => void): void {
+        if (typeof this.db === "undefined") {
+            return console.log("Error: Database connection has not been established!");
+        }
+
         this.db.all(action, callback);
     }
 
-    each(action, callback) {
+    each(action: string, callback: (error: string, data: any) => void): void {
+        if (typeof this.db === "undefined") {
+            return console.log("Error: Database connection has not been established!");
+        }
+
         this.db.each(action, callback);
     }
 
-    shutdown() {
-        if (!this.connected) {
+    shutdown(): void {
+        if (typeof this.db === "undefined") {
             return console.log("No database connection to shutdown!");
         }
 
@@ -37,11 +45,11 @@ class DatabaseManager {
             if (error) {
                 return console.error(error);
             }
+        });
 
-            this.connected = false;
-        })
+        this.db = undefined;
     }
 }
 
-const databaseManager = new DatabaseManager();
+const databaseManager: DatabaseManager = new DatabaseManager();
 export default databaseManager;
