@@ -38,8 +38,7 @@ export default function Page() {
                     </tr>
                     </thead>
                 <tbody>
-                    {Object.keys(products).map((product: string) => <Product key={product} productData={products.at(+product) as ProductData} />)}
-                    {Object.keys(products).map((product: string) => <Product key={product} productData={products.at(+product) as ProductData} />)}
+                    {products.map((product: ProductData) => <Product key={product.id} productData={product} />)}
                 </tbody>
             </table>
             <div className={checkoutStyles.paymentInfo}>

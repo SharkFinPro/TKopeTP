@@ -23,7 +23,7 @@ export default async function Page({ params }: {params: { products: string }})  
         </header>
         <div className={wrapperStyles.content}>
             <div className={productsStyles.products}>
-                {Object.keys(products).map((product: string) => <Product key={product} productData={products.at(+product) as ProductData} />)}
+                {products.map((product: ProductData) => <Product key={product.id} productData={product} />)}
             </div>
         </div>
         <Footer />
