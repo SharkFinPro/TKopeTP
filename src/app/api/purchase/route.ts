@@ -1,24 +1,25 @@
 import { access, mkdir, appendFile } from "fs";
 import productManager from "../../../productManager";
+import { ProductData } from "../../../productTypes";
 
-export async function POST(request) {
+export async function POST(request: Request): Promise<Response> {
     const body = await request.json();
     body.cart = JSON.parse(body.cart);
 
-    let cart = [];
-    for (let product of body.cart) {
-        let data = await productManager.getProduct(product.id);
-        data.count = product.count;
+    const cart: ProductData[] = [];
+    for (let { id, count } of body.cart) {
+        let data: ProductData = await productManager.getProduct(id);
+        data.count = count;
         cart.push(data);
     }
 
-    const transactionLog = JSON.stringify({
+    const transactionLog: string = JSON.stringify({
         cart: JSON.stringify(cart),
         paymentMethod: body.paymentMethod,
         time: body.time
     });
 
-    access("./bin", (err) => {
+    access("./bin", (err): void => {
         if (err) {
             mkdir("./bin", (err) => {
                 if (err) {
