@@ -2,21 +2,21 @@ import { postRequest } from "../../tools/requests";
 import { ProductData, SimplifiedProductData } from "../../../productTypes";
 
 class Cart {
-    cart: ProductData[] = [];
+    data: ProductData[] = [];
 
     constructor() {
         if (typeof window === "undefined") {
             return;
         }
 
-        this.cart = this.getStorage();
-        if (this.cart.length === 0) {
+        this.data = this.getStorage();
+        if (this.data.length === 0) {
             this.reset();
         }
     }
 
     reset(): void {
-        this.cart = [];
+        this.data = [];
         this.updateStorage();
         this.setPaymentMethod("");
     }
@@ -38,9 +38,9 @@ class Cart {
     }
 
     createListing(productData: ProductData): void {
-        if (!this.cart.find((product: ProductData): boolean => product.id === productData.id)) {
+        if (!this.data.find((product: ProductData): boolean => product.id === productData.id)) {
             productData.count = 0;
-            this.cart.push(productData);
+            this.data.push(productData);
         }
 
         this.updateStorage();
@@ -79,11 +79,11 @@ class Cart {
     }
 
     getCount(productId: number): number {
-        const product: ProductData | undefined = this.cart.find((product: ProductData): boolean => product.id === productId);
+        const product: ProductData | undefined = this.data.find((product: ProductData): boolean => product.id === productId);
         if (!product || typeof product.count === "undefined")
             return 0;
 
-        const cartValue: ProductData | undefined = this.cart.at(this.cart.indexOf(product));
+        const cartValue: ProductData | undefined = this.data.at(this.data.indexOf(product));
         if (!cartValue || typeof cartValue.count === "undefined")
             return 0;
 
@@ -93,7 +93,7 @@ class Cart {
     getTotalPrice(): number {
         let total: number = 0;
 
-        for (let product of this.cart) {
+        for (let product of this.data) {
             if (!product.count) {
                 continue;
             }
@@ -106,7 +106,7 @@ class Cart {
 
     getActual(): ProductData[] {
         let cart: ProductData[] = [];
-        for (let product of this.cart) {
+        for (let product of this.data) {
             if (product.count) {
                 cart.push(product);
             }
