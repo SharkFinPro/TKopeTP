@@ -26,7 +26,7 @@ class Cart {
     }
 
     updateStorage(): void {
-        localStorage.setItem("cart", JSON.stringify(this.cart));
+        localStorage.setItem("cart", JSON.stringify(this.data));
     }
 
     setPaymentMethod(paymentMethod: string): void {
@@ -47,13 +47,13 @@ class Cart {
     }
 
     remove(productId: number): boolean {
-        const product: ProductData | undefined = this.cart.find((product: ProductData): boolean => product.id === productId);
+        const product: ProductData | undefined = this.data.find((product: ProductData): boolean => product.id === productId);
 
         if (!product || !product.count)
             return false;
 
         if (product.count > 0) {
-            const cartValue: ProductData | undefined = this.cart.at(this.cart.indexOf(product));
+            const cartValue: ProductData | undefined = this.data.at(this.data.indexOf(product));
             if (!cartValue || !cartValue.count)
                 return false;
 
@@ -66,11 +66,11 @@ class Cart {
     }
 
     add(productId: number): void {
-        const product: ProductData | undefined = this.cart.find((product: ProductData): boolean => product.id === productId);
+        const product: ProductData | undefined = this.data.find((product: ProductData): boolean => product.id === productId);
         if (!product || typeof product.count === "undefined")
             return;
 
-        const cartValue: ProductData | undefined = this.cart.at(this.cart.indexOf(product));
+        const cartValue: ProductData | undefined = this.data.at(this.data.indexOf(product));
         if (!cartValue || typeof cartValue.count === "undefined")
             return;
 
