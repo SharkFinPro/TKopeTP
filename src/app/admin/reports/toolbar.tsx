@@ -3,56 +3,72 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Chart } from "chart.js/auto";
 import { getRequest } from "../../tools/requests";
+import {ProductData, ProductType} from "../../../productTypes";
 import reportStyles from "../stylesheets/report.module.css";
 
-function ToolbarOptionButton({ children, action, selected }: { children: string, action: any, selected: boolean}) {
+function ToolbarOptionButton({ children, action, selected }: { children: string, action: any, selected: boolean }) {
     return <button className={`${reportStyles.toolbarOption} ${selected ? reportStyles.toolbarSelected : ""}`} onClick={action}>{children}</button>
 }
 
-function ToolbarTypeButton({ children, action, selected }: { children: string, action: any, selected: boolean}) {
+function ToolbarTypeButton({ children, action, selected }: { children: string, action: any, selected: boolean }) {
     return <button className={`${reportStyles.toolsSwapOption} ${selected ? reportStyles.toolsSwapOptionSelected : ""}`} onClick={action}>{children}</button>
 }
 
 let chart: Chart;
 async function loadGraph(selectedOption: string, graphType: string) {
     let labels: string[] = [], content: number[] = [], title: string = "", yLabel: string = "";
+    const rawOverview: ProductData[] = await getRequest("/api/admin/reporting/overview");
 
     if (selectedOption === "overview") {
-        const rawOverview = await getRequest("/api/admin/reporting/overview");
         title = "Products Overview";
 
         if (graphType === "units") {
             yLabel = "Total Units";
-            for (let product in rawOverview) {
-                labels.push(rawOverview[product].displayName);
-                content.push(rawOverview[product].count);
+            for (let { displayName, count } of rawOverview) {
+                if (!count) {
+                    continue;
+                }
+
+                labels.push(displayName);
+                content.push(count);
             }
         } else if (graphType === "money") {
             yLabel = "Total $";
-            for (let product in rawOverview) {
-                labels.push(rawOverview[product].displayName);
-                content.push(rawOverview[product].count * rawOverview[product].price);
+            for (let { displayName, count, price } of rawOverview) {
+                if (!count) {
+                    continue;
+                }
+
+                labels.push(displayName);
+                content.push(count * price);
             }
         }
     } else if (selectedOption === "overviewCategory") {
-        const rawOverview = await getRequest("/api/admin/reporting/overview");
-        const categories = await getRequest("/api/productCategories");
+        const categories: ProductType[] = await getRequest("/api/productCategories");
         title = "Products Overview by Category";
 
-        for (let category in categories) {
-            labels[+category - 1] = categories[category];
-            content[+category - 1] = 0;
+        for (let { displayName, id } of categories) {
+            labels[id - 1] = displayName;
+            content[id - 1] = 0
         }
 
         if (graphType === "units") {
             yLabel = "Total Units";
-            for (let product in rawOverview) {
-                content[rawOverview[product].productType - 1] += rawOverview[product].count;
+            for (let { productType, count } of rawOverview) {
+                if (!count) {
+                    continue;
+                }
+
+                content[productType - 1] += count;
             }
         } else if (graphType === "money") {
             yLabel = "Total $";
-            for (let product in rawOverview) {
-                content[rawOverview[product].productType - 1] += rawOverview[product].count * rawOverview[product].price;
+            for (let { productType, count, price } of rawOverview) {
+                if (!count) {
+                    continue;
+                }
+
+                content[productType - 1] += count * price;
             }
         }
     }

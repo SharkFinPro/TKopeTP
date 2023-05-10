@@ -3,17 +3,17 @@ import productManager from "../../../productManager";
 
 export async function POST(request) {
     const body = await request.json();
-    let cart = {};
-
     body.cart = JSON.parse(body.cart);
 
+    let cart = [];
     for (let product of body.cart) {
-        cart[product.id] = await productManager.getProduct(product.id);
-        cart[product.id].count = product.count;
+        let data = await productManager.getProduct(product.id);
+        data.count = product.count;
+        cart.push(data);
     }
 
     const transactionLog = JSON.stringify({
-        cart,
+        cart: JSON.stringify(cart),
         paymentMethod: body.paymentMethod,
         time: body.time
     });

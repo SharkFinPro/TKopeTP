@@ -1,4 +1,4 @@
-import Report from "../../../../../reporting/report.mjs";
+import Report from "../../../../../reporting/report.ts";
 
 export async function GET(request) {
     const report = new Report("./bin/dump.txt" + (request.body ? "" : "")); // NOTE: blank string query added to execute at runtime

@@ -1,4 +1,4 @@
-import Report from "../../../../../reporting/report.mjs";
+import Report from "../../../../../reporting/report.ts";
 import { NextResponse } from "next/server";
 
 export async function GET(request) {
