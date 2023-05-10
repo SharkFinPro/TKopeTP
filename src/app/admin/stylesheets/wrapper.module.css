@@ -17,4 +17,9 @@
 
     width: 100%;
     height: calc(100% - 70px);
+
+    color: #36454F;
+    background: #E6E7E8;
+    font-size: 17.5px;
+    font-family: MuseoSans, serif;
 }

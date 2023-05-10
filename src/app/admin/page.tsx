@@ -1,4 +1,3 @@
-import "./stylesheets/index.module.css";
 import wrapperStyles from "./stylesheets/wrapper.module.css";
 import { Metadata } from "next";
 
