@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function Page() {
     return (
         <div className={wrapperStyles.content}>
-            <h1>Admin Panel</h1>
+            <h1 style={{textAlign: "center"}}>Admin Panel</h1>
         </div>
     );
 }

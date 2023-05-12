@@ -15,6 +15,19 @@ class ProductManager {
         });
     }
 
+    getProducts(): Promise<ProductData[]> {
+        return new Promise((resolve, reject): void => {
+            databaseManager.all(`SELECT productType, displayName, price, imageFile as image, id FROM Products`, (error: string, products): void => {
+                if (error) {
+                    console.error(error);
+                    reject(error);
+                }
+
+                resolve(products);
+            });
+        });
+    }
+
     getProduct(productID: string): Promise<ProductData> {
         return new Promise((resolve, reject): void => {
             databaseManager.each(`SELECT productType, displayName, price, imageFile as image, id FROM Products WHERE id=${productID}`, (error: string, product): void => {

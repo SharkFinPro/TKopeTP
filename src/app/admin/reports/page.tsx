@@ -1,6 +1,5 @@
 import { Toolbar } from "./toolbar";
 import { Metadata } from "next";
-import wrapperStyles from "../stylesheets/wrapper.module.css";
 import reportStyles from "../stylesheets/report.module.css";
 
 export const metadata: Metadata = {
@@ -10,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function Page() {
     return (
-        <div className={wrapperStyles.content}>
+        <div className={reportStyles.wrapper}>
             <Toolbar />
             <div className={reportStyles.display}>
                 <canvas id="myChart"></canvas>
