@@ -1,10 +1,10 @@
 import databaseManager from "./databaseManager";
-import { ProductData, ProductType } from "./productTypes";
+import {ProductData, ProductType, RobustProductData} from "./productTypes";
 
 class ProductManager {
     getProductsByType(type: string): Promise<ProductData[]> {
         return new Promise((resolve, reject): void => {
-            databaseManager.all(`SELECT productType, displayName, price, imageFile as image, id FROM Products WHERE productType=${type}`, (error: string, products): void => {
+            databaseManager.all(`SELECT productType, displayName, price, image, id FROM Products WHERE productType=${type}`, (error: string, products): void => {
                 if (error) {
                     console.error(error);
                     reject(error);
@@ -15,9 +15,9 @@ class ProductManager {
         });
     }
 
-    getProducts(): Promise<ProductData[]> {
+    getProducts(): Promise<RobustProductData[]> {
         return new Promise((resolve, reject): void => {
-            databaseManager.all(`SELECT productType, displayName, price, imageFile as image, id FROM Products`, (error: string, products): void => {
+            databaseManager.all("SELECT * FROM Products", (error: string, products): void => {
                 if (error) {
                     console.error(error);
                     reject(error);
@@ -30,7 +30,7 @@ class ProductManager {
 
     getProduct(productID: string): Promise<ProductData> {
         return new Promise((resolve, reject): void => {
-            databaseManager.each(`SELECT productType, displayName, price, imageFile as image, id FROM Products WHERE id=${productID}`, (error: string, product): void => {
+            databaseManager.each(`SELECT productType, displayName, price, image, id FROM Products WHERE id=${productID}`, (error: string, product): void => {
                 if (error) {
                     console.error(error);
                     reject(error);

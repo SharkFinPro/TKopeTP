@@ -7,6 +7,16 @@ export interface ProductData {
     count?: number;
 }
 
+export interface RobustProductData {
+    displayName: string;
+    id: number;
+    image: string;
+    price: number;
+    productType: number;
+    count?: number;
+    active: boolean;
+}
+
 export interface SimplifiedProductData {
     id: number;
     count?: number;
