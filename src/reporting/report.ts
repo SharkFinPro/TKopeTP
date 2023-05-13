@@ -114,4 +114,8 @@ export default class Report {
     getOverview(): ProductData[] {
         return this.products;
     }
+
+    getTimes(): Date[] {
+        return this.timestamps;
+    }
 }
