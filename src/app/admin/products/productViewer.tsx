@@ -1,5 +1,5 @@
 "use client";
-import { RobustProductData} from "../../../productTypes";
+import { RobustProductData } from "../../../productTypes";
 import { useEffect, useState } from "react";
 import productViewerStyles from "../stylesheets/productViewer.module.css"
 import Link from "next/link";
@@ -27,7 +27,7 @@ export function ProductViewer() {
 
     useEffect((): void => {
         loadProducts().then((productData: RobustProductData[]) => setProducts(productData));
-    });
+    }, []);
 
     return <>
         <table className={productViewerStyles.productTable}>
