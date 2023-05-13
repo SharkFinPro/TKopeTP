@@ -1,11 +1,12 @@
 .productTable {
+    display: grid;
     width: 100%;
 }
 
 .productTable tbody, .productTable thead {
     display: grid;
-    justify-content: center;
-    grid-template-columns: max(75%, 1200px);
+    padding-inline: 12.5%;
+    min-width: 1000px;
 }
 
 .productTable thead {
@@ -15,16 +16,34 @@
 
 .productTable tr {
     width: 100%;
-    height: 2em;
+    padding-inline: 5%;
+    height: 3em;
 
     display: grid;
+    justify-content: center;
+    align-content: center;
     grid-template-columns: 10% 25% 10% 30% 15% 10%;
 
+    border: 3px solid black;
+    box-sizing: border-box;
+
+    transition: .25s;
+}
+
+.productTable thead tr {
+    background: #36454F;
+    color: #E6E7E8;
+}
+
+.productTable tbody tr {
+    border-top: none;
     background: #E6E7E8;
+    color: #36454F;
 }
 
 .productTable tbody tr:hover {
     background: #FFFFFF;
+    transition: .25s;
 }
 
 .productTable td a {

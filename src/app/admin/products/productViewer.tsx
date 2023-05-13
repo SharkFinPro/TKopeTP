@@ -15,7 +15,7 @@ function Product({ productData }: { productData: RobustProductData }) {
             <td>{productData.id}</td>
             <td>{productData.displayName}</td>
             <td>${productData.price}</td>
-            <td><Link href={"/images/" + productData.image} target={"_blank"}>{productData.image}</Link></td>
+            <td><Link href={"/images/" + productData.image} target={"_blank"} prefetch={false}>{productData.image}</Link></td>
             <td>{productData.productType}</td>
             <td>{productData.active? "Yes" : "No"}</td>
         </tr>
@@ -29,21 +29,21 @@ export function ProductViewer() {
         loadProducts().then((productData: RobustProductData[]) => setProducts(productData));
     }, []);
 
-    return <>
+    return (
         <table className={productViewerStyles.productTable}>
             <thead>
                 <tr>
-                    <td>ID</td>
-                    <td>Display Name</td>
-                    <td>Price</td>
-                    <td>Image</td>
-                    <td>Product Type</td>
-                    <td>Active</td>
+                    <td><strong>ID</strong></td>
+                    <td><strong>Display Name</strong></td>
+                    <td><strong>Price</strong></td>
+                    <td><strong>Image</strong></td>
+                    <td><strong>Product Type</strong></td>
+                    <td><strong>Active</strong></td>
                 </tr>
             </thead>
             <tbody>
                 {products.map((product: RobustProductData) => <Product key={product.id} productData={product} />)}
             </tbody>
         </table>
-    </>
+    );
 }
