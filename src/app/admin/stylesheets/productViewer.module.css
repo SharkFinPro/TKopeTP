@@ -5,7 +5,7 @@
 .productTable tbody, .productTable thead {
     display: grid;
     justify-content: center;
-    grid-template-columns: max(50%, 900px);
+    grid-template-columns: max(75%, 1200px);
 }
 
 .productTable thead {
@@ -18,7 +18,7 @@
     height: 2em;
 
     display: grid;
-    grid-template-columns: 10% 35% 10% 35% 10%;
+    grid-template-columns: 10% 25% 10% 30% 15% 10%;
 
     background: #E6E7E8;
 }

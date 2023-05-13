@@ -16,6 +16,7 @@ function Product({ productData }: { productData: RobustProductData }) {
             <td>{productData.displayName}</td>
             <td>${productData.price}</td>
             <td><Link href={"/images/" + productData.image} target={"_blank"}>{productData.image}</Link></td>
+            <td>{productData.productType}</td>
             <td>{productData.active? "Yes" : "No"}</td>
         </tr>
     );
@@ -36,6 +37,7 @@ export function ProductViewer() {
                     <td>Display Name</td>
                     <td>Price</td>
                     <td>Image</td>
+                    <td>Product Type</td>
                     <td>Active</td>
                 </tr>
             </thead>
