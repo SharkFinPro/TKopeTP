@@ -1,14 +1,3 @@
-.navBar {
-    display: flex;
-    flex-wrap: wrap;
-
-    width: 100%;
-    height: 70px;
-
-    color: #E6E7E8;
-    background: #005596;
-}
-
 .content {
     width: 100%;
     height: calc(100% - 70px);
