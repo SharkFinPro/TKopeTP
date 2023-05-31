@@ -36,6 +36,14 @@ class DatabaseManager {
         this.db.each(action, callback);
     }
 
+    run(action: string): void {
+        if (typeof this.db === "undefined") {
+            return this.notConnectedError();
+        }
+
+        this.db?.run(action);
+    }
+
     shutdown(): void {
         if (typeof this.db === "undefined") {
             return console.log("No database connection to shutdown!");

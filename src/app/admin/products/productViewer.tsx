@@ -1,17 +1,18 @@
 "use client";
 import { RobustProductData } from "../../../productTypes";
 import { useEffect, useState } from "react";
-import productViewerStyles from "../stylesheets/productViewer.module.css"
+import { ProductEditor } from "./productEditor";
 import Link from "next/link";
+import productViewerStyles from "../stylesheets/productViewer.module.css"
 
 async function loadProducts(): Promise<RobustProductData[]> {
     const res: Response = await fetch("/api/products");
     return await res.json();
 }
 
-function Product({ productData }: { productData: RobustProductData }) {
+function Product({ productData, setCurrentProduct }: { productData: RobustProductData, setCurrentProduct: any }) {
     return (
-        <tr>
+        <tr onClick={() => setCurrentProduct(productData)}>
             <td>{productData.id}</td>
             <td>{productData.displayName}</td>
             <td>${productData.price}</td>
@@ -24,12 +25,14 @@ function Product({ productData }: { productData: RobustProductData }) {
 
 export function ProductViewer() {
     const [products, setProducts] = useState<RobustProductData[]>([]);
+    const [currentProduct, setCurrentProduct] = useState<RobustProductData | undefined>(undefined);
+
 
     useEffect((): void => {
         loadProducts().then((productData: RobustProductData[]) => setProducts(productData));
     }, []);
 
-    return (
+    return <>
         <table className={productViewerStyles.productTable}>
             <thead>
                 <tr>
@@ -42,8 +45,9 @@ export function ProductViewer() {
                 </tr>
             </thead>
             <tbody>
-                {products.map((product: RobustProductData) => <Product key={product.id} productData={product} />)}
+                {products.map((product: RobustProductData) => <Product key={product.id} productData={product} setCurrentProduct={setCurrentProduct} />)}
             </tbody>
         </table>
-    );
+        <ProductEditor productData={currentProduct} setProductData={setCurrentProduct} />
+    </>;
 }

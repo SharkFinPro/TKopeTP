@@ -1,0 +1,38 @@
+.modal[open] {
+    width: 80%;
+    height: 75%;
+    background: #E6E7E8;
+    border: 5px solid #030006;
+    outline: none;
+    display: grid;
+    grid-template-rows: 15% 70% 15%;
+}
+
+.modal::backdrop {
+    backdrop-filter: brightness(60%);
+}
+
+.modal header {
+    display: grid;
+    place-content: center;
+}
+
+.settings {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 400px);
+    column-gap: 1rem;
+    row-gap: 1rem;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.setting {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+
+.setting input, .setting select {
+    border: 2px solid #030006;
+    height: 2rem;
+    border-radius: 5px;
+}

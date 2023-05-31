@@ -53,6 +53,10 @@ class ProductManager {
             });
         });
     }
+
+    updateProduct(productData: RobustProductData): void {
+        databaseManager.run(`UPDATE Products SET displayName='${productData.displayName}', image='${productData.image}', price='${productData.price}', productType='${productData.productType}', active='${productData.active}' WHERE id=${productData.id}`);
+    }
 }
 
 const productManager: ProductManager = new ProductManager();
