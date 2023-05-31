@@ -3,7 +3,6 @@ import {ProductData, ProductType, RobustProductData} from "./productTypes";
 
 class ProductManager {
     getProductsByType(type: string, active: boolean = false): Promise<ProductData[]> {
-        console.log(active)
         return new Promise((resolve, reject): void => {
             databaseManager.all(`SELECT productType, displayName, price, image, id FROM Products WHERE productType=${type}${active ? " AND active=true" : ""}`, (error: string, products): void => {
                 if (error) {
