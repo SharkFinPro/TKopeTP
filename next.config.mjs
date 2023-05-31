@@ -1,7 +1,15 @@
 /** @type {import('next').NextConfig} */
 import { networkInterfaces } from "os";
 const nextConfig = {
-    reactStrictMode: true
+    reactStrictMode: true,
+    images: {
+        remotePatterns: [
+            {
+                protocol: "http",
+                hostname: "**"
+            }
+        ]
+    }
 };
 
 export default nextConfig;

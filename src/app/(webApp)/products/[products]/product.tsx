@@ -1,13 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { cart } from "../../tools/cart";
 import { ProductData } from "../../../../productTypes";
 import productsStyles from "../../stylesheets/products.module.css";
 import loadingImage from "../../../../../public/images/NOT_FOUND.png";
 
 export function Product({ productData }: { productData: ProductData }) {
-    const [imageData, setImageData] = useState(loadingImage);
+    const [imageData, setImageData] = useState<StaticImageData | string>(loadingImage);
     const [count, setCount] = useState(0);
 
     useEffect((): void => {
@@ -15,7 +15,11 @@ export function Product({ productData }: { productData: ProductData }) {
         setCount(cart.getCount(productData.id));
 
         if (productData.image) {
-            import("../../../../../public/images/" + productData.image).then((data) => setImageData(data));
+            fetch(`http://${window.location.hostname}:3000/images/${productData.image}`, { mode: "no-cors" }).then(() => {
+                setImageData(`http://${window.location.hostname}:3000/images/${productData.image}`);
+            }).catch((err): void => {
+                console.log(err);
+            })
         }
     }, [productData]);
 
@@ -35,6 +39,8 @@ export function Product({ productData }: { productData: ProductData }) {
             <Image
                 src={imageData}
                 alt="Product Image"
+                width={300}
+                height={168.75}
             />
         </div>
         <p className={productsStyles.name}>{productData.displayName} - ${productData.price}</p>
