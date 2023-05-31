@@ -41,9 +41,10 @@
 }
 
 .setting input, .setting select {
-    border: 2px solid #030006;
     height: 2rem;
+    border: 2px solid #030006;
     border-radius: 5px;
+    outline: none;
     font-size: 1.25rem;
     background: #FFFFFF;
     color: #030006;
