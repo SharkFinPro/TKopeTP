@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default async function Page({ params }: {params: { products: string }})  {
     let products: ProductData[] = [];
     if (params.products !== "%5Bproducts%5D")
-        products = await productManager.getProductsByType(params.products);
+        products = await productManager.getProductsByType(params.products, true);
 
     return <>
         <header className={wrapperStyles.header}>
