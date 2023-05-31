@@ -48,8 +48,9 @@ export function ProductEditor({ productData, setProductData }: { productData: Ro
                 active: event.target.active.value
             })
         };
-        const response = fetch("/api/admin/products/edit", requestOptions);
-        dialogRef.current?.close();
+        fetch("/api/admin/products/edit", requestOptions).then((): void => {
+            dialogRef.current?.close();
+        });
     }
 
     return (

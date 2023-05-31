@@ -18,7 +18,7 @@ function Product({ productData, setCurrentProduct }: { productData: RobustProduc
             <td>${productData.price}</td>
             <td><Link href={"/images/" + productData.image} target={"_blank"} prefetch={false}>{productData.image}</Link></td>
             <td>{productData.productType}</td>
-            <td>{productData.active? "Yes" : "No"}</td>
+            <td>{productData.active? "Active" : "Inactive"}</td>
         </tr>
     );
 }
@@ -29,8 +29,10 @@ export function ProductViewer() {
 
 
     useEffect((): void => {
-        loadProducts().then((productData: RobustProductData[]) => setProducts(productData));
-    }, []);
+        loadProducts().then((productData: RobustProductData[]) => {
+            setProducts([...productData]);
+        });
+    }, [currentProduct]);
 
     return <>
         <table className={productViewerStyles.productTable}>
