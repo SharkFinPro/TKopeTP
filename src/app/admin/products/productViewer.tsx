@@ -30,7 +30,7 @@ export function ProductViewer() {
 
     useEffect((): void => {
         loadProducts().then((productData: RobustProductData[]) => {
-            setProducts([...productData]);
+            setProducts(productData);
         });
     }, [currentProduct]);
 
