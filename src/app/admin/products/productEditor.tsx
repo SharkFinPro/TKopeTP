@@ -36,6 +36,11 @@ export function ProductEditor({ productData, setCurrentProduct }: { productData:
 
     function handleSubmit(event: any): void {
         event.preventDefault();
+
+        if (parseInt(event.target.price.value) != event.target.price.value) {
+            return console.log("Invalid Price!");
+        }
+
         const requestOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
