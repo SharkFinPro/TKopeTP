@@ -10,23 +10,9 @@ async function loadProducts(): Promise<RobustProductData[]> {
     return await res.json();
 }
 
-function Product({ productData, setCurrentProduct }: { productData: RobustProductData, setCurrentProduct: any }) {
-    return (
-        <tr onClick={() => setCurrentProduct(productData)}>
-            <td>{productData.id}</td>
-            <td>{productData.displayName}</td>
-            <td>${productData.price}</td>
-            <td><Link href={"/images/" + productData.image} target={"_blank"} prefetch={false}>{productData.image}</Link></td>
-            <td>{productData.productType}</td>
-            <td>{productData.active? "Active" : "Inactive"}</td>
-        </tr>
-    );
-}
-
 export function ProductViewer() {
     const [products, setProducts] = useState<RobustProductData[]>([]);
     const [currentProduct, setCurrentProduct] = useState<RobustProductData | undefined>(undefined);
-
 
     useEffect((): void => {
         loadProducts().then((productData: RobustProductData[]) => {
@@ -47,9 +33,18 @@ export function ProductViewer() {
                 </tr>
             </thead>
             <tbody>
-                {products.map((product: RobustProductData) => <Product key={product.id} productData={product} setCurrentProduct={setCurrentProduct} />)}
+                {products.map((productData: RobustProductData) => (
+                    <tr onClick={() => setCurrentProduct(productData)} key={productData.id}>
+                        <td>{productData.id}</td>
+                        <td>{productData.displayName}</td>
+                        <td>${productData.price}</td>
+                        <td><Link href={"/images/" + productData.image} target={"_blank"} prefetch={false}>{productData.image}</Link></td>
+                        <td>{productData.productType}</td>
+                        <td>{productData.active? "Active" : "Inactive"}</td>
+                    </tr>
+                ))}
             </tbody>
         </table>
-        <ProductEditor productData={currentProduct} setProductData={setCurrentProduct} />
+        <ProductEditor productData={currentProduct} setCurrentProduct={setCurrentProduct} />
     </>;
 }

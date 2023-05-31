@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import editorStyles from "../stylesheets/productEditor.module.css";
 import { getRequest } from "../../tools/requests";
 
-export function ProductEditor({ productData, setProductData }: { productData: RobustProductData | undefined, setProductData: any }) {
+export function ProductEditor({ productData, setCurrentProduct }: { productData: RobustProductData | undefined, setCurrentProduct: any }) {
     const dialogRef = useRef<HTMLDialogElement | null>(null);
     const formRef = useRef<HTMLFormElement | null>(null);
     const [productTypes, setProductTypes] = useState<ProductType[]>([]);
@@ -29,7 +29,7 @@ export function ProductEditor({ productData, setProductData }: { productData: Ro
             dialogRef.current.showModal();
 
             dialogRef.current?.addEventListener("close", (event: Event): void => {
-                setProductData(undefined);
+                setCurrentProduct(undefined);
             });
         }
     }, [productData]);

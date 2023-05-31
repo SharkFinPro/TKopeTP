@@ -1,12 +1,13 @@
 .modal[open] {
     width: 80%;
     height: 75%;
-    background: #E6E7E8;
     border: 5px solid #030006;
     border-radius: 1.75rem;
     outline: none;
     display: grid;
     grid-template-rows: 15% 70% 15%;
+    background: #36454F;
+    color: #FFFFFF;
 }
 
 .modal::backdrop {
@@ -36,14 +37,20 @@
 }
 
 .setting label {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
 }
 
 .setting input, .setting select {
     border: 2px solid #030006;
     height: 2rem;
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: 1.25rem;
+    background: #FFFFFF;
+    color: #030006;
+}
+
+.setting input:disabled {
+    background: #E6E7E8;
 }
 
 .modal footer {
@@ -57,6 +64,6 @@
     margin-inline: 1rem;
     aspect-ratio: 2/1;
     font-size: 1.5rem;
-    background: #36454F;
-    color: #E6E7E8;
+    background: #E6E7E8;
+    color: #030006;
 }
