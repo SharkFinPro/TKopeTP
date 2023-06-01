@@ -9,14 +9,15 @@ import loadingImage from "../../../../../public/images/NOT_FOUND.png";
 export function Product({ productData }: { productData: ProductData }) {
     const [imageData, setImageData] = useState<StaticImageData | string>(loadingImage);
     const [count, setCount] = useState(0);
+    const cdn = process.env.cdn || `http://${window.location.hostname}:3000`;
 
     useEffect((): void => {
         cart.createListing(productData);
         setCount(cart.getCount(productData.id));
 
         if (productData.image) {
-            fetch(`http://${window.location.hostname}:3000/images/${productData.image}`, { mode: "no-cors" }).then(() => {
-                setImageData(`http://${window.location.hostname}:3000/images/${productData.image}`);
+            fetch(`${cdn}/images/${productData.image}`, { mode: "no-cors" }).then(() => {
+                setImageData(`${cdn}/images/${productData.image}`);
             }).catch((err): void => {
                 console.log(err);
             })
