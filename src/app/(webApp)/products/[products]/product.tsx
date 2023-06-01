@@ -6,10 +6,10 @@ import { ProductData } from "../../../../productTypes";
 import productsStyles from "../../stylesheets/products.module.css";
 import loadingImage from "../../../../../public/images/NOT_FOUND.png";
 
-export function Product({ productData }: { productData: ProductData }) {
+export function Product({ productData, processCDN }: { productData: ProductData, processCDN: undefined | string }) {
     const [imageData, setImageData] = useState<StaticImageData | string>(loadingImage);
     const [count, setCount] = useState(0);
-    const cdn = process.env.cdn || `http://${window.location.hostname}:3000`;
+    const cdn = processCDN || `http://${window.location.hostname}:3000`;
 
     useEffect((): void => {
         cart.createListing(productData);

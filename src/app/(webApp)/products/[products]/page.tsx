@@ -23,7 +23,7 @@ export default async function Page({ params }: {params: { products: string }})  
         </header>
         <div className={wrapperStyles.content}>
             <div className={productsStyles.products}>
-                {products.map((product: ProductData) => <Product key={product.id} productData={product} />)}
+                {products.map((product: ProductData) => <Product key={product.id} productData={product} processCDN={process.env.cdn} />)}
             </div>
         </div>
         <Footer />
