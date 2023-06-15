@@ -9,23 +9,23 @@ import Link from "next/link";
 import "./stylesheets/superWrapper.css";
 
 export const metadata: Metadata = {
-    title: "Home",
-    description: "Category Selection"
+  title: "Home",
+  description: "Category Selection"
 };
 
 export default async function Page({ searchParams }: { searchParams: {} }) {
-    const headersList = headers();
-    const categories: ProductType[] = await ProductManager.getProductTypes();
+  const headersList = headers();
+  const categories: ProductType[] = await ProductManager.getProductTypes();
 
-    return <>
-        <header className={wrapperStyles.header}>
-            <h1>T&apos;Kope Kwiskwis<br/>Trading Post</h1>
-        </header>
-        <div className={wrapperStyles.content}>
-            <div className={indexStyles.categories}>
-                {categories.map(({ id, displayName }: ProductType) => <Link key={id} href={`products/${id}`}>{displayName}</Link>)}
-            </div>
-        </div>
-        <Footer />
-    </>;
+  return <>
+    <header className={wrapperStyles.header}>
+      <h1>T&apos;Kope Kwiskwis<br/>Trading Post</h1>
+    </header>
+    <div className={wrapperStyles.content}>
+      <div className={indexStyles.categories}>
+        {categories.map(({ id, displayName }: ProductType) => <Link key={id} href={`products/${id}`}>{displayName}</Link>)}
+      </div>
+    </div>
+    <Footer />
+  </>;
 }

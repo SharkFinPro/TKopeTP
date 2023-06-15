@@ -3,14 +3,14 @@ import { ProductViewer } from "./productViewer";
 import productsStyles from "../stylesheets/products.module.css";
 
 export const metadata: Metadata = {
-    title: "Products",
-    description: "Admin Panel Products"
+  title: "Products",
+  description: "Admin Panel Products"
 };
 
 export default async function Page() {
-    return (
-        <div className={productsStyles.content}>
-            <ProductViewer />
-        </div>
-    );
+  return (
+    <div className={productsStyles.content}>
+      <ProductViewer />
+    </div>
+  );
 }

@@ -4,9 +4,8 @@ import { Request } from "next/dist/compiled/@edge-runtime/primitives/fetch";
 import { RobustProductData } from "../../../../../productTypes";
 
 export async function POST(request: Request): Promise<NextResponse> {
-    const productData: RobustProductData = await request.json();
+  const productData: RobustProductData = await request.json();
+  productManager.updateProduct(productData);
 
-    productManager.updateProduct(productData);
-
-    return NextResponse.json({}); // NOTE: compiles at build time
+  return NextResponse.json({}); // NOTE: compiles at build time
 }

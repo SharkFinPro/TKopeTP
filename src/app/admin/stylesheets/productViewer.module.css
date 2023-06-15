@@ -1,51 +1,51 @@
 .productTable {
-    display: grid;
-    width: 100%;
+  display: grid;
+  width: 100%;
 }
 
 .productTable tbody, .productTable thead {
-    display: grid;
-    padding-inline: 12.5%;
-    min-width: 1000px;
+  display: grid;
+  padding-inline: 12.5%;
+  min-width: 1000px;
 }
 
 .productTable thead {
-    position: sticky;
-    top: 0;
+  position: sticky;
+  top: 0;
 }
 
 .productTable tr {
-    width: 100%;
-    padding-inline: 5%;
-    height: 3em;
+  width: 100%;
+  padding-inline: 5%;
+  height: 3em;
 
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    grid-template-columns: 10% 25% 10% 30% 15% 10%;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: 10% 25% 10% 30% 15% 10%;
 
-    border: 3px solid black;
-    box-sizing: border-box;
+  border: 3px solid black;
+  box-sizing: border-box;
 
-    transition: .25s;
+  transition: .25s;
 }
 
 .productTable thead tr {
-    background: #36454F;
-    color: #E6E7E8;
+  background: #36454F;
+  color: #E6E7E8;
 }
 
 .productTable tbody tr {
-    border-top: none;
-    background: #E6E7E8;
-    color: #36454F;
+  border-top: none;
+  background: #E6E7E8;
+  color: #36454F;
 }
 
 .productTable tbody tr:hover {
-    background: #FFFFFF;
-    transition: .25s;
+  background: #FFFFFF;
+  transition: .25s;
 }
 
 .productTable td a {
-    color: inherit;
+  color: inherit;
 }

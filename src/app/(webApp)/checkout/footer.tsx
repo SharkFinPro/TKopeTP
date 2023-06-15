@@ -5,19 +5,19 @@ import wrapperStyles from "../stylesheets/wrapper.module.css";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 
 export default function Footer() {
-    const router: AppRouterInstance = useRouter();
+  const router: AppRouterInstance = useRouter();
 
-    function checkout(): void {
-        if (cart.getPaymentMethod()) {
-            cart.purchase().then((): void => {
-                router.push("/");
-            });
-        }
+  function checkout(): void {
+    if (cart.getPaymentMethod()) {
+      cart.purchase().then((): void => {
+        router.push("/");
+      });
     }
+  }
 
-    return (
-        <footer className={wrapperStyles.footer}>
-            <button type="button" className={wrapperStyles.footerButton} onClick={checkout}>Finish</button>
-        </footer>
-    );
+  return (
+    <footer className={wrapperStyles.footer}>
+      <button type="button" className={wrapperStyles.footerButton} onClick={checkout}>Finish</button>
+    </footer>
+  );
 };

@@ -1,79 +1,79 @@
 .header {
-    width: 100%;
-    height: 20%;
+  width: 100%;
+  height: 20%;
 
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
 
-    /* Border Styling */
-    border-style: double;
-    border-width: 15px;
-    box-sizing: border-box;
-    border-color: #36454F;
+  /* Border Styling */
+  border-style: double;
+  border-width: 15px;
+  box-sizing: border-box;
+  border-color: #36454F;
 
-    /* General Styling */
-    background-color: #E31837;
+  /* General Styling */
+  background-color: #E31837;
 
-    /* Text Styling */
-    color: #E6E7E8;
-    text-align: center;
-    font-size: 5vw;
-    font-family: MuseoSlab, serif;
+  /* Text Styling */
+  color: #E6E7E8;
+  text-align: center;
+  font-size: 5vw;
+  font-family: MuseoSlab, serif;
 }
 
 .content {
-    width: 100%;
-    height: 70%;
-    display: flex;
-    position: relative;
+  width: 100%;
+  height: 70%;
+  display: flex;
+  position: relative;
 
-    background-color: #36454F;
+  background-color: #36454F;
 }
 
 .footer {
-    width: 100%;
-    height: 10%;
+  width: 100%;
+  height: 10%;
 
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
 
-    background-color: #005594;
+  background-color: #005594;
 
-    box-sizing: border-box;
-    border-top: 5px solid #030006;
+  box-sizing: border-box;
+  border-top: 5px solid #030006;
 }
 
 .footerButton {
-    height: 80%;
-    padding-inline: 2em;
+  height: 80%;
+  padding-inline: 2em;
 
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
 
-    text-decoration: none;
-    font-family: MuseoSans, serif;
-    font-size: 5.5vw;
-    color: #030006;
+  text-decoration: none;
+  font-family: MuseoSans, serif;
+  font-size: 5.5vw;
+  color: #030006;
 
-    background-color: #E6E7E8;
+  background-color: #E6E7E8;
 
-    border-radius: 5px;
-    border: 5px solid #030006;
-    box-sizing: border-box;
+  border-radius: 5px;
+  border: 5px solid #030006;
+  box-sizing: border-box;
 }
 
 .footerButton:hover {
-    background-color: #FFFFFF;
+  background-color: #FFFFFF;
 }
 
 @media screen and (orientation: landscape) {
-    .header, .content, .footer {
-        display: none;
-    }
+  .header, .content, .footer {
+    display: none;
+  }
 }

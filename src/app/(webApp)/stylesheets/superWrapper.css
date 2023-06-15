@@ -1,51 +1,51 @@
 /* A font by Jos Buivenga (exljbris) -> www.exljbris.com */
 @font-face {
-    font-family: MuseoSlab;
-    src: url("../../fonts/Museo_Slab_500_2.otf");
-    font-weight: 500;
-    font-display: swap;
+  font-family: MuseoSlab;
+  src: url("../../fonts/Museo_Slab_500_2.otf");
+  font-weight: 500;
+  font-display: swap;
 }
 
 /* A font by Jos Buivenga (exljbris) -> www.exljbris.com */
 @font-face {
-    font-family: MuseoSlab;
-    src: url("../../fonts/Museo_Slab_500italic.otf");
-    font-style: italic;
-    font-weight: 500;
-    font-display: swap;
+  font-family: MuseoSlab;
+  src: url("../../fonts/Museo_Slab_500italic.otf");
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
 }
 
 /* A font by Jos Buivenga (exljbris) -> www.exljbris.com */
 @font-face {
-    font-family: MuseoSans;
-    src: url("../../fonts/MuseoSans_500.otf");
-    font-weight: 500;
-    font-display: swap;
+  font-family: MuseoSans;
+  src: url("../../fonts/MuseoSans_500.otf");
+  font-weight: 500;
+  font-display: swap;
 }
 
 /* A font by Jos Buivenga (exljbris) -> www.exljbris.com */
 @font-face {
-    font-family: MuseoSans;
-    src: url("../../fonts/MuseoSans_500_Italic.otf");
-    font-style: italic;
-    font-weight: 500;
-    font-display: swap;
+  font-family: MuseoSans;
+  src: url("../../fonts/MuseoSans_500_Italic.otf");
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
 }
 
 html, body {
-    height: 100%;
-    margin: 0;
+  height: 100%;
+  margin: 0;
 
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 @media screen and (orientation: landscape) {
-    body {
-        background-color: #36454F;
-    }
+  body {
+    background-color: #36454F;
+  }
 }
