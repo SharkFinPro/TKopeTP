@@ -1,41 +1,41 @@
 .content {
-    align-content: center;
+  align-content: center;
 }
 
 .categories {
-    width: 100%;
+  width: 100%;
 
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
 
-    gap: 2vh;
+  gap: 2vh;
 }
 
 .categories a {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
 
-    height: 10vh;
+  height: 10vh;
 
-    /* Text Styling */
-    text-decoration: none;
-    font-size: 8vw;
+  /* Text Styling */
+  text-decoration: none;
+  font-size: 8vw;
 
-    width: 80%;
+  width: 80%;
 
-    /* General Styling */
-    background-color: #030006;
+  /* General Styling */
+  background-color: #030006;
 
-    /* Text Styling */
-    text-align: center;
-    color: #E6E7E8;
-    font-family: MuseoSlab, MuseoSans, serif;
+  /* Text Styling */
+  text-align: center;
+  color: #E6E7E8;
+  font-family: MuseoSlab, MuseoSans, serif;
 }
 
 .categories a:hover {
-    color: #FFFFFF;
+  color: #FFFFFF;
 }
