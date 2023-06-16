@@ -1,3 +1,9 @@
+.wrapper {
+  height: 100%;
+  max-width: 600px;
+  margin-inline: auto;
+}
+
 .container {
   display: grid;
   grid-template-rows: 20% 70% 10%;
@@ -14,7 +20,7 @@
   background-color: #E31837;
   color: #E6E7E8;
   text-align: center;
-  font-size: 5vw;
+  font-size: min(5vw, 2rem);
   font-family: MuseoSlab, serif;
 }
 
@@ -36,7 +42,7 @@
   width: 50%;
   text-decoration: none;
   font-family: MuseoSans, serif;
-  font-size: 5.5vw;
+  font-size: min(5.5vw, 2rem);
   text-align: center;
   color: #030006;
   background-color: #E6E7E8;

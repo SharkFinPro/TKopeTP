@@ -15,7 +15,7 @@
   padding-block: 0.7em;
   width: 80%;
   text-decoration: none;
-  font-size: 8vw;
+  font-size: min(8vw, 2.5rem);
   text-align: center;
   color: #E6E7E8;
   font-family: MuseoSlab, sans-serif;

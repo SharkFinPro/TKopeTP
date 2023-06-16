@@ -39,6 +39,7 @@
 html, body {
   height: 100%;
   margin: 0;
+  background: #030006;
 
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -46,10 +47,4 @@ html, body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-@media screen and (orientation: landscape) {
-  body {
-    background-color: #36454F;
-  }
 }

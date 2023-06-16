@@ -17,21 +17,21 @@
 .cartDisplay tr * {
   display: grid;
   place-content: center;
-  padding: 0.25em 0 0.25em 0;
+  padding: 0.25em 0;
   box-sizing: border-box;
 }
 
 .cartDisplay tr th {
   background: #E6E7E8;
   font-family: MuseoSlab, sans-serif;
-  font-size: 5vw;
+  font-size: min(5vw, 2rem);
   color: #030006;
 }
 
 .cartDisplay tr td {
   background-color: #005596;
   font-family: MuseoSans, serif;
-  font-size: 4.5vw;
+  font-size: min(4.5vw, 1.5rem);
   color: #FFFFFF;
 }
 
@@ -52,7 +52,7 @@
   border-radius: 5px;
   box-sizing: border-box;
   font-family: MuseoSans, serif;
-  font-size: 6vw;
+  font-size: min(6vw, 2rem);
   color: #030006;
 }
 
@@ -68,7 +68,7 @@
   background-color: #E6E7E8;
   color: #36454F;
   font-family: MuseoSlab, MuseoSans, serif;
-  font-size: 6vw;
+  font-size: min(6vw, 2rem);
   transition: 0.5s;
 }
 
