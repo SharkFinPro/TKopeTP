@@ -1,6 +1,8 @@
 .modal[open] {
   width: 80%;
+  max-width: 1600px;
   height: 75%;
+  max-height: 800px;
   border: 5px solid #030006;
   border-radius: 1.75rem;
   outline: none;
@@ -23,17 +25,13 @@
 .settings {
   display: grid;
   grid-template-columns: repeat(auto-fill, 400px);
-  column-gap: 1rem;
-  row-gap: 1rem;
-  align-content: start;
-  justify-content: center;
+  gap: 1rem;
+  place-content: start center;
   overflow-y: auto;
 }
 
 .setting {
   display: grid;
-  grid-template-rows: 1fr 1fr;
-  height: 60px;
 }
 
 .setting label {
@@ -63,7 +61,7 @@
 .modal footer * {
   height: 80%;
   margin-inline: 1rem;
-  aspect-ratio: 2/1;
+  aspect-ratio: 2 / 1;
   font-size: 1.5rem;
   background: #E6E7E8;
   color: #030006;
