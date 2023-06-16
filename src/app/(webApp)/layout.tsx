@@ -1,0 +1,10 @@
+import React from "react";
+import wrapperStyles from "./stylesheets/wrapper.module.css";
+
+export default function WebAppLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <div className={wrapperStyles.container}>
+      {children}
+    </div>
+  );
+}

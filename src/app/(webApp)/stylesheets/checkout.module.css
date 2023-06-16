@@ -1,16 +1,8 @@
 .cartDisplay {
-  width: 98%;
   height: 70%;
+  display: grid;
   overflow-y: auto;
-
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  margin-inline: 1%;
-}
-
-.cartDisplay thead, .cartDisplay tbody {
-  width: 100%;
+  padding-inline: 0.5rem;
 }
 
 .cartDisplay tr * {
@@ -18,24 +10,19 @@
 }
 
 .cartDisplay tr {
-  width: 100%;
   display: grid;
   grid-template-columns: 80% 20%;
 }
 
 .cartDisplay tr * {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-
+  display: grid;
+  place-content: center;
   padding: 0.25em 0 0.25em 0;
   box-sizing: border-box;
 }
 
 .cartDisplay tr th {
   background: #E6E7E8;
-
   font-family: MuseoSlab, sans-serif;
   font-size: 5vw;
   color: #030006;
@@ -43,81 +30,50 @@
 
 .cartDisplay tr td {
   background-color: #005596;
-
   font-family: MuseoSans, serif;
   font-size: 4.5vw;
   color: #FFFFFF;
 }
 
 .paymentInfo {
-  position: absolute;
-
-  bottom: 0;
-  height: 30%;
-  width: 100%;
-
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-
-  gap: 15px;
-
-  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  place-items: center;
   border-top: 5px solid #030006;
 }
 
 .total {
   margin: 0;
-  padding: 1em 2em 1em 2em;
-
-
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-
-  height: 5vh;
+  padding: 0.5em 1.5em;
+  display: grid;
+  place-content: center;
   background: #E6E7E8;
-
   border: 3px solid #030006;
   border-radius: 5px;
   box-sizing: border-box;
-
   font-family: MuseoSans, serif;
   font-size: 6vw;
   color: #030006;
 }
 
 .paymentTypeSelection {
-  width: 100%;
-
   display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  justify-content: center;
-
-  column-gap: 5vw;
+  gap: 1em;
 }
 
 .paymentTypeSelection button {
-  box-sizing: border-box;
-  padding: .75em 1.5em .75em 1.5em;
-
+  padding: .75em 1.5em;
   border: 3px solid #030006;
-  border-radius: 10px;
+  border-radius: 0.25em;
   background-color: #E6E7E8;
-
-  text-align: center;
   color: #36454F;
   font-family: MuseoSlab, MuseoSans, serif;
   font-size: 6vw;
-
   transition: 0.5s;
 }
 
 .paymentTypeSelection .selected {
   background-color: #E31837;
   color: #FFFFFF;
-  border-radius: 7.5px;
+  border-radius: 0.5em;
 }
