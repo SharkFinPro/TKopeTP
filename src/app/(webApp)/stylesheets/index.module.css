@@ -1,39 +1,25 @@
-.content {
-  align-content: center;
+.container {
+  height: 100%;
+  display: grid;
+  align-items: center;
 }
 
 .categories {
-  width: 100%;
-
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-
-  gap: 2vh;
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  padding-block: 1rem;
 }
 
 .categories a {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-
-  height: 10vh;
-
-  /* Text Styling */
-  text-decoration: none;
-  font-size: 8vw;
-
+  padding-block: 0.7em;
   width: 80%;
-
-  /* General Styling */
-  background-color: #030006;
-
-  /* Text Styling */
+  text-decoration: none;
+  font-size: min(8vw, 2.5rem);
   text-align: center;
   color: #E6E7E8;
-  font-family: MuseoSlab, MuseoSans, serif;
+  font-family: MuseoSlab, sans-serif;
+  background-color: #030006;
 }
 
 .categories a:hover {

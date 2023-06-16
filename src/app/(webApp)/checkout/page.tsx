@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import Product from "./product";
 import Footer from "./footer";
 import { cart } from "../tools/cart";

@@ -1,38 +1,25 @@
 .products {
-  width: 100%;
-
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-auto-rows: 49vw;
-  margin-left: 2vw;
-
-  overflow-y: auto;
+  gap: 0.5rem;
+  padding: 0.5rem;
 }
 
 .product {
-  width: 47vw;
-  height: 47vw;
-
+  aspect-ratio: 1 / 1;
   border-radius: 15px;
-  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: 56.25% 18.75% 25%;
 }
 
 .image {
-  width: 100%;
-  height: 56.25%;
-
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   overflow: hidden;
-
   background-color: #36454F;
-
   border-radius: 15px 15px 0 0;
   border: 4px solid #030006;
   border-bottom: none;
-  box-sizing: border-box;
 }
 
 .image img {
@@ -43,47 +30,29 @@
 
 .name {
   margin: 0;
-  width: 100%;
-  height: 18.75%;
-
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  justify-content: center;
-
+  display: grid;
+  place-content: center;
   background: #005596;
-
-  font-size: 2.75vw;
+  font-size: min(2.75vw, 1rem);
   color: #FFFFFF;
   font-family: MuseoSans, serif;
-
   border: 4px solid #030006;
   border-bottom: none;
-  box-sizing: border-box;
 }
 
 .purchase {
-  width: 100%;
-  height: 25%;
-
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   overflow: hidden;
-  box-sizing: border-box;
-
   font-family: MuseoSans, serif;
 }
 
 .purchase * {
   margin: 0;
   display: grid;
-  justify-items: center;
-  align-items: center;
-
-  box-sizing: border-box;
+  place-content: center;
   border: 4px solid #030006;
-
-  font-size: 8vw;
+  font-size: min(8vw, 3rem);
 }
 
 .option {
@@ -106,5 +75,4 @@
   background-color: #E6E7E8;
   border-left-width: 0;
   border-right-width: 0;
-  box-sizing: border-box;
 }
