@@ -30,17 +30,19 @@ export default function Page() {
       <h1>Checkout</h1>
     </header>
     <div className={wrapperStyles.content}>
-      <table className={checkoutStyles.cartDisplay}>
-        <thead>
+      <div className={checkoutStyles.cartDisplayContainer}>
+        <table className={checkoutStyles.cartDisplay}>
+          <thead>
           <tr>
             <th>Item - Price</th>
             <th>Count</th>
           </tr>
-        </thead>
-        <tbody>
-          {products.map((product: ProductData) => <Product key={product.id} productData={product} />)}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {products.map((product: ProductData) => <Product key={product.id} productData={product} />)}
+          </tbody>
+        </table>
+      </div>
       <div className={checkoutStyles.paymentInfo}>
         <p className={checkoutStyles.total}>Total: ${total}</p>
         <div className={checkoutStyles.paymentTypeSelection}>
