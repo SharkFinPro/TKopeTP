@@ -24,7 +24,9 @@ export default async function Page({ searchParams }: { searchParams: {} }) {
     <div className={wrapperStyles.content}>
       <div className={indexStyles.container}>
         <div className={indexStyles.categories}>
-          {categories.map(({ id, displayName }: ProductType) => <Link key={id} href={`products/${id}`}>{displayName}</Link>)}
+          {categories.map(({ id, displayName }: ProductType) => (
+            <Link key={id} href={`products/${id}`}>{displayName}</Link>
+          ))}
         </div>
       </div>
     </div>
