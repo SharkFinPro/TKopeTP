@@ -1,7 +1,6 @@
 .wrapper {
   display: grid;
-  grid-template-columns: 50% 50%;
-  width: 100%;
+  grid-template-columns: 1fr 1fr;
   height: 70px;
   color: #E6E7E8;
   background: #005596;
