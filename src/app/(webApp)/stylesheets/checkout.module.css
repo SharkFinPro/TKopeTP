@@ -1,7 +1,10 @@
-.cartDisplay {
+.cartDisplayContainer {
   height: 70%;
-  display: grid;
   overflow-y: auto;
+}
+
+.cartDisplay {
+  display: grid;
   padding-inline: 0.5rem;
 }
 
