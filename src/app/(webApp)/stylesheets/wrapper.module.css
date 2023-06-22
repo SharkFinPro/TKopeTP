@@ -1,6 +1,5 @@
 .wrapper {
   height: 100%;
-  max-width: 600px;
   margin-inline: auto;
 }
 
@@ -20,7 +19,7 @@
   background-color: #E31837;
   color: #E6E7E8;
   text-align: center;
-  font-size: min(5vw, 2rem);
+  font-size: min(5vw, 1.5rem);
   font-family: MuseoSlab, serif;
 }
 
@@ -40,6 +39,7 @@
 .footerButton {
   padding: 0.5em 2em;
   width: 50%;
+  max-width: 300px;
   text-decoration: none;
   font-family: MuseoSans, serif;
   font-size: min(5.5vw, 2rem);

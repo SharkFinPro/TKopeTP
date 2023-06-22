@@ -1,6 +1,8 @@
 .products {
+  max-width: 1600px;
+  margin-inline: auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 0.5rem;
   padding: 0.5rem;
 }
@@ -75,4 +77,10 @@
   background-color: #E6E7E8;
   border-left-width: 0;
   border-right-width: 0;
+}
+
+@media (max-width: 800px) {
+  .products {
+    grid-template-columns: 1fr 1fr;
+  }
 }

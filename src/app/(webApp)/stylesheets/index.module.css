@@ -1,17 +1,19 @@
 .container {
   height: 100%;
   display: grid;
-  align-items: center;
+  place-items: center;
 }
 
 .categories {
   display: grid;
-  justify-items: center;
+  place-items: center;
   gap: 1rem;
   padding-block: 1rem;
+  width: 100%;
 }
 
 .categories a {
+  display: block;
   padding-block: 0.7em;
   width: 80%;
   text-decoration: none;
@@ -20,8 +22,15 @@
   color: #E6E7E8;
   font-family: MuseoSlab, sans-serif;
   background-color: #030006;
+  border-radius: 0.25em;
 }
 
 .categories a:hover {
   color: #FFFFFF;
+}
+
+@media (min-width: 1200px) {
+  .categories {
+    grid-template-columns: 1fr 1fr;
+  }
 }
