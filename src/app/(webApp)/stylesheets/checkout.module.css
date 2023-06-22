@@ -4,6 +4,8 @@
 }
 
 .cartDisplay {
+  max-width: 1200px;
+  margin-inline: auto;
   display: grid;
   padding-inline: 0.5rem;
 }
