@@ -29,3 +29,9 @@
 .categories a:hover {
   color: #FFFFFF;
 }
+
+@media (max-width: 800px) {
+  .categories a {
+    width: 80%;
+  }
+}
