@@ -9,15 +9,13 @@
   place-items: center;
   gap: 1rem;
   padding-block: 1rem;
-  margin-inline: auto;
   width: 100%;
-  max-width: 800px;
 }
 
 .categories a {
   display: block;
   padding-block: 0.7em;
-  width: 60%;
+  width: 80%;
   text-decoration: none;
   font-size: min(8vw, 2.5rem);
   text-align: center;
@@ -30,8 +28,8 @@
   color: #FFFFFF;
 }
 
-@media (max-width: 800px) {
-  .categories a {
-    width: 80%;
+@media (min-width: 1200px) {
+  .categories {
+    grid-template-columns: 1fr 1fr;
   }
 }
