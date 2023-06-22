@@ -1,19 +1,23 @@
 .container {
   height: 100%;
   display: grid;
-  align-items: center;
+  place-items: center;
 }
 
 .categories {
   display: grid;
-  justify-items: center;
+  place-items: center;
   gap: 1rem;
   padding-block: 1rem;
+  margin-inline: auto;
+  width: 100%;
+  max-width: 800px;
 }
 
 .categories a {
+  display: block;
   padding-block: 0.7em;
-  width: 80%;
+  width: 60%;
   text-decoration: none;
   font-size: min(8vw, 2.5rem);
   text-align: center;
