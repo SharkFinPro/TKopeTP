@@ -22,6 +22,7 @@
   color: #E6E7E8;
   font-family: MuseoSlab, sans-serif;
   background-color: #030006;
+  border-radius: 0.25em;
 }
 
 .categories a:hover {
