@@ -12,6 +12,7 @@
   align-content: center;
   overflow: hidden;
   font-family: MuseoSlab, MuseoSans, serif;
+  padding-inline: 1em;
 }
 
 .content {
