@@ -13,7 +13,7 @@ async function loadProducts(): Promise<RobustProductData[]> {
 
 export function ProductViewer() {
   const [products, setProducts] = useState<RobustProductData[]>([]);
-  const [currentProduct, setCurrentProduct] = useState<RobustProductData | undefined>(undefined);
+  const [currentProduct, setCurrentProduct] = useState<RobustProductData | undefined | null>(undefined);
   const [productTypes, setProductTypes] = useState<ProductType[]>([]);
 
   useEffect((): void => {
@@ -55,7 +55,7 @@ export function ProductViewer() {
         </tbody>
       </table>
       <div className={productViewerStyles.options}>
-        <button>Add New</button>
+        <button onClick={() => setCurrentProduct(null)}>Add New</button>
       </div>
       <ProductEditor productData={currentProduct} setCurrentProduct={setCurrentProduct} />
     </div>
