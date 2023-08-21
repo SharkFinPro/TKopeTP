@@ -1,27 +1,31 @@
-.productTable {
+.wrapper {
   display: grid;
-  width: 100%;
+  grid-template-rows: 85% 15%;
+  height: 100%;
 }
 
-.productTable tbody, .productTable thead {
+.productTable {
+  margin-inline: 12.5%;
   display: grid;
-  padding-inline: 12.5%;
-  min-width: 1000px;
+  overflow-y: scroll;
+  border-bottom: 3px solid black;
 }
 
 .productTable thead {
   position: sticky;
   top: 0;
+  background: #36454F;
+  color: #E6E7E8;
 }
 
 .productTable tr {
-  width: 100%;
   padding-inline: 5%;
   height: 3em;
 
+  min-width: 1000px;
+
   display: grid;
-  justify-content: center;
-  align-content: center;
+  place-content: center;
   grid-template-columns: 10% 25% 10% 30% 15% 10%;
 
   border: 3px solid black;
@@ -30,22 +34,37 @@
   transition: .25s;
 }
 
-.productTable thead tr {
-  background: #36454F;
-  color: #E6E7E8;
-}
-
 .productTable tbody tr {
   border-top: none;
   background: #E6E7E8;
   color: #36454F;
+  transition: .25s;
 }
 
 .productTable tbody tr:hover {
-  background: #FFFFFF;
-  transition: .25s;
+  filter: brightness(85%);
 }
 
 .productTable td a {
   color: inherit;
+}
+
+.options {
+  display: grid;
+  place-content: center;
+}
+
+.options > button {
+  background: #36454F;
+  color: #FFFFFF;
+  font-size: 1.6rem;
+  padding: 0.6em 1.25em;
+  border: 2px solid #030006;
+  border-radius: 0.5em;
+  font-family: MuseoSlab, sans-serif;
+  transition: 0.25s;
+}
+
+.options > button:hover {
+  filter: brightness(125%);
 }
