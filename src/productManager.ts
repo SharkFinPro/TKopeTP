@@ -59,7 +59,6 @@ class ProductManager {
   }
 
   createProduct(productData: RobustProductData): void {
-    console.log(productData);
     databaseManager.run(`INSERT INTO Products (productType, displayName, price, image, active)
       VALUES (${productData.productType}, '${productData.displayName}', ${productData.price}, '${productData.image}', ${productData.active})`);
   }
