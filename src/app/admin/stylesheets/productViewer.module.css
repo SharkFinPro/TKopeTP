@@ -30,13 +30,17 @@
   grid-template-columns: 10% 25% 10% 30% 15% 10%;
 
   border: 3px solid black;
-  box-sizing: border-box;
+  border-bottom: none;
 
   transition: .25s;
 }
 
+.productTable thead tr {
+  border-bottom: 3px solid black;
+  margin-bottom: -3px;
+}
+
 .productTable tbody tr {
-  border-top: none;
   background: #E6E7E8;
   color: #36454F;
   transition: .25s;
