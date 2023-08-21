@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import editorStyles from "../stylesheets/productEditor.module.css";
 import { getRequest } from "../../tools/requests";
 
-export function ProductEditor({ productData, setCurrentProduct }: { productData: RobustProductData | undefined, setCurrentProduct: any }) {
+export function ProductEditor({ productData, setCurrentProduct }: { productData: RobustProductData | undefined | null, setCurrentProduct: any }) {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
   const formRef = useRef<HTMLFormElement | null>(null);
   const [productTypes, setProductTypes] = useState<ProductType[]>([]);
@@ -34,6 +34,16 @@ export function ProductEditor({ productData, setCurrentProduct }: { productData:
         setCurrentProduct(undefined);
       });
     }
+
+    if (productData === null) {
+      formRef.current?.reset();
+      selectActiveMode(1);
+      dialogRef.current.showModal();
+
+      dialogRef.current?.addEventListener("close", (event: Event): void => {
+        setCurrentProduct(undefined);
+      });
+    }
   }, [productData]);
 
   function handleSubmit(event: any): void {
@@ -48,16 +58,23 @@ export function ProductEditor({ productData, setCurrentProduct }: { productData:
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         displayName: event.target.displayName.value,
-        id: productData?.id,
+        id: productData?.id || -1,
         image: event.target.image.value,
         price: event.target.price.value,
         productType: event.target.productType.value,
         active: event.target.active.value
       })
     };
-    fetch("/api/admin/products/edit", requestOptions).then((): void => {
-      dialogRef.current?.close();
-    });
+
+    if (productData === null) {
+      fetch("/api/admin/products/create", requestOptions).then((): void => {
+        dialogRef.current?.close();
+      });
+    } else {
+      fetch("/api/admin/products/edit", requestOptions).then((): void => {
+        dialogRef.current?.close();
+      });
+    }
   }
 
   return (
