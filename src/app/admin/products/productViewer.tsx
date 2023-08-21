@@ -24,38 +24,40 @@ export function ProductViewer() {
     });
   }, [currentProduct]);
 
-  return <div className={productViewerStyles.wrapper}>
-    <table className={productViewerStyles.productTable}>
-      <thead>
-        <tr>
-          <td><strong>ID</strong></td>
-          <td><strong>Display Name</strong></td>
-          <td><strong>Price</strong></td>
-          <td><strong>Image</strong></td>
-          <td><strong>Product Type</strong></td>
-          <td><strong>Active</strong></td>
-        </tr>
-      </thead>
-      <tbody>
-        {products.map((productData: RobustProductData) => (
-          <tr onClick={() => setCurrentProduct(productData)} key={productData.id}>
-            <td>{productData.id}</td>
-            <td>{productData.displayName}</td>
-            <td>${productData.price}</td>
-            <td><Link href={"/images/" + productData.image} target={"_blank"} prefetch={false}>{productData.image}</Link></td>
-            <td>{
-              productTypes ?
-                productTypes.find((type: ProductType) => type.id == productData.productType)?.displayName :
-                productData.productType
-            }</td>
-            <td>{productData.active? "Active" : "Inactive"}</td>
+  return (
+    <div className={productViewerStyles.wrapper}>
+      <table className={productViewerStyles.productTable}>
+        <thead>
+          <tr>
+            <td><strong>ID</strong></td>
+            <td><strong>Display Name</strong></td>
+            <td><strong>Price</strong></td>
+            <td><strong>Image</strong></td>
+            <td><strong>Product Type</strong></td>
+            <td><strong>Active</strong></td>
           </tr>
-        ))}
-      </tbody>
-    </table>
-    <div className={productViewerStyles.options}>
-      <button>Add New</button>
+        </thead>
+        <tbody>
+          {products.map((productData: RobustProductData) => (
+            <tr onClick={() => setCurrentProduct(productData)} key={productData.id}>
+              <td>{productData.id}</td>
+              <td>{productData.displayName}</td>
+              <td>${productData.price}</td>
+              <td><Link href={"/images/" + productData.image} target={"_blank"} prefetch={false}>{productData.image}</Link></td>
+              <td>{
+                productTypes ?
+                  productTypes.find((type: ProductType) => type.id == productData.productType)?.displayName :
+                  productData.productType
+              }</td>
+              <td>{productData.active? "Active" : "Inactive"}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div className={productViewerStyles.options}>
+        <button>Add New</button>
+      </div>
+      <ProductEditor productData={currentProduct} setCurrentProduct={setCurrentProduct} />
     </div>
-    <ProductEditor productData={currentProduct} setCurrentProduct={setCurrentProduct} />
-  </div>;
+  );
 }
