@@ -6,12 +6,12 @@ import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 import confetti from "canvas-confetti";
 
 function playConfetti() {
-  var count = 250;
-  var defaults = {
+  const count = 250;
+  const defaults = {
     origin: { y: 0.7 }
   };
 
-  function fire(particleRatio: number, opts: { spread: number, startVelocity?: number, decay?: number, scalar?: number}) {
+  function fire(particleRatio: number, opts: { spread: number, startVelocity?: number, decay?: number, scalar?: number}): void {
     confetti(Object.assign({}, defaults, opts, {
       particleCount: Math.floor(count * particleRatio)
     }));
@@ -46,7 +46,11 @@ export default function Footer() {
 
   function checkout(): void {
     if (cart.getPaymentMethod()) {
-      cart.purchase().then((): void => {
+      cart.purchase().then((success: boolean): void => {
+        if (!success) {
+          alert("Transaction Failed");
+          return;
+        }
         playConfetti();
         router.push("/");
       });
