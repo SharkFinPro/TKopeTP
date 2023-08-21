@@ -5,8 +5,7 @@ export async function getRequest(path: string) {
 }
 
 export async function postRequest(path: string, body: string) {
-  // TODO: return this?
-  await fetch(path, {
+  return await fetch(path, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -46,7 +46,11 @@ export default function Footer() {
 
   function checkout(): void {
     if (cart.getPaymentMethod()) {
-      cart.purchase().then((): void => {
+      cart.purchase().then((success: boolean): void => {
+        if (!success) {
+          alert("Transaction Failed");
+          return;
+        }
         playConfetti();
         router.push("/");
       });

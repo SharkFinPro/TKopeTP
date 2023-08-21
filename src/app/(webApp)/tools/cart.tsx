@@ -146,7 +146,7 @@ class Cart {
     return cart;
   }
 
-  async purchase() {
+  async purchase(): Promise<boolean> {
     const cart: ProductData[] = this.getActual();
     const simplifiedCart: SimplifiedProductData[] = [];
 
@@ -154,13 +154,23 @@ class Cart {
       simplifiedCart.push({ id: product.id, count: product.count });
     }
 
-    await postRequest("/api/purchase", JSON.stringify({
+    let response: any = {
+      status: 0
+    };
+
+    response = await postRequest("/api/purchase", JSON.stringify({
       cart: JSON.stringify(simplifiedCart),
       paymentMethod: this.getPaymentMethod(),
       time: new Date().toJSON()
-    }));
+    })).catch((err) => {
+      alert(err);
+    });
 
-    this.reset();
+    if (response?.status === 200) {
+      this.reset();
+    }
+
+    return response?.status === 200;
   }
 }
 
