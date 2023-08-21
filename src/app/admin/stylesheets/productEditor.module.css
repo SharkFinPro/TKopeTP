@@ -49,7 +49,7 @@
 }
 
 .setting input:disabled {
-  background: #E6E7E8;
+  filter: brightness(60%);
 }
 
 .modal footer {
