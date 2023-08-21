@@ -1,6 +1,8 @@
 import { postRequest } from "../../tools/requests";
 import { ProductData, SimplifiedProductData } from "../../../productTypes";
 
+const EXPIRATION_SECONDS = 900; // 15 Minutes
+
 class Cart {
   data: ProductData[] = [];
 
@@ -10,8 +12,29 @@ class Cart {
     }
 
     this.data = this.getStorage();
+    this.validate();
+  }
+
+  validate(): void {
+    // Check if any data exists
     if (this.data.length === 0) {
       this.reset();
+      return;
+    }
+
+    // Check if a last updated value exists
+    const lastUpdated = localStorage.getItem("lastUpdated");
+    if (!lastUpdated) {
+      this.reset();
+      return;
+    }
+
+    // Check if last updated exceeds expiration second value
+    const diffTime = new Date(JSON.parse(lastUpdated)).getTime();
+    const diff = (new Date().getTime() - diffTime) / 1000;
+    if (diff > EXPIRATION_SECONDS) {
+      this.reset();
+      return;
     }
   }
 
@@ -27,10 +50,12 @@ class Cart {
 
   updateStorage(): void {
     localStorage.setItem("cart", JSON.stringify(this.data));
+    localStorage.setItem("lastUpdated", JSON.stringify(new Date()));
   }
 
   setPaymentMethod(paymentMethod: string): void {
     localStorage.setItem("paymentMethod", paymentMethod);
+    localStorage.setItem("lastUpdated", JSON.stringify(new Date()));
   }
 
   getPaymentMethod(): string {
