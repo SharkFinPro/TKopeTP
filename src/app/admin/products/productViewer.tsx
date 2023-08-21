@@ -49,7 +49,7 @@ export function ProductViewer() {
                   productTypes.find((type: ProductType) => type.id == productData.productType)?.displayName :
                   productData.productType
               }</td>
-              <td>{productData.active? "Active" : "Inactive"}</td>
+              <td style={{color: productData.active ? "Green" : "Red"}}>{productData.active? "Active" : "Inactive"}</td>
             </tr>
           ))}
         </tbody>
