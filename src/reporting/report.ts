@@ -25,22 +25,25 @@ export default class Report {
     }
   }
 
-  processCart(cart: Cart): void {
+  processCart(cart: Cart): (number | void) {
+    let totalMoney: number = 0;
+
     if (typeof cart.cart === "object") { // Legacy (object)
       for (let product in cart.cart) {
-        this.processProduct(cart.cart[product], cart.paymentMethod);
+        totalMoney += this.processProduct(cart.cart[product], cart.paymentMethod);
       }
     } else { // Current (array)
       const cartProducts = JSON.parse(cart.cart);
       for (let cartProduct of cartProducts) {
-        this.processProduct(cartProduct, cart.paymentMethod);
+        totalMoney += this.processProduct(cartProduct, cart.paymentMethod);
       }
     }
 
     this.timestamps.push(new Date(cart.time));
+    cart.totalMoney = totalMoney;
   }
 
-  processProduct(product: ProductData, paymentMethod: string): void {
+  processProduct(product: ProductData, paymentMethod: string): any {
     if (!product.count) {
       return;
     }
@@ -63,11 +66,15 @@ export default class Report {
 
     this.totalProductsSold += product.count;
 
+    const moneyMade = product.count * productData.price;
+
     if (paymentMethod === "cash") {
-      this.moneyMade.cash += product.count * productData.price;
+      this.moneyMade.cash += moneyMade;
     } else if (paymentMethod === "card") {
-      this.moneyMade.card += product.count * productData.price;
+      this.moneyMade.card += moneyMade;
     }
+
+    return moneyMade;
   }
 
   sendToSheet(): void {

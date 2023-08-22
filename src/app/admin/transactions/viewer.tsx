@@ -21,6 +21,7 @@ function Transaction({ data }: { data: any }) {
         ))}
       </div>
       <p><span className={transactionsStyles.transactionHeader}>Payment Method:</span> {data.paymentMethod}</p>
+      <p><span className={transactionsStyles.transactionHeader}>Total Money:</span> ${data.totalMoney}</p>
       <p><span className={transactionsStyles.transactionHeader}>Time:</span> {new Date(data.time).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric", hour:"numeric", minute:"numeric"})}</p>
     </div>
   )
