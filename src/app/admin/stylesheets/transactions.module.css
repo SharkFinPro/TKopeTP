@@ -1,0 +1,42 @@
+.wrapper {
+  margin-inline: auto;
+  width: min(max(50vw, 600px), 1200px);
+  display: grid;
+  grid-template-rows: max(15%, 125px) auto;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.header {
+  display: grid;
+  place-content: center;
+  background: #36454F;
+  color: #FFFFFF;
+  font-size: 1.4rem;
+}
+
+.transactions {
+  display: grid;
+  gap: 0.5rem;
+  overflow-y: auto;
+}
+
+.transaction {
+  padding: 0.25em 1em;
+  border: 3px solid #030006;
+  line-height: 0.75rem;
+  transition: 0.25s;
+  background: #E6E7E8;
+}
+
+.transaction:hover {
+  filter: brightness(85%);
+}
+
+.transactionHeader {
+  color: #030006;
+}
+
+.transactionItems {
+  padding-left: 1rem;
+}

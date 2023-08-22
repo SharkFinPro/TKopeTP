@@ -17,10 +17,11 @@
 
 .content {
   display: grid;
-  grid-template-columns: repeat(3, 125px);
+  grid-template-columns: repeat(auto-fit, 125px);
   justify-content: end;
   font-size: 1.25em;
   font-family: MuseoSans, serif;
+  padding-inline: 2px;
 }
 
 .content a {

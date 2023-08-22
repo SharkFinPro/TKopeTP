@@ -12,6 +12,7 @@ export function NavBar() {
         <Link href="/admin/">Home</Link>
         <Link href="/admin/reports">Reports</Link>
         <Link href="/admin/products">Products</Link>
+        <Link href="/admin/transactions">Transactions</Link>
       </div>
     </div>
   );
