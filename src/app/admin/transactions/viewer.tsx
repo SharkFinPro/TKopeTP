@@ -4,13 +4,8 @@ import { getRequest } from "../../tools/requests";
 import transactionsStyles from "../stylesheets/transactions.module.css";
 
 function Transaction({ data }: { data: any }) {
-  const cart = JSON.parse(data.cart);
-
   const [expanded, setExpanded] = useState(false);
-
-  useEffect(() => {
-    console.log(expanded);
-  }, [expanded]);
+  const cart = JSON.parse(data.cart);
 
   return (
     <div className={transactionsStyles.transaction} onClick={() => setExpanded(!expanded)}>
