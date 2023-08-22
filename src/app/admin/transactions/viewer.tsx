@@ -17,7 +17,7 @@ function Transaction({ data }: { data: any }) {
       <p><span className={transactionsStyles.transactionHeader}>Items:</span> {cart.length}</p>
       <div className={transactionsStyles.transactionItems}>
         {expanded && cart.map((item: any) => (
-          <p key={item.displayName}>- {item.displayName}</p>
+          <p key={item.displayName}>- {item.displayName} x {item.count} | ${item.price * item.count}</p>
         ))}
       </div>
       <p><span className={transactionsStyles.transactionHeader}>Payment Method:</span> {data.paymentMethod}</p>
