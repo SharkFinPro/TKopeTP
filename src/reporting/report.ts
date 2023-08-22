@@ -120,4 +120,8 @@ export default class Report {
   getTimes(): Date[] {
     return this.timestamps;
   }
+
+  getTransactions() {
+    return this.carts;
+  }
 }
