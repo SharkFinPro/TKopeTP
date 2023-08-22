@@ -1,6 +1,6 @@
 import { exec } from "node:child_process";
 
-exec("npm run dev", (err, stdout, stderr) => {
+exec("npm run start", (err, stdout, stderr) => {
   console.log(stdout);
 });
 
