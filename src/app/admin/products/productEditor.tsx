@@ -8,8 +8,8 @@ export function ProductEditor({ productData, setCurrentProduct }: { productData:
   const dialogRef = useRef<HTMLDialogElement | null>(null);
   const formRef = useRef<HTMLFormElement | null>(null);
   const [productTypes, setProductTypes] = useState<ProductType[]>([]);
-  const [selectedProductType, selectProductType] = useState(0);
-  const [selectedActiveMode, selectActiveMode] = useState(0);
+  const [selectedProductType, setSelectedProductType] = useState(0);
+  const [selectedActiveMode, setSelectedActiveMode] = useState(0);
 
   useEffect((): void => {
     getRequest("/api/productCategories").then((types: ProductType[]) => setProductTypes(types));
@@ -26,8 +26,8 @@ export function ProductEditor({ productData, setCurrentProduct }: { productData:
 
     if (productData && !dialogRef.current.open) {
       formRef.current?.reset();
-      selectProductType(productData?.productType);
-      selectActiveMode(productData?.active ? 1 : 0);
+      setSelectedProductType(productData?.productType);
+      setSelectedActiveMode(productData?.active ? 1 : 0);
       dialogRef.current.showModal();
 
       dialogRef.current?.addEventListener("close", (event: Event): void => {
@@ -37,14 +37,14 @@ export function ProductEditor({ productData, setCurrentProduct }: { productData:
 
     if (productData === null) {
       formRef.current?.reset();
-      selectActiveMode(1);
+      setSelectedActiveMode(1);
       dialogRef.current.showModal();
 
       dialogRef.current?.addEventListener("close", (event: Event): void => {
         setCurrentProduct(undefined);
       });
     }
-  }, [productData]);
+  }, [productData, setCurrentProduct]);
 
   function handleSubmit(event: any): void {
     event.preventDefault();
@@ -103,7 +103,7 @@ export function ProductEditor({ productData, setCurrentProduct }: { productData:
           <label htmlFor={"productType"}>Product Type</label>
           <select id={"productType"}
             value={selectedProductType}
-            onChange={(e) => selectProductType(parseInt(e.target.value))}>
+            onChange={(e) => setSelectedProductType(parseInt(e.target.value))}>
             {productTypes.map((type: ProductType) => (
               <option value={type.id} key={type.id}>{type.displayName}</option>
             ))}
@@ -113,7 +113,7 @@ export function ProductEditor({ productData, setCurrentProduct }: { productData:
           <label htmlFor={"active"}>Active</label>
           <select id={"active"}
             value={selectedActiveMode}
-            onChange={(e) => selectActiveMode(parseInt(e.target.value))}>
+            onChange={(e) => setSelectedActiveMode(parseInt(e.target.value))}>
             <option value={1}>Active</option>
             <option value={0}>Inactive</option>
           </select>

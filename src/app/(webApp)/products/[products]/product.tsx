@@ -26,7 +26,7 @@ export function Product({ productData, processCDN }: { productData: ProductData,
         console.log(err);
       });
     }
-  }, [productData]);
+  }, [productData, cdn]);
 
   function subFromCart(): void {
     if (cart.remove(productData.id)) {

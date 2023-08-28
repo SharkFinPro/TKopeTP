@@ -135,7 +135,7 @@ export function Toolbar({ rawOverview, categories }: { rawOverview: string, cate
 
   useEffect(() => {
     loadGraph(selectedOption, graphType, JSON.parse(rawOverview), JSON.parse(categories));
-  }, [selectedOption, graphType]);
+  }, [selectedOption, graphType, categories, rawOverview]);
 
   return (
     <div className={reportStyles.toolbar}>
