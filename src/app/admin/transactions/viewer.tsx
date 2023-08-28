@@ -8,11 +8,16 @@ function Transaction({ data }: { data: any }) {
   const [expanded, setExpanded] = useState(false);
   const cart: ProductData[] = JSON.parse(data.cart);
 
+  let totalItems = 0;
+  for (let item of cart) {
+    totalItems += item.count || 0;
+  }
+
   return (
     <div className={transactionsStyles.transaction} onClick={() => setExpanded(!expanded)}>
       <p>
         <span className={transactionsStyles.transactionHeader}>Items: </span>
-        {cart.length}</p>
+        {totalItems}</p>
       <div className={transactionsStyles.transactionItems}>
         {expanded && cart.map((item: any) => (
           <p key={item.displayName}>- {item.displayName} x {item.count} | ${item.price * item.count}</p>
@@ -38,7 +43,7 @@ export function Viewer() {
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
-    getRequest("/api/admin/reporting/transactions").then((transactionsData) => setTransactions(transactionsData));
+    getRequest("/api/admin/reporting/transactions").then((transactionsData) => setTransactions(transactionsData.reverse()));
   }, []);
 
   return (
