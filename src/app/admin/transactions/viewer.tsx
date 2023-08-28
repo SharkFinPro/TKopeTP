@@ -1,6 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
-import { getRequest } from "../../tools/requests";
+import { useState } from "react";
 import { ProductData } from "../../../productTypes";
 import transactionsStyles from "../stylesheets/transactions.module.css";
 
@@ -8,11 +7,16 @@ function Transaction({ data }: { data: any }) {
   const [expanded, setExpanded] = useState(false);
   const cart: ProductData[] = JSON.parse(data.cart);
 
+  let totalItems = 0;
+  for (let item of cart) {
+    totalItems += item.count || 0;
+  }
+
   return (
     <div className={transactionsStyles.transaction} onClick={() => setExpanded(!expanded)}>
       <p>
         <span className={transactionsStyles.transactionHeader}>Items: </span>
-        {cart.length}</p>
+        {totalItems}</p>
       <div className={transactionsStyles.transactionItems}>
         {expanded && cart.map((item: any) => (
           <p key={item.displayName}>- {item.displayName} x {item.count} | ${item.price * item.count}</p>
@@ -31,15 +35,11 @@ function Transaction({ data }: { data: any }) {
         {new Date(data.time).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric", hour:"numeric", minute:"numeric"})}
       </p>
     </div>
-  )
+  );
 }
 
-export function Viewer() {
-  const [transactions, setTransactions] = useState([]);
-
-  useEffect(() => {
-    getRequest("/api/admin/reporting/transactions").then((transactionsData) => setTransactions(transactionsData));
-  }, []);
+export function Viewer({ transactions }: { transactions: any }) {
+  transactions = JSON.parse(transactions);
 
   return (
     <div className={transactionsStyles.transactions}>
