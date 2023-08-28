@@ -37,6 +37,14 @@
   color: #030006;
 }
 
+.transaction > p {
+  padding-block: 0.6em;
+}
+
 .transactionItems {
-  padding-left: 1rem;
+  padding-left: 1em;
+}
+
+.transactionItems > p {
+  padding-block: 0.5em;
 }

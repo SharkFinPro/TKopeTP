@@ -3,7 +3,7 @@ import Footer from "../../footer";
 import { Metadata } from "next";
 import productManager from "../../../../productManager";
 import { ProductData } from "../../../../productTypes";
-import "../../stylesheets/superWrapper.css";
+import "../../stylesheets/global.css";
 import wrapperStyles from "../../stylesheets/wrapper.module.css";
 import productsStyles from "../../stylesheets/products.module.css";
 
