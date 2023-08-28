@@ -39,6 +39,8 @@ function Transaction({ data }: { data: any }) {
 }
 
 export function Viewer({ transactions }: { transactions: any }) {
+  transactions = JSON.parse(transactions);
+
   return (
     <div className={transactionsStyles.transactions}>
       {transactions.map((transaction: any) => <Transaction data={transaction} key={transaction.time} />)}
