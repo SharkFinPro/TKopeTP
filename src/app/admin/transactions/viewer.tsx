@@ -1,6 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
-import { getRequest } from "../../tools/requests";
+import { useState } from "react";
 import { ProductData } from "../../../productTypes";
 import transactionsStyles from "../stylesheets/transactions.module.css";
 
@@ -36,16 +35,10 @@ function Transaction({ data }: { data: any }) {
         {new Date(data.time).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric", hour:"numeric", minute:"numeric"})}
       </p>
     </div>
-  )
+  );
 }
 
-export function Viewer() {
-  const [transactions, setTransactions] = useState([]);
-
-  useEffect(() => {
-    getRequest("/api/admin/reporting/transactions").then((transactionsData) => setTransactions(transactionsData.reverse()));
-  }, []);
-
+export function Viewer({ transactions }: { transactions: any }) {
   return (
     <div className={transactionsStyles.transactions}>
       {transactions.map((transaction: any) => <Transaction data={transaction} key={transaction.time} />)}

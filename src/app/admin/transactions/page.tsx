@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { Viewer } from "./viewer";
 import transactionStyles from "../stylesheets/transactions.module.css";
+import Report from "../../../reporting/report";
 
 export const metadata: Metadata = {
   title: "Transactions",
@@ -8,12 +9,14 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
+  const transactions = new Report("./bin/dump.txt").getTransactions();
+
   return (
     <div className={transactionStyles.wrapper}>
       <div className={transactionStyles.header}>
         <h1>Transactions</h1>
       </div>
-      <Viewer />
+      <Viewer transactions={transactions.reverse()} />
     </div>
   );
 }
