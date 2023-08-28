@@ -2,8 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Chart } from "chart.js/auto";
-import { getRequest } from "../../tools/requests";
-import {ProductData, ProductType} from "../../../productTypes";
+import { ProductData, ProductType } from "../../../productTypes";
 import reportStyles from "../stylesheets/report.module.css";
 
 function ToolbarOptionButton({ children, action, selected }: { children: string, action: any, selected: boolean }) {
@@ -15,9 +14,8 @@ function ToolbarTypeButton({ children, action, selected }: { children: string, a
 }
 
 let chart: Chart;
-async function loadGraph(selectedOption: string, graphType: string) {
+async function loadGraph(selectedOption: string, graphType: string, rawOverview: ProductData[], categories: ProductType[]) {
   let labels: string[] = [], content: number[] = [], title: string = "", yLabel: string = "";
-  const rawOverview: ProductData[] = await getRequest("/api/admin/reporting/overview");
 
   if (selectedOption === "overview") {
     title = "Products Overview";
@@ -44,7 +42,6 @@ async function loadGraph(selectedOption: string, graphType: string) {
       }
     }
   } else if (selectedOption === "overviewCategory") {
-    const categories: ProductType[] = await getRequest("/api/productCategories");
     title = "Products Overview by Category";
 
     for (let { displayName, id } of categories) {
@@ -132,12 +129,12 @@ async function loadGraph(selectedOption: string, graphType: string) {
   });
 }
 
-export function Toolbar() {
+export function Toolbar({ rawOverview, categories }: { rawOverview: string, categories: string }) {
   const [selectedOption, setSelectedOption] = useState("overview");
   const [graphType, setGraphType] = useState("units");
 
   useEffect(() => {
-    loadGraph(selectedOption, graphType);
+    loadGraph(selectedOption, graphType, JSON.parse(rawOverview), JSON.parse(categories));
   }, [selectedOption, graphType]);
 
   return (
