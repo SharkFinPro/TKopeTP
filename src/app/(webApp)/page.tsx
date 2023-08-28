@@ -6,7 +6,7 @@ import { ProductType } from "../../productTypes";
 import { headers } from "next/headers";
 import indexStyles from "./stylesheets/index.module.css";
 import Link from "next/link";
-import "./stylesheets/superWrapper.css";
+import "./stylesheets/global.css";
 
 export const metadata: Metadata = {
   title: "Home",

@@ -9,7 +9,7 @@
   display: grid;
   grid-template-rows: 15% 70% 15%;
   background: #36454F;
-  color: #FFFFFF;
+  color: #FFF;
 }
 
 .modal::backdrop {
@@ -44,7 +44,7 @@
   border-radius: 5px;
   outline: none;
   font-size: 1.25rem;
-  background: #FFFFFF;
+  background: #FFF;
   color: #030006;
 }
 

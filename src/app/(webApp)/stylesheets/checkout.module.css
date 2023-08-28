@@ -37,7 +37,7 @@
   background-color: #005596;
   font-family: MuseoSans, serif;
   font-size: min(4.5vw, 1.5rem);
-  color: #FFFFFF;
+  color: #FFF;
 }
 
 .paymentInfo {
@@ -79,6 +79,6 @@
 
 .paymentTypeSelection .selected {
   background-color: #E31837;
-  color: #FFFFFF;
+  color: #FFF;
   border-radius: 0.5em;
 }

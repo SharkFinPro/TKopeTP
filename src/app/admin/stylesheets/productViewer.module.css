@@ -22,16 +22,12 @@
 .productTable tr {
   padding-inline: 5%;
   height: 3em;
-
   min-width: 1000px;
-
   display: grid;
   place-content: center;
   grid-template-columns: 10% 25% 10% 30% 15% 10%;
-
   border: 3px solid black;
   border-bottom: none;
-
   transition: .25s;
 }
 
@@ -62,7 +58,7 @@
 
 .options > button {
   background: #36454F;
-  color: #FFFFFF;
+  color: #FFF;
   font-size: 1.6rem;
   padding: 0.6em 1.25em;
   border: 3px solid #030006;

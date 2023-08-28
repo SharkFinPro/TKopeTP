@@ -1,5 +1,5 @@
 import React from "react";
-import "./stylesheets/superWrapper.css";
+import "./stylesheets/global.css";
 import wrapperStyles from "./stylesheets/wrapper.module.css";
 import { NavBar } from "./navBar";
 
