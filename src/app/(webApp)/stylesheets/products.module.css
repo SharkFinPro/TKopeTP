@@ -40,6 +40,8 @@
   font-family: MuseoSans, serif;
   border: 4px solid #030006;
   border-bottom: none;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .purchase {
