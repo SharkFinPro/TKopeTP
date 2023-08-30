@@ -8,6 +8,13 @@
   margin-inline: auto;
   display: grid;
   padding-inline: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.cartDisplay thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .cartDisplay tr * {
@@ -24,6 +31,8 @@
   place-content: center;
   padding: 0.25em 0;
   box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .cartDisplay tr th {

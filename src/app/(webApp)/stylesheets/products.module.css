@@ -2,7 +2,7 @@
   max-width: 1600px;
   margin-inline: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 0.5rem;
   padding: 0.5rem;
 }
@@ -40,6 +40,8 @@
   font-family: MuseoSans, serif;
   border: 4px solid #030006;
   border-bottom: none;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .purchase {

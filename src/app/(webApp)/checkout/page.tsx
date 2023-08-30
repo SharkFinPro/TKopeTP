@@ -33,10 +33,10 @@ export default function Page() {
       <div className={checkoutStyles.cartDisplayContainer}>
         <table className={checkoutStyles.cartDisplay}>
           <thead>
-          <tr>
-            <th>Item - Price</th>
-            <th>Count</th>
-          </tr>
+            <tr>
+              <th>Item - Price</th>
+              <th>Count</th>
+            </tr>
           </thead>
           <tbody>
             {products.map((product: ProductData) => <Product key={product.id} productData={product} />)}
