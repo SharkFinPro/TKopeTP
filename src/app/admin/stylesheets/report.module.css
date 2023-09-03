@@ -2,6 +2,8 @@
   display: grid;
   grid-template-columns: min(max(20%, 300px), 400px) auto;
   height: 100%;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .toolbar {
@@ -103,5 +105,5 @@
   place-items: center;
   color: #030006;
   background: #E6E7E8;
-  overflow: auto;
+  min-width: 800px;
 }
