@@ -260,7 +260,7 @@ export function Toolbar({ rawOverview, categories, times }: { rawOverview: strin
     } else if (selectedOption === "timeline") {
       loadTimelineGraph(JSON.parse(times));
     }
-  }, [selectedOption, graphType, categories, rawOverview]);
+  }, [selectedOption, graphType, categories, rawOverview, times]);
 
   return (
     <div className={reportStyles.toolbar}>
