@@ -37,54 +37,7 @@ const createChart = (config: ChartConfiguration): void => {
   chart = new Chart("myChart", config);
 }
 
-async function createOverviewGraph(selectedOption: string, graphType: string, rawOverview: ProductData[], categories: ProductType[]) {
-  let labels: string[] = [], content: number[] = [], title: string = "", yLabel: string = "";
-
-  if (selectedOption === "overview") {
-    title = "Products Overview";
-
-    if (graphType === "units") {
-      yLabel = "Total Units";
-      for (let { displayName, count } of rawOverview) {
-        if (!count) {
-          continue;
-        }
-
-        labels.push(displayName);
-        content.push(count);
-      }
-    } else if (graphType === "money") {
-      yLabel = "Total $";
-      for (let { displayName, count, price } of rawOverview) {
-        if (!count) {
-          continue;
-        }
-
-        labels.push(displayName);
-        content.push(count * price);
-      }
-    }
-  } else if (selectedOption === "overviewCategory") {
-    title = "Products Overview by Category";
-
-    for (let { displayName, id } of categories) {
-      labels[id - 1] = displayName;
-      content[id - 1] = 0
-    }
-
-    if (graphType === "units") {
-      yLabel = "Total Units";
-      for (let { productType, count } of rawOverview) {
-        content[productType - 1] += count || 0;
-      }
-    } else if (graphType === "money") {
-      yLabel = "Total $";
-      for (let { productType, count, price } of rawOverview) {
-        content[productType - 1] += (count || 0) * price;
-      }
-    }
-  }
-
+function createOverviewGraph(labels: string[], content: number[], title: string, yLabel: string) {
   createChart({
     type: "bar",
     data: {
@@ -140,13 +93,64 @@ async function createOverviewGraph(selectedOption: string, graphType: string, ra
   });
 }
 
+function loadOverviewGraph(selectedOption: string, graphType: string, rawOverview: ProductData[], categories: ProductType[]) {
+  let labels: string[] = [], content: number[] = [], title: string = "", yLabel: string = "";
+
+  if (selectedOption === "overview") {
+    title = "Products Overview";
+
+    if (graphType === "units") {
+      yLabel = "Total Units";
+      for (let { displayName, count } of rawOverview) {
+        if (!count) {
+          continue;
+        }
+
+        labels.push(displayName);
+        content.push(count);
+      }
+    } else if (graphType === "money") {
+      yLabel = "Total $";
+      for (let { displayName, count, price } of rawOverview) {
+        if (!count) {
+          continue;
+        }
+
+        labels.push(displayName);
+        content.push(count * price);
+      }
+    }
+  } else if (selectedOption === "overviewCategory") {
+    title = "Products Overview by Category";
+
+    for (let { displayName, id } of categories) {
+      labels[id - 1] = displayName;
+      content[id - 1] = 0
+    }
+
+    if (graphType === "units") {
+      yLabel = "Total Units";
+      for (let { productType, count } of rawOverview) {
+        content[productType - 1] += count || 0;
+      }
+    } else if (graphType === "money") {
+      yLabel = "Total $";
+      for (let { productType, count, price } of rawOverview) {
+        content[productType - 1] += (count || 0) * price;
+      }
+    }
+  }
+
+  createOverviewGraph(labels, content, title, yLabel);
+}
+
 export function Toolbar({ rawOverview, categories }: { rawOverview: string, categories: string }) {
   const [selectedOption, setSelectedOption] = useState("overview");
   const [graphType, setGraphType] = useState("units");
 
   useEffect(() => {
     if (selectedOption === "overview" || selectedOption === "overviewCategory") {
-      createOverviewGraph(selectedOption, graphType, JSON.parse(rawOverview), JSON.parse(categories));
+      loadOverviewGraph(selectedOption, graphType, JSON.parse(rawOverview), JSON.parse(categories));
     }
   }, [selectedOption, graphType, categories, rawOverview]);
 
