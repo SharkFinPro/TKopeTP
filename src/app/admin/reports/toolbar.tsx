@@ -101,23 +101,21 @@ function loadOverviewGraph(selectedOption: string, graphType: string, rawOvervie
 
     if (graphType === "units") {
       yLabel = "Total Units";
-      for (let { displayName, count } of rawOverview) {
-        if (!count) {
-          continue;
-        }
 
-        labels.push(displayName);
-        content.push(count);
+      for (let { displayName, count } of rawOverview) {
+        if (count) {
+          labels.push(displayName);
+          content.push(count);
+        }
       }
     } else if (graphType === "money") {
       yLabel = "Total $";
-      for (let { displayName, count, price } of rawOverview) {
-        if (!count) {
-          continue;
-        }
 
-        labels.push(displayName);
-        content.push(count * price);
+      for (let { displayName, count, price } of rawOverview) {
+        if (count) {
+          labels.push(displayName);
+          content.push(count * price);
+        }
       }
     }
   } else if (selectedOption === "overviewCategory") {
@@ -130,11 +128,13 @@ function loadOverviewGraph(selectedOption: string, graphType: string, rawOvervie
 
     if (graphType === "units") {
       yLabel = "Total Units";
+
       for (let { productType, count } of rawOverview) {
         content[productType - 1] += count || 0;
       }
     } else if (graphType === "money") {
       yLabel = "Total $";
+      
       for (let { productType, count, price } of rawOverview) {
         content[productType - 1] += (count || 0) * price;
       }
