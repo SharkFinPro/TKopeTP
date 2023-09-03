@@ -30,7 +30,7 @@ function ToolbarTypeButton({ children, action, selected }: { children: string, a
 }
 
 let chart: Chart;
-const createChart = (config: ChartConfiguration): void => {
+function createChart(config: ChartConfiguration): void {
   if (chart) {
     chart.destroy();
   }
@@ -38,7 +38,7 @@ const createChart = (config: ChartConfiguration): void => {
   chart = new Chart("myChart", config);
 }
 
-function createOverviewGraph(labels: string[], content: number[], title: string, yLabel: string) {
+function createOverviewGraph(labels: string[], content: number[], title: string, yLabel: string): void {
   createChart({
     type: "bar",
     data: {
@@ -94,7 +94,7 @@ function createOverviewGraph(labels: string[], content: number[], title: string,
   });
 }
 
-function loadOverviewGraph(selectedOption: string, graphType: string, rawOverview: ProductData[], categories: ProductType[]) {
+function loadOverviewGraph(selectedOption: string, graphType: string, rawOverview: ProductData[], categories: ProductType[]): void {
   let labels: string[] = [],
     content: number[] = [],
     title: string = "",
@@ -148,7 +148,7 @@ function loadOverviewGraph(selectedOption: string, graphType: string, rawOvervie
   createOverviewGraph(labels, content, title, yLabel);
 }
 
-function createTimelineGraph(data: any) {
+function createTimelineGraph(data: any): void {
   createChart({
     type: "bar",
     data: {
@@ -214,7 +214,7 @@ function createTimelineGraph(data: any) {
   });
 }
 
-function loadTimelineGraph(times: Date[]) {
+function loadTimelineGraph(times: Date[]): void {
   const days: any = {};
   for (let time of times) {
     const dateTime: Date = new Date(time);

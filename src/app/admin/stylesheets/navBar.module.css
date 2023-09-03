@@ -1,6 +1,6 @@
 .wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: auto 1fr;
   height: 70px;
   color: #E6E7E8;
   background: #005596;
@@ -15,8 +15,64 @@
   padding-inline: 1em;
 }
 
-.content {
+.extraTitle {
+  display: none;
+}
+
+.contentWrapper {
   display: grid;
+}
+
+.smallContent {
+  z-index: 100;
+  display: flex;
+  place-content: center;
+  aspect-ratio: 2 / 1;
+  justify-self: right;
+  position: relative;
+}
+
+.smallContentHeader {
+  display: grid;
+  place-content: center;
+  flex-grow: 1;
+  font-size: 2.7rem;
+  font-family: MuseoSlab, sans-serif;
+  transition: .3s;
+  border: 2px solid #005596;
+}
+
+.smallContentOptions {
+  display: none;
+  position: absolute;
+  top: 70px;
+  border-inline: 2px solid #005596;
+  width: 100%;
+}
+
+.smallContent:hover .smallContentOptions {
+  display: grid;
+}
+
+.smallContentOptions > a {
+  background: #E6E7E8;
+  color: #030006;
+  text-align: center;
+  font-family: MuseoSans, serif;
+  font-size: 1.2rem;
+  border-bottom: 2px solid #005596;
+  padding-block: 0.75em;
+  text-decoration: none;
+  transition: .3s;
+}
+
+.smallContentOptions > a:hover {
+  background: #005596;
+  color: #E6E7E8;
+}
+
+.content {
+  display: none;
   grid-template-columns: repeat(auto-fit, 125px);
   justify-content: end;
   font-size: 1.25em;
@@ -35,9 +91,24 @@
   transition: .3s;
 }
 
-.content a:hover {
+.content a:hover, .smallContentHeader:hover, .smallContentOptions:hover ~ .smallContentHeader {
   background: #E6E7E8;
   color: #005596;
   border-color: #005596;
-  transition: .3s;
+}
+
+@media (min-width: 600px) {
+  .extraTitle {
+    display: inline;
+  }
+}
+
+@media (min-width: 1000px) {
+  .content {
+    display: grid;
+  }
+
+  .smallContent {
+    display: none;
+  }
 }
