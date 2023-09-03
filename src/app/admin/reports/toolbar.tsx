@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Chart, ChartConfiguration } from "chart.js/auto";
+import "chartjs-adapter-date-fns";
 import { ProductData, ProductType } from "../../../productTypes";
 import reportStyles from "../stylesheets/report.module.css";
 
@@ -147,13 +148,107 @@ function loadOverviewGraph(selectedOption: string, graphType: string, rawOvervie
   createOverviewGraph(labels, content, title, yLabel);
 }
 
-export function Toolbar({ rawOverview, categories }: { rawOverview: string, categories: string }) {
+function loadTimelineGraph(times: Date[]) {
+  const days: any = {};
+  for (let time of times) {
+    const dateTime: Date = new Date(time);
+    const day: number = dateTime.getDate();
+    const hour: number = dateTime.getHours();
+
+    if (!days.hasOwnProperty(day)) {
+      days[day] = {
+        timestamp: dateTime,
+        "hours": {}
+      };
+    }
+
+    if (!days[day]["hours"].hasOwnProperty(hour)) {
+      days[day]["hours"][hour] = 0;
+    }
+
+    days[day]["hours"][hour]++;
+  }
+
+  const data: any[] = [];
+  for (let day in days) {
+    for (let hour in days[day]["hours"]) {
+      const timestamp: Date = days[day].timestamp;
+      const month: number = timestamp.getMonth() + 1;
+      data.push({
+        x: `${timestamp.getFullYear()}-${month > 9 ? month : `0${month}`}-${parseInt(day) > 9 ? day : `0${day}`} ${parseInt(hour) > 9 ? hour : `0${hour}`}:00:00`,
+        y: days[day]["hours"][hour]
+      });
+    }
+  }
+
+  createChart({
+    type: "bar",
+    data: {
+      datasets: [{ data }]
+    },
+    options: {
+      plugins: {
+        title: {
+          display: true,
+          text: "Hourly Timeline of Sales",
+          font: {
+            size: 30,
+            family: HEADER_FONT
+          }
+        },
+        legend: {
+          display: false
+        }
+      },
+      scales: {
+        x: {
+          type: "time",
+          time: {
+            unit: "hour"
+          },
+          ticks: {
+            font: {
+              family: BODY_FONT
+            },
+          },
+          title: {
+            display: true,
+            text: "Hour",
+            font: {
+              size: 25,
+              family: BODY_FONT
+            }
+          }
+        },
+        y: {
+          ticks: {
+            font: {
+              family: BODY_FONT
+            },
+          },
+          title: {
+            display: true,
+            text: "Sales",
+            font: {
+              size: 25,
+              family: BODY_FONT
+            }
+          }
+        }
+      },
+    },
+  });
+}
+
+export function Toolbar({ rawOverview, categories, times }: { rawOverview: string, categories: string, times: string }) {
   const [selectedOption, setSelectedOption] = useState("overview");
   const [graphType, setGraphType] = useState("units");
 
   useEffect(() => {
     if (selectedOption === "overview" || selectedOption === "overviewCategory") {
       loadOverviewGraph(selectedOption, graphType, JSON.parse(rawOverview), JSON.parse(categories));
+    } else if (selectedOption === "timeline") {
+      loadTimelineGraph(JSON.parse(times));
     }
   }, [selectedOption, graphType, categories, rawOverview]);
 
@@ -164,6 +259,8 @@ export function Toolbar({ rawOverview, categories }: { rawOverview: string, cate
           selected={selectedOption === "overview"}>Overview</ToolbarOptionButton>
         <ToolbarOptionButton action={() => setSelectedOption("overviewCategory")}
           selected={selectedOption === "overviewCategory"}>Overview (Category)</ToolbarOptionButton>
+        <ToolbarOptionButton action={() => setSelectedOption("timeline")}
+          selected={selectedOption === "timeline"}>Timeline</ToolbarOptionButton>
       </div>
       <div className={reportStyles.toolbarTools}>
         <div className={reportStyles.toolbarToolsSwap}>

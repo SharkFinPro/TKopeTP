@@ -16,11 +16,12 @@ export default async function Page() {
   const headersList: ReadonlyHeaders = headers(); // Opt in to dynamic rendering
   const report: Report = new Report("./bin/dump.txt");
   const rawOverview: ProductData[] = report.getOverview();
+  const times: Date[] = report.getTimes();
   const categories: ProductType[] = await productManager.getProductTypes();
 
   return (
     <div className={reportStyles.wrapper}>
-      <Toolbar rawOverview={JSON.stringify(rawOverview)} categories={JSON.stringify(categories)} />
+      <Toolbar rawOverview={JSON.stringify(rawOverview)} categories={JSON.stringify(categories)} times={JSON.stringify(times)} />
       <div className={reportStyles.display}>
         <canvas id="myChart"></canvas>
       </div>
