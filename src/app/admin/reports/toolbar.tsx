@@ -75,20 +75,12 @@ async function createOverviewGraph(selectedOption: string, graphType: string, ra
     if (graphType === "units") {
       yLabel = "Total Units";
       for (let { productType, count } of rawOverview) {
-        if (!count) {
-          continue;
-        }
-
-        content[productType - 1] += count;
+        content[productType - 1] += count || 0;
       }
     } else if (graphType === "money") {
       yLabel = "Total $";
       for (let { productType, count, price } of rawOverview) {
-        if (!count) {
-          continue;
-        }
-
-        content[productType - 1] += count * price;
+        content[productType - 1] += (count || 0) * price;
       }
     }
   }
