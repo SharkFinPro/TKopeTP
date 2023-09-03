@@ -1,19 +1,39 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Chart } from "chart.js/auto";
+import { Chart, ChartConfiguration } from "chart.js/auto";
 import { ProductData, ProductType } from "../../../productTypes";
 import reportStyles from "../stylesheets/report.module.css";
 
 function ToolbarOptionButton({ children, action, selected }: { children: string, action: any, selected: boolean }) {
-  return <button className={`${reportStyles.toolbarOption} ${selected ? reportStyles.toolbarSelected : ""}`} onClick={action}>{children}</button>
+  return (
+    <button
+      className={`${reportStyles.toolbarOption} ${selected ? reportStyles.toolbarSelected : ""}`}
+      onClick={action}>
+      {children}
+    </button>
+  );
 }
 
 function ToolbarTypeButton({ children, action, selected }: { children: string, action: any, selected: boolean }) {
-  return <button className={`${reportStyles.toolsSwapOption} ${selected ? reportStyles.toolsSwapOptionSelected : ""}`} onClick={action}>{children}</button>
+  return (
+    <button
+      className={`${reportStyles.toolsSwapOption} ${selected ? reportStyles.toolsSwapOptionSelected : ""}`}
+      onClick={action}>
+      {children}
+    </button>
+  );
 }
 
 let chart: Chart;
+const createChart = (config: ChartConfiguration): void => {
+  if (chart) {
+    chart.destroy();
+  }
+
+  chart = new Chart("myChart", config);
+}
+
 async function loadGraph(selectedOption: string, graphType: string, rawOverview: ProductData[], categories: ProductType[]) {
   let labels: string[] = [], content: number[] = [], title: string = "", yLabel: string = "";
 
@@ -70,11 +90,7 @@ async function loadGraph(selectedOption: string, graphType: string, rawOverview:
     }
   }
 
-  if (chart) {
-    chart.destroy();
-  }
-
-  chart = new Chart("myChart", {
+  createChart({
     type: "bar",
     data: {
       labels: labels,
