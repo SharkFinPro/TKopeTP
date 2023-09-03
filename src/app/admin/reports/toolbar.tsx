@@ -34,7 +34,7 @@ const createChart = (config: ChartConfiguration): void => {
   chart = new Chart("myChart", config);
 }
 
-async function loadGraph(selectedOption: string, graphType: string, rawOverview: ProductData[], categories: ProductType[]) {
+async function createOverviewGraph(selectedOption: string, graphType: string, rawOverview: ProductData[], categories: ProductType[]) {
   let labels: string[] = [], content: number[] = [], title: string = "", yLabel: string = "";
 
   if (selectedOption === "overview") {
@@ -150,7 +150,9 @@ export function Toolbar({ rawOverview, categories }: { rawOverview: string, cate
   const [graphType, setGraphType] = useState("units");
 
   useEffect(() => {
-    loadGraph(selectedOption, graphType, JSON.parse(rawOverview), JSON.parse(categories));
+    if (selectedOption === "overview" || selectedOption === "overviewCategory") {
+      createOverviewGraph(selectedOption, graphType, JSON.parse(rawOverview), JSON.parse(categories));
+    }
   }, [selectedOption, graphType, categories, rawOverview]);
 
   return (
