@@ -1,10 +1,14 @@
 .wrapper {
   margin-inline: auto;
-  width: min(max(50vw, 600px), 1200px);
   display: grid;
   grid-template-rows: max(15%, 125px) auto;
   height: 100%;
+  max-width: 100%;
   overflow-y: auto;
+}
+
+.header, .transactions {
+  width: min(max(50vw, 600px), 1200px);
 }
 
 .header {
