@@ -123,7 +123,7 @@ function loadOverviewGraph(selectedOption: string, graphType: string, rawOvervie
 
     for (let { displayName, id } of categories) {
       labels[id - 1] = displayName;
-      content[id - 1] = 0
+      content[id - 1] = 0;
     }
 
     if (graphType === "units") {
@@ -134,7 +134,7 @@ function loadOverviewGraph(selectedOption: string, graphType: string, rawOvervie
       }
     } else if (graphType === "money") {
       yLabel = "Total $";
-      
+
       for (let { productType, count, price } of rawOverview) {
         content[productType - 1] += (count || 0) * price;
       }
