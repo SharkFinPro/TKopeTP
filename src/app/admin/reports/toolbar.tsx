@@ -152,7 +152,13 @@ function createTimelineGraph(data: any) {
   createChart({
     type: "bar",
     data: {
-      datasets: [{ data }]
+      datasets: [{
+        data,
+        backgroundColor: "rgba(0, 85, 150, 0.75)",
+        borderColor: "#005596",
+        borderWidth: 3,
+        borderRadius: 10,
+      }]
     },
     options: {
       plugins: {
