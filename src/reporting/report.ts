@@ -80,26 +80,34 @@ export default class Report {
   sendToSheet(): void {
     const sheetData: any[] = [];
 
+    sheetData.push([ "Product", "Count", "Price", "Total" ]);
+
     for (let { displayName, count, price } of this.products) {
       if (!count) {
         continue;
       }
 
-      sheetData.push({
-        "Product": displayName,
-        "Count": { v: count, t: "n" },
-        "Price": { v: price, t: "n", z: "$#" },
-        "Total": { v: count * price, t: "n", z: "$#" }
-      });
+      sheetData.push([
+        displayName,
+        { v: count, t: "n" },
+        { v: price, t: "n", z: "$#" },
+        { v: count * price, t: "n", z: "$#" }
+      ]);
     }
 
-    sheetData.push({
-      "Product": "Total",
-      "Count": { v: this.totalProductsSold, t: "n" },
-      "Total": { v: this.moneyMade.cash + this.moneyMade.card, t: "n", z: "$#" }
-    });
+    sheetData.push([
+      "Total",
+      { v: this.totalProductsSold, t: "n" },
+      "",
+      { v: this.moneyMade.cash + this.moneyMade.card, t: "n", z: "$#" },
+      "",
+      "Cash:",
+      { v: this.moneyMade.cash, t: "n", z: "$#", alignLeft: true },
+      "Card: ",
+      { v: this.moneyMade.card, t: "n", z: "$#" }
+    ]);
 
-    const productsWorksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(sheetData);
+    const productsWorksheet = XLSX.utils.aoa_to_sheet(sheetData);
     productsWorksheet["!cols"] = [{ width: 25 }];
 
     this.productsWorksheet = productsWorksheet;
