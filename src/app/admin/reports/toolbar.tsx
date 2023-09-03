@@ -94,7 +94,10 @@ function createOverviewGraph(labels: string[], content: number[], title: string,
 }
 
 function loadOverviewGraph(selectedOption: string, graphType: string, rawOverview: ProductData[], categories: ProductType[]) {
-  let labels: string[] = [], content: number[] = [], title: string = "", yLabel: string = "";
+  let labels: string[] = [],
+    content: number[] = [],
+    title: string = "",
+    yLabel: string = "";
 
   if (selectedOption === "overview") {
     title = "Products Overview";
