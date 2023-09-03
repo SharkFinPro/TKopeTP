@@ -148,39 +148,7 @@ function loadOverviewGraph(selectedOption: string, graphType: string, rawOvervie
   createOverviewGraph(labels, content, title, yLabel);
 }
 
-function loadTimelineGraph(times: Date[]) {
-  const days: any = {};
-  for (let time of times) {
-    const dateTime: Date = new Date(time);
-    const day: number = dateTime.getDate();
-    const hour: number = dateTime.getHours();
-
-    if (!days.hasOwnProperty(day)) {
-      days[day] = {
-        timestamp: dateTime,
-        "hours": {}
-      };
-    }
-
-    if (!days[day]["hours"].hasOwnProperty(hour)) {
-      days[day]["hours"][hour] = 0;
-    }
-
-    days[day]["hours"][hour]++;
-  }
-
-  const data: any[] = [];
-  for (let day in days) {
-    for (let hour in days[day]["hours"]) {
-      const timestamp: Date = days[day].timestamp;
-      const month: number = timestamp.getMonth() + 1;
-      data.push({
-        x: `${timestamp.getFullYear()}-${month > 9 ? month : `0${month}`}-${parseInt(day) > 9 ? day : `0${day}`} ${parseInt(hour) > 9 ? hour : `0${hour}`}:00:00`,
-        y: days[day]["hours"][hour]
-      });
-    }
-  }
-
+function createTimelineGraph(data: any) {
   createChart({
     type: "bar",
     data: {
@@ -238,6 +206,42 @@ function loadTimelineGraph(times: Date[]) {
       },
     },
   });
+}
+
+function loadTimelineGraph(times: Date[]) {
+  const days: any = {};
+  for (let time of times) {
+    const dateTime: Date = new Date(time);
+    const day: number = dateTime.getDate();
+    const hour: number = dateTime.getHours();
+
+    if (!days.hasOwnProperty(day)) {
+      days[day] = {
+        timestamp: dateTime,
+        "hours": {}
+      };
+    }
+
+    if (!days[day]["hours"].hasOwnProperty(hour)) {
+      days[day]["hours"][hour] = 0;
+    }
+
+    days[day]["hours"][hour]++;
+  }
+
+  const data: any[] = [];
+  for (let day in days) {
+    for (let hour in days[day]["hours"]) {
+      const timestamp: Date = days[day].timestamp;
+      const month: number = timestamp.getMonth() + 1;
+      data.push({
+        x: `${timestamp.getFullYear()}-${month > 9 ? month : `0${month}`}-${parseInt(day) > 9 ? day : `0${day}`} ${parseInt(hour) > 9 ? hour : `0${hour}`}:00:00`,
+        y: days[day]["hours"][hour]
+      });
+    }
+  }
+
+  createTimelineGraph(data);
 }
 
 export function Toolbar({ rawOverview, categories, times }: { rawOverview: string, categories: string, times: string }) {
