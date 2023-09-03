@@ -5,6 +5,9 @@ import { Chart, ChartConfiguration } from "chart.js/auto";
 import { ProductData, ProductType } from "../../../productTypes";
 import reportStyles from "../stylesheets/report.module.css";
 
+const HEADER_FONT = "'MuseoSlab', 'serif'";
+const BODY_FONT = "'MuseoSans', 'serif'";
+
 function ToolbarOptionButton({ children, action, selected }: { children: string, action: any, selected: boolean }) {
   return (
     <button
@@ -107,7 +110,7 @@ async function createOverviewGraph(selectedOption: string, graphType: string, ra
         x: {
           ticks: {
             font: {
-              family: "'MuseoSans', 'serif'"
+              family: BODY_FONT
             },
           }
         },
@@ -115,7 +118,7 @@ async function createOverviewGraph(selectedOption: string, graphType: string, ra
           beginAtZero: true,
           ticks: {
             font: {
-              family: "'MuseoSans', 'serif'"
+              family: BODY_FONT
             },
           },
           title: {
@@ -123,7 +126,7 @@ async function createOverviewGraph(selectedOption: string, graphType: string, ra
             text: yLabel,
             font: {
               size: 25,
-              family: "'MuseoSans', 'serif'"
+              family: BODY_FONT
             }
           }
         }
@@ -134,7 +137,7 @@ async function createOverviewGraph(selectedOption: string, graphType: string, ra
           text: title,
           font: {
             size: 30,
-            family: "'MuseoSlab', 'serif'"
+            family: HEADER_FONT
           }
         },
         legend: {
