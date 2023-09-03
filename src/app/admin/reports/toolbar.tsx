@@ -5,8 +5,8 @@ import { Chart, ChartConfiguration } from "chart.js/auto";
 import { ProductData, ProductType } from "../../../productTypes";
 import reportStyles from "../stylesheets/report.module.css";
 
-const HEADER_FONT = "'MuseoSlab', 'serif'";
-const BODY_FONT = "'MuseoSans', 'serif'";
+const HEADER_FONT: string = "'MuseoSlab', 'serif'";
+const BODY_FONT: string = "'MuseoSans', 'serif'";
 
 function ToolbarOptionButton({ children, action, selected }: { children: string, action: any, selected: boolean }) {
   return (
