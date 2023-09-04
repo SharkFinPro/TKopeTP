@@ -49,8 +49,16 @@ export default function Page() {
       <div className={checkoutStyles.paymentInfo}>
         <p className={checkoutStyles.total}>Total: ${total}</p>
         <div className={checkoutStyles.paymentTypeSelection}>
-          <button className={paymentMethod === "cash" ? checkoutStyles.selected : ""} onClick={() => setPaymentMethod("cash")}>Cash</button>
-          <button className={paymentMethod === "card" ? checkoutStyles.selected : ""} onClick={() => setPaymentMethod("card")}>Card</button>
+          <button
+            className={paymentMethod === "cash" ? checkoutStyles.selected : ""}
+            onClick={() => setPaymentMethod("cash")}>
+            Cash
+          </button>
+          <button
+            className={paymentMethod === "card" ? checkoutStyles.selected : ""}
+            onClick={() => setPaymentMethod("card")}>
+            Card
+          </button>
         </div>
       </div>
     </div>
