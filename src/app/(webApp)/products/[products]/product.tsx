@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import { cart } from "../../tools/cart";
 import { ProductData } from "../../../../productTypes";
-import productsStyles from "../../stylesheets/products.module.css";
 import loadingImage from "../../../../../public/images/NOT_FOUND.png";
+import productsStyles from "../../stylesheets/products.module.css";
 
 export function Product({ productData, processCDN }: { productData: ProductData, processCDN: undefined | string }) {
   const [imageData, setImageData] = useState<StaticImageData | string>(loadingImage);
