@@ -9,9 +9,9 @@ export default function WebAppLayout({
 }) {
   return (
     <div className={wrapperStyles.wrapper}>
-      <div className={wrapperStyles.container}>
+      {/*<div className={wrapperStyles.container}>*/}
         {children}
-      </div>
+      {/*</div>*/}
     </div>
   );
 }
