@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import { cart } from "../../tools/cart";
 import { ProductData } from "../../../../productTypes";
-import productsStyles from "../../stylesheets/products.module.css";
 import loadingImage from "../../../../../public/images/NOT_FOUND.png";
+import productsStyles from "../../stylesheets/products.module.css";
 
 export function Product({ productData, processCDN }: { productData: ProductData, processCDN: undefined | string }) {
   const [imageData, setImageData] = useState<StaticImageData | string>(loadingImage);
@@ -51,9 +51,19 @@ export function Product({ productData, processCDN }: { productData: ProductData,
       </div>
       <p className={productsStyles.name}>{productData.displayName} - ${productData.price}</p>
       <div className={productsStyles.purchase}>
-        <button className={`${productsStyles.option} ${productsStyles.left}`} type="button" onClick={subFromCart}>-</button>
+        <button
+          className={productsStyles.option}
+          type="button"
+          onClick={subFromCart}>
+          −
+        </button>
         <p className={productsStyles.display}>{count}</p>
-        <button className={`${productsStyles.option} ${productsStyles.right}`} type="button" onClick={addToCart}>+</button>
+        <button
+          className={productsStyles.option}
+          type="button"
+          onClick={addToCart}>
+          +
+        </button>
       </div>
     </div>
   );

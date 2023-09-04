@@ -3,6 +3,8 @@ import Footer from "../../footer";
 import { Metadata } from "next";
 import productManager from "../../../../productManager";
 import { ProductData } from "../../../../productTypes";
+import { headers } from "next/headers";
+import { ReadonlyHeaders } from "next/dist/server/web/spec-extension/adapters/headers";
 import wrapperStyles from "../../stylesheets/wrapper.module.css";
 import productsStyles from "../../stylesheets/products.module.css";
 
@@ -12,10 +14,8 @@ export const metadata: Metadata = {
 };
 
 export default async function Page({ params }: {params: { products: string }})  {
-  let products: ProductData[] = [];
-  if (params.products !== "%5Bproducts%5D") {
-    products = await productManager.getProductsByType(params.products, true);
-  }
+  const headersList: ReadonlyHeaders = headers(); // Opt in to dynamic rendering
+  const products: ProductData[] = await productManager.getProductsByType(params.products, true);
 
   return <>
     <header className={wrapperStyles.header}>
@@ -23,7 +23,13 @@ export default async function Page({ params }: {params: { products: string }})  
     </header>
     <div className={wrapperStyles.content}>
       <div className={productsStyles.products}>
-        {products.map((product: ProductData) => <Product key={product.id} productData={product} processCDN={process.env.cdn} />)}
+        {products.map((product: ProductData) => (
+          <Product
+            key={product.id}
+            productData={product}
+            processCDN={process.env.cdn}
+          />
+        ))}
       </div>
     </div>
     <Footer />

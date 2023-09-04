@@ -21,9 +21,13 @@ export default async function Page() {
 
   return (
     <div className={reportStyles.wrapper}>
-      <Toolbar rawOverview={JSON.stringify(rawOverview)} categories={JSON.stringify(categories)} times={JSON.stringify(times)} />
+      <Toolbar
+        rawOverview={JSON.stringify(rawOverview)}
+        categories={JSON.stringify(categories)}
+        times={JSON.stringify(times)}
+      />
       <div className={reportStyles.display}>
-        <canvas id="myChart"></canvas>
+        <canvas id="graphCanvas"></canvas>
       </div>
     </div>
   );

@@ -1,9 +1,9 @@
 "use client";
 import { cart } from "../tools/cart";
 import { useRouter } from "next/navigation";
-import wrapperStyles from "../stylesheets/wrapper.module.css";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
 import confetti from "canvas-confetti";
+import wrapperStyles from "../stylesheets/wrapper.module.css";
 
 function playConfetti() {
   const count = 250;
@@ -11,7 +11,12 @@ function playConfetti() {
     origin: { y: 0.7 }
   };
 
-  function fire(particleRatio: number, opts: { spread: number, startVelocity?: number, decay?: number, scalar?: number}): void {
+  function fire(particleRatio: number, opts: {
+    spread: number,
+    startVelocity?: number,
+    decay?: number,
+    scalar?: number
+  }): void {
     confetti(Object.assign({}, defaults, opts, {
       particleCount: Math.floor(count * particleRatio)
     }));

@@ -1,12 +1,7 @@
 .wrapper {
   height: 100%;
-  margin-inline: auto;
-}
-
-.container {
   display: grid;
   grid-template-rows: 20% 70% 10%;
-  height: 100%;
 }
 
 .header {
@@ -14,7 +9,6 @@
   place-content: center;
   border-style: double;
   border-width: 15px;
-  box-sizing: border-box;
   border-color: #36454F;
   background-color: #E31837;
   color: #E6E7E8;
@@ -32,12 +26,11 @@
   display: grid;
   place-items: center;
   background-color: #005594;
-  box-sizing: border-box;
   border-top: 5px solid #030006;
 }
 
 .footerButton {
-  padding: 0.5em 2em;
+  padding-block: 0.5em;
   width: 50%;
   max-width: 300px;
   text-decoration: none;
@@ -48,7 +41,7 @@
   background-color: #E6E7E8;
   border-radius: 0.5em;
   border: 5px solid #030006;
-  box-sizing: border-box;
+  transition: .3s;
 }
 
 .footerButton:hover {

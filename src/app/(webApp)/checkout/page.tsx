@@ -1,7 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import Product from "./product";
-import Footer from "./footer";
 import { cart } from "../tools/cart";
 import { ProductData } from "../../../productTypes";
 import wrapperStyles from "../stylesheets/wrapper.module.css";
@@ -24,10 +22,7 @@ export default function Page() {
     }
   }, [paymentMethod]);
 
-  return <>
-    <header className={wrapperStyles.header}>
-      <h1>Checkout</h1>
-    </header>
+  return (
     <div className={wrapperStyles.content}>
       <div className={checkoutStyles.cartDisplayContainer}>
         <table className={checkoutStyles.cartDisplay}>
@@ -38,18 +33,30 @@ export default function Page() {
             </tr>
           </thead>
           <tbody>
-            {products.map((product: ProductData) => <Product key={product.id} productData={product} />)}
+            {products.map((product: ProductData) => (
+              <tr key={product.id}>
+                <td>{product.displayName} - ${product.price}</td>
+                <td>{product.count}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
       <div className={checkoutStyles.paymentInfo}>
         <p className={checkoutStyles.total}>Total: ${total}</p>
         <div className={checkoutStyles.paymentTypeSelection}>
-          <button className={paymentMethod === "cash" ? checkoutStyles.selected : ""} onClick={() => setPaymentMethod("cash")}>Cash</button>
-          <button className={paymentMethod === "card" ? checkoutStyles.selected : ""} onClick={() => setPaymentMethod("card")}>Card</button>
+          <button
+            className={paymentMethod === "cash" ? checkoutStyles.selected : ""}
+            onClick={() => setPaymentMethod("cash")}>
+            Cash
+          </button>
+          <button
+            className={paymentMethod === "card" ? checkoutStyles.selected : ""}
+            onClick={() => setPaymentMethod("card")}>
+            Card
+          </button>
         </div>
       </div>
     </div>
-    <Footer />
-  </>
+  );
 }

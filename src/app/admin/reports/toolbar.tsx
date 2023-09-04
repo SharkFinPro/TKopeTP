@@ -29,21 +29,41 @@ export function Toolbar({ rawOverview, categories, times }: { rawOverview: strin
   return (
     <div className={reportStyles.toolbar}>
       <div className={reportStyles.toolbarOptions}>
-        <ToolbarButton action={() => setSelectedOption("overview")}
-          selected={selectedOption === "overview"}>Overview</ToolbarButton>
-        <ToolbarButton action={() => setSelectedOption("overviewCategory")}
-          selected={selectedOption === "overviewCategory"}>Overview (Category)</ToolbarButton>
-        <ToolbarButton action={() => setSelectedOption("timeline")}
-          selected={selectedOption === "timeline"}>Timeline</ToolbarButton>
+        <ToolbarButton
+          action={() => setSelectedOption("overview")}
+          selected={selectedOption === "overview"}>
+          Overview
+        </ToolbarButton>
+        <ToolbarButton
+          action={() => setSelectedOption("overviewCategory")}
+          selected={selectedOption === "overviewCategory"}>
+          Overview (Category)
+        </ToolbarButton>
+        <ToolbarButton
+          action={() => setSelectedOption("timeline")}
+          selected={selectedOption === "timeline"}>
+          Timeline
+        </ToolbarButton>
       </div>
       <div className={reportStyles.toolbarTools}>
         <div className={reportStyles.toolbarToolsSwap}>
-          <ToolbarButton action={() => setGraphType("units")}
-            selected={graphType === "units"}>Units</ToolbarButton>
-          <ToolbarButton action={() => setGraphType("money")}
-            selected={graphType === "money"}>Money</ToolbarButton>
+          <ToolbarButton
+            action={() => setGraphType("units")}
+            selected={graphType === "units"}>
+            Units
+          </ToolbarButton>
+          <ToolbarButton
+            action={() => setGraphType("money")}
+            selected={graphType === "money"}>
+            Money
+          </ToolbarButton>
         </div>
-        <Link className={reportStyles.toolbarDownload} href="/api/admin/reporting/report.xlsx" target="_blank">Download Report</Link>
+        <Link
+          className={reportStyles.toolbarDownload}
+          href="/api/admin/reporting/report.xlsx"
+          target="_blank">
+          Download Report
+        </Link>
       </div>
     </div>
   );

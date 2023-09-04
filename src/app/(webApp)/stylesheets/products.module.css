@@ -10,6 +10,8 @@
 .product {
   aspect-ratio: 1 / 1;
   border-radius: 15px;
+  border: 4px solid #030006;
+  overflow: hidden;
   display: grid;
   grid-template-rows: 56.25% 18.75% 25%;
 }
@@ -17,29 +19,22 @@
 .image {
   display: grid;
   place-items: center;
-  overflow: hidden;
-  background-color: #36454F;
-  border-radius: 15px 15px 0 0;
-  border: 4px solid #030006;
-  border-bottom: none;
 }
 
-.image img {
+.image > img {
   width: 100%;
   min-height: 100%;
   height: auto;
 }
 
 .name {
-  margin: 0;
   display: grid;
   place-content: center;
   background: #005596;
   font-size: min(2.75vw, 1rem);
   color: #FFF;
   font-family: MuseoSans, serif;
-  border: 4px solid #030006;
-  border-bottom: none;
+  border-top: 4px solid #030006;
   white-space: nowrap;
   overflow: hidden;
 }
@@ -48,37 +43,28 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   overflow: hidden;
+  border-top: 4px solid #030006;
   font-family: MuseoSans, serif;
+  background: #030006;
+  column-gap: 4px;
 }
 
-.purchase * {
-  margin: 0;
-  display: grid;
-  place-content: center;
-  border: 4px solid #030006;
+.purchase > * {
+  text-align: center;
   font-size: min(8vw, 3rem);
 }
 
 .option {
-  transition: 0.1s all;
+  border: none;
+  transition: 0.3s;
 }
 
 .option:active {
   background-color: #E6E7E8;
 }
 
-.left {
-  border-radius: 0 0 0 15px;
-}
-
-.right {
-  border-radius: 0 0 15px 0;
-}
-
 .display {
   background-color: #E6E7E8;
-  border-left-width: 0;
-  border-right-width: 0;
 }
 
 @media (max-width: 800px) {

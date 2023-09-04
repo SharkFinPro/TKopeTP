@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 import navBarStyles from "./stylesheets/navBar.module.css";
 
 function Links() {
@@ -11,17 +10,6 @@ function Links() {
   </>
 }
 
-function SmallMenu() {
-  return (
-    <div className={navBarStyles.smallContent}>
-      <div className={navBarStyles.smallContentOptions}>
-        <Links />
-      </div>
-      <span className={navBarStyles.smallContentHeader}>☰</span>
-    </div>
-  );
-}
-
 export function NavBar() {
   return (
     <div className={navBarStyles.wrapper}>
@@ -31,7 +19,12 @@ export function NavBar() {
       <div className={navBarStyles.content}>
         <Links />
       </div>
-      <SmallMenu />
+      <div className={navBarStyles.smallContent}>
+        <div className={navBarStyles.smallContentOptions}>
+          <Links />
+        </div>
+        <span className={navBarStyles.smallContentHeader}>☰</span>
+      </div>
     </div>
   );
 }
