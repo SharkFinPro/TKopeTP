@@ -41,6 +41,7 @@
   background-color: #E6E7E8;
   border-radius: 0.5em;
   border: 5px solid #030006;
+  transition: .3s;
 }
 
 .footerButton:hover {
