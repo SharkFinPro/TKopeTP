@@ -80,7 +80,7 @@
   padding-inline: 2px;
 }
 
-.content a {
+.content > a {
   display: grid;
   justify-content: center;
   align-content: center;
@@ -91,7 +91,7 @@
   transition: .3s;
 }
 
-.content a:hover, .smallContentHeader:hover, .smallContentOptions:hover ~ .smallContentHeader {
+.content > a:hover, .smallContentHeader:hover, .smallContentOptions:hover ~ .smallContentHeader {
   background: #E6E7E8;
   color: #005596;
   border-color: #005596;
