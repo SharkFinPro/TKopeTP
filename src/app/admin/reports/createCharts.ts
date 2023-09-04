@@ -5,6 +5,13 @@ import "chartjs-adapter-date-fns";
 const HEADER_FONT: string = "MuseoSlab, serif";
 const BODY_FONT: string = "MuseoSans, serif";
 
+const CHART_STYLES = {
+  backgroundColor: "rgba(0, 85, 150, 0.75)",
+  borderColor: "#005596",
+  borderWidth: 3,
+  borderRadius: 10,
+};
+
 let chart: Chart;
 function createChart(config: ChartConfiguration): void {
   if (chart) {
@@ -14,17 +21,14 @@ function createChart(config: ChartConfiguration): void {
   chart = new Chart("graphCanvas", config);
 }
 
-function createOverviewGraph(labels: string[], content: number[], title: string, yLabel: string): void {
+function createOverviewGraph(labels: string[], data: number[], title: string, yLabel: string): void {
   createChart({
     type: "bar",
     data: {
       labels: labels,
       datasets: [{
-        backgroundColor: "rgba(0, 85, 150, 0.75)",
-        borderColor: "#005596",
-        borderWidth: 3,
-        borderRadius: 10,
-        data: content
+        data,
+        ...CHART_STYLES
       }]
     },
     options: {
@@ -72,7 +76,7 @@ function createOverviewGraph(labels: string[], content: number[], title: string,
 
 export function loadOverviewGraph(selectedOption: string, graphType: string, rawOverview: ProductData[], categories: ProductType[]): void {
   let labels: string[] = [],
-    content: number[] = [],
+    data: number[] = [],
     title: string = "",
     yLabel: string = "";
 
@@ -85,7 +89,7 @@ export function loadOverviewGraph(selectedOption: string, graphType: string, raw
       for (let { displayName, count } of rawOverview) {
         if (count) {
           labels.push(displayName);
-          content.push(count);
+          data.push(count);
         }
       }
     } else if (graphType === "money") {
@@ -94,7 +98,7 @@ export function loadOverviewGraph(selectedOption: string, graphType: string, raw
       for (let { displayName, count, price } of rawOverview) {
         if (count) {
           labels.push(displayName);
-          content.push(count * price);
+          data.push(count * price);
         }
       }
     }
@@ -103,25 +107,25 @@ export function loadOverviewGraph(selectedOption: string, graphType: string, raw
 
     for (let { displayName, id } of categories) {
       labels[id - 1] = displayName;
-      content[id - 1] = 0;
+      data[id - 1] = 0;
     }
 
     if (graphType === "units") {
       yLabel = "Total Units";
 
       for (let { productType, count } of rawOverview) {
-        content[productType - 1] += count || 0;
+        data[productType - 1] += count || 0;
       }
     } else if (graphType === "money") {
       yLabel = "Total $";
 
       for (let { productType, count, price } of rawOverview) {
-        content[productType - 1] += (count || 0) * price;
+        data[productType - 1] += (count || 0) * price;
       }
     }
   }
 
-  createOverviewGraph(labels, content, title, yLabel);
+  createOverviewGraph(labels, data, title, yLabel);
 }
 
 function createTimelineGraph(data: any): void {
@@ -130,10 +134,7 @@ function createTimelineGraph(data: any): void {
     data: {
       datasets: [{
         data,
-        backgroundColor: "rgba(0, 85, 150, 0.75)",
-        borderColor: "#005596",
-        borderWidth: 3,
-        borderRadius: 10,
+        ...CHART_STYLES
       }]
     },
     options: {
