@@ -32,7 +32,14 @@ function Transaction({ data }: { data: any }) {
       </p>
       <p>
         <span className={transactionsStyles.transactionHeader}>Time: </span>
-        {new Date(data.time).toLocaleDateString('en-us', { weekday:"long", year:"numeric", month:"short", day:"numeric", hour:"numeric", minute:"numeric"})}
+        {new Date(data.time).toLocaleDateString('en-us', {
+          weekday: "long",
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+          hour: "numeric",
+          minute: "numeric"
+        })}
       </p>
     </div>
   );
