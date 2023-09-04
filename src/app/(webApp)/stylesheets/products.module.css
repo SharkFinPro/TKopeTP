@@ -19,9 +19,6 @@
 .image {
   display: grid;
   place-items: center;
-  overflow: hidden;
-  background-color: #36454F;
-  border-bottom: none;
 }
 
 .image img {
@@ -69,8 +66,6 @@
 
 .display {
   background-color: #E6E7E8;
-  border-left-width: 0;
-  border-right-width: 0;
 }
 
 @media (max-width: 800px) {
