@@ -18,7 +18,7 @@ export default class Report {
 
       for (let transaction of transactions) {
         const cartData = JSON.parse(transaction);
-        const cart: Cart = new Cart(cartData.cart, cartData.paymentMethod, cartData.time);
+        const cart: Cart = new Cart(cartData.cart || cartData, cartData.paymentMethod, cartData.time);
         this.carts.push(cart);
         this.processCart(cart);
       }
@@ -39,7 +39,10 @@ export default class Report {
       }
     }
 
-    this.timestamps.push(new Date(cart.time));
+    if (cart.time) {
+      this.timestamps.push(new Date(cart.time));
+    }
+
     cart.totalMoney = totalMoney;
   }
 
