@@ -18,7 +18,7 @@ export default class Report {
 
       for (let transaction of transactions) {
         const cartData = JSON.parse(transaction);
-        const cart: Cart = new Cart(cartData.cart || cartData, cartData.paymentMethod, cartData.time);
+        const cart: Cart = new Cart(cartData.cart, cartData.paymentMethod, cartData.time);
         this.carts.push(cart);
         this.processCart(cart);
       }
@@ -28,11 +28,7 @@ export default class Report {
   processCart(cart: Cart): (number | void) {
     let totalMoney: number = 0;
 
-    if (typeof cart.cart === "object") { // Legacy (object)
-      for (let product in cart.cart) {
-        totalMoney += this.processProduct(cart.cart[product], cart.paymentMethod);
-      }
-    } else { // Current (array)
+    if (typeof cart.cart === "string") {
       const cartProducts = JSON.parse(cart.cart);
       for (let cartProduct of cartProducts) {
         totalMoney += this.processProduct(cartProduct, cart.paymentMethod);
