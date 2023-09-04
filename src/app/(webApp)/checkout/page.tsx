@@ -4,7 +4,6 @@ import Product from "./product";
 import Footer from "./footer";
 import { cart } from "../tools/cart";
 import { ProductData } from "../../../productTypes";
-import "../stylesheets/global.css";
 import wrapperStyles from "../stylesheets/wrapper.module.css";
 import checkoutStyles from "../stylesheets/checkout.module.css";
 

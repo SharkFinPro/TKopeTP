@@ -1,12 +1,11 @@
 import Footer from "./footer";
 import { Metadata } from "next";
-import wrapperStyles from "./stylesheets/wrapper.module.css";
 import ProductManager from "../../productManager";
 import { ProductType } from "../../productTypes";
 import { headers } from "next/headers";
-import indexStyles from "./stylesheets/index.module.css";
 import Link from "next/link";
-import "./stylesheets/global.css";
+import wrapperStyles from "./stylesheets/wrapper.module.css";
+import indexStyles from "./stylesheets/index.module.css";
 
 export const metadata: Metadata = {
   title: "Home",

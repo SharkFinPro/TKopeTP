@@ -1,4 +1,5 @@
 import React from "react";
+import "./stylesheets/global.css";
 import wrapperStyles from "./stylesheets/wrapper.module.css";
 
 export default function WebAppLayout({ children }: { children: React.ReactNode }) {
