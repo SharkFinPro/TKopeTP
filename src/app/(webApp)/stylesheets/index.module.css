@@ -9,19 +9,22 @@
 }
 
 .category {
-  padding-block: 0.7em;
+  padding-block: 0.6em;
   width: 80%;
   text-decoration: none;
   font-size: min(8vw, 2.5rem);
   text-align: center;
   color: #E6E7E8;
   font-family: MuseoSlab, sans-serif;
-  background-color: #030006;
+  background: #030006;
   border-radius: 0.25em;
+  border: 3px solid #030006;
+  transition: .3s;
 }
 
 .category:hover {
-  color: #FFF;
+  background: #E6E7E8;
+  color: #030006;
 }
 
 @media (min-width: 1200px) {
