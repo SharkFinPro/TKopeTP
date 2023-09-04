@@ -23,15 +23,47 @@
   overflow-y: auto;
 }
 
-.toolbarOption {
-  width: 90%;
+.toolbarOptions > *, .toolbarToolsSwap > * {
   padding-block: 0.75em;
   border: 5px solid black;
   background: #030006;
-  transition: .3s;
   color: inherit;
   font-size: inherit;
   font-family: inherit;
+  transition: .3s;
+}
+
+.toolbarOptions > * {
+  width: 90%;
+}
+
+.toolbarToolsSwap > * {
+  padding-inline: 1.5em;
+}
+
+.toolbarTools {
+  align-self: end;
+  display: grid;
+  place-items: center;
+  padding-block: 1rem;
+}
+
+.toolbarToolsSwap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin-block: 0.5rem;
+}
+
+.toolbarOptions > *:hover, .toolbarToolsSwap > *:hover {
+  background: #E6E7E8;
+  color: #030006;
+  transition: .3s;
+}
+
+.toolbarSelected {
+  background: #E6E7E8;
+  color: #030006;
 }
 
 .toolbarDownload {
@@ -52,41 +84,6 @@
   background: #030006;
   color: #FFF;
   transition: .3s;
-}
-
-.toolbarTools {
-  align-self: end;
-  display: grid;
-  place-items: center;
-  padding-block: 1rem;
-}
-
-.toolbarToolsSwap {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-  margin-block: 0.5rem;
-}
-
-.toolsSwapOption {
-  padding: 0.75em 1.5em;
-  border: 5px solid black;
-  background: #030006;
-  transition: .3s;
-  color: inherit;
-  font-size: inherit;
-  font-family: inherit;
-}
-
-.toolsSwapOption:hover, .toolbarOption:hover {
-  background: #E6E7E8;
-  color: #030006;
-  transition: .3s;
-}
-
-.toolsSwapOptionSelected, .toolbarSelected {
-  background: #E6E7E8;
-  color: #030006;
 }
 
 .display {

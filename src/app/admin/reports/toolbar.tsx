@@ -9,20 +9,10 @@ import reportStyles from "../stylesheets/report.module.css";
 const HEADER_FONT: string = "'MuseoSlab', 'serif'";
 const BODY_FONT: string = "'MuseoSans', 'serif'";
 
-function ToolbarOptionButton({ children, action, selected }: { children: string, action: any, selected: boolean }) {
+function ToolbarButton({ children, action, selected }: { children: string, action: any, selected: boolean }) {
   return (
     <button
-      className={`${reportStyles.toolbarOption} ${selected ? reportStyles.toolbarSelected : ""}`}
-      onClick={action}>
-      {children}
-    </button>
-  );
-}
-
-function ToolbarTypeButton({ children, action, selected }: { children: string, action: any, selected: boolean }) {
-  return (
-    <button
-      className={`${reportStyles.toolsSwapOption} ${selected ? reportStyles.toolsSwapOptionSelected : ""}`}
+      className={selected ? reportStyles.toolbarSelected : ""}
       onClick={action}>
       {children}
     </button>
@@ -265,19 +255,19 @@ export function Toolbar({ rawOverview, categories, times }: { rawOverview: strin
   return (
     <div className={reportStyles.toolbar}>
       <div className={reportStyles.toolbarOptions}>
-        <ToolbarOptionButton action={() => setSelectedOption("overview")}
-          selected={selectedOption === "overview"}>Overview</ToolbarOptionButton>
-        <ToolbarOptionButton action={() => setSelectedOption("overviewCategory")}
-          selected={selectedOption === "overviewCategory"}>Overview (Category)</ToolbarOptionButton>
-        <ToolbarOptionButton action={() => setSelectedOption("timeline")}
-          selected={selectedOption === "timeline"}>Timeline</ToolbarOptionButton>
+        <ToolbarButton action={() => setSelectedOption("overview")}
+          selected={selectedOption === "overview"}>Overview</ToolbarButton>
+        <ToolbarButton action={() => setSelectedOption("overviewCategory")}
+          selected={selectedOption === "overviewCategory"}>Overview (Category)</ToolbarButton>
+        <ToolbarButton action={() => setSelectedOption("timeline")}
+          selected={selectedOption === "timeline"}>Timeline</ToolbarButton>
       </div>
       <div className={reportStyles.toolbarTools}>
         <div className={reportStyles.toolbarToolsSwap}>
-          <ToolbarTypeButton action={() => setGraphType("units")}
-            selected={graphType === "units"}>Units</ToolbarTypeButton>
-          <ToolbarTypeButton action={() => setGraphType("money")}
-            selected={graphType === "money"}>Money</ToolbarTypeButton>
+          <ToolbarButton action={() => setGraphType("units")}
+            selected={graphType === "units"}>Units</ToolbarButton>
+          <ToolbarButton action={() => setGraphType("money")}
+            selected={graphType === "money"}>Money</ToolbarButton>
         </div>
         <Link className={reportStyles.toolbarDownload} href="/api/admin/reporting/report.xlsx" target="_blank">Download Report</Link>
       </div>
