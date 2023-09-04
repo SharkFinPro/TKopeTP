@@ -55,7 +55,7 @@ export function Product({ productData, processCDN }: { productData: ProductData,
           className={productsStyles.option}
           type="button"
           onClick={subFromCart}>
-          -
+          −
         </button>
         <p className={productsStyles.display}>{count}</p>
         <button
