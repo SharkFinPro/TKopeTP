@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import reportStyles from "../stylesheets/report.module.css";
 import { loadOverviewGraph, loadTimelineGraph } from "./createCharts";
+import reportStyles from "../stylesheets/report.module.css";
 
 function ToolbarButton({ children, action, selected }: { children: string, action: any, selected: boolean }) {
   return (
