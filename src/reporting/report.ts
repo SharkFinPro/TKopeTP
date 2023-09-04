@@ -135,7 +135,7 @@ export default class Report {
     return this.timestamps;
   }
 
-  getTransactions() {
+  getTransactions(): Cart[] {
     return this.carts;
   }
 }
