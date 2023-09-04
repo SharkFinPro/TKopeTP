@@ -120,8 +120,8 @@ export function ProductEditor({ productData, setCurrentProduct }: { productData:
         </div>
       </form>
       <footer>
+        <input type={"submit"} form={"settingsForm"} value={"Submit"}/>
         <button onClick={()=>dialogRef.current?.close()}>Quit</button>
-        <input type={"submit"} form={"settingsForm"}/>
       </footer>
     </dialog>
   );
