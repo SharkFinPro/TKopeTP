@@ -9,7 +9,6 @@ export async function POST(request: Request): Promise<Response> {
   const body = await request.json();
 
   const filePath: string = path.resolve('.', `images/${body.image}`);
-
   let imageBuffer: void | Buffer = await readFilePromise(filePath).catch((): void => {});
 
   if (!imageBuffer) {
