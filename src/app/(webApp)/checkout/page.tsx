@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import Product from "./product";
 import Footer from "./footer";
 import { cart } from "../tools/cart";
 import { ProductData } from "../../../productTypes";
@@ -38,7 +37,12 @@ export default function Page() {
             </tr>
           </thead>
           <tbody>
-            {products.map((product: ProductData) => <Product key={product.id} productData={product} />)}
+            {products.map((product: ProductData) => (
+              <tr key={product.id}>
+                <td>{product.displayName} - ${product.price}</td>
+                <td>{product.count}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
