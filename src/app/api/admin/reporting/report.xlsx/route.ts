@@ -4,5 +4,5 @@ export async function GET(request: Request): Promise<Response> {
   const body = request.body;
   const report: Report = new Report("./bin/dump.txt");
 
-  return new Response(report.getExcel(), { status: 200 });
+  return new Response(report.getXLSX(), { status: 200 });
 }

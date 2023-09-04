@@ -112,7 +112,7 @@ export default class Report {
     this.productsWorksheet = productsWorksheet;
   }
 
-  getExcel() {
+  getXLSX() {
     if (!this.productsWorksheet) {
       this.sendToSheet();
     }
