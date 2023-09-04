@@ -30,7 +30,7 @@
 }
 
 .footerButton {
-  padding: 0.5em 2em;
+  padding-block: 0.5em;
   width: 50%;
   max-width: 300px;
   text-decoration: none;
