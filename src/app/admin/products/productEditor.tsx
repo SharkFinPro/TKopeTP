@@ -1,8 +1,8 @@
 "use client";
 import { ProductType, RobustProductData} from "../../../productTypes";
 import { useEffect, useRef, useState } from "react";
-import editorStyles from "../stylesheets/productEditor.module.css";
 import { getRequest } from "../../tools/requests";
+import editorStyles from "../stylesheets/productEditor.module.css";
 
 export function ProductEditor({ productData, setCurrentProduct }: { productData: RobustProductData | undefined | null, setCurrentProduct: any }) {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
@@ -105,7 +105,11 @@ export function ProductEditor({ productData, setCurrentProduct }: { productData:
             value={selectedProductType}
             onChange={(e) => setSelectedProductType(parseInt(e.target.value))}>
             {productTypes.map((type: ProductType) => (
-              <option value={type.id} key={type.id}>{type.displayName}</option>
+              <option
+                value={type.id}
+                key={type.id}>
+                {type.displayName}
+              </option>
             ))}
           </select>
         </div>
@@ -120,8 +124,8 @@ export function ProductEditor({ productData, setCurrentProduct }: { productData:
         </div>
       </form>
       <footer>
+        <input type={"submit"} form={"settingsForm"} value={"Submit"}/>
         <button onClick={()=>dialogRef.current?.close()}>Quit</button>
-        <input type={"submit"} form={"settingsForm"}/>
       </footer>
     </dialog>
   );

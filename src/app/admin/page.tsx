@@ -1,5 +1,5 @@
-import wrapperStyles from "./stylesheets/wrapper.module.css";
 import { Metadata } from "next";
+import wrapperStyles from "./stylesheets/wrapper.module.css";
 
 export const metadata: Metadata = {
   title: "Home",

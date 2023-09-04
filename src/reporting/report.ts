@@ -28,18 +28,17 @@ export default class Report {
   processCart(cart: Cart): (number | void) {
     let totalMoney: number = 0;
 
-    if (typeof cart.cart === "object") { // Legacy (object)
-      for (let product in cart.cart) {
-        totalMoney += this.processProduct(cart.cart[product], cart.paymentMethod);
-      }
-    } else { // Current (array)
+    if (typeof cart.cart === "string") {
       const cartProducts = JSON.parse(cart.cart);
       for (let cartProduct of cartProducts) {
         totalMoney += this.processProduct(cartProduct, cart.paymentMethod);
       }
     }
 
-    this.timestamps.push(new Date(cart.time));
+    if (cart.time) {
+      this.timestamps.push(new Date(cart.time));
+    }
+
     cart.totalMoney = totalMoney;
   }
 
@@ -66,7 +65,7 @@ export default class Report {
 
     this.totalProductsSold += product.count;
 
-    const moneyMade = product.count * productData.price;
+    const moneyMade: number = product.count * productData.price;
 
     if (paymentMethod === "cash") {
       this.moneyMade.cash += moneyMade;
@@ -113,7 +112,7 @@ export default class Report {
     this.productsWorksheet = productsWorksheet;
   }
 
-  getExcel() {
+  getXLSX() {
     if (!this.productsWorksheet) {
       this.sendToSheet();
     }
@@ -136,7 +135,7 @@ export default class Report {
     return this.timestamps;
   }
 
-  getTransactions() {
+  getTransactions(): Cart[] {
     return this.carts;
   }
 }
