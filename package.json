@@ -8,8 +8,7 @@
     "dev": "next -p 80",
     "build": "next build",
     "start": "next start -p 80",
-    "lint": "next lint",
-    "cdn": "node cdn/index.js"
+    "lint": "next lint"
   },
   "keywords": [],
   "author": "",

@@ -20,10 +20,17 @@ export function Product({ productData, processCDN }: { productData: ProductData,
     setCount(cart.getCount(productData.id));
 
     if (productData.image) {
-      fetch(`${cdn}/images/${productData.image}`, { mode: "no-cors" }).then((): void => {
-        setImageData(`${cdn}/images/${productData.image}`);
-      }).catch((err): void => {
-        console.log(err);
+      fetch("/api/image", {
+        method: "POST",
+        body: JSON.stringify({
+          image: productData.image
+        })
+      }).then((res) => {
+        if (res.ok) {
+          res.blob().then((data) => {
+            setImageData(URL.createObjectURL(data));
+          })
+        }
       });
     }
   }, [productData, cdn]);

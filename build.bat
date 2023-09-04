@@ -1,3 +1,1 @@
-node build.mjs
-
-pause
+npm run build
