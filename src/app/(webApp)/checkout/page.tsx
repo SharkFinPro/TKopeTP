@@ -23,10 +23,7 @@ export default function Page() {
     }
   }, [paymentMethod]);
 
-  return <>
-    <header className={wrapperStyles.header}>
-      <h1>Checkout</h1>
-    </header>
+  return (
     <div className={wrapperStyles.content}>
       <div className={checkoutStyles.cartDisplayContainer}>
         <table className={checkoutStyles.cartDisplay}>
@@ -62,6 +59,5 @@ export default function Page() {
         </div>
       </div>
     </div>
-    <Footer />
-  </>
+  );
 }
