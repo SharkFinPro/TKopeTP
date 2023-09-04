@@ -6,14 +6,9 @@ import { ProductData } from "../../../../productTypes";
 import loadingImage from "../../../../../public/images/NOT_FOUND.png";
 import productsStyles from "../../stylesheets/products.module.css";
 
-export function Product({ productData, processCDN }: { productData: ProductData, processCDN: undefined | string }) {
+export function Product({ productData }: { productData: ProductData }) {
   const [imageData, setImageData] = useState<StaticImageData | string>(loadingImage);
   const [count, setCount] = useState(0);
-
-  const hostname: string = typeof window !== "undefined"
-    ? window.location.hostname
-    : "localhost";
-  const cdn: string = processCDN || `http://${hostname}:3000`;
 
   useEffect((): void => {
     cart.createListing(productData);
@@ -33,7 +28,7 @@ export function Product({ productData, processCDN }: { productData: ProductData,
         }
       });
     }
-  }, [productData, cdn]);
+  }, [productData]);
 
   function subFromCart(): void {
     if (cart.remove(productData.id)) {
@@ -50,10 +45,10 @@ export function Product({ productData, processCDN }: { productData: ProductData,
     <div className={productsStyles.product}>
       <div className={productsStyles.image}>
         <Image
-        src={imageData}
-        alt="Product Image"
-        width={300}
-        height={168.75}
+          src={imageData}
+          alt="Product Image"
+          width={300}
+          height={168.75}
         />
       </div>
       <p className={productsStyles.name}>{productData.displayName} - ${productData.price}</p>

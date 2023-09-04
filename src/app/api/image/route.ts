@@ -8,9 +8,9 @@ const readFilePromise = promisify(readFile);
 export async function POST(request: Request): Promise<Response> {
   const body = await request.json();
 
-  const filePath = path.resolve('.', `images/${body.image}`);
+  const filePath: string = path.resolve('.', `images/${body.image}`);
 
-  let imageBuffer = await readFilePromise(filePath).catch((): void => {});
+  let imageBuffer: void | Buffer = await readFilePromise(filePath).catch((): void => {});
 
   if (!imageBuffer) {
     return new Response("Error!", { status: 500 });

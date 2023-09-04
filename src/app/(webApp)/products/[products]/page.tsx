@@ -27,7 +27,6 @@ export default async function Page({ params }: {params: { products: string }})  
           <Product
             key={product.id}
             productData={product}
-            processCDN={process.env.cdn}
           />
         ))}
       </div>
