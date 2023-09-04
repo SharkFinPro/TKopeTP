@@ -65,7 +65,7 @@ export default class Report {
 
     this.totalProductsSold += product.count;
 
-    const moneyMade = product.count * productData.price;
+    const moneyMade: number = product.count * productData.price;
 
     if (paymentMethod === "cash") {
       this.moneyMade.cash += moneyMade;
