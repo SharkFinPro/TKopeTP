@@ -1,7 +1,7 @@
 import { postRequest } from "../../tools/requests";
 import { ProductData, SimplifiedProductData } from "../../../productTypes";
 
-const EXPIRATION_SECONDS = 900; // 15 Minutes
+const EXPIRATION_SECONDS: number = 900; // 15 Minutes
 
 class Cart {
   data: ProductData[] = [];
@@ -23,15 +23,15 @@ class Cart {
     }
 
     // Check if a last updated value exists
-    const lastUpdated = localStorage.getItem("lastUpdated");
+    const lastUpdated: string | null = localStorage.getItem("lastUpdated");
     if (!lastUpdated) {
       this.reset();
       return;
     }
 
     // Check if last updated exceeds expiration second value
-    const diffTime = new Date(JSON.parse(lastUpdated)).getTime();
-    const diff = (new Date().getTime() - diffTime) / 1000;
+    const diffTime: number = new Date(JSON.parse(lastUpdated)).getTime();
+    const diff: number = (new Date().getTime() - diffTime) / 1000;
     if (diff > EXPIRATION_SECONDS) {
       this.reset();
       return;
@@ -151,18 +151,17 @@ class Cart {
     const simplifiedCart: SimplifiedProductData[] = [];
 
     for (let product of cart) {
-      simplifiedCart.push({ id: product.id, count: product.count });
+      simplifiedCart.push({
+        id: product.id,
+        count: product.count
+      });
     }
 
-    let response: any = {
-      status: 0
-    };
-
-    response = await postRequest("/api/purchase", JSON.stringify({
+    const response: Response | void = await postRequest("/api/purchase", JSON.stringify({
       cart: JSON.stringify(simplifiedCart),
       paymentMethod: this.getPaymentMethod(),
       time: new Date().toJSON()
-    })).catch((err) => {
+    })).catch((err): void => {
       alert(err);
     });
 
