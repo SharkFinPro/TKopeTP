@@ -11,7 +11,7 @@ function createChart(config: ChartConfiguration): void {
     chart.destroy();
   }
 
-  chart = new Chart("myChart", config);
+  chart = new Chart("graphCanvas", config);
 }
 
 function createOverviewGraph(labels: string[], content: number[], title: string, yLabel: string): void {

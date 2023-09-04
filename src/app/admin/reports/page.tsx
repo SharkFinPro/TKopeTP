@@ -27,7 +27,7 @@ export default async function Page() {
         times={JSON.stringify(times)}
       />
       <div className={reportStyles.display}>
-        <canvas id="myChart"></canvas>
+        <canvas id="graphCanvas"></canvas>
       </div>
     </div>
   );
