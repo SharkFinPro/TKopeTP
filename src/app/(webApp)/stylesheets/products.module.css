@@ -50,8 +50,7 @@
 }
 
 .purchase > * {
-  display: grid;
-  place-content: center;
+  text-align: center;
   font-size: min(8vw, 3rem);
 }
 
