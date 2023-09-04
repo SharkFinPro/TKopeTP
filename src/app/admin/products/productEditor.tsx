@@ -1,8 +1,8 @@
 "use client";
 import { ProductType, RobustProductData} from "../../../productTypes";
 import { useEffect, useRef, useState } from "react";
-import editorStyles from "../stylesheets/productEditor.module.css";
 import { getRequest } from "../../tools/requests";
+import editorStyles from "../stylesheets/productEditor.module.css";
 
 export function ProductEditor({ productData, setCurrentProduct }: { productData: RobustProductData | undefined | null, setCurrentProduct: any }) {
   const dialogRef = useRef<HTMLDialogElement | null>(null);

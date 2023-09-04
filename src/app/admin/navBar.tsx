@@ -1,6 +1,6 @@
-import navBarStyles from "./stylesheets/navBar.module.css";
 import Link from "next/link";
 import React from "react";
+import navBarStyles from "./stylesheets/navBar.module.css";
 
 function Links() {
   return <>
