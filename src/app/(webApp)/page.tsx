@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import ProductManager from "../../productManager";
 import { ProductType } from "../../productTypes";
 import { headers } from "next/headers";
+import { ReadonlyHeaders } from "next/dist/server/web/spec-extension/adapters/headers";
 import Link from "next/link";
 import wrapperStyles from "./stylesheets/wrapper.module.css";
 import indexStyles from "./stylesheets/index.module.css";
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const headersList = headers();
+  const headersList: ReadonlyHeaders = headers();
   const categories: ProductType[] = await ProductManager.getProductTypes();
 
   return <>
