@@ -105,7 +105,11 @@ export function ProductEditor({ productData, setCurrentProduct }: { productData:
             value={selectedProductType}
             onChange={(e) => setSelectedProductType(parseInt(e.target.value))}>
             {productTypes.map((type: ProductType) => (
-              <option value={type.id} key={type.id}>{type.displayName}</option>
+              <option
+                value={type.id}
+                key={type.id}>
+                {type.displayName}
+              </option>
             ))}
           </select>
         </div>
