@@ -12,7 +12,7 @@ const BODY_FONT: string = "'MuseoSans', 'serif'";
 function ToolbarButton({ children, action, selected }: { children: string, action: any, selected: boolean }) {
   return (
     <button
-      className={selected ? reportStyles.toolbarSelected : ""}
+      className={`${reportStyles.toolbarButton} ${selected ? reportStyles.toolbarSelected : ""}`}
       onClick={action}>
       {children}
     </button>

@@ -23,7 +23,8 @@
   overflow-y: auto;
 }
 
-.toolbarOptions > *, .toolbarToolsSwap > * {
+.toolbarButton {
+  width: 90%;
   padding-block: 0.75em;
   border: 5px solid black;
   background: #030006;
@@ -33,12 +34,10 @@
   transition: .3s;
 }
 
-.toolbarOptions > * {
-  width: 90%;
-}
-
-.toolbarToolsSwap > * {
-  padding-inline: 1.5em;
+.toolbarButton:hover {
+  background: #E6E7E8;
+  color: #030006;
+  transition: .3s;
 }
 
 .toolbarTools {
@@ -49,16 +48,11 @@
 }
 
 .toolbarToolsSwap {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  width: 100%;
+  padding-inline: 10%;
   gap: 0.5rem;
   margin-block: 0.5rem;
-}
-
-.toolbarOptions > *:hover, .toolbarToolsSwap > *:hover {
-  background: #E6E7E8;
-  color: #030006;
-  transition: .3s;
 }
 
 .toolbarSelected {
