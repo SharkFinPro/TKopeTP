@@ -58,7 +58,12 @@ export function Toolbar({ rawOverview, categories, times }: { rawOverview: strin
             Money
           </ToolbarButton>
         </div>
-        <Link className={reportStyles.toolbarDownload} href="/api/admin/reporting/report.xlsx" target="_blank">Download Report</Link>
+        <Link
+          className={reportStyles.toolbarDownload}
+          href="/api/admin/reporting/report.xlsx"
+          target="_blank">
+          Download Report
+        </Link>
       </div>
     </div>
   );
