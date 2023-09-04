@@ -34,17 +34,6 @@
   font-family: inherit;
 }
 
-.toolbarOption:hover {
-  background: #E6E7E8;
-  color: #030006;
-  transition: .3s;
-}
-
-.toolbarSelected {
-  background: #E6E7E8;
-  color: #030006;
-}
-
 .toolbarDownload {
   display: grid;
   place-content: center;
@@ -89,13 +78,13 @@
   font-family: inherit;
 }
 
-.toolsSwapOption:hover {
+.toolsSwapOption:hover, .toolbarOption:hover {
   background: #E6E7E8;
   color: #030006;
   transition: .3s;
 }
 
-.toolsSwapOptionSelected {
+.toolsSwapOptionSelected, .toolbarSelected {
   background: #E6E7E8;
   color: #030006;
 }
