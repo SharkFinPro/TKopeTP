@@ -2,8 +2,8 @@ import { Chart, ChartConfiguration } from "chart.js/auto";
 import { ProductData, ProductType } from "../../../productTypes";
 import "chartjs-adapter-date-fns";
 
-const HEADER_FONT: string = "'MuseoSlab', 'serif'";
-const BODY_FONT: string = "'MuseoSans', 'serif'";
+const HEADER_FONT: string = "MuseoSlab, serif";
+const BODY_FONT: string = "MuseoSans, serif";
 
 let chart: Chart;
 function createChart(config: ChartConfiguration): void {
