@@ -1,18 +1,14 @@
 .container {
   height: 100%;
   display: grid;
-  place-items: center;
-}
-
-.categories {
-  display: grid;
+  align-content: center;
   place-items: center;
   gap: 1rem;
   padding-block: 1rem;
   width: 100%;
 }
 
-.categories a {
+.category {
   display: block;
   padding-block: 0.7em;
   width: 80%;
@@ -25,12 +21,12 @@
   border-radius: 0.25em;
 }
 
-.categories a:hover {
+.category:hover {
   color: #FFF;
 }
 
 @media (min-width: 1200px) {
-  .categories {
+  .container {
     grid-template-columns: 1fr 1fr;
   }
 }
