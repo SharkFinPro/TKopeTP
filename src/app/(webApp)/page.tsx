@@ -24,7 +24,11 @@ export default async function Page({ searchParams }: { searchParams: {} }) {
       <div className={indexStyles.container}>
         <div className={indexStyles.categories}>
           {categories.map(({ id, displayName }: ProductType) => (
-            <Link key={id} href={`products/${id}`}>{displayName}</Link>
+            <Link
+              key={id}
+              href={`products/${id}`}>
+              {displayName}
+            </Link>
           ))}
         </div>
       </div>
