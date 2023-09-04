@@ -8,10 +8,7 @@
 
 .toolbar {
   display: grid;
-  color: #E6E7E8;
   background: #36454F;
-  font-size: 1.25rem;
-  font-family: MuseoSans, serif;
 }
 
 .toolbarOptions {
@@ -23,21 +20,20 @@
   overflow-y: auto;
 }
 
-.toolbarButton {
+.toolbarButton, .toolbarDownload {
   width: 90%;
   padding-block: 0.75em;
   border: 5px solid black;
   background: #030006;
-  color: inherit;
-  font-size: inherit;
-  font-family: inherit;
+  color: #E6E7E8;
+  font-size: 1.25rem;
+  font-family: MuseoSans, serif;
   transition: .3s;
 }
 
-.toolbarButton:hover {
+.toolbarButton:hover, .toolbarSelected {
   background: #E6E7E8;
   color: #030006;
-  transition: .3s;
 }
 
 .toolbarTools {
@@ -55,23 +51,13 @@
   margin-block: 0.5rem;
 }
 
-.toolbarSelected {
-  background: #E6E7E8;
-  color: #030006;
-}
-
 .toolbarDownload {
   display: grid;
   place-content: center;
   width: 80%;
-  padding-block: 0.75em;
-  border: 5px solid black;
-  font-size: inherit;
-  font-family: inherit;
   background: #E6E7E8;
   color: #030006;
   text-decoration: none;
-  transition: .3s;
 }
 
 .toolbarDownload:hover {
@@ -82,7 +68,6 @@
 .display {
   display: grid;
   place-items: center;
-  color: #030006;
   background: #E6E7E8;
   min-width: 800px;
 }
