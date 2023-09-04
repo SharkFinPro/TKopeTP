@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: "Category Selection"
 };
 
-export default async function Page({ searchParams }: { searchParams: {} }) {
+export default async function Page() {
   const headersList = headers();
   const categories: ProductType[] = await ProductManager.getProductTypes();
 
