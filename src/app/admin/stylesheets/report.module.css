@@ -70,14 +70,13 @@
   font-family: inherit;
   background: #E6E7E8;
   color: #030006;
-  transition: .3s;
   text-decoration: none;
+  transition: .3s;
 }
 
 .toolbarDownload:hover {
   background: #030006;
   color: #FFF;
-  transition: .3s;
 }
 
 .display {
