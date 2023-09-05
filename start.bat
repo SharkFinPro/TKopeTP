@@ -1,3 +1,1 @@
-node start.mjs
-
-pause
+npm run start
