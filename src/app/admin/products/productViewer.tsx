@@ -43,12 +43,14 @@ export function ProductViewer() {
               <td>{productData.id}</td>
               <td>{productData.displayName}</td>
               <td>${productData.price}</td>
-              <td><Link
-                href={`../api/images/${productData.image}`}
-                target={"_blank"}
-                prefetch={false}>
-                {productData.image}
-              </Link></td>
+              <td>
+                <Link
+                  href={`../api/images/${productData.image}`}
+                  target={"_blank"}
+                  prefetch={false}>
+                  {productData.image}
+                </Link>
+              </td>
               <td>{
                 productTypes ?
                   productTypes.find((type: ProductType) => type.id == productData.productType)?.displayName :
