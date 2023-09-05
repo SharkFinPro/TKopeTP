@@ -6,22 +6,18 @@ import { getRequest } from "../../tools/requests";
 import Link from "next/link";
 import productViewerStyles from "../stylesheets/productViewer.module.css";
 
-async function loadProducts(): Promise<RobustProductData[]> {
-  const res: Response = await fetch("/api/products");
-  return await res.json();
-}
-
-export function ProductViewer() {
-  const [products, setProducts] = useState<RobustProductData[]>([]);
+export function ProductViewer({
+  initialProducts,
+  productTypes
+}: {
+  initialProducts: RobustProductData[],
+  productTypes: ProductType[]
+}) {
+  const [products, setProducts] = useState<RobustProductData[]>(initialProducts);
   const [currentProduct, setCurrentProduct] = useState<RobustProductData | undefined | null>(undefined);
-  const [productTypes, setProductTypes] = useState<ProductType[]>([]);
 
   useEffect((): void => {
-    getRequest("/api/productCategories").then((types: ProductType[]) => setProductTypes(types));
-
-    loadProducts().then((productData: RobustProductData[]) => {
-      setProducts(productData);
-    });
+    getRequest("/api/products").then((productData: RobustProductData) => setProducts(productData));
   }, [currentProduct]);
 
   return (
@@ -52,8 +48,8 @@ export function ProductViewer() {
                 </Link>
               </td>
               <td>{
-                productTypes ?
-                  productTypes.find((type: ProductType) => type.id == productData.productType)?.displayName :
+                productTypes.length ?
+                  productTypes.find((type: ProductType): boolean => type.id == productData.productType)?.displayName :
                   productData.productType
               }</td>
               <td
