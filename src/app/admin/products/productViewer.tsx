@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ProductEditor } from "./productEditor";
 import { getRequest } from "../../tools/requests";
 import Link from "next/link";
-import productViewerStyles from "../stylesheets/productViewer.module.css"
+import productViewerStyles from "../stylesheets/productViewer.module.css";
 
 async function loadProducts(): Promise<RobustProductData[]> {
   const res: Response = await fetch("/api/products");
@@ -69,7 +69,7 @@ export function ProductViewer() {
       <div className={productViewerStyles.options}>
         <button onClick={() => setCurrentProduct(null)}>Add New</button>
       </div>
-      <ProductEditor productData={currentProduct} setCurrentProduct={setCurrentProduct} />
+      <ProductEditor productData={currentProduct} productCategories={productTypes} />
     </div>
   );
 }

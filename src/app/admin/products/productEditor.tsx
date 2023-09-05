@@ -1,25 +1,19 @@
 "use client";
 import { ProductType, RobustProductData} from "../../../productTypes";
 import { useEffect, useRef, useState } from "react";
-import { getRequest } from "../../tools/requests";
 import editorStyles from "../stylesheets/productEditor.module.css";
 
 export function ProductEditor({
   productData,
-  setCurrentProduct
+  productCategories
 }: {
   productData: RobustProductData | undefined | null,
-  setCurrentProduct: any
+  productCategories: ProductType[]
 }) {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
   const formRef = useRef<HTMLFormElement | null>(null);
-  const [productTypes, setProductTypes] = useState<ProductType[]>([]);
   const [selectedProductType, setSelectedProductType] = useState(0);
   const [selectedActiveMode, setSelectedActiveMode] = useState(0);
-
-  useEffect((): void => {
-    getRequest("/api/productCategories").then((types: ProductType[]) => setProductTypes(types));
-  }, []);
 
   useEffect((): void => {
     if (!dialogRef || !dialogRef.current) {
@@ -35,22 +29,14 @@ export function ProductEditor({
       setSelectedProductType(productData?.productType);
       setSelectedActiveMode(productData?.active ? 1 : 0);
       dialogRef.current.showModal();
-
-      dialogRef.current?.addEventListener("close", (event: Event): void => {
-        setCurrentProduct(undefined);
-      });
     }
 
     if (productData === null) {
       formRef.current?.reset();
       setSelectedActiveMode(1);
       dialogRef.current.showModal();
-
-      dialogRef.current?.addEventListener("close", (event: Event): void => {
-        setCurrentProduct(undefined);
-      });
     }
-  }, [productData, setCurrentProduct]);
+  }, [productData]);
 
   function handleSubmit(event: any): void {
     event.preventDefault();
@@ -110,7 +96,7 @@ export function ProductEditor({
           <select id={"productType"}
             value={selectedProductType}
             onChange={(e) => setSelectedProductType(parseInt(e.target.value))}>
-            {productTypes.map((type: ProductType) => (
+            {productCategories.map((type: ProductType) => (
               <option
                 value={type.id}
                 key={type.id}>
