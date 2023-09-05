@@ -1,6 +1,6 @@
 "use client";
 import { ProductType, RobustProductData} from "../../../productTypes";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import editorStyles from "../stylesheets/productEditor.module.css";
 
 export function ProductEditor({
