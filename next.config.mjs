@@ -2,19 +2,7 @@
 import { networkInterfaces } from "os";
 
 const nextConfig = {
-  reactStrictMode: true,
-  images: {
-    remotePatterns: [
-      {
-        protocol: "http",
-        hostname: "**"
-      },
-      {
-        protocol: "https",
-        hostname: "**"
-      }
-    ]
-  }
+  reactStrictMode: true
 };
 
 export default nextConfig;
