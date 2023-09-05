@@ -69,7 +69,11 @@ export function ProductViewer() {
       <div className={productViewerStyles.options}>
         <button onClick={() => setCurrentProduct(null)}>Add New</button>
       </div>
-      <ProductEditor productData={currentProduct} productCategories={productTypes} />
+      {currentProduct !== undefined && <ProductEditor
+        productData={currentProduct}
+        productCategories={productTypes}
+        onClose={() => setCurrentProduct(undefined)}
+      />}
     </div>
   );
 }

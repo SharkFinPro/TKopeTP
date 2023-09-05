@@ -5,38 +5,21 @@ import editorStyles from "../stylesheets/productEditor.module.css";
 
 export function ProductEditor({
   productData,
-  productCategories
+  productCategories,
+  onClose
 }: {
   productData: RobustProductData | undefined | null,
-  productCategories: ProductType[]
+  productCategories: ProductType[],
+  onClose: any
 }) {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
   const formRef = useRef<HTMLFormElement | null>(null);
-  const [selectedProductType, setSelectedProductType] = useState(0);
-  const [selectedActiveMode, setSelectedActiveMode] = useState(0);
+  const [selectedProductType, setSelectedProductType] = useState(productData?.productType);
+  const [selectedActiveMode, setSelectedActiveMode] = useState(productData?.active ? 1 : 0);
 
-  useEffect((): void => {
-    if (!dialogRef || !dialogRef.current) {
-      return;
-    }
-
-    if (!productData && dialogRef.current.open) {
-      dialogRef.current.close();
-    }
-
-    if (productData && !dialogRef.current.open) {
-      formRef.current?.reset();
-      setSelectedProductType(productData?.productType);
-      setSelectedActiveMode(productData?.active ? 1 : 0);
-      dialogRef.current.showModal();
-    }
-
-    if (productData === null) {
-      formRef.current?.reset();
-      setSelectedActiveMode(1);
-      dialogRef.current.showModal();
-    }
-  }, [productData]);
+  useEffect(() => {
+    dialogRef.current?.showModal()
+  }, []);
 
   function handleSubmit(event: any): void {
     event.preventDefault();
@@ -70,7 +53,12 @@ export function ProductEditor({
   }
 
   return (
-    <dialog ref={dialogRef} className={editorStyles.modal} open={false}>
+    <dialog
+      ref={dialogRef}
+      onClose={onClose}
+      className={editorStyles.modal}
+      open={false}
+    >
       <header>
         <h1>{productData?.displayName}</h1>
       </header>
