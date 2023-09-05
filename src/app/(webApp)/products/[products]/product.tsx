@@ -7,27 +7,12 @@ import loadingImage from "../../../../../public/images/NOT_FOUND.png";
 import productsStyles from "../../stylesheets/products.module.css";
 
 export function Product({ productData }: { productData: ProductData }) {
-  const [imageData, setImageData] = useState<StaticImageData | string>(loadingImage);
+  const [imageData, setImageData] = useState<StaticImageData | string>(productData.image ? `/api/images/${productData.image}` : loadingImage);
   const [count, setCount] = useState(0);
 
   useEffect((): void => {
     cart.createListing(productData);
     setCount(cart.getCount(productData.id));
-
-    if (productData.image) {
-      fetch("/api/image", {
-        method: "POST",
-        body: JSON.stringify({
-          image: productData.image
-        })
-      }).then((res) => {
-        if (res.ok) {
-          res.blob().then((data) => {
-            setImageData(URL.createObjectURL(data));
-          })
-        }
-      });
-    }
   }, [productData]);
 
   function subFromCart(): void {
