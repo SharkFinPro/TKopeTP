@@ -23,7 +23,6 @@ export function ProductEditor({
     event.preventDefault();
 
     const price = event.target.price.value;
-
     if (parseInt(price) != price || price < 0) {
       return alert("Invalid Price!");
     }
