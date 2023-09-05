@@ -1,13 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { cart } from "../../tools/cart";
 import { ProductData } from "../../../../productTypes";
 import loadingImage from "../../../../../public/images/NOT_FOUND.png";
 import productsStyles from "../../stylesheets/products.module.css";
 
 export function Product({ productData }: { productData: ProductData }) {
-  const [imageData, setImageData] = useState<StaticImageData | string>(productData.image ? `/api/images/${productData.image}` : loadingImage);
   const [count, setCount] = useState(0);
 
   useEffect((): void => {
@@ -30,7 +29,7 @@ export function Product({ productData }: { productData: ProductData }) {
     <div className={productsStyles.product}>
       <div className={productsStyles.image}>
         <Image
-          src={imageData}
+          src={productData.image ? `/api/images/${productData.image}` : loadingImage}
           alt="Product Image"
           width={300}
           height={168.75}
