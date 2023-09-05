@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default async function Page() {
   return (
     <div className={productsStyles.content}>
-      <ProductViewer processCDN={process.env.cdn} />
+      <ProductViewer />
     </div>
   );
 }

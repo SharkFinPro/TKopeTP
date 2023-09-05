@@ -11,7 +11,7 @@ async function loadProducts(): Promise<RobustProductData[]> {
   return await res.json();
 }
 
-export function ProductViewer({ processCDN }: { processCDN: undefined | string }) {
+export function ProductViewer() {
   const [products, setProducts] = useState<RobustProductData[]>([]);
   const [currentProduct, setCurrentProduct] = useState<RobustProductData | undefined | null>(undefined);
   const [productTypes, setProductTypes] = useState<ProductType[]>([]);
@@ -23,11 +23,6 @@ export function ProductViewer({ processCDN }: { processCDN: undefined | string }
       setProducts(productData);
     });
   }, [currentProduct]);
-
-  const hostname: string = typeof window !== "undefined"
-    ? window.location.hostname
-    : "localhost";
-  const cdn: string = processCDN || `http://${hostname}:3000`;
 
   return (
     <div className={productViewerStyles.wrapper}>
@@ -48,7 +43,7 @@ export function ProductViewer({ processCDN }: { processCDN: undefined | string }
               <td>{productData.id}</td>
               <td>{productData.displayName}</td>
               <td>${productData.price}</td>
-              <td><Link href={`${cdn}/images/${productData.image}`} target={"_blank"} prefetch={false}>{productData.image}</Link></td>
+              <td><Link href={`../api/images/${productData.image}`} target={"_blank"} prefetch={false}>{productData.image}</Link></td>
               <td>{
                 productTypes ?
                   productTypes.find((type: ProductType) => type.id == productData.productType)?.displayName :
