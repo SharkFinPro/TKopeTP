@@ -22,7 +22,9 @@ export function ProductEditor({
   function handleSubmit(event: any): void {
     event.preventDefault();
 
-    if (parseInt(event.target.price.value) != event.target.price.value) {
+    const price = event.target.price.value;
+
+    if (parseInt(price) != price || price < 0) {
       return alert("Invalid Price!");
     }
 
@@ -33,7 +35,7 @@ export function ProductEditor({
         displayName: event.target.displayName.value,
         id: productData?.id || -1,
         image: event.target.image.value,
-        price: event.target.price.value,
+        price: price,
         productType: event.target.productType.value,
         active: event.target.active.value
       })
