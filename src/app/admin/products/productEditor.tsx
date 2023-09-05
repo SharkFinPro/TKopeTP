@@ -57,8 +57,7 @@ export function ProductEditor({
       ref={dialogRef}
       onClose={onClose}
       className={editorStyles.modal}
-      open={false}
-    >
+      open={false}>
       <header>
         <h1>{productData?.displayName}</h1>
       </header>
