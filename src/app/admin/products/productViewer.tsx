@@ -17,7 +17,7 @@ export function ProductViewer({
   const [currentProduct, setCurrentProduct] = useState<RobustProductData | undefined | null>(undefined);
 
   useEffect((): void => {
-    getRequest("/api/products").then((productData: RobustProductData) => setProducts(productData));
+    getRequest("/api/products").then((productData: RobustProductData[]) => setProducts(productData));
   }, [currentProduct]);
 
   return (
