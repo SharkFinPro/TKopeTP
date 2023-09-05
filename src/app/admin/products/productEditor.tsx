@@ -101,7 +101,7 @@ export function ProductEditor({
         </div>
       </form>
       <footer>
-        <input type={"submit"} form={"settingsForm"} value={"Submit"}/>
+        <input type={"submit"} form={"settingsForm"} value={"Save"}/>
         <button onClick={()=>dialogRef.current?.close()}>Quit</button>
       </footer>
     </dialog>
