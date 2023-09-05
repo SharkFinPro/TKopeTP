@@ -14,8 +14,6 @@ export function ProductEditor({
 }) {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
   const formRef = useRef<HTMLFormElement | null>(null);
-  const [selectedProductType, setSelectedProductType] = useState(productData?.productType);
-  const [selectedActiveMode, setSelectedActiveMode] = useState(productData?.active ? 1 : 0);
 
   useEffect(() => {
     dialogRef.current?.showModal()
@@ -81,8 +79,7 @@ export function ProductEditor({
         <div className={editorStyles.setting}>
           <label htmlFor={"productType"}>Product Type</label>
           <select id={"productType"}
-            value={selectedProductType}
-            onChange={(e) => setSelectedProductType(parseInt(e.target.value))}>
+            defaultValue={productData?.productType}>
             {productCategories.map((type: ProductType) => (
               <option
                 value={type.id}
@@ -95,8 +92,7 @@ export function ProductEditor({
         <div className={editorStyles.setting}>
           <label htmlFor={"active"}>Active</label>
           <select id={"active"}
-            value={selectedActiveMode}
-            onChange={(e) => setSelectedActiveMode(parseInt(e.target.value))}>
+            defaultValue={productData?.active ? 1 : 0}>
             <option value={1}>Active</option>
             <option value={0}>Inactive</option>
           </select>
