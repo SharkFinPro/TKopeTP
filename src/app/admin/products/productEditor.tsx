@@ -16,7 +16,7 @@ export function ProductEditor({
   const formRef = useRef<HTMLFormElement | null>(null);
 
   useEffect(() => {
-    dialogRef.current?.showModal()
+    dialogRef.current?.showModal();
   }, []);
 
   function handleSubmit(event: any): void {
