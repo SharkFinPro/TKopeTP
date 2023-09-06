@@ -56,9 +56,7 @@ export function ProductEditor({
       onClose={onClose}
       className={editorStyles.editor}
       open={false}>
-
       <h1 className={editorStyles.header}>{productData?.displayName}</h1>
-
       <form
         id={"settingsForm"}
         onSubmit={handleSubmit}
