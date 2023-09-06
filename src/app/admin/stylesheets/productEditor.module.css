@@ -1,18 +1,14 @@
 .editor[open] {
-  width: 95%;
-  max-width: 1600px;
-  height: 95%;
-  max-height: 800px;
+  width: min(95%, 1600px);
+  height: min(95%, 800px);
+  margin: auto;
+  padding: 1rem;
+  display: grid;
+  grid-template-rows: 10% 75% 15%;
   border: 5px solid #030006;
   outline: none;
   border-radius: 1rem;
-  margin: auto;
-  padding: 1rem;
   background: #36454F;
-  color: #E6E7E8;
-  display: grid;
-  grid-template-rows: 10% 75% 15%;
-  align-content: center;
 }
 
 .editor::backdrop {
@@ -20,16 +16,17 @@
 }
 
 .header {
-  text-align: center;
+  place-self: center;
+  font-family: MuseoSlab, serif;
   font-size: 2.5rem;
+  color: #FFF;
 }
 
 .settingsForm {
   display: grid;
-  font-family: MuseoSans, serif;
-  overflow-x: auto;
   width: 100%;
   margin-inline: auto;
+  overflow-y: auto;
 }
 
 .settings, .imageSetting {
@@ -44,16 +41,19 @@
 }
 
 .setting > label {
+  font-family: MuseoSlab, serif;
   font-size: 1.4rem;
+  color: #FFF;
 }
 
 .setting > input, .setting > select {
-  height: 2rem;
   border: 2px solid #030006;
   border-radius: 5px;
   outline: none;
+  font-family: MuseoSans, sans-serif;
   font-size: 1.25rem;
-  background: #FFF;
+  padding: 0.25em;
+  background: #E6E7E8;
   color: #030006;
   width: 100%;
 }
@@ -70,14 +70,14 @@
 }
 
 .formSubmit {
-  display: flex;
-  flex-wrap: wrap;
-  place-content: center;
+  place-self: center;
   gap: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .formSubmit > * {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   padding: 0.75em 1.5em;
   border: 5px solid black;
   background: #030006;
