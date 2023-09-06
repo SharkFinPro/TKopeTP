@@ -1,45 +1,53 @@
-.modal[open] {
-  width: 80%;
+.editor[open] {
+  width: 95%;
   max-width: 1600px;
-  height: 75%;
+  height: 95%;
   max-height: 800px;
   border: 5px solid #030006;
-  border-radius: 1.75rem;
   outline: none;
-  display: grid;
+  border-radius: 1rem;
   margin: auto;
-  grid-template-rows: 15% 70% 15%;
+  padding: 1rem;
   background: #36454F;
-  color: #FFF;
-}
-
-.modal::backdrop {
-  backdrop-filter: brightness(60%);
-}
-
-.modal header {
+  color: #E6E7E8;
   display: grid;
-  place-content: center;
-  font-size: 1.25rem;
+  grid-template-rows: 10% 75% 15%;
+  align-content: center;
 }
 
-.settings {
+.editor::backdrop {
+  backdrop-filter: brightness(45%);
+}
+
+.header {
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.settingsForm {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 400px);
-  gap: 1rem;
-  place-content: start center;
-  overflow-y: auto;
+  font-family: MuseoSans, serif;
+  overflow-x: auto;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.settings, .imageSetting {
+  display: grid;
+  align-items: start;
+  align-content: start;
+  row-gap: 0.5rem;
 }
 
 .setting {
   display: grid;
 }
 
-.setting label {
+.setting > label {
   font-size: 1.4rem;
 }
 
-.setting input, .setting select {
+.setting > input, .setting > select {
   height: 2rem;
   border: 2px solid #030006;
   border-radius: 5px;
@@ -47,23 +55,44 @@
   font-size: 1.25rem;
   background: #FFF;
   color: #030006;
+  width: 100%;
 }
 
-.setting input:disabled {
+.setting > input:disabled, .setting > select:disabled {
   filter: brightness(60%);
 }
 
-.modal footer {
+.setting > img {
+  place-self: center;
+  margin: 1rem;
+  border: 4px solid #030006;
+  max-width: 100%;
+}
+
+.formSubmit {
   display: flex;
   flex-wrap: wrap;
   place-content: center;
+  gap: 1rem;
 }
 
-.modal footer * {
-  height: 80%;
-  margin-inline: 1rem;
-  aspect-ratio: 2 / 1;
+.formSubmit > * {
   font-size: 1.5rem;
+  padding: 0.75em 1.5em;
+  border: 5px solid black;
+  background: #030006;
+  color: #E6E7E8;
+  transition: .3s;
+}
+
+.formSubmit > *:hover {
   background: #E6E7E8;
   color: #030006;
+}
+
+@media (min-width: 1200px) {
+  .settingsForm {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
 }

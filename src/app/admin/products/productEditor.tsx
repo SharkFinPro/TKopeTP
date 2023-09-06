@@ -54,54 +54,66 @@ export function ProductEditor({
     <dialog
       ref={dialogRef}
       onClose={onClose}
-      className={editorStyles.modal}
+      className={editorStyles.editor}
       open={false}>
-      <header>
-        <h1>{productData?.displayName}</h1>
-      </header>
-      <form id={"settingsForm"} className={editorStyles.settings} onSubmit={handleSubmit}>
-        <div className={editorStyles.setting}>
-          <label htmlFor={"displayName"}>Display Name</label>
-          <input id={"displayName"} defaultValue={productData?.displayName}/>
+
+      <h1 className={editorStyles.header}>{productData?.displayName}</h1>
+
+      <form
+        id={"settingsForm"}
+        onSubmit={handleSubmit}
+        className={editorStyles.settingsForm}>
+        <div className={editorStyles.settings}>
+          <div className={editorStyles.setting}>
+            <label htmlFor={"displayName"}>Display Name</label>
+            <input id={"displayName"} defaultValue={productData?.displayName}/>
+          </div>
+          <div className={editorStyles.setting}>
+            <label htmlFor={"id"}>ID</label>
+            <input id={"id"} defaultValue={productData?.id} disabled/>
+          </div>
+          <div className={editorStyles.setting}>
+            <label htmlFor={"price"}>Price</label>
+            <input id={"price"} defaultValue={productData?.price}/>
+          </div>
+          <div className={editorStyles.setting}>
+            <label htmlFor={"productType"}>Product Type</label>
+            <select id={"productType"}
+              defaultValue={productData?.productType}>
+              {productCategories.map((type: ProductType) => (
+                <option
+                  value={type.id}
+                  key={type.id}>
+                  {type.displayName}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={editorStyles.setting}>
+            <label htmlFor={"active"}>Active</label>
+            <select id={"active"}
+              defaultValue={productData?.active ? 1 : 0}>
+              <option value={1}>Active</option>
+              <option value={0}>Inactive</option>
+            </select>
+          </div>
         </div>
-        <div className={editorStyles.setting}>
-          <label htmlFor={"id"}>ID</label>
-          <input id={"id"} defaultValue={productData?.id} disabled/>
-        </div>
-        <div className={editorStyles.setting}>
-          <label htmlFor={"image"}>Image</label>
-          <input id={"image"} defaultValue={productData?.image}/>
-        </div>
-        <div className={editorStyles.setting}>
-          <label htmlFor={"price"}>Price</label>
-          <input id={"price"} defaultValue={productData?.price}/>
-        </div>
-        <div className={editorStyles.setting}>
-          <label htmlFor={"productType"}>Product Type</label>
-          <select id={"productType"}
-            defaultValue={productData?.productType}>
-            {productCategories.map((type: ProductType) => (
-              <option
-                value={type.id}
-                key={type.id}>
-                {type.displayName}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className={editorStyles.setting}>
-          <label htmlFor={"active"}>Active</label>
-          <select id={"active"}
-            defaultValue={productData?.active ? 1 : 0}>
-            <option value={1}>Active</option>
-            <option value={0}>Inactive</option>
-          </select>
+        <div className={editorStyles.imageSetting}>
+          <div className={editorStyles.setting}>
+            <label htmlFor={"image"}>Image</label>
+            <input id={"image"} defaultValue={productData?.image}/>
+            <img src={`../api/images/${productData?.image}`} alt={productData?.displayName}/>
+          </div>
         </div>
       </form>
-      <footer>
-        <input type={"submit"} form={"settingsForm"} value={"Save"}/>
-        <button onClick={()=>dialogRef.current?.close()}>Quit</button>
-      </footer>
+      <div className={editorStyles.formSubmit}>
+        <input
+          type={"submit"}
+          form={"settingsForm"}
+          value={"Save"}/>
+        <button
+          onClick={()=>dialogRef.current?.close()}>Close</button>
+      </div>
     </dialog>
   );
 }
