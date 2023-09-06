@@ -13,7 +13,6 @@ export function ProductEditor({
   onClose: any
 }) {
   const dialogRef = useRef<HTMLDialogElement | null>(null);
-  const formRef = useRef<HTMLFormElement | null>(null);
 
   useEffect(() => {
     dialogRef.current?.showModal();
@@ -60,7 +59,7 @@ export function ProductEditor({
       <header>
         <h1>{productData?.displayName}</h1>
       </header>
-      <form id={"settingsForm"} className={editorStyles.settings} ref={formRef} onSubmit={handleSubmit}>
+      <form id={"settingsForm"} className={editorStyles.settings} onSubmit={handleSubmit}>
         <div className={editorStyles.setting}>
           <label htmlFor={"displayName"}>Display Name</label>
           <input id={"displayName"} defaultValue={productData?.displayName}/>
