@@ -2,6 +2,7 @@
 import { ProductType, RobustProductData} from "../../../productTypes";
 import { useEffect, useRef } from "react";
 import editorStyles from "../stylesheets/productEditor.module.css";
+import Image from "next/image";
 
 export function ProductEditor({
   productData,
@@ -100,7 +101,12 @@ export function ProductEditor({
           <div className={editorStyles.setting}>
             <label htmlFor={"image"}>Image</label>
             <input id={"image"} defaultValue={productData?.image}/>
-            <img src={`../api/images/${productData?.image}`} alt={productData?.displayName}/>
+            <Image
+              src={`/api/images/${productData?.image}`}
+              alt={productData?.displayName || ""}
+              width={16 * 30}
+              height={9 * 30}
+            />
           </div>
         </div>
       </form>
