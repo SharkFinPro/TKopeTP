@@ -8,18 +8,18 @@
   border: 5px solid #030006;
   outline: none;
   border-radius: 1rem;
-  background: #36454F;
+  background: #E6E7E8;
 }
 
 .editor::backdrop {
-  backdrop-filter: brightness(45%);
+  backdrop-filter: brightness(25%);
 }
 
 .header {
   place-self: center;
   font-family: MuseoSlab, serif;
   font-size: 2.5rem;
-  color: #FFF;
+  color: #030006;
   text-align: center;
   text-wrap: balance;
 }
@@ -45,7 +45,7 @@
 .setting > label {
   font-family: MuseoSlab, serif;
   font-size: 1.4rem;
-  color: #FFF;
+  color: #030006;
 }
 
 .setting > input, .setting > select {
