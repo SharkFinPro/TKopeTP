@@ -104,8 +104,8 @@ export function ProductEditor({
             <Image
               src={`/api/images/${productData?.image}`}
               alt={productData?.displayName || ""}
-              width={16 * 30}
-              height={9 * 30}
+              width={1920}
+              height={1080}
             />
           </div>
         </div>
