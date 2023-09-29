@@ -56,7 +56,7 @@ function ImageEditor({
             style={{ display: "none" }}
             onClick={crop}/>
         </> : <>
-          <img
+          <Image
             src={`/api/images/get/${image}`}
             alt={image || ""}
             width={1920}
