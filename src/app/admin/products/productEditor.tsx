@@ -16,6 +16,7 @@ function ImageEditor({
   const [image, setImage] = useState(defaultImage);
   const [editImage, setEditImage] = useState<string | undefined>(undefined);
   const cropperRef = useRef<CropperRef>(null);
+  const [fileName, setFileName] = useState(image);
 
   function crop(event: any): void {
     if (!cropperRef || !cropperRef.current) {
@@ -23,11 +24,9 @@ function ImageEditor({
     }
 
     const imageFile = cropperRef.current.getCanvas()?.toDataURL("image/webp", 0.2).substring(23);
-
-    console.log(imageFile)
-
     postRequest("/api/images/upload", JSON.stringify({
-      imageFile
+      imageFile,
+      fileName
     }));
 
   }
@@ -35,7 +34,7 @@ function ImageEditor({
   return (
     <div className={`${editorStyles.setting} ${editorStyles.imageSetting}`}>
       <label htmlFor={"image"}>Image</label>
-      <input id={"image"} defaultValue={image}/>
+      <input id={"image"} value={fileName} onChange={e => setFileName(e.target.value)}/>
       {
         editImage ? <>
           <Cropper
