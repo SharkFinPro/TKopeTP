@@ -64,15 +64,18 @@
   filter: brightness(60%);
 }
 
-.setting > img {
+.setting > img, .cropper {
   place-self: center;
-  margin: 1rem;
   border: 4px solid #030006;
 
   object-fit: contain;
   aspect-ratio: 16 / 9;
-  width: 100%;
+  width: 90%;
   height: auto;
+}
+
+.cropper {
+  background: #FFF;
 }
 
 .formSubmit {
@@ -94,6 +97,23 @@
 .formSubmit > *:hover {
   background: #E6E7E8;
   color: #030006;
+}
+
+.imageSelector {
+  justify-self: center;
+  border: 3px solid #030006;
+  min-width: fit-content;
+  width: 50%;
+  text-align: center;
+  padding: 0.25em 1em;
+  transition: 0.2s;
+  font-family: MuseoSans, sans-serif;
+  font-size: 1.75rem;
+}
+
+.imageSelector:hover {
+  background: #030006;
+  color: #E6E7E8;
 }
 
 @media (min-width: 800px) {

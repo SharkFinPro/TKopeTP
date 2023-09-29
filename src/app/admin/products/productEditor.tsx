@@ -1,8 +1,81 @@
 "use client";
 import { ProductType, RobustProductData} from "../../../productTypes";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import editorStyles from "../stylesheets/productEditor.module.css";
 import Image from "next/image";
+
+import { Cropper, CropperRef } from "react-advanced-cropper";
+import "react-advanced-cropper/dist/style.css";
+import { postRequest } from "../../tools/requests";
+
+function ImageEditor({
+  defaultImage
+}: {
+  defaultImage: string
+}) {
+  const [image, setImage] = useState(defaultImage);
+  const [editImage, setEditImage] = useState<string | undefined>(undefined);
+  const cropperRef = useRef<CropperRef>(null);
+
+  function crop(event: any): void {
+    if (!cropperRef || !cropperRef.current) {
+      return;
+    }
+
+    const imageFile = cropperRef.current.getCanvas()?.toDataURL("image/webp", 0.2).substring(23);
+
+    console.log(imageFile)
+
+    postRequest("/api/images/upload", JSON.stringify({
+      imageFile
+    }));
+
+  }
+
+  return (
+    <div className={`${editorStyles.setting} ${editorStyles.imageSetting}`}>
+      <label htmlFor={"image"}>Image</label>
+      <input id={"image"} defaultValue={image}/>
+      {
+        editImage ? <>
+          <Cropper
+            src={editImage}
+            stencilProps={{
+              aspectRatio: 16 / 9,
+              grid: true
+            }}
+            className={editorStyles.cropper}
+            ref={cropperRef}/>
+          <label htmlFor={"imageConfirmer"} className={editorStyles.imageSelector}>Confirm</label>
+          <input
+            type={"button"}
+            id="imageConfirmer"
+            style={{ display: "none" }}
+            onClick={crop}/>
+        </> : <>
+          <Image
+            src={`/api/images/get/${image}`}
+            alt={image || ""}
+            width={1920}
+            height={1080}/>
+          <label htmlFor="imageSelector" className={editorStyles.imageSelector}>Select New</label>
+          <input
+            type="file"
+            id="imageSelector"
+            style={{ display: "none" }}
+            onChange={(event) => {
+              if (!event.currentTarget.files) {
+                return;
+              }
+
+              setEditImage(URL.createObjectURL(event.currentTarget.files[0]));
+              setImage("");
+            }}/>
+        </>
+      }
+    </div>
+  );
+}
 
 export function ProductEditor({
   productData,
@@ -97,18 +170,7 @@ export function ProductEditor({
             </select>
           </div>
         </div>
-        <div className={editorStyles.imageSetting}>
-          <div className={editorStyles.setting}>
-            <label htmlFor={"image"}>Image</label>
-            <input id={"image"} defaultValue={productData?.image}/>
-            <Image
-              src={`/api/images/${productData?.image}`}
-              alt={productData?.displayName || ""}
-              width={1920}
-              height={1080}
-            />
-          </div>
-        </div>
+        <ImageEditor defaultImage={productData?.image || ""} />
       </form>
       <div className={editorStyles.formSubmit}>
         <input

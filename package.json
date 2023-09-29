@@ -23,6 +23,7 @@
     "date-fns": "^2.30.0",
     "next": "^13.5.3",
     "react": "^18.2.0",
+    "react-advanced-cropper": "^0.19.3",
     "sharp": "^0.31.3",
     "sqlite3": "^5.1.6",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.19.3/xlsx-0.19.3.tgz"
