@@ -29,6 +29,8 @@ function ImageEditor({
       fileName
     }));
 
+    setEditImage(undefined);
+    setImage(fileName);
   }
 
   return (
