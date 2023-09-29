@@ -41,7 +41,7 @@ export function ProductViewer({
               <td>${productData.price}</td>
               <td>
                 <Link
-                  href={`../api/images/${productData.image}`}
+                  href={`../api/images/get/${productData.image}`}
                   target={"_blank"}
                   prefetch={false}>
                   {productData.image}
