@@ -27,10 +27,12 @@ function ImageEditor({
     postRequest("/api/images/upload", JSON.stringify({
       imageFile,
       fileName
-    }));
-
-    setEditImage(undefined);
-    setImage(fileName);
+    })).then(() => {
+      setTimeout(() => {
+        setEditImage(undefined);
+        setImage(fileName);
+      }, 500);
+    });
   }
 
   return (
@@ -54,7 +56,7 @@ function ImageEditor({
             style={{ display: "none" }}
             onClick={crop}/>
         </> : <>
-          <Image
+          <img
             src={`/api/images/get/${image}`}
             alt={image || ""}
             width={1920}
