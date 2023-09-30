@@ -5,7 +5,7 @@ export async function POST(request: Request): Promise<Response> {
 
   let buff: Buffer = Buffer.from(body.imageFile, "base64");
 
-  writeFile(`images/${body.fileName}.webp`, buff).catch(err => {
+  await writeFile(`images/${body.fileName}.webp`, buff).catch(err => {
     if (err) throw err;
   });
 

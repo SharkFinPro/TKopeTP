@@ -31,7 +31,7 @@ function ImageEditor({
       setTimeout(() => {
         setEditImage(undefined);
         setImage(fileName);
-      }, 500);
+      }, 1000);
     });
   }
 
@@ -56,7 +56,7 @@ function ImageEditor({
             style={{ display: "none" }}
             onClick={crop}/>
         </> : <>
-          <Image
+          <img
             src={`/api/images/get/${image}`}
             alt={image || ""}
             width={1920}
