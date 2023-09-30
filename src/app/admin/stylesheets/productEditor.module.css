@@ -50,7 +50,7 @@
 
 .setting > input, .setting > select {
   border: 2px solid #030006;
-  border-radius: 5px;
+  border-radius: 0.5em;
   outline: none;
   font-family: MuseoSans, sans-serif;
   font-size: 1.25rem;
