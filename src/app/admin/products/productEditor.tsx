@@ -56,8 +56,8 @@ function ImageEditor({
             return;
           }
 
-          setFileName(e.target.value)}
-        }/>
+          setFileName(e.target.value);
+        }}/>
       {
         editImage ? <>
           <Cropper
