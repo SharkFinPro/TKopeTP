@@ -22,8 +22,6 @@ function ImageEditor({
       alert("Please name your image!");
     }
 
-
-
     if (!cropperRef || !cropperRef.current) {
       return;
     }
@@ -54,7 +52,7 @@ function ImageEditor({
           if (e.target.value.endsWith(".")) {
             return;
           }
-          
+
           setFileName(e.target.value)}
         }/>
       {
