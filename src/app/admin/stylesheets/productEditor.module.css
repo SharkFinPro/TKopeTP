@@ -31,11 +31,17 @@
   overflow-y: auto;
 }
 
-.settings, .imageSetting {
+.settings {
   display: grid;
   align-items: start;
   align-content: start;
   row-gap: 0.5rem;
+}
+
+.imageSetting {
+  display: grid;
+  align-items: start;
+  align-content: start;
 }
 
 .setting {
@@ -74,6 +80,7 @@
   aspect-ratio: 16 / 9;
   width: 80%;
   height: auto;
+  margin-block: 1rem;
 }
 
 .cropper {
