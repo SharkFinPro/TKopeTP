@@ -43,7 +43,7 @@ function ImageEditor({
 
       setTimeout((): void => {
         setEditImage(undefined);
-        setImage(newFileName);
+        setImage(newFileName.fileName);
       }, 1000);
     });
   }
