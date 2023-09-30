@@ -38,10 +38,12 @@ function ImageEditor({
     postRequest("/api/images/upload", JSON.stringify({
       imageFile,
       fileName
-    })).then(() => {
-      setTimeout(() => {
+    })).then(async (res: Response): Promise<void> => {
+      const newFileName = await res.json();
+
+      setTimeout((): void => {
         setEditImage(undefined);
-        setImage(fileName);
+        setImage(newFileName);
       }, 1000);
     });
   }

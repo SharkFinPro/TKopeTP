@@ -1,6 +1,7 @@
 import { writeFile } from "fs/promises";
+import { NextResponse } from "next/server";
 
-export async function POST(request: Request): Promise<Response> {
+export async function POST(request: Request) {
   const body = await request.json();
 
   let buff: Buffer = Buffer.from(body.imageFile, "base64");
@@ -9,5 +10,9 @@ export async function POST(request: Request): Promise<Response> {
     if (err) throw err;
   });
 
-  return new Response("Success!", { status: 200 });
+  return NextResponse.json({
+    fileName: body.fileName
+  }, {
+    status: 200
+  });
 }
