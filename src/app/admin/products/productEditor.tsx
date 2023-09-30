@@ -3,7 +3,7 @@ import { ProductType, RobustProductData} from "../../../productTypes";
 import { useEffect, useRef, useState } from "react";
 import editorStyles from "../stylesheets/productEditor.module.css";
 
-import { Cropper, CropperRef } from "react-advanced-cropper";
+import { Cropper, CropperRef, Coordinates } from "react-advanced-cropper";
 import "react-advanced-cropper/dist/style.css";
 import { postRequest } from "../../tools/requests";
 
@@ -14,15 +14,25 @@ function ImageEditor({
 }) {
   const [image, setImage] = useState(defaultImage);
   const [editImage, setEditImage] = useState<string | undefined>(undefined);
-  const cropperRef = useRef<CropperRef>(null);
   const [fileName, setFileName] = useState(image);
+  const cropperRef = useRef<CropperRef>(null);
 
   function crop(event: any): void {
     if (!cropperRef || !cropperRef.current) {
       return;
     }
 
-    const imageFile = cropperRef.current.getCanvas()?.toDataURL("image/webp", 0.2).substring(23);
+    const coordinates: Coordinates | null = cropperRef.current.getCoordinates();
+    if (!coordinates?.width) {
+      return;
+    }
+
+    const qualityModifier = 100 / coordinates?.width * 320;
+
+    const imageFile = cropperRef.current.getCanvas()?.toDataURL("image/webp", qualityModifier).substring(23);
+
+    console.log(coordinates);
+
     postRequest("/api/images/upload", JSON.stringify({
       imageFile,
       fileName
@@ -57,9 +67,7 @@ function ImageEditor({
         </> : <>
           <img
             src={`/api/images/get/${image}`}
-            alt={image || ""}
-            width={1920}
-            height={1080}/>
+            alt={image || ""}/>
           <label htmlFor="imageSelector" className={editorStyles.imageSelector}>Upload New</label>
           <input
             type="file"
