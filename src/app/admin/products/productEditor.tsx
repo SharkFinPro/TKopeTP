@@ -18,6 +18,12 @@ function ImageEditor({
   const cropperRef = useRef<CropperRef>(null);
 
   function crop(): void {
+    if (!fileName) {
+      alert("Please name your image!");
+    }
+
+
+
     if (!cropperRef || !cropperRef.current) {
       return;
     }
@@ -44,7 +50,13 @@ function ImageEditor({
   return (
     <div className={`${editorStyles.setting} ${editorStyles.imageSetting}`}>
       <label htmlFor={"image"}>Image</label>
-      <input id={"image"} value={fileName} onChange={e => setFileName(e.target.value)}/>
+      <input id={"image"} value={fileName} onChange={e => {
+          if (e.target.value.endsWith(".")) {
+            return;
+          }
+          
+          setFileName(e.target.value)}
+        }/>
       {
         editImage ? <>
           <Cropper
@@ -78,6 +90,7 @@ function ImageEditor({
 
               setEditImage(URL.createObjectURL(event.currentTarget.files[0]));
               setImage("");
+              setFileName("");
             }}/>
         </>
       }
