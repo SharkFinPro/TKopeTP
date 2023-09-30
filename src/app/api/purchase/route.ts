@@ -1,4 +1,4 @@
-import { access, mkdir, appendFile } from "fs";
+import { access, mkdir, appendFile } from "fs/promises";
 import productManager from "../../../productManager";
 import { ProductData } from "../../../productTypes";
 
@@ -19,22 +19,25 @@ export async function POST(request: Request): Promise<Response> {
     time: body.time
   });
 
-  access("./bin", (err): void => {
-    if (err) {
-      mkdir("./bin", (err) => {
-        if (err) {
-          console.error(err);
-          return new Response("Error!", { status: 500 });
-        }
-      });
+  // Check if bin directory exists, if not then create it
+  try {
+    await access("./bin");
+  } catch (e) {
+    try {
+      await mkdir("./bin");
+    } catch (err) {
+      console.error(err);
+      return new Response("Error!", { status: 500 });
     }
-    appendFile("./bin/dump.txt", `${transactionLog}\n`, (err) => {
-      if (err) {
-        console.error(err);
-        return new Response("Error!", { status: 500 });
-      }
-    });
-  });
+  }
+
+  // Write to dump text file in bin directory
+  try {
+    await appendFile("./bin/dump.txt", `${transactionLog}\n`);
+  } catch (err) {
+    console.error(err);
+    return new Response("Error!", { status: 500 });
+  }
 
   return new Response("Success!", { status: 200 });
 }
