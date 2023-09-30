@@ -36,6 +36,7 @@
   align-items: start;
   align-content: start;
   row-gap: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .imageSetting {
