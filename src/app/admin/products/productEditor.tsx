@@ -61,7 +61,7 @@ function ImageEditor({
             alt={image || ""}
             width={1920}
             height={1080}/>
-          <label htmlFor="imageSelector" className={editorStyles.imageSelector}>Select New</label>
+          <label htmlFor="imageSelector" className={editorStyles.imageSelector}>Upload New</label>
           <input
             type="file"
             id="imageSelector"
