@@ -28,10 +28,7 @@ function ImageEditor({
     }
 
     const qualityModifier = 100 / coordinates?.width * 320;
-
     const imageFile = cropperRef.current.getCanvas()?.toDataURL("image/webp", qualityModifier).substring(23);
-
-    console.log(coordinates);
 
     postRequest("/api/images/upload", JSON.stringify({
       imageFile,
