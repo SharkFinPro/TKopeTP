@@ -20,6 +20,7 @@ function ImageEditor({
   function crop(): void {
     if (!fileName) {
       alert("Please name your image!");
+      return;
     }
 
     if (!cropperRef || !cropperRef.current) {
