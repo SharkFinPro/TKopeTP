@@ -2,7 +2,6 @@
 import { ProductType, RobustProductData} from "../../../productTypes";
 import { useEffect, useRef, useState } from "react";
 import editorStyles from "../stylesheets/productEditor.module.css";
-import Image from "next/image";
 
 import { Cropper, CropperRef } from "react-advanced-cropper";
 import "react-advanced-cropper/dist/style.css";
@@ -65,6 +64,7 @@ function ImageEditor({
           <input
             type="file"
             id="imageSelector"
+            accept={"image/*"}
             style={{ display: "none" }}
             onChange={(event) => {
               if (!event.currentTarget.files) {
