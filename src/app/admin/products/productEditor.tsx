@@ -1,56 +1,125 @@
 "use client";
 import { ProductType, RobustProductData} from "../../../productTypes";
 import { useEffect, useRef, useState } from "react";
-import { getRequest } from "../../tools/requests";
 import editorStyles from "../stylesheets/productEditor.module.css";
 
-export function ProductEditor({ productData, setCurrentProduct }: { productData: RobustProductData | undefined | null, setCurrentProduct: any }) {
-  const dialogRef = useRef<HTMLDialogElement | null>(null);
-  const formRef = useRef<HTMLFormElement | null>(null);
-  const [productTypes, setProductTypes] = useState<ProductType[]>([]);
-  const [selectedProductType, setSelectedProductType] = useState(0);
-  const [selectedActiveMode, setSelectedActiveMode] = useState(0);
+import { Cropper, CropperRef, Coordinates } from "react-advanced-cropper";
+import "react-advanced-cropper/dist/style.css";
+import { postRequest } from "../../tools/requests";
 
-  useEffect((): void => {
-    getRequest("/api/productCategories").then((types: ProductType[]) => setProductTypes(types));
-  }, []);
+function ImageEditor({
+  defaultImage
+}: {
+  defaultImage: string
+}) {
+  const [image, setImage] = useState(defaultImage);
+  const [editImage, setEditImage] = useState<string | undefined>(undefined);
+  const [fileName, setFileName] = useState(image);
+  const cropperRef = useRef<CropperRef>(null);
 
-  useEffect((): void => {
-    if (!dialogRef || !dialogRef.current) {
+  function crop(): void {
+    if (!fileName) {
+      alert("Please name your image!");
       return;
     }
 
-    if (!productData && dialogRef.current.open) {
-      dialogRef.current.close();
+    if (!cropperRef || !cropperRef.current) {
+      return;
     }
 
-    if (productData && !dialogRef.current.open) {
-      formRef.current?.reset();
-      setSelectedProductType(productData?.productType);
-      setSelectedActiveMode(productData?.active ? 1 : 0);
-      dialogRef.current.showModal();
-
-      dialogRef.current?.addEventListener("close", (event: Event): void => {
-        setCurrentProduct(undefined);
-      });
+    const coordinates: Coordinates | null = cropperRef.current.getCoordinates();
+    if (!coordinates?.width) {
+      return;
     }
 
-    if (productData === null) {
-      formRef.current?.reset();
-      setSelectedActiveMode(1);
-      dialogRef.current.showModal();
+    const qualityModifier = 100 / coordinates?.width * 320;
+    const imageFile = cropperRef.current.getCanvas()?.toDataURL("image/webp", qualityModifier).substring(23);
 
-      dialogRef.current?.addEventListener("close", (event: Event): void => {
-        setCurrentProduct(undefined);
-      });
-    }
-  }, [productData, setCurrentProduct]);
+    postRequest("/api/images/upload", JSON.stringify({
+      imageFile,
+      fileName
+    })).then(async (res: Response): Promise<void> => {
+      const newFileName = await res.json();
+
+      setTimeout((): void => {
+        setEditImage(undefined);
+        setImage(newFileName);
+      }, 1000);
+    });
+  }
+
+  return (
+    <div className={`${editorStyles.setting} ${editorStyles.imageSetting}`}>
+      <label htmlFor={"image"}>Image</label>
+      <input id={"image"} value={fileName} onChange={e => {
+          if (e.target.value.endsWith(".")) {
+            return;
+          }
+
+          setFileName(e.target.value)}
+        }/>
+      {
+        editImage ? <>
+          <Cropper
+            src={editImage}
+            stencilProps={{
+              aspectRatio: 16 / 9,
+              grid: true
+            }}
+            className={editorStyles.cropper}
+            ref={cropperRef}/>
+          <label htmlFor={"imageConfirmer"} className={editorStyles.imageSelector}>Confirm</label>
+          <input
+            type={"button"}
+            id="imageConfirmer"
+            style={{ display: "none" }}
+            onClick={crop}/>
+        </> : <>
+          <img
+            src={`/api/images/get/${image}`}
+            alt={image || ""}/>
+          <label htmlFor="imageSelector" className={editorStyles.imageSelector}>Upload New</label>
+          <input
+            type="file"
+            id="imageSelector"
+            accept={"image/*"}
+            style={{ display: "none" }}
+            onChange={(event) => {
+              if (!event.currentTarget.files) {
+                return;
+              }
+
+              setEditImage(URL.createObjectURL(event.currentTarget.files[0]));
+              setImage("");
+              setFileName("");
+            }}/>
+        </>
+      }
+    </div>
+  );
+}
+
+export function ProductEditor({
+  productData,
+  productCategories,
+  onClose
+}: {
+  productData: RobustProductData | undefined | null,
+  productCategories: ProductType[],
+  onClose: any
+}) {
+  const dialogRef = useRef<HTMLDialogElement | null>(null);
+
+  useEffect(() => {
+    dialogRef.current?.showModal();
+  }, []);
 
   function handleSubmit(event: any): void {
     event.preventDefault();
 
-    if (parseInt(event.target.price.value) != event.target.price.value) {
-      return console.log("Invalid Price!");
+    const price = event.target.price.value;
+    if (parseInt(price) != price || price < 0) {
+      return alert("Invalid Price!");
     }
 
     const requestOptions = {
@@ -60,7 +129,7 @@ export function ProductEditor({ productData, setCurrentProduct }: { productData:
         displayName: event.target.displayName.value,
         id: productData?.id || -1,
         image: event.target.image.value,
-        price: event.target.price.value,
+        price: price,
         productType: event.target.productType.value,
         active: event.target.active.value
       })
@@ -78,55 +147,61 @@ export function ProductEditor({ productData, setCurrentProduct }: { productData:
   }
 
   return (
-    <dialog ref={dialogRef} className={editorStyles.modal} open={false}>
-      <header>
-        <h1>{productData?.displayName}</h1>
-      </header>
-      <form id={"settingsForm"} className={editorStyles.settings} ref={formRef} onSubmit={handleSubmit}>
-        <div className={editorStyles.setting}>
-          <label htmlFor={"displayName"}>Display Name</label>
-          <input id={"displayName"} defaultValue={productData?.displayName}/>
+    <dialog
+      ref={dialogRef}
+      onClose={onClose}
+      className={editorStyles.editor}
+      open={false}>
+      <h1 className={editorStyles.header}>{productData?.displayName}</h1>
+      <form
+        id={"settingsForm"}
+        onSubmit={handleSubmit}
+        className={editorStyles.settingsForm}>
+        <div className={editorStyles.settings}>
+          <div className={editorStyles.setting}>
+            <label htmlFor={"displayName"}>Display Name</label>
+            <input id={"displayName"} defaultValue={productData?.displayName}/>
+          </div>
+          <div className={editorStyles.setting}>
+            <label htmlFor={"id"}>ID</label>
+            <input id={"id"} defaultValue={productData?.id} disabled/>
+          </div>
+          <div className={editorStyles.setting}>
+            <label htmlFor={"price"}>Price</label>
+            <input id={"price"} defaultValue={productData?.price}/>
+          </div>
+          <div className={editorStyles.setting}>
+            <label htmlFor={"productType"}>Product Type</label>
+            <select id={"productType"}
+              defaultValue={productData?.productType}>
+              {productCategories.map((type: ProductType) => (
+                <option
+                  value={type.id}
+                  key={type.id}>
+                  {type.displayName}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={editorStyles.setting}>
+            <label htmlFor={"active"}>Active</label>
+            <select id={"active"}
+              defaultValue={productData?.active ? 1 : 0}>
+              <option value={1}>Active</option>
+              <option value={0}>Inactive</option>
+            </select>
+          </div>
         </div>
-        <div className={editorStyles.setting}>
-          <label htmlFor={"id"}>ID</label>
-          <input id={"id"} defaultValue={productData?.id} disabled/>
-        </div>
-        <div className={editorStyles.setting}>
-          <label htmlFor={"image"}>Image</label>
-          <input id={"image"} defaultValue={productData?.image}/>
-        </div>
-        <div className={editorStyles.setting}>
-          <label htmlFor={"price"}>Price</label>
-          <input id={"price"} defaultValue={productData?.price}/>
-        </div>
-        <div className={editorStyles.setting}>
-          <label htmlFor={"productType"}>Product Type</label>
-          <select id={"productType"}
-            value={selectedProductType}
-            onChange={(e) => setSelectedProductType(parseInt(e.target.value))}>
-            {productTypes.map((type: ProductType) => (
-              <option
-                value={type.id}
-                key={type.id}>
-                {type.displayName}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className={editorStyles.setting}>
-          <label htmlFor={"active"}>Active</label>
-          <select id={"active"}
-            value={selectedActiveMode}
-            onChange={(e) => setSelectedActiveMode(parseInt(e.target.value))}>
-            <option value={1}>Active</option>
-            <option value={0}>Inactive</option>
-          </select>
-        </div>
+        <ImageEditor defaultImage={productData?.image || ""} />
       </form>
-      <footer>
-        <input type={"submit"} form={"settingsForm"} value={"Submit"}/>
-        <button onClick={()=>dialogRef.current?.close()}>Quit</button>
-      </footer>
+      <div className={editorStyles.formSubmit}>
+        <input
+          type={"submit"}
+          form={"settingsForm"}
+          value={"Save"}/>
+        <button
+          onClick={()=>dialogRef.current?.close()}>Close</button>
+      </div>
     </dialog>
   );
 }

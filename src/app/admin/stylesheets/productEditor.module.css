@@ -1,69 +1,126 @@
-.modal[open] {
-  width: 80%;
-  max-width: 1600px;
-  height: 75%;
-  max-height: 800px;
-  border: 5px solid #030006;
-  border-radius: 1.75rem;
-  outline: none;
-  display: grid;
+.editor[open] {
+  width: min(95%, 1600px);
+  height: min(95%, 800px);
   margin: auto;
+  padding: 1rem;
+  display: grid;
   grid-template-rows: 15% 70% 15%;
-  background: #36454F;
-  color: #FFF;
+  border: 5px solid #030006;
+  outline: none;
+  border-radius: 1rem;
+  background: #E6E7E8;
 }
 
-.modal::backdrop {
-  backdrop-filter: brightness(60%);
+.editor::backdrop {
+  backdrop-filter: brightness(25%);
 }
 
-.modal header {
+.header {
+  place-self: center;
+  font-family: MuseoSlab, serif;
+  font-size: 2.5rem;
+  color: #030006;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.settingsForm {
   display: grid;
-  place-content: center;
-  font-size: 1.25rem;
-}
-
-.settings {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 400px);
-  gap: 1rem;
-  place-content: start center;
+  width: 100%;
+  margin-inline: auto;
   overflow-y: auto;
+}
+
+.settings, .imageSetting {
+  display: grid;
+  align-items: start;
+  align-content: start;
+  row-gap: 0.5rem;
 }
 
 .setting {
   display: grid;
 }
 
-.setting label {
+.setting > label {
+  font-family: MuseoSlab, serif;
   font-size: 1.4rem;
-}
-
-.setting input, .setting select {
-  height: 2rem;
-  border: 2px solid #030006;
-  border-radius: 5px;
-  outline: none;
-  font-size: 1.25rem;
-  background: #FFF;
   color: #030006;
 }
 
-.setting input:disabled {
+.setting > input, .setting > select {
+  border: 2px solid #030006;
+  border-radius: 0.5em;
+  outline: none;
+  font-family: MuseoSans, sans-serif;
+  font-size: 1.25rem;
+  padding: 0.25em;
+  background: #E6E7E8;
+  color: #030006;
+  width: 100%;
+}
+
+.setting > input:disabled, .setting > select:disabled {
   filter: brightness(60%);
 }
 
-.modal footer {
-  display: flex;
-  flex-wrap: wrap;
+.setting > img, .cropper {
+  place-self: center;
+  box-sizing: content-box;
+  display: grid;
   place-content: center;
+  border: 4px solid #030006;
+  object-fit: contain;
+  aspect-ratio: 16 / 9;
+  width: 80%;
+  height: auto;
 }
 
-.modal footer * {
-  height: 80%;
-  margin-inline: 1rem;
-  aspect-ratio: 2 / 1;
-  font-size: 1.5rem;
+.cropper {
+  background: #FFF;
+}
+
+.formSubmit {
+  place-self: center;
+  gap: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.formSubmit > * {
+  font-size: 1.75rem;
+  padding: 0.75em 1.5em;
+  border: 5px solid black;
+  background: #030006;
+  color: #E6E7E8;
+  transition: .3s;
+}
+
+.formSubmit > *:hover {
   background: #E6E7E8;
   color: #030006;
+}
+
+.imageSelector {
+  justify-self: center;
+  border: 3px solid #030006;
+  min-width: fit-content;
+  width: 50%;
+  text-align: center;
+  padding: 0.25em 1em;
+  transition: 0.2s;
+  font-family: MuseoSans, sans-serif;
+  font-size: 1.75rem;
+}
+
+.imageSelector:hover {
+  background: #030006;
+  color: #E6E7E8;
+}
+
+@media (min-width: 800px) {
+  .settingsForm {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
 }

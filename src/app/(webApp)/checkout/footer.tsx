@@ -1,7 +1,7 @@
 "use client";
 import { cart } from "../tools/cart";
 import { useRouter } from "next/navigation";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import confetti from "canvas-confetti";
 import wrapperStyles from "../stylesheets/wrapper.module.css";
 

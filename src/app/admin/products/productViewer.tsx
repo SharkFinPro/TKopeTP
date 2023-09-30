@@ -4,30 +4,21 @@ import { useEffect, useState } from "react";
 import { ProductEditor } from "./productEditor";
 import { getRequest } from "../../tools/requests";
 import Link from "next/link";
-import productViewerStyles from "../stylesheets/productViewer.module.css"
+import productViewerStyles from "../stylesheets/productViewer.module.css";
 
-async function loadProducts(): Promise<RobustProductData[]> {
-  const res: Response = await fetch("/api/products");
-  return await res.json();
-}
-
-export function ProductViewer({ processCDN }: { processCDN: undefined | string }) {
-  const [products, setProducts] = useState<RobustProductData[]>([]);
+export function ProductViewer({
+  initialProducts,
+  productTypes
+}: {
+  initialProducts: RobustProductData[],
+  productTypes: ProductType[]
+}) {
+  const [products, setProducts] = useState<RobustProductData[]>(initialProducts);
   const [currentProduct, setCurrentProduct] = useState<RobustProductData | undefined | null>(undefined);
-  const [productTypes, setProductTypes] = useState<ProductType[]>([]);
 
   useEffect((): void => {
-    getRequest("/api/productCategories").then((types: ProductType[]) => setProductTypes(types));
-
-    loadProducts().then((productData: RobustProductData[]) => {
-      setProducts(productData);
-    });
+    getRequest("/api/products").then((productData: RobustProductData[]) => setProducts(productData));
   }, [currentProduct]);
-
-  const hostname: string = typeof window !== "undefined"
-    ? window.location.hostname
-    : "localhost";
-  const cdn: string = processCDN || `http://${hostname}:3000`;
 
   return (
     <div className={productViewerStyles.wrapper}>
@@ -48,15 +39,25 @@ export function ProductViewer({ processCDN }: { processCDN: undefined | string }
               <td>{productData.id}</td>
               <td>{productData.displayName}</td>
               <td>${productData.price}</td>
-              <td><Link href={`${cdn}/images/${productData.image}`} target={"_blank"} prefetch={false}>{productData.image}</Link></td>
+              <td>
+                <Link
+                  href={`../api/images/get/${productData.image}`}
+                  target={"_blank"}
+                  prefetch={false}>
+                  {productData.image}
+                </Link>
+              </td>
               <td>{
-                productTypes ?
-                  productTypes.find((type: ProductType) => type.id == productData.productType)?.displayName :
+                productTypes.length ?
+                  productTypes.find((type: ProductType): boolean => type.id == productData.productType)?.displayName :
                   productData.productType
               }</td>
-              <td style={{
-                color: productData.active ? "#198754" : "#CC0000"
-              }}>{productData.active? "Active" : "Inactive"}</td>
+              <td
+                style={{
+                  color: productData.active ? "#198754" : "#CC0000"
+                }}>
+                {productData.active ? "Active" : "Inactive"}
+              </td>
             </tr>
           ))}
         </tbody>
@@ -64,7 +65,13 @@ export function ProductViewer({ processCDN }: { processCDN: undefined | string }
       <div className={productViewerStyles.options}>
         <button onClick={() => setCurrentProduct(null)}>Add New</button>
       </div>
-      <ProductEditor productData={currentProduct} setCurrentProduct={setCurrentProduct} />
+      {currentProduct !== undefined && (
+        <ProductEditor
+          productData={currentProduct}
+          productCategories={productTypes}
+          onClose={() => setCurrentProduct(undefined)}
+        />
+      )}
     </div>
   );
 }

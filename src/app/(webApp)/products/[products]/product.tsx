@@ -29,7 +29,7 @@ export function Product({ productData }: { productData: ProductData }) {
     <div className={productsStyles.product}>
       <div className={productsStyles.image}>
         <Image
-          src={productData.image ? `/api/images/${productData.image}` : loadingImage}
+          src={productData.image ? `/api/images/get/${productData.image}` : loadingImage}
           alt="Product Image"
           width={300}
           height={168.75}
