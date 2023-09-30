@@ -17,7 +17,7 @@ function ImageEditor({
   const [fileName, setFileName] = useState(image);
   const cropperRef = useRef<CropperRef>(null);
 
-  function crop(event: any): void {
+  function crop(): void {
     if (!cropperRef || !cropperRef.current) {
       return;
     }
