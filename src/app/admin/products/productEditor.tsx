@@ -51,7 +51,11 @@ function ImageEditor({
   return (
     <div className={`${editorStyles.setting} ${editorStyles.imageSetting}`}>
       <label htmlFor={"image"}>Image</label>
-      <input id={"image"} value={fileName} onChange={e => {
+      <input
+        id={"image"}
+        value={fileName}
+        disabled={!editImage}
+        onChange={e => {
           if (e.target.value.endsWith(".")) {
             return;
           }
