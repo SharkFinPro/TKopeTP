@@ -43,7 +43,7 @@ function ImageEditor({
 
       setTimeout((): void => {
         setEditImage(undefined);
-        setImage(newFileName);
+        setImage(newFileName.fileName);
       }, 1000);
     });
   }
@@ -51,13 +51,17 @@ function ImageEditor({
   return (
     <div className={`${editorStyles.setting} ${editorStyles.imageSetting}`}>
       <label htmlFor={"image"}>Image</label>
-      <input id={"image"} value={fileName} onChange={e => {
+      <input
+        id={"image"}
+        value={fileName}
+        disabled={!editImage}
+        onChange={e => {
           if (e.target.value.endsWith(".")) {
             return;
           }
 
-          setFileName(e.target.value)}
-        }/>
+          setFileName(e.target.value);
+        }}/>
       {
         editImage ? <>
           <Cropper
