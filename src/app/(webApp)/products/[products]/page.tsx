@@ -31,6 +31,6 @@ export default async function Page({ params }: {params: { products: string }})  
         ))}
       </div>
     </div>
-    <Footer />
+    <Footer checkout={false} />
   </>
 }

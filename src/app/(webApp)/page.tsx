@@ -33,6 +33,6 @@ export default async function Page() {
         ))}
       </div>
     </div>
-    <Footer />
+    <Footer checkout={false} />
   </>;
 }
