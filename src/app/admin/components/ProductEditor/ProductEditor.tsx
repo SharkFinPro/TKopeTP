@@ -1,11 +1,10 @@
 "use client";
-import { ProductType, RobustProductData} from "../../../productTypes";
+import { ProductType, RobustProductData} from "../../../../productTypes";
 import { useEffect, useRef, useState } from "react";
-import editorStyles from "../stylesheets/productEditor.module.css";
-
 import { Cropper, CropperRef, Coordinates } from "react-advanced-cropper";
 import "react-advanced-cropper/dist/style.css";
-import { postRequest } from "../../tools/requests";
+import { postRequest } from "../../../tools/requests";
+import editorStyles from "./ProductEditor.module.css";
 
 function ImageEditor({
   defaultImage
@@ -103,7 +102,7 @@ function ImageEditor({
   );
 }
 
-export function ProductEditor({
+export default function ProductEditor({
   productData,
   productCategories,
   onClose
