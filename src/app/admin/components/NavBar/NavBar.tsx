@@ -1,5 +1,5 @@
 import Link from "next/link";
-import navBarStyles from "./navBar.module.css";
+import navBarStyles from "./NavBar.module.css";
 
 function Links() {
   return <>
