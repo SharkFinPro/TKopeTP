@@ -1,5 +1,5 @@
 import { Product } from "./product";
-import Footer from "../../footer";
+import Footer from "../../components/Footer";
 import { Metadata } from "next";
 import productManager from "../../../../productManager";
 import { ProductData } from "../../../../productTypes";

@@ -1,11 +1,11 @@
 import Link from "next/link";
-import wrapperStyles from "./stylesheets/wrapper.module.css";
+import footerStyles from "./Footer.module.css";
 
 export default function Footer() {
   return (
-    <footer className={wrapperStyles.footer}>
+    <footer className={footerStyles.wrapper}>
       <Link
-        className={wrapperStyles.footerButton}
+        className={footerStyles.button}
         href="../checkout">
         Checkout
       </Link>
