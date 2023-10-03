@@ -1,12 +1,16 @@
 "use client";
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import { cart } from "../../tools/cart";
 import { ProductData } from "../../../../productTypes";
+import { useEffect, useState } from "react";
+import { cart } from "../../tools/cart";
+import Image from "next/image";
 import loadingImage from "../../../../../public/images/NOT_FOUND.png";
-import productsStyles from "../../stylesheets/products.module.css";
+import productSquareStyles from "./ProductSquare.module.css";
 
-export function Product({ productData }: { productData: ProductData }) {
+export default function ProductSquare ({
+  productData
+} : {
+  productData: ProductData
+}) {
   const [count, setCount] = useState(0);
 
   useEffect((): void => {
@@ -26,8 +30,8 @@ export function Product({ productData }: { productData: ProductData }) {
   }
 
   return (
-    <div className={productsStyles.product}>
-      <div className={productsStyles.image}>
+    <div className={productSquareStyles.product}>
+      <div className={productSquareStyles.image}>
         <Image
           src={productData.image ? `/api/images/get/${productData.image}` : loadingImage}
           alt="Product Image"
@@ -35,17 +39,17 @@ export function Product({ productData }: { productData: ProductData }) {
           height={168.75}
         />
       </div>
-      <p className={productsStyles.name}>{productData.displayName} - ${productData.price}</p>
-      <div className={productsStyles.purchase}>
+      <p className={productSquareStyles.name}>{productData.displayName} - ${productData.price}</p>
+      <div className={productSquareStyles.purchase}>
         <button
-          className={productsStyles.option}
+          className={productSquareStyles.option}
           type="button"
           onClick={subFromCart}>
           −
         </button>
-        <p className={productsStyles.display}>{count}</p>
+        <p className={productSquareStyles.display}>{count}</p>
         <button
-          className={productsStyles.option}
+          className={productSquareStyles.option}
           type="button"
           onClick={addToCart}>
           +
