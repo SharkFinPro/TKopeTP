@@ -15,8 +15,8 @@ export default function ProductSquare ({
         <Image
           src={productData.image ? `/api/images/get/${productData.image}` : loadingImage}
           alt="Product Image"
-          width={300}
-          height={168.75}
+          width={320}
+          height={180}
         />
       </div>
       <p className={productSquareStyles.name}>{productData.displayName} - ${productData.price}</p>
