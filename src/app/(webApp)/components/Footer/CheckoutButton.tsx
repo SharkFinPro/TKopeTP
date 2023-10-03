@@ -1,9 +1,9 @@
 "use client";
-import { cart } from "../tools/cart";
-import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { useRouter } from "next/navigation";
 import confetti from "canvas-confetti";
-import wrapperStyles from "../stylesheets/wrapper.module.css";
+import { cart } from "../../tools/cart";
+import footerStyles from "./Footer.module.css";
 
 function playConfetti() {
   const count = 250;
@@ -46,7 +46,7 @@ function playConfetti() {
   });
 }
 
-export default function Footer() {
+export default function CheckoutButton() {
   const router: AppRouterInstance = useRouter();
 
   function checkout(): void {
@@ -56,6 +56,7 @@ export default function Footer() {
           alert("Transaction Failed");
           return;
         }
+
         playConfetti();
         router.push("/");
       });
@@ -63,8 +64,10 @@ export default function Footer() {
   }
 
   return (
-    <footer className={wrapperStyles.footer}>
-      <button type="button" className={wrapperStyles.footerButton} onClick={checkout}>Finish</button>
-    </footer>
+    <button
+      className={footerStyles.button}
+      onClick={checkout}>
+      Finish
+    </button>
   );
 };

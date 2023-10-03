@@ -21,29 +21,3 @@
   background-color: #36454F;
   overflow-y: auto;
 }
-
-.footer {
-  display: grid;
-  place-items: center;
-  background-color: #005594;
-  border-top: 5px solid #030006;
-}
-
-.footerButton {
-  padding-block: 0.5em;
-  width: 50%;
-  max-width: 300px;
-  text-decoration: none;
-  font-family: MuseoSans, serif;
-  font-size: min(5.5vw, 2rem);
-  text-align: center;
-  color: #030006;
-  background-color: #E6E7E8;
-  border-radius: 0.5em;
-  border: 5px solid #030006;
-  transition: .3s;
-}
-
-.footerButton:hover {
-  background-color: #FFF;
-}

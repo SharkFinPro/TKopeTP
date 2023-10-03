@@ -1,5 +1,5 @@
-import { Product } from "./product";
-import Footer from "../../footer";
+import Footer from "../../components/Footer";
+import ProductSquare from "../../components/ProductSquare";
 import { Metadata } from "next";
 import productManager from "../../../../productManager";
 import { ProductData } from "../../../../productTypes";
@@ -24,13 +24,12 @@ export default async function Page({ params }: {params: { products: string }})  
     <div className={wrapperStyles.content}>
       <div className={productsStyles.products}>
         {products.map((product: ProductData) => (
-          <Product
+          <ProductSquare
             key={product.id}
-            productData={product}
-          />
+            productData={product}/>
         ))}
       </div>
     </div>
-    <Footer />
+    <Footer checkout={false} />
   </>
 }
