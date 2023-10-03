@@ -1,5 +1,5 @@
 import Link from "next/link";
-import navBarStyles from "./stylesheets/navBar.module.css";
+import navBarStyles from "./navBar.module.css";
 
 function Links() {
   return <>
@@ -10,7 +10,7 @@ function Links() {
   </>
 }
 
-export function NavBar() {
+export default function NavBar() {
   return (
     <div className={navBarStyles.wrapper}>
       <div className={navBarStyles.title}>
