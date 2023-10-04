@@ -7,9 +7,7 @@
 .header {
   display: grid;
   place-content: center;
-  border-style: double;
-  border-width: 15px;
-  border-color: #36454F;
+  border: 15px double #36454F;
   background-color: #E31837;
   color: #E6E7E8;
   text-align: center;
