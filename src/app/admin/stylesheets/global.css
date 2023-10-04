@@ -1,37 +1,3 @@
-/* A font by Jos Buivenga (exljbris) -> www.exljbris.com */
-@font-face {
-  font-family: MuseoSlab;
-  src: url("../../fonts/Museo_Slab_500_2.otf");
-  font-weight: 500;
-  font-display: swap;
-}
-
-/* A font by Jos Buivenga (exljbris) -> www.exljbris.com */
-@font-face {
-  font-family: MuseoSlab;
-  src: url("../../fonts/Museo_Slab_500italic.otf");
-  font-style: italic;
-  font-weight: 500;
-  font-display: swap;
-}
-
-/* A font by Jos Buivenga (exljbris) -> www.exljbris.com */
-@font-face {
-  font-family: MuseoSans;
-  src: url("../../fonts/MuseoSans_500.otf");
-  font-weight: 500;
-  font-display: swap;
-}
-
-/* A font by Jos Buivenga (exljbris) -> www.exljbris.com */
-@font-face {
-  font-family: MuseoSans;
-  src: url("../../fonts/MuseoSans_500_Italic.otf");
-  font-style: italic;
-  font-weight: 500;
-  font-display: swap;
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
