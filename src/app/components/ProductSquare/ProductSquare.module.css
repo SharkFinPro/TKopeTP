@@ -30,14 +30,15 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   border-top: 4px solid #030006;
-  font-family: MuseoSans, serif;
   background: #030006;
   column-gap: 4px;
 }
 
 .purchase > * {
-  text-align: center;
+  display: grid;
+  place-content: center;
   font-size: min(8vw, 3rem);
+  font-family: MuseoSans, serif;
 }
 
 .option {
