@@ -1,5 +1,5 @@
-import { postRequest } from "../../tools/requests";
-import { ProductData, SimplifiedProductData } from "../../../productTypes";
+import { postRequest } from "./requests";
+import { ProductData, SimplifiedProductData } from "../../productTypes";
 
 const EXPIRATION_SECONDS: number = 900; // 15 Minutes
 

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { cart } from "../../tools/cart";
-import { ProductData } from "../../../../productTypes";
+import { ProductData } from "../../../productTypes";
 import productSquareStyles from "./ProductSquare.module.css";
 
 export function ProductCounter({
@@ -16,7 +16,7 @@ export function ProductCounter({
     setCount(cart.getCount(productData.id));
   }, [productData]);
 
-  function subFromCart(): void {
+  function removeFromCart(): void {
     if (cart.remove(productData.id)) {
       setCount(count - 1);
     }
@@ -27,19 +27,21 @@ export function ProductCounter({
     setCount(count + 1);
   }
 
-  return <>
-    <button
-      className={productSquareStyles.option}
-      type="button"
-      onClick={subFromCart}>
-      −
-    </button>
-    <p className={productSquareStyles.display}>{count}</p>
-    <button
-      className={productSquareStyles.option}
-      type="button"
-      onClick={addToCart}>
-      +
-    </button>
-  </>
+  return (
+    <div className={productSquareStyles.purchase}>
+      <button
+        className={productSquareStyles.option}
+        type="button"
+        onClick={removeFromCart}>
+        −
+      </button>
+      <p className={productSquareStyles.display}>{count}</p>
+      <button
+        className={productSquareStyles.option}
+        type="button"
+        onClick={addToCart}>
+        +
+      </button>
+    </div>
+  )
 }

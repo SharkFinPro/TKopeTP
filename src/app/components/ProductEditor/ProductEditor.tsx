@@ -1,5 +1,5 @@
 "use client";
-import { ProductType, RobustProductData} from "../../../../productTypes";
+import { ProductType, RobustProductData } from "../../../productTypes";
 import { useEffect, useRef } from "react";
 import ImageEditor from "./ImageEditor";
 import "react-advanced-cropper/dist/style.css";

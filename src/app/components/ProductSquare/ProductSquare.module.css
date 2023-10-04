@@ -7,14 +7,10 @@
   grid-template-rows: 56.25% 18.75% 25%;
 }
 
-.image {
-  display: grid;
-  place-items: center;
-}
-
-.image > img {
+.product > img {
+  place-self: center;
+  object-fit: cover;
   width: 100%;
-  min-height: 100%;
   height: auto;
 }
 
@@ -33,16 +29,16 @@
 .purchase {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  overflow: hidden;
   border-top: 4px solid #030006;
-  font-family: MuseoSans, serif;
   background: #030006;
   column-gap: 4px;
 }
 
 .purchase > * {
-  text-align: center;
+  display: grid;
+  place-content: center;
   font-size: min(8vw, 3rem);
+  font-family: MuseoSans, serif;
 }
 
 .option {

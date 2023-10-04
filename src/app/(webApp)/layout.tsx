@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import "./stylesheets/global.css";
-import wrapperStyles from "./stylesheets/wrapper.module.css";
+import "./global.css";
+import wrapperStyles from "./wrapper.module.css";
 
 export default function WebAppLayout({
   children

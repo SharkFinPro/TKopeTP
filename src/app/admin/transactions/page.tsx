@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { headers } from "next/headers";
 import { Viewer } from "./viewer";
 import Report from "../../../reporting/report";
-import transactionStyles from "../stylesheets/transactions.module.css";
+import transactionStyles from "./transactions.module.css";
 
 export const metadata: Metadata = {
   title: "Transactions",

@@ -1,12 +1,12 @@
-import Footer from "../../components/Footer";
-import ProductSquare from "../../components/ProductSquare";
+import Footer from "@/components/Footer";
+import ProductSquare from "@/components/ProductSquare";
 import { Metadata } from "next";
 import productManager from "../../../../productManager";
 import { ProductData } from "../../../../productTypes";
 import { headers } from "next/headers";
 import { ReadonlyHeaders } from "next/dist/server/web/spec-extension/adapters/headers";
-import wrapperStyles from "../../stylesheets/wrapper.module.css";
-import productsStyles from "../../stylesheets/products.module.css";
+import wrapperStyles from "../../wrapper.module.css";
+import productsStyles from "./products.module.css";
 
 export const metadata: Metadata = {
   title: "Products",

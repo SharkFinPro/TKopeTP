@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { loadOverviewGraph, loadTimelineGraph } from "./createCharts";
-import reportStyles from "../stylesheets/report.module.css";
+import reportStyles from "./reports.module.css";
 
 function ToolbarButton({ children, action, selected }: { children: string, action: any, selected: boolean }) {
   return (
