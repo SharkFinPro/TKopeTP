@@ -16,7 +16,7 @@ export function ProductCounter({
     setCount(cart.getCount(productData.id));
   }, [productData]);
 
-  function subFromCart(): void {
+  function removeFromCart(): void {
     if (cart.remove(productData.id)) {
       setCount(count - 1);
     }
@@ -32,7 +32,7 @@ export function ProductCounter({
       <button
         className={productSquareStyles.option}
         type="button"
-        onClick={subFromCart}>
+        onClick={removeFromCart}>
         −
       </button>
       <p className={productSquareStyles.display}>{count}</p>
