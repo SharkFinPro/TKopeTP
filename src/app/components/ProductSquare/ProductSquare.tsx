@@ -11,15 +11,15 @@ export default function ProductSquare ({
 }) {
   return (
     <div className={productSquareStyles.product}>
-      <div className={productSquareStyles.image}>
-        <Image
-          src={productData.image ? `/api/images/get/${productData.image}` : loadingImage}
-          alt="Product Image"
-          width={320}
-          height={180}
-        />
-      </div>
-      <p className={productSquareStyles.name}>{productData.displayName} - ${productData.price}</p>
+      <Image
+        src={productData.image ? `/api/images/get/${productData.image}` : loadingImage}
+        alt="Product Image"
+        width={320}
+        height={180}
+      />
+      <p className={productSquareStyles.name}>
+        {productData.displayName} - ${productData.price}
+      </p>
       <ProductCounter productData={productData} />
     </div>
   );
