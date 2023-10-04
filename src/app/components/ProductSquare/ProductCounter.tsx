@@ -27,19 +27,21 @@ export function ProductCounter({
     setCount(count + 1);
   }
 
-  return <>
-    <button
-      className={productSquareStyles.option}
-      type="button"
-      onClick={subFromCart}>
-      −
-    </button>
-    <p className={productSquareStyles.display}>{count}</p>
-    <button
-      className={productSquareStyles.option}
-      type="button"
-      onClick={addToCart}>
-      +
-    </button>
-  </>
+  return (
+    <div className={productSquareStyles.purchase}>
+      <button
+        className={productSquareStyles.option}
+        type="button"
+        onClick={subFromCart}>
+        −
+      </button>
+      <p className={productSquareStyles.display}>{count}</p>
+      <button
+        className={productSquareStyles.option}
+        type="button"
+        onClick={addToCart}>
+        +
+      </button>
+    </div>
+  )
 }

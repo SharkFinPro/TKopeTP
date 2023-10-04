@@ -20,10 +20,7 @@ export default function ProductSquare ({
         />
       </div>
       <p className={productSquareStyles.name}>{productData.displayName} - ${productData.price}</p>
-      <div className={productSquareStyles.purchase}>
-        <ProductCounter
-          productData={productData} />
-      </div>
+      <ProductCounter productData={productData} />
     </div>
   );
 }
