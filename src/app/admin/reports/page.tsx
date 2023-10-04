@@ -5,7 +5,7 @@ import Report from "../../../reporting/report";
 import productManager from "../../../productManager";
 import { ProductData, ProductType } from "../../../productTypes";
 import { ReadonlyHeaders } from "next/dist/server/web/spec-extension/adapters/headers";
-import reportStyles from "../stylesheets/report.module.css";
+import reportStyles from "./reports.module.css";
 
 export const metadata: Metadata = {
   title: "Reports",

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import ProductEditor from "@/components/ProductEditor";
 import { getRequest } from "../../tools/requests";
 import Link from "next/link";
-import productViewerStyles from "../stylesheets/productViewer.module.css";
+import productViewerStyles from "./productViewer.module.css";
 
 export function ProductViewer({
   initialProducts,

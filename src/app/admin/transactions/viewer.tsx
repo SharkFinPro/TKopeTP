@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { ProductData } from "../../../productTypes";
-import transactionsStyles from "../stylesheets/transactions.module.css";
+import transactionsStyles from "./transactions.module.css";
 
 function Transaction({ data }: { data: any }) {
   const [expanded, setExpanded] = useState(false);

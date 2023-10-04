@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 import Footer from "@/components/Footer";
-import wrapperStyles from "../stylesheets/wrapper.module.css";
+import wrapperStyles from "../wrapper.module.css";
 
 export const metadata: Metadata = {
   title: "Checkout",
@@ -13,7 +13,9 @@ export default function Layout({ children }: {children: React.ReactNode}) {
     <header className={wrapperStyles.header}>
       <h1>Checkout</h1>
     </header>
-    {children}
+    <div className={wrapperStyles.content}>
+      {children}
+    </div>
     <Footer checkout={true} />
   </>
 }

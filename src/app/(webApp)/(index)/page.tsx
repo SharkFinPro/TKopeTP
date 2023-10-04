@@ -5,8 +5,8 @@ import { ProductType } from "../../../productTypes";
 import { headers } from "next/headers";
 import { ReadonlyHeaders } from "next/dist/server/web/spec-extension/adapters/headers";
 import Link from "next/link";
-import wrapperStyles from "../stylesheets/wrapper.module.css";
-import indexStyles from "../stylesheets/index.module.css";
+import wrapperStyles from "../wrapper.module.css";
+import indexStyles from "./index.module.css";
 
 export const metadata: Metadata = {
   title: "Home",

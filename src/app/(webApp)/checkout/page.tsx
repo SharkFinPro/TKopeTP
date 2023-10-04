@@ -2,8 +2,7 @@
 import { useEffect, useState } from "react";
 import { cart } from "../../tools/cart";
 import { ProductData } from "../../../productTypes";
-import wrapperStyles from "../stylesheets/wrapper.module.css";
-import checkoutStyles from "../stylesheets/checkout.module.css";
+import checkoutStyles from "./checkout.module.css";
 
 export default function Page() {
   const [products, setProducts] = useState<ProductData[]>([]);
@@ -22,41 +21,39 @@ export default function Page() {
     }
   }, [paymentMethod]);
 
-  return (
-    <div className={wrapperStyles.content}>
-      <div className={checkoutStyles.cartDisplayContainer}>
-        <table className={checkoutStyles.cartDisplay}>
-          <thead>
-            <tr>
-              <th>Item - Price</th>
-              <th>Count</th>
+  return <>
+    <div className={checkoutStyles.cartDisplayContainer}>
+      <table className={checkoutStyles.cartDisplay}>
+        <thead>
+          <tr>
+            <th>Item - Price</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map((product: ProductData) => (
+            <tr key={product.id}>
+              <td>{product.displayName} - ${product.price}</td>
+              <td>{product.count}</td>
             </tr>
-          </thead>
-          <tbody>
-            {products.map((product: ProductData) => (
-              <tr key={product.id}>
-                <td>{product.displayName} - ${product.price}</td>
-                <td>{product.count}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <div className={checkoutStyles.paymentInfo}>
-        <p className={checkoutStyles.total}>Total: ${total}</p>
-        <div className={checkoutStyles.paymentTypeSelection}>
-          <button
-            className={paymentMethod === "cash" ? checkoutStyles.selected : ""}
-            onClick={() => setPaymentMethod("cash")}>
-            Cash
-          </button>
-          <button
-            className={paymentMethod === "card" ? checkoutStyles.selected : ""}
-            onClick={() => setPaymentMethod("card")}>
-            Card
-          </button>
-        </div>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <div className={checkoutStyles.paymentInfo}>
+      <p className={checkoutStyles.total}>Total: ${total}</p>
+      <div className={checkoutStyles.paymentTypeSelection}>
+        <button
+          className={paymentMethod === "cash" ? checkoutStyles.selected : ""}
+          onClick={() => setPaymentMethod("cash")}>
+          Cash
+        </button>
+        <button
+          className={paymentMethod === "card" ? checkoutStyles.selected : ""}
+          onClick={() => setPaymentMethod("card")}>
+          Card
+        </button>
       </div>
     </div>
-  );
+  </>;
 }
