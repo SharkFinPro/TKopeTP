@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { cart } from "../../tools/cart";
-import { ProductData } from "../../../../productTypes";
+import { ProductData } from "../../../productTypes";
 import productSquareStyles from "./ProductSquare.module.css";
 
 export function ProductCounter({

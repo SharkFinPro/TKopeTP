@@ -1,6 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
-import Footer from "../components/Footer";
+import Footer from "@/components/Footer";
 import wrapperStyles from "../stylesheets/wrapper.module.css";
 
 export const metadata: Metadata = {

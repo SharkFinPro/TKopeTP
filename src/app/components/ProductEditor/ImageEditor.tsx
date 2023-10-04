@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { Coordinates, Cropper, CropperRef } from "react-advanced-cropper";
-import { postRequest } from "../../../tools/requests";
+import { postRequest } from "../../tools/requests";
 import editorStyles from "./ProductEditor.module.css";
 
 export default function ImageEditor({

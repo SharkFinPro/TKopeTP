@@ -1,5 +1,5 @@
-import Footer from "../../components/Footer";
-import ProductSquare from "../../components/ProductSquare";
+import Footer from "@/components/Footer";
+import ProductSquare from "@/components/ProductSquare";
 import { Metadata } from "next";
 import productManager from "../../../../productManager";
 import { ProductData } from "../../../../productTypes";

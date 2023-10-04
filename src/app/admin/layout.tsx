@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import NavBar from "./components/NavBar";
+import NavBar from "@/components/NavBar";
 import wrapperStyles from "./stylesheets/wrapper.module.css";
 
 export default function Layout({

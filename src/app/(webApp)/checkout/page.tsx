@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { cart } from "../tools/cart";
+import { cart } from "../../tools/cart";
 import { ProductData } from "../../../productTypes";
 import wrapperStyles from "../stylesheets/wrapper.module.css";
 import checkoutStyles from "../stylesheets/checkout.module.css";
