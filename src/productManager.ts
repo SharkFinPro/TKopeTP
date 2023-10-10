@@ -54,14 +54,34 @@ class ProductManager {
     });
   }
 
-  updateProduct(productData: RobustProductData): void {
-    databaseManager.run(`UPDATE Products SET displayName=?, image=?, price=?, productType=?, active=? WHERE id=?`,
-      [productData.displayName, productData.image, productData.price, productData.productType, productData.active, productData.id]);
+  updateProduct(productData: RobustProductData): Promise<boolean> {
+    return new Promise((resolve, reject): void => {
+      databaseManager.run(`UPDATE Products SET displayName=?, image=?, price=?, productType=?, active=? WHERE id=?`,
+        [productData.displayName, productData.image, productData.price, productData.productType, productData.active, productData.id],
+        (err: any): void => {
+          if (err) {
+            console.error(err);
+            reject(err);
+          }
+
+          resolve(true);
+        });
+    });
   }
 
-  createProduct(productData: RobustProductData): void {
-    databaseManager.run(`INSERT INTO Products (productType, displayName, price, image, active) VALUES (?, ?, ?, ?, ?)`,
-      [productData.productType, productData.displayName, productData.price, productData.image, productData.active]);
+  createProduct(productData: RobustProductData): Promise<boolean> {
+    return new Promise((resolve, reject): void => {
+      databaseManager.run(`INSERT INTO Products (productType, displayName, price, image, active) VALUES (?, ?, ?, ?, ?)`,
+        [productData.productType, productData.displayName, productData.price, productData.image, productData.active],
+        (err: any): void => {
+          if (err) {
+            console.error(err);
+            reject(err);
+          }
+
+          resolve(true);
+        });
+    });
   }
 }
 
