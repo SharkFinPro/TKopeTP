@@ -44,18 +44,25 @@ class DatabaseManager {
     this.db?.run(action, values, err);
   }
 
-  shutdown(): void {
-    if (typeof this.db === "undefined") {
-      return console.log("No database connection to shutdown!");
-    }
-
-    this.db.close((error) => {
-      if (error) {
-        return console.error(error);
+  shutdown(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      if (typeof this.db === "undefined") {
+        console.error("No database connection to shutdown!");
+        reject();
+        return;
       }
-    });
 
-    this.db = undefined;
+      this.db.close((error) => {
+        if (error) {
+          console.error(error);
+          reject();
+        }
+      });
+
+      this.db = undefined;
+
+      resolve(true);
+    });
   }
 
   notConnectedError(): void {
