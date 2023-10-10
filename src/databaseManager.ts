@@ -36,12 +36,12 @@ class DatabaseManager {
     this.db.each(action, callback);
   }
 
-  run(action: string): void {
+  run(action: string, values: any[]): void {
     if (typeof this.db === "undefined") {
       return this.notConnectedError();
     }
 
-    this.db?.run(action);
+    this.db?.run(action, values);
   }
 
   shutdown(): void {

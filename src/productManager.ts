@@ -55,12 +55,13 @@ class ProductManager {
   }
 
   updateProduct(productData: RobustProductData): void {
-    databaseManager.run(`UPDATE Products SET displayName='${productData.displayName}', image='${productData.image}', price='${productData.price}', productType='${productData.productType}', active='${productData.active}' WHERE id=${productData.id}`);
+    databaseManager.run(`UPDATE Products SET displayName=?, image=?, price=?, productType=?, active=? WHERE id=?`,
+      [productData.displayName, productData.image, productData.price, productData.productType, productData.active, productData.id]);
   }
 
   createProduct(productData: RobustProductData): void {
-    databaseManager.run(`INSERT INTO Products (productType, displayName, price, image, active)
-      VALUES (${productData.productType}, '${productData.displayName}', ${productData.price}, '${productData.image}', ${productData.active})`);
+    databaseManager.run(`INSERT INTO Products (productType, displayName, price, image, active) VALUES (?, ?, ?, ?, ?)`,
+      [productData.productType, productData.displayName, productData.price, productData.image, productData.active]);
   }
 }
 
