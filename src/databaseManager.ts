@@ -32,7 +32,7 @@ class DatabaseManager {
   }
 
   all(action: string, callback: (error: string, data: any) => void): void {
-    if (this.notConnectedError()) {
+    if (!this.isConnected()) {
       return;
     }
 
@@ -40,7 +40,7 @@ class DatabaseManager {
   }
 
   each(action: string, callback: (error: string, data: any) => void): void {
-    if (this.notConnectedError()) {
+    if (!this.isConnected()) {
       return;
     }
 
@@ -48,7 +48,7 @@ class DatabaseManager {
   }
 
   run(action: string, values: any[], err: any): void {
-    if (this.notConnectedError()) {
+    if (!this.isConnected()) {
       return;
     }
 
@@ -57,7 +57,7 @@ class DatabaseManager {
 
   shutdown(): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      if (this.notConnectedError()) {
+      if (!this.isConnected()) {
         reject();
         return;
       }
@@ -75,7 +75,7 @@ class DatabaseManager {
     });
   }
 
-  notConnectedError(): boolean {
+  isConnected(): boolean {
     if (typeof this.db === "undefined") {
       console.error("Database connection has not been established!");
       return false;
