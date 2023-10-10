@@ -5,40 +5,51 @@ class DatabaseManager {
   db: sqlite3.Database | undefined = undefined;
 
   constructor() {
-    this.connect();
+    this.connect().catch((error) => {
+      if (error) {
+        throw new Error("Failed to connect to database!");
+      }
+    })
   }
 
-  connect(): void {
-    if (this.db) {
-      return console.log("Database connection is already established!");
-    }
-
-    this.db = new sqlite3.Database(join(process.cwd(), "db/TradingPost.sqlite"), sqlite3.OPEN_READWRITE, (error) => {
-      if (error) {
-        return console.error(error);
+  connect(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      if (this.db) {
+        console.error("Database connection is already established!");
+        reject();
+        return;
       }
+
+      this.db = new sqlite3.Database(join(process.cwd(), "db/TradingPost.sqlite"), sqlite3.OPEN_READWRITE, (error) => {
+        if (error) {
+          console.error(error);
+          reject();
+        }
+      });
+
+      resolve(true);
     });
   }
 
   all(action: string, callback: (error: string, data: any) => void): void {
-    if (typeof this.db === "undefined") {
-      return this.notConnectedError();
+    if (this.notConnectedError()) {
+      return;
     }
 
-    this.db.all(action, callback);
+    this.db?.all(action, callback);
   }
 
   each(action: string, callback: (error: string, data: any) => void): void {
-    if (typeof this.db === "undefined") {
-      return this.notConnectedError();
+    if (this.notConnectedError()) {
+      return;
     }
 
-    this.db.each(action, callback);
+    this.db?.each(action, callback);
   }
 
   run(action: string, values: any[], err: any): void {
-    if (typeof this.db === "undefined") {
-      return this.notConnectedError();
+    if (this.notConnectedError()) {
+      return;
     }
 
     this.db?.run(action, values, err);
@@ -46,13 +57,12 @@ class DatabaseManager {
 
   shutdown(): Promise<boolean> {
     return new Promise((resolve, reject) => {
-      if (typeof this.db === "undefined") {
-        console.error("No database connection to shutdown!");
+      if (this.notConnectedError()) {
         reject();
         return;
       }
 
-      this.db.close((error) => {
+      this.db?.close((error) => {
         if (error) {
           console.error(error);
           reject();
@@ -65,8 +75,13 @@ class DatabaseManager {
     });
   }
 
-  notConnectedError(): void {
-    console.log("Error: Database connection has not been established!");
+  notConnectedError(): boolean {
+    if (typeof this.db === "undefined") {
+      console.error("Database connection has not been established!");
+      return false;
+    }
+
+    return true;
   }
 }
 
