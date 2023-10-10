@@ -9,7 +9,7 @@ class DatabaseManager {
       if (error) {
         throw new Error("Failed to connect to database!");
       }
-    })
+    });
   }
 
   connect(): Promise<boolean> {
