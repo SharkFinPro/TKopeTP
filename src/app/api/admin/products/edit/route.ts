@@ -5,7 +5,13 @@ import { RobustProductData } from "../../../../../productTypes";
 
 export async function POST(request: Request): Promise<NextResponse> {
   const productData: RobustProductData = await request.json();
-  productManager.updateProduct(productData);
 
-  return NextResponse.json({}); // NOTE: compiles at build time
+  try {
+    await productManager.updateProduct(productData);
+  } catch (e) {
+    console.error(e);
+    return new NextResponse("Error!", { status: 500 });
+  }
+
+  return new NextResponse("Success", { status: 200 });
 }
