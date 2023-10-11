@@ -1,6 +1,8 @@
 import sqlite3 from "sqlite3";
 import { join } from "path";
 
+const NOT_CONNECTED_MESSAGE = "Database connection has not been established";
+
 class DatabaseManager {
   db: sqlite3.Database | undefined = undefined;
 
@@ -19,10 +21,9 @@ class DatabaseManager {
         return;
       }
 
-      this.db = new sqlite3.Database(join(process.cwd(), "db/TradingPost.sqlite"), sqlite3.OPEN_READWRITE, (error) => {
+      this.db = new sqlite3.Database(join(process.cwd(), "db/TradingPost.sqlite"), sqlite3.OPEN_READWRITE, (error: Error | null): void => {
         if (error) {
-          console.error(error);
-          reject();
+          reject(error);
         }
       });
 
@@ -33,7 +34,7 @@ class DatabaseManager {
   all(action: string): Promise<any> {
     return new Promise((resolve, reject): void => {
       if (!this.isConnected()) {
-        reject();
+        reject(new Error(NOT_CONNECTED_MESSAGE));
         return;
       }
 
@@ -51,7 +52,7 @@ class DatabaseManager {
   each(action: string): Promise<any> {
     return new Promise((resolve, reject): void => {
       if (!this.isConnected()) {
-        reject();
+        reject(new Error(NOT_CONNECTED_MESSAGE));
         return;
       }
 
@@ -69,7 +70,7 @@ class DatabaseManager {
   run(action: string, values: any[]): Promise<boolean> {
     return new Promise((resolve, reject): void => {
       if (!this.isConnected()) {
-        reject();
+        reject(new Error(NOT_CONNECTED_MESSAGE));
         return;
       }
 
@@ -87,7 +88,7 @@ class DatabaseManager {
   shutdown(): Promise<boolean> {
     return new Promise((resolve, reject): void => {
       if (!this.isConnected()) {
-        reject();
+        reject(new Error(NOT_CONNECTED_MESSAGE));
         return;
       }
 
@@ -104,12 +105,7 @@ class DatabaseManager {
   }
 
   isConnected(): boolean {
-    if (typeof this.db === "undefined") {
-      console.error("Database connection has not been established!");
-      return false;
-    }
-
-    return true;
+    return typeof this.db !== "undefined"
   }
 }
 
