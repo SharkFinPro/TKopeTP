@@ -105,7 +105,7 @@ class DatabaseManager {
   }
 
   isConnected(): boolean {
-    return typeof this.db !== "undefined"
+    return typeof this.db !== "undefined";
   }
 }
 
