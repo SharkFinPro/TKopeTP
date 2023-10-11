@@ -1,7 +1,7 @@
 import sqlite3 from "sqlite3";
 import { join } from "path";
 
-const NOT_CONNECTED_MESSAGE = "Database connection has not been established";
+const NOT_CONNECTED_MESSAGE: string = "Database connection has not been established";
 
 class DatabaseManager {
   db: sqlite3.Database | undefined = undefined;
