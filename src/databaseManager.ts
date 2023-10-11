@@ -5,7 +5,7 @@ class DatabaseManager {
   db: sqlite3.Database | undefined = undefined;
 
   constructor() {
-    this.connect().catch((error) => {
+    this.connect().catch((error): void => {
       if (error) {
         throw new Error("Failed to connect to database!");
       }
@@ -13,10 +13,9 @@ class DatabaseManager {
   }
 
   connect(): Promise<boolean> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject): void => {
       if (this.db) {
-        console.error("Database connection is already established!");
-        reject();
+        reject(new Error("Database connection is already established!"));
         return;
       }
 
@@ -31,41 +30,70 @@ class DatabaseManager {
     });
   }
 
-  all(action: string, callback: (error: string, data: any) => void): void {
-    if (!this.isConnected()) {
-      return;
-    }
-
-    this.db?.all(action, callback);
-  }
-
-  each(action: string, callback: (error: string, data: any) => void): void {
-    if (!this.isConnected()) {
-      return;
-    }
-
-    this.db?.each(action, callback);
-  }
-
-  run(action: string, values: any[], err: any): void {
-    if (!this.isConnected()) {
-      return;
-    }
-
-    this.db?.run(action, values, err);
-  }
-
-  shutdown(): Promise<boolean> {
-    return new Promise((resolve, reject) => {
+  all(action: string): Promise<any> {
+    return new Promise((resolve, reject): void => {
       if (!this.isConnected()) {
         reject();
         return;
       }
 
-      this.db?.close((error) => {
+      this.db?.all(action, (err: Error | null, data: any): void => {
+        if (err) {
+          reject(err);
+          return;
+        }
+
+        resolve(data);
+      });
+    });
+  }
+
+  each(action: string): Promise<any> {
+    return new Promise((resolve, reject): void => {
+      if (!this.isConnected()) {
+        reject();
+        return;
+      }
+
+      this.db?.each(action, (err: Error | null, data: any): void => {
+        if (err) {
+          reject(err);
+          return;
+        }
+
+        resolve(data);
+      });
+    });
+  }
+
+  run(action: string, values: any[]): Promise<boolean> {
+    return new Promise((resolve, reject): void => {
+      if (!this.isConnected()) {
+        reject();
+        return;
+      }
+
+      this.db?.run(action, values, (err: Error | null): void => {
+        if (err) {
+          reject(err);
+          return;
+        }
+
+        resolve(true);
+      });
+    });
+  }
+
+  shutdown(): Promise<boolean> {
+    return new Promise((resolve, reject): void => {
+      if (!this.isConnected()) {
+        reject();
+        return;
+      }
+
+      this.db?.close((error: Error | null): void => {
         if (error) {
-          console.error(error);
-          reject();
+          reject(error);
         }
       });
 
