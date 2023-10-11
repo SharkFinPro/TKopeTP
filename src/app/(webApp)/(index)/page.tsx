@@ -1,6 +1,6 @@
 import Footer from "@/components/Footer";
 import { Metadata } from "next";
-import ProductManager from "../../../productManager";
+import { getProductTypes } from "../../../productManager";
 import { ProductType } from "../../../productTypes";
 import { headers } from "next/headers";
 import { ReadonlyHeaders } from "next/dist/server/web/spec-extension/adapters/headers";
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default async function Page() {
   const headersList: ReadonlyHeaders = headers();
-  const categories: ProductType[] = await ProductManager.getProductTypes();
+  const categories: ProductType[] = await getProductTypes();
 
   return <>
     <header className={wrapperStyles.header}>

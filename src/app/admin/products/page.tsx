@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { ProductViewer } from "./productViewer";
-import productManager from "../../../productManager";
+import { getProducts, getProductTypes } from "../../../productManager";
 import { ProductType, RobustProductData } from "../../../productTypes";
 
 export const metadata: Metadata = {
@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 };
 
 export default async function Page() {
-  const products: RobustProductData[] = await productManager.getProducts();
-  const productTypes: ProductType[] = await productManager.getProductTypes();
+  const products: RobustProductData[] = await getProducts();
+  const productTypes: ProductType[] = await getProductTypes();
 
   return (
     <ProductViewer
