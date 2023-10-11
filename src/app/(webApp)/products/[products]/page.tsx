@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer";
 import ProductSquare from "@/components/ProductSquare";
 import { Metadata } from "next";
-import productManager from "../../../../productManager";
+import { getProductsByType } from "../../../../productManager";
 import { ProductData } from "../../../../productTypes";
 import { headers } from "next/headers";
 import { ReadonlyHeaders } from "next/dist/server/web/spec-extension/adapters/headers";
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default async function Page({ params }: {params: { products: string }})  {
   const headersList: ReadonlyHeaders = headers(); // Opt in to dynamic rendering
-  const products: ProductData[] = await productManager.getProductsByType(params.products, true);
+  const products: ProductData[] = await getProductsByType(params.products, true);
 
   return <>
     <header className={wrapperStyles.header}>

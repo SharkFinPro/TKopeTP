@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import productManager from "../../../productManager";
+import { getProductTypes } from "../../../productManager";
 
 export async function GET(request: Request): Promise<NextResponse> {
   const body = request.body;
 
-  return NextResponse.json(await productManager.getProductTypes());
+  return NextResponse.json(await getProductTypes());
 }

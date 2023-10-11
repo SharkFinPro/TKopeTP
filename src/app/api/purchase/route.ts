@@ -1,5 +1,5 @@
 import { access, mkdir, appendFile } from "fs/promises";
-import productManager from "../../../productManager";
+import { getProduct } from "../../../productManager";
 import { ProductData } from "../../../productTypes";
 
 export async function POST(request: Request): Promise<Response> {
@@ -8,7 +8,7 @@ export async function POST(request: Request): Promise<Response> {
 
   const cart: ProductData[] = [];
   for (let { id, count } of body.cart) {
-    let data: ProductData = await productManager.getProduct(id);
+    let data: ProductData = await getProduct(id);
     data.count = count;
     cart.push(data);
   }
