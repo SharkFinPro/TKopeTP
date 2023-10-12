@@ -1,17 +1,8 @@
-import { NextResponse } from "next/server";
-import { createProduct } from "../../../../../productManager";
+import { post } from "../post";
 import { Request } from "next/dist/compiled/@edge-runtime/primitives/fetch";
-import { RobustProductData } from "../../../../../productTypes";
+import { createProduct } from "../../../../../productManager";
+import { NextResponse } from "next/server";
 
 export async function POST(request: Request): Promise<NextResponse> {
-  const productData: RobustProductData = await request.json();
-
-  try {
-    await createProduct(productData);
-  } catch (e) {
-    console.error(e);
-    return new NextResponse("Error!", { status: 500 });
-  }
-
-  return new NextResponse("Success", { status: 200 });
+  return post(request, createProduct);
 }
