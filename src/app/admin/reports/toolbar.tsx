@@ -19,7 +19,7 @@ export function Toolbar({ rawOverview, categories, times }: { rawOverview: strin
   const [graphType, setGraphType] = useState("units");
 
   useEffect(() => {
-    if (selectedOption === "overview" || selectedOption === "overviewCategory") {
+    if (["overview", "overviewCategory"].includes(selectedOption)) {
       loadOverviewGraph(selectedOption, graphType, JSON.parse(rawOverview), JSON.parse(categories));
     } else if (selectedOption === "timeline") {
       loadTimelineGraph(JSON.parse(times));
