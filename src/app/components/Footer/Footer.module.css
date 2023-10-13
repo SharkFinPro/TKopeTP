@@ -1,8 +1,7 @@
 .wrapper {
   display: grid;
   place-items: center;
-  background-color: #005596;
-  border-top: 5px solid #030006;
+  background: #36454F;
 }
 
 .button {
