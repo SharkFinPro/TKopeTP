@@ -31,81 +31,42 @@ class DatabaseManager {
     });
   }
 
-  all(action: string): Promise<any> {
+  accessDatabase(action: any): Promise<any> {
     return new Promise((resolve, reject): void => {
-      if (!this.isConnected()) {
+      if (!this.db) {
         reject(new Error(NOT_CONNECTED_MESSAGE));
         return;
       }
 
-      this.db?.all(action, (err: Error | null, data: any): void => {
-        if (err) {
-          reject(err);
-          return;
-        }
+      action(resolve, reject);
+    });
+  }
 
-        resolve(data);
-      });
+  handleResponse(err: Error | null, data: any, resolve: any, reject: any): void {
+    if (err) {
+      reject(err);
+      return;
+    }
+
+    resolve(data || true);
+  }
+
+  all(action: string): Promise<any> {
+    return this.accessDatabase((resolve: any, reject: any): void => {
+      this.db?.all(action, (err: any, data: any) => this.handleResponse(err, data, resolve, reject))
     });
   }
 
   each(action: string): Promise<any> {
-    return new Promise((resolve, reject): void => {
-      if (!this.isConnected()) {
-        reject(new Error(NOT_CONNECTED_MESSAGE));
-        return;
-      }
-
-      this.db?.each(action, (err: Error | null, data: any): void => {
-        if (err) {
-          reject(err);
-          return;
-        }
-
-        resolve(data);
-      });
+    return this.accessDatabase((resolve: any, reject: any): void => {
+      this.db?.each(action, (err: any, data: any) => this.handleResponse(err, data, resolve, reject))
     });
   }
 
   run(action: string, values: any[]): Promise<boolean> {
-    return new Promise((resolve, reject): void => {
-      if (!this.isConnected()) {
-        reject(new Error(NOT_CONNECTED_MESSAGE));
-        return;
-      }
-
-      this.db?.run(action, values, (err: Error | null): void => {
-        if (err) {
-          reject(err);
-          return;
-        }
-
-        resolve(true);
-      });
+    return this.accessDatabase((resolve: any, reject: any): void => {
+      this.db?.run(action, values, (err: any) => this.handleResponse(err, null, resolve, reject))
     });
-  }
-
-  shutdown(): Promise<boolean> {
-    return new Promise((resolve, reject): void => {
-      if (!this.isConnected()) {
-        reject(new Error(NOT_CONNECTED_MESSAGE));
-        return;
-      }
-
-      this.db?.close((error: Error | null): void => {
-        if (error) {
-          reject(error);
-        }
-      });
-
-      this.db = undefined;
-
-      resolve(true);
-    });
-  }
-
-  isConnected(): boolean {
-    return typeof this.db !== "undefined";
   }
 }
 
