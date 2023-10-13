@@ -18,9 +18,9 @@
 .name {
   display: grid;
   place-content: center;
-  background: #005596;
-  font-size: min(2.75vw, 1rem);
+  background: #36454F;
   color: #FFF;
+  font-size: min(2.75vw, 1rem);
   font-family: MuseoSans, serif;
   border-top: 4px solid #030006;
   white-space: nowrap;
