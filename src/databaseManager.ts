@@ -1,8 +1,6 @@
 import sqlite3 from "sqlite3";
 import { join } from "path";
 
-const NOT_CONNECTED_MESSAGE: string = "Database connection has not been established";
-
 class DatabaseManager {
   db: sqlite3.Database | undefined = undefined;
 
@@ -34,7 +32,7 @@ class DatabaseManager {
   accessDatabase(action: any): Promise<any> {
     return new Promise((resolve, reject): void => {
       if (!this.db) {
-        reject(new Error(NOT_CONNECTED_MESSAGE));
+        reject(new Error("Database connection has not been established"));
         return;
       }
 
