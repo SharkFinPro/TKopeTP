@@ -19,6 +19,7 @@
 
 .cartDisplay tr * {
   border: 2px solid black;
+  border-top: none;
 }
 
 .cartDisplay tr {
@@ -29,30 +30,30 @@
 .cartDisplay tr * {
   display: grid;
   place-content: center;
-  padding: 0.25em 0;
-  box-sizing: border-box;
+  padding-block: 0.25em;
   white-space: nowrap;
   overflow: hidden;
 }
 
 .cartDisplay tr th {
-  background: #E6E7E8;
+  background: #36454F;
+  color: #E6E7E8;
   font-family: MuseoSlab, sans-serif;
   font-size: min(5vw, 2rem);
-  color: #030006;
 }
 
 .cartDisplay tr td {
-  background-color: #005596;
+  background: #E6E7E8;
+  color: #030006;
   font-family: MuseoSans, serif;
   font-size: min(4.5vw, 1.5rem);
-  color: #FFF;
 }
 
 .paymentInfo {
+  height: 30%;
   display: grid;
-  grid-template-rows: 1fr 1fr;
-  place-items: center;
+  justify-items: center;
+  align-content: space-evenly;
   border-top: 5px solid #030006;
 }
 
@@ -61,13 +62,13 @@
   padding: 0.5em 1.5em;
   display: grid;
   place-content: center;
-  background: #E6E7E8;
+  background: #36454F;
+  color: #E6E7E8;
   border: 3px solid #030006;
-  border-radius: 5px;
+  border-radius: 0.25em;
   box-sizing: border-box;
   font-family: MuseoSans, serif;
   font-size: min(6vw, 2rem);
-  color: #030006;
 }
 
 .paymentTypeSelection {
@@ -77,17 +78,17 @@
 
 .paymentTypeSelection button {
   padding: 0.75em 1.5em;
-  border: 3px solid #030006;
-  border-radius: 0.25em;
-  background-color: #E6E7E8;
-  color: #36454F;
-  font-family: MuseoSlab, MuseoSans, serif;
+  font-family: MuseoSans, serif;
   font-size: min(6vw, 2rem);
   transition: 0.5s;
+  border-radius: 0.25em;
+  border: 5px solid black;
+  background: #030006;
+  color: #E6E7E8;
 }
 
 .paymentTypeSelection .selected {
-  background-color: #E31837;
-  color: #FFF;
   border-radius: 0.5em;
+  background: #E6E7E8;
+  color: #030006;
 }

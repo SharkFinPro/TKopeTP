@@ -35,7 +35,7 @@ export function ProductCounter({
         onClick={removeFromCart}>
         −
       </button>
-      <p className={productSquareStyles.display}>{count}</p>
+      <p>{count}</p>
       <button
         className={productSquareStyles.option}
         type="button"

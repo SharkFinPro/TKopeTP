@@ -51,19 +51,19 @@ class DatabaseManager {
 
   all(action: string): Promise<any> {
     return this.accessDatabase((resolve: any, reject: any): void => {
-      this.db?.all(action, (err: any, data: any) => this.handleResponse(err, data, resolve, reject))
+      this.db?.all(action, (err: any, data: any) => this.handleResponse(err, data, resolve, reject));
     });
   }
 
   each(action: string): Promise<any> {
     return this.accessDatabase((resolve: any, reject: any): void => {
-      this.db?.each(action, (err: any, data: any) => this.handleResponse(err, data, resolve, reject))
+      this.db?.each(action, (err: any, data: any) => this.handleResponse(err, data, resolve, reject));
     });
   }
 
   run(action: string, values: any[]): Promise<boolean> {
     return this.accessDatabase((resolve: any, reject: any): void => {
-      this.db?.run(action, values, (err: any) => this.handleResponse(err, null, resolve, reject))
+      this.db?.run(action, values, (err: any) => this.handleResponse(err, null, resolve, reject));
     });
   }
 }
