@@ -1,7 +1,7 @@
 .product {
   aspect-ratio: 1 / 1;
   border-radius: 15px;
-  border: 4px solid #030006;
+  border: 3px solid #030006;
   overflow: hidden;
   display: grid;
   grid-template-rows: 56.25% 18.75% 25%;
@@ -22,7 +22,7 @@
   color: #FFF;
   font-size: min(2.75vw, 1rem);
   font-family: MuseoSans, serif;
-  border-top: 4px solid #030006;
+  border-top: 3px solid #030006;
   white-space: nowrap;
   overflow: hidden;
 }
@@ -30,9 +30,9 @@
 .purchase {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  border-top: 4px solid #030006;
+  border-top: 3px solid #030006;
   background: #030006;
-  column-gap: 4px;
+  column-gap: 3px;
 }
 
 .purchase > * {
