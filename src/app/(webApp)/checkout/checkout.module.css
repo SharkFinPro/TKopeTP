@@ -31,7 +31,6 @@
   display: grid;
   place-content: center;
   padding: 0.25em 0;
-  box-sizing: border-box;
   white-space: nowrap;
   overflow: hidden;
 }
