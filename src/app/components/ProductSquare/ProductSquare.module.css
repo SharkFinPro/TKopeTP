@@ -44,11 +44,12 @@
 
 .option {
   border: none;
-  transition: 0.3s;
+  transition: 0.25s;
 }
 
 .option:active {
-  background-color: #E6E7E8;
+  background: #030006;
+  color: #E6E7E8;
 }
 
 .display {
