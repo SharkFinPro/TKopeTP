@@ -40,6 +40,7 @@
   place-content: center;
   font-size: min(8vw, 3rem);
   font-family: MuseoSans, serif;
+  background: #E6E7E8;
 }
 
 .option {
@@ -50,8 +51,4 @@
 .option:active {
   background: #030006;
   color: #E6E7E8;
-}
-
-.display {
-  background-color: #E6E7E8;
 }
