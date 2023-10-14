@@ -1,6 +1,6 @@
 .product {
   aspect-ratio: 1 / 1;
-  border-radius: 15px;
+  border-radius: 1em;
   border: 3px solid #030006;
   overflow: hidden;
   display: grid;
