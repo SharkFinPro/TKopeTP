@@ -23,6 +23,7 @@
   display: grid;
   gap: 0.5rem;
   overflow-y: auto;
+  align-content: start;
 }
 
 .transaction {
