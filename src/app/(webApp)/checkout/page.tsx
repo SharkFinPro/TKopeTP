@@ -42,9 +42,7 @@ export default function Page() {
             </tbody>
           </table>
         ) : (
-          <div className={checkoutStyles.noProducts}>
-            <h2>No Products Selected</h2>
-          </div>
+          <h2 className={checkoutStyles.noProducts}>No Products Selected</h2>
         )
       }
     </div>
