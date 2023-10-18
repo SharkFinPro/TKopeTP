@@ -61,6 +61,12 @@ class DatabaseManager {
     });
   }
 
+  get(action: string): Promise<any> {
+    return this.accessDatabase((resolve: any, reject: any): void => {
+      this.db?.get(action, (err: any, data: any) => this.handleResponse(err, data, resolve, reject));
+    });
+  }
+
   run(action: string, values: any[]): Promise<boolean> {
     return this.accessDatabase((resolve: any, reject: any): void => {
       this.db?.run(action, values, (err: any) => this.handleResponse(err, null, resolve, reject));

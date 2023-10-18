@@ -10,7 +10,7 @@ export const getProducts = (): Promise<RobustProductData[]> => {
 }
 
 export const getProduct = (productID: string): Promise<ProductData> => {
-  return databaseManager.each(`SELECT productType, displayName, price, image, id FROM Products WHERE id=${productID}`);
+  return databaseManager.get(`SELECT productType, displayName, price, image, id FROM Products WHERE id=${productID}`);
 }
 
 export const getProductTypes = (): Promise<ProductType[]> => {
