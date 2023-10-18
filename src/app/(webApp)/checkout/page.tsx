@@ -23,22 +23,30 @@ export default function Page() {
 
   return <>
     <div className={checkoutStyles.cartDisplayContainer}>
-      <table className={checkoutStyles.cartDisplay}>
-        <thead>
-          <tr>
-            <th>Item - Price</th>
-            <th>Count</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product: ProductData) => (
-            <tr key={product.id}>
-              <td>{product.displayName} - ${product.price}</td>
-              <td>{product.count}</td>
+      {
+        products.length ? (
+          <table className={checkoutStyles.cartDisplay}>
+            <thead>
+            <tr>
+              <th>Item - Price</th>
+              <th>Count</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+            </thead>
+            <tbody>
+            {products.map((product: ProductData) => (
+              <tr key={product.id}>
+                <td>{product.displayName} - ${product.price}</td>
+                <td>{product.count}</td>
+              </tr>
+            ))}
+            </tbody>
+          </table>
+        ) : (
+          <div className={checkoutStyles.noProducts}>
+            <h2>No Products Selected</h2>
+          </div>
+        )
+      }
     </div>
     <div className={checkoutStyles.paymentInfo}>
       <p className={checkoutStyles.total}>Total: ${total}</p>

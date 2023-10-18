@@ -49,6 +49,18 @@
   font-size: min(4.5vw, 1.5rem);
 }
 
+.noProducts {
+  display: grid;
+  height: 100%;
+  align-content: center;
+  text-align: center;
+}
+
+.noProducts > h2 {
+  font-family: MuseoSans, serif;
+  font-size: min(10vw, 4rem);
+}
+
 .paymentInfo {
   height: 30%;
   display: grid;
