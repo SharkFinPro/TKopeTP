@@ -4,10 +4,9 @@ import { ProductData } from "../../../productTypes";
 
 export async function POST(request: Request): Promise<Response> {
   const body = await request.json();
-  body.cart = JSON.parse(body.cart);
 
   const cart: ProductData[] = [];
-  for (let { id, count } of body.cart) {
+  for (let { id, count } of JSON.parse(body.cart)) {
     let data: ProductData = await getProduct(id);
     data.count = count;
     cart.push(data);
