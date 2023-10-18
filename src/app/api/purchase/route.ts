@@ -15,7 +15,7 @@ export async function POST(request: Request): Promise<Response> {
   const transactionLog: string = JSON.stringify({
     cart: JSON.stringify(cart),
     paymentMethod: body.paymentMethod,
-    time: body.time
+    time: new Date().toJSON()
   });
 
   // Check if bin directory exists, if not then create it
