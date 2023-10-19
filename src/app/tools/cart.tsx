@@ -159,8 +159,7 @@ class Cart {
 
     const response: Response | void = await postRequest("/api/purchase", JSON.stringify({
       cart: JSON.stringify(simplifiedCart),
-      paymentMethod: this.getPaymentMethod(),
-      time: new Date().toJSON()
+      paymentMethod: this.getPaymentMethod()
     })).catch((err): void => {
       alert(err);
     });

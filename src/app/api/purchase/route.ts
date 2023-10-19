@@ -4,10 +4,9 @@ import { ProductData } from "../../../productTypes";
 
 export async function POST(request: Request): Promise<Response> {
   const body = await request.json();
-  body.cart = JSON.parse(body.cart);
 
   const cart: ProductData[] = [];
-  for (let { id, count } of body.cart) {
+  for (let { id, count } of JSON.parse(body.cart)) {
     let data: ProductData = await getProduct(id);
     data.count = count;
     cart.push(data);
@@ -16,7 +15,7 @@ export async function POST(request: Request): Promise<Response> {
   const transactionLog: string = JSON.stringify({
     cart: JSON.stringify(cart),
     paymentMethod: body.paymentMethod,
-    time: body.time
+    time: new Date().toJSON()
   });
 
   // Check if bin directory exists, if not then create it
