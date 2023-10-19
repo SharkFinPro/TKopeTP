@@ -55,7 +55,7 @@
   align-content: center;
   text-align: center;
   font-family: MuseoSans, serif;
-  font-size: min(10vw, 4rem);
+  font-size: min(7.5vw, 3rem);
 }
 
 .paymentInfo {
