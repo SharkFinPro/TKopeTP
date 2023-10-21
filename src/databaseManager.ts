@@ -1,5 +1,6 @@
 import sqlite3 from "sqlite3";
 import { join } from "path";
+import { cwd } from "process";
 
 class DatabaseManager {
   db: sqlite3.Database | undefined = undefined;
@@ -19,7 +20,7 @@ class DatabaseManager {
         return;
       }
 
-      this.db = new sqlite3.Database(join(process.cwd(), "db/TradingPost.sqlite"), sqlite3.OPEN_READWRITE, (error: Error | null): void => {
+      this.db = new sqlite3.Database(join(cwd(), "db/TradingPost.sqlite"), sqlite3.OPEN_READWRITE, (error: Error | null): void => {
         if (error) {
           reject(error);
         }
