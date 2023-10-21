@@ -25,12 +25,12 @@ export function ProductViewer({
       <table className={productViewerStyles.productTable}>
         <thead>
           <tr>
-            <td><strong>ID</strong></td>
-            <td><strong>Display Name</strong></td>
-            <td><strong>Price</strong></td>
-            <td><strong>Image</strong></td>
-            <td><strong>Product Type</strong></td>
-            <td><strong>Active</strong></td>
+            <th>ID</th>
+            <th>Display Name</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Product Type</th>
+            <th>Active</th>
           </tr>
         </thead>
         <tbody>
