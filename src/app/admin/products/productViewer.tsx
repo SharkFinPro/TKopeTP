@@ -54,7 +54,7 @@ export function ProductViewer({
               }</td>
               <td
                 style={{
-                  color: productData.active ? "#198754" : "#CC0000"
+                  color: productData.active ? "#0A551E" : "#960000"
                 }}>
                 {productData.active ? "Active" : "Inactive"}
               </td>
