@@ -40,12 +40,12 @@ export function ProductViewer({
               <td>{productData.displayName}</td>
               <td>${productData.price}</td>
               <td>
-                <Link
+                {productData.image && <Link
                   href={`../api/images/get/${productData.image}`}
                   target={"_blank"}
                   prefetch={false}>
                   {productData.image}
-                </Link>
+                </Link>}
               </td>
               <td>{
                 productTypes.length ?
