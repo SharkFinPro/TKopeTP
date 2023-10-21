@@ -1,6 +1,6 @@
 import sqlite3 from "sqlite3";
-import { join } from "path";
-import { cwd } from "process";
+import { join } from "node:path";
+import { cwd } from "node:process";
 
 class DatabaseManager {
   db: sqlite3.Database | undefined = undefined;

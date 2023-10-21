@@ -1,4 +1,4 @@
-import { access, mkdir, appendFile } from "fs/promises";
+import { access, mkdir, appendFile } from "node:fs/promises";
 import { getProduct } from "../../../productManager";
 import { ProductData } from "../../../productTypes";
 
