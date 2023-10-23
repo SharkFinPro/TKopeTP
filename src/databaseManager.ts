@@ -69,4 +69,5 @@ class DatabaseManager {
   }
 }
 
-export default new DatabaseManager();
+const databaseManager: DatabaseManager = new DatabaseManager();
+export default databaseManager;
