@@ -1,5 +1,6 @@
 import sqlite3 from "sqlite3";
-import { join } from "path";
+import { join } from "node:path";
+import { cwd } from "node:process";
 
 class DatabaseManager {
   db: sqlite3.Database | undefined = undefined;
@@ -19,7 +20,7 @@ class DatabaseManager {
         return;
       }
 
-      this.db = new sqlite3.Database(join(process.cwd(), "db/TradingPost.sqlite"), sqlite3.OPEN_READWRITE, (error: Error | null): void => {
+      this.db = new sqlite3.Database(join(cwd(), "db/TradingPost.sqlite"), sqlite3.OPEN_READWRITE, (error: Error | null): void => {
         if (error) {
           reject(error);
         }
@@ -49,21 +50,15 @@ class DatabaseManager {
     resolve(data || true);
   }
 
-  all(action: string): Promise<any> {
+  all(action: string, values: any[] = []): Promise<any> {
     return this.accessDatabase((resolve: any, reject: any): void => {
-      this.db?.all(action, (err: any, data: any) => this.handleResponse(err, data, resolve, reject));
+      this.db?.all(action, values, (err: any, data: any) => this.handleResponse(err, data, resolve, reject));
     });
   }
 
-  each(action: string): Promise<any> {
+  get(action: string, values: any[]): Promise<any> {
     return this.accessDatabase((resolve: any, reject: any): void => {
-      this.db?.each(action, (err: any, data: any) => this.handleResponse(err, data, resolve, reject));
-    });
-  }
-
-  get(action: string): Promise<any> {
-    return this.accessDatabase((resolve: any, reject: any): void => {
-      this.db?.get(action, (err: any, data: any) => this.handleResponse(err, data, resolve, reject));
+      this.db?.get(action, values, (err: any, data: any) => this.handleResponse(err, data, resolve, reject));
     });
   }
 

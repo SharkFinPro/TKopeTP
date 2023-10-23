@@ -1,4 +1,4 @@
-import { readFileSync, existsSync } from "fs";
+import { readFileSync, existsSync } from "node:fs";
 import * as XLSX from "xlsx";
 import Cart from "./cart";
 import { ProductData } from "../productTypes";

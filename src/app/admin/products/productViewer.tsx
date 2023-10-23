@@ -25,12 +25,12 @@ export function ProductViewer({
       <table className={productViewerStyles.productTable}>
         <thead>
           <tr>
-            <td><strong>ID</strong></td>
-            <td><strong>Display Name</strong></td>
-            <td><strong>Price</strong></td>
-            <td><strong>Image</strong></td>
-            <td><strong>Product Type</strong></td>
-            <td><strong>Active</strong></td>
+            <th>ID</th>
+            <th>Display Name</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Product Type</th>
+            <th>Active</th>
           </tr>
         </thead>
         <tbody>
@@ -40,12 +40,12 @@ export function ProductViewer({
               <td>{productData.displayName}</td>
               <td>${productData.price}</td>
               <td>
-                <Link
+                {productData.image && <Link
                   href={`../api/images/get/${productData.image}`}
                   target={"_blank"}
                   prefetch={false}>
                   {productData.image}
-                </Link>
+                </Link>}
               </td>
               <td>{
                 productTypes.length ?
@@ -54,7 +54,7 @@ export function ProductViewer({
               }</td>
               <td
                 style={{
-                  color: productData.active ? "#198754" : "#CC0000"
+                  color: productData.active ? "#0A551E" : "#960000"
                 }}>
                 {productData.active ? "Active" : "Inactive"}
               </td>
