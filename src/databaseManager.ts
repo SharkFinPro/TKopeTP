@@ -62,9 +62,9 @@ class DatabaseManager {
     });
   }
 
-  get(action: string): Promise<any> {
+  get(action: string, values: any[]): Promise<any> {
     return this.accessDatabase((resolve: any, reject: any): void => {
-      this.db?.get(action, (err: any, data: any) => this.handleResponse(err, data, resolve, reject));
+      this.db?.get(action, values, (err: any, data: any) => this.handleResponse(err, data, resolve, reject));
     });
   }
 
