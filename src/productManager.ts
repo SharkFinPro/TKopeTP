@@ -2,7 +2,8 @@ import databaseManager from "./databaseManager";
 import { ProductData, ProductType, RobustProductData } from "./productTypes";
 
 export const getProductsByType = (type: string, active: boolean = false): Promise<ProductData[]> => {
-  return databaseManager.all(`SELECT productType, displayName, price, image, id FROM Products WHERE productType=${type}${active ? " AND active=true" : ""}`);
+  return databaseManager.all("SELECT productType, displayName, price, image, id FROM Products WHERE productType=? AND active=?",
+    [type, active]);
 }
 
 export const getProducts = (): Promise<RobustProductData[]> => {

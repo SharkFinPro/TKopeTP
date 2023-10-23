@@ -50,9 +50,9 @@ class DatabaseManager {
     resolve(data || true);
   }
 
-  all(action: string): Promise<any> {
+  all(action: string, values: any[] = []): Promise<any> {
     return this.accessDatabase((resolve: any, reject: any): void => {
-      this.db?.all(action, (err: any, data: any) => this.handleResponse(err, data, resolve, reject));
+      this.db?.all(action, values, (err: any, data: any) => this.handleResponse(err, data, resolve, reject));
     });
   }
 
