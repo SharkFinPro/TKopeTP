@@ -8,10 +8,18 @@ import { ReadonlyHeaders } from "next/dist/server/web/spec-extension/adapters/he
 import wrapperStyles from "../../wrapper.module.css";
 import productsStyles from "./products.module.css";
 
-export const metadata: Metadata = {
-  title: "Products",
-  description: "Product Selection"
-};
+export async function generateMetadata({ params }: { params: { products: string }}): Promise<Metadata> {
+  const headersList: ReadonlyHeaders = headers(); // Opt in to dynamic rendering
+  const productTypes: ProductType[] = await getProductTypes();
+  const productType: ProductType | undefined = productTypes.find((productType: ProductType): boolean => {
+    return productType.id == parseInt(params.products);
+  });
+
+  return {
+    title: `${productType?.displayName} | Products`,
+    description: `Product Selection - ${productType?.displayName}`
+  };
+}
 
 export default async function Page({ params }: {params: { products: string }})  {
   const headersList: ReadonlyHeaders = headers(); // Opt in to dynamic rendering
