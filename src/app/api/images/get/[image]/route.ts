@@ -5,11 +5,13 @@ import { resolve } from "path";
 export async function GET(request: Request, {
   params
 }: {
-  params: {
+  params: Promise<{
     image: string
-  }
+  }>
 }): Promise<Response> {
-  let filePath: string = resolve('.', `images/${params.image}`);
+  const resolvedParams = await params;
+
+  let filePath: string = resolve('.', `images/${resolvedParams.image}`);
   let imageBuffer: void | Buffer = await readFile(filePath).catch((err) => console.error(err));
 
   if (!imageBuffer) {
