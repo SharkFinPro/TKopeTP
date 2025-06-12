@@ -1,8 +1,9 @@
 import { Metadata } from "next";
-import { headers } from "next/headers";
 import { Viewer } from "./viewer";
 import Report from "../../../reporting/report";
 import transactionStyles from "./transactions.module.css";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Transactions",
@@ -10,7 +11,6 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  const headersList = headers(); // Opt in to dynamic rendering
   const transactions = new Report("./bin/dump.txt").getTransactions();
 
   return (

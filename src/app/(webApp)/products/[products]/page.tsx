@@ -3,16 +3,17 @@ import ProductSquare from "@/components/ProductSquare";
 import { Metadata } from "next";
 import { getProductsByType, getProductTypes } from "../../../../productManager";
 import { ProductData, ProductType } from "../../../../productTypes";
-import { headers } from "next/headers";
-import { ReadonlyHeaders } from "next/dist/server/web/spec-extension/adapters/headers";
 import wrapperStyles from "../../wrapper.module.css";
 import productsStyles from "./products.module.css";
 
-export async function generateMetadata({ params }: { params: { products: string }}): Promise<Metadata> {
-  const headersList: ReadonlyHeaders = headers(); // Opt in to dynamic rendering
+export const dynamic = "force-dynamic";
+
+export async function generateMetadata({ params }: { params: Promise<{ products: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+
   const productTypes: ProductType[] = await getProductTypes();
   const productType: ProductType | undefined = productTypes.find((productType: ProductType): boolean => {
-    return productType.id == parseInt(params.products);
+    return productType.id == parseInt(resolvedParams.products);
   });
 
   return {
@@ -21,13 +22,14 @@ export async function generateMetadata({ params }: { params: { products: string 
   };
 }
 
-export default async function Page({ params }: {params: { products: string }})  {
-  const headersList: ReadonlyHeaders = headers(); // Opt in to dynamic rendering
-  const products: ProductData[] = await getProductsByType(params.products, true);
+export default async function Page({ params }: { params: Promise<{ products: string }> })  {
+  const resolvedParams = await params;
+
+  const products: ProductData[] = await getProductsByType(resolvedParams.products, true);
   
   const productTypes: ProductType[] = await getProductTypes();
   const productType: ProductType | undefined = productTypes.find((productType: ProductType): boolean => {
-    return productType.id == parseInt(params.products);
+    return productType.id == parseInt(resolvedParams.products);
   });
 
   return <>
